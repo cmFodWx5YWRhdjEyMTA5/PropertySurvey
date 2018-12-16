@@ -3,6 +3,8 @@ package com.softminesol.propertysurvey.survey.common.view.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.softminesol.propertysurvey.R;
 import com.softminesol.propertysurvey.SurveyAppApplication;
@@ -24,14 +27,51 @@ import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import frameworks.basemvp.AppBaseFragment;
 
 /**
  * Created by sandeep on 5/5/18.
  */
 public class PersonalInfoFragment extends AppBaseFragment<PersonalInfoContract.Presenter> implements PersonalInfoContract.View {
+
+    SurveyComponent surveyComponent;
+
+    @Inject
+    PersonalInfoPresenter presenter;
+    onMenuClick onMenuClick;
+    public static String OWNER_DETAIL_KEY = "OWNER_DETAIL_KEY";
+    @BindView(R.id.edt_respondentName)
+    EditText edtRespondentName;
+    @BindView(R.id.edt_respondentUniqueId)
+    EditText edtRespondentUniqueId;
+    @BindView(R.id.edt_respondentUniqueIdType)
+    EditText edtRespondentUniqueIdType;
+    @BindView(R.id.respondent_relation_type)
+    MaterialBetterSpinner respondentRelationType;
+    @BindView(R.id.edt_respondent_fatherName)
+    EditText edtRespondentFatherName;
+    @BindView(R.id.respondent_select_gender)
+    MaterialBetterSpinner respondentSelectGender;
+    @BindView(R.id.edt_respondentCurrentAddress)
+    EditText edtRespondentCurrentAddress;
+    @BindView(R.id.edt_respondent_mobileNo)
+    EditText edtRespondentMobileNo;
+    @BindView(R.id.edt_respondent_email)
+    EditText edtRespondentEmail;
+    @BindView(R.id.edt_respondentShipShare)
+    EditText edtRespondentShipShare;
+    @BindView(R.id.spnRespondentIsRespondent)
+    MaterialBetterSpinner spnRespondentIsRespondent;
     @BindView(R.id.edt_ownerName)
     EditText edtOwnerName;
+    @BindView(R.id.edt_uniqueId)
+    EditText edtUniqueId;
+    @BindView(R.id.edt_uniqueIdType)
+    EditText edtUniqueIdType;
+    @BindView(R.id.relation_type)
+    MaterialBetterSpinner relationType;
     @BindView(R.id.edt_fatherName)
     EditText edtFatherName;
     @BindView(R.id.select_gender)
@@ -44,19 +84,14 @@ public class PersonalInfoFragment extends AppBaseFragment<PersonalInfoContract.P
     EditText edtEmail;
     @BindView(R.id.edt_ownerShipShare)
     EditText edtOwnerShipShare;
-    SurveyComponent surveyComponent;
-
-    @Inject
-    PersonalInfoPresenter presenter;
-    @BindView(R.id.relation_type)
-    MaterialBetterSpinner relationType;
-    onMenuClick onMenuClick;
-    public static String OWNER_DETAIL_KEY = "OWNER_DETAIL_KEY";
+    @BindView(R.id.llOwner)
+    LinearLayout llOwner;
+    Unbinder unbinder;
 
     public static PersonalInfoFragment newInstance(OwnerDetailsItem ownerDetailsItem) {
         PersonalInfoFragment fragment = new PersonalInfoFragment();
         Bundle arguments = new Bundle();
-        arguments.putSerializable(OWNER_DETAIL_KEY,ownerDetailsItem);
+        arguments.putSerializable(OWNER_DETAIL_KEY, ownerDetailsItem);
         fragment.setArguments(arguments);
         return fragment;
     }
@@ -72,6 +107,7 @@ public class PersonalInfoFragment extends AppBaseFragment<PersonalInfoContract.P
         View view = inflater.inflate(R.layout.fragment_personalinfo, container, false);
         return view;
     }
+
 
     @Override
     public void onAttach(Context context) {
@@ -181,7 +217,31 @@ public class PersonalInfoFragment extends AppBaseFragment<PersonalInfoContract.P
     public void setGenderAdapter(ArrayAdapter<CharSequence> genderAdapter) {
         selectGender.setAdapter(genderAdapter);
     }
+    @Override
+    public void setIsRespondantIsOwnerAdapter(ArrayAdapter<CharSequence> genderAdapter) {
+        spnRespondentIsRespondent.setAdapter(genderAdapter);
+        spnRespondentIsRespondent.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(spnRespondentIsRespondent.getText().toString().equals("No")){
+                    llOwner.setVisibility(View.VISIBLE);
+                }
+                else {
+                    llOwner.setVisibility(View.GONE);
+                }
+            }
+        });
+    }
     @Override
     public void setRelationShipAdapter(ArrayAdapter<CharSequence> relationShipAdapter) {
         relationType.setAdapter(relationShipAdapter);
@@ -192,7 +252,6 @@ public class PersonalInfoFragment extends AppBaseFragment<PersonalInfoContract.P
         edtOwnerName.setError(error);
         edtOwnerName.requestFocus();
     }
-
 
 
     @Override
@@ -219,7 +278,5 @@ public class PersonalInfoFragment extends AppBaseFragment<PersonalInfoContract.P
         finish();
         return true;
     }
-
-
 
 }

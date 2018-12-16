@@ -55,7 +55,6 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
     EditText edtLicenceValidity;
     @BindView(R.id.edt_noOwner)
     EditText edtNoOwner;
-
     @BindView(R.id.edt_signature)
     EditText edtSignature;
     Unbinder unbinder;
@@ -98,11 +97,7 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
     }
 
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -216,6 +211,7 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
         setLeftMenuEnable(true);
         setRightMenuEnable(true);
     }
+
 
     @Override
     public boolean onRightMenuClick() {

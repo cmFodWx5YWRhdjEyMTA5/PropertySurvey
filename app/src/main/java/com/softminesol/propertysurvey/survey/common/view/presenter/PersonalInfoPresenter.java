@@ -29,6 +29,7 @@ public class PersonalInfoPresenter extends AppBasePresenter<PersonalInfoContract
         super.attachView(view);
         getView().setGenderAdapter(adapterFactory.getGenderAdapter());
         getView().setRelationShipAdapter(adapterFactory.getRelationShipAdapter());
+        getView().setIsRespondantIsOwnerAdapter(adapterFactory.getYesNoAdapter());
         if(getView().getOwnerDetailItem()!= null) {
             setOwnerDetails(getView().getOwnerDetailItem());
         }

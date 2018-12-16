@@ -56,37 +56,12 @@ import static frameworks.imageloader.view.ActivityPicChooser.IMAGE_URI_RESULT;
 public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContract.View> implements ApartmentInfoContract.Presenter {
 
     private final AdapterFactory adapterFactory;
-    private final SurveyMeasurementListUseCase surveyMeasurementListUseCase;
-    private final SurveyUsageListUseCase surveyUsageListUseCase;
-    private final SurveyRebateUseCase surveyRebateUseCase;
-    private final SurveyGetPropertyTypeUseCase surveyGetPropertyTypeUseCase;
-    private final SurveyGetSubCategoryUseCase surveyGetSubCategoryUseCase;
-    private final SurveyConstructionTypeUseCase surveyConstructionTypeUseCase;
-    private final SurveyGetCategoryUseCase surveyGetCategoryUseCase;
-    private final ImageUploadUseCase imageUploadUseCase;
-    private final SurveyOwnerShipUseCase surveyOwnerShipUseCase;
-    SurveyFloorListUseCase surveyFloorListUseCase;
-    List<PropertyCategory> propertyCategories;
-    List<PropertyType> propertyType;
-    List<OwnerDetailsItem> ownerDetailsItems = new ArrayList<>();
-    boolean imageSyncPassed;
+
 
     @Inject
-    public ApartmentInfoPresenter(AdapterFactory adapterFactory, SurveyFloorListUseCase surveyFloorListUseCase, SurveyMeasurementListUseCase surveyMeasurementListUseCase,
-                                  SurveyUsageListUseCase surveyUsageListUseCase, SurveyRebateUseCase surveyRebateUseCase, SurveyGetCategoryUseCase surveyGetCategoryUseCase,
-                                  SurveyGetPropertyTypeUseCase surveyGetPropertyTypeUseCase, SurveyGetSubCategoryUseCase surveyGetSubCategoryUseCase,
-                                  SurveyConstructionTypeUseCase surveyConstructionTypeUseCase, ImageUploadUseCase imageUploadUseCase, SurveyOwnerShipUseCase surveyOwnerShipUseCase) {
-        this.surveyFloorListUseCase = surveyFloorListUseCase;
+    public ApartmentInfoPresenter(AdapterFactory adapterFactory) {
         this.adapterFactory = adapterFactory;
-        this.surveyMeasurementListUseCase = surveyMeasurementListUseCase;
-        this.surveyUsageListUseCase = surveyUsageListUseCase;
-        this.surveyRebateUseCase = surveyRebateUseCase;
-        this.surveyGetPropertyTypeUseCase = surveyGetPropertyTypeUseCase;
-        this.surveyGetSubCategoryUseCase = surveyGetSubCategoryUseCase;
-        this.surveyConstructionTypeUseCase = surveyConstructionTypeUseCase;
-        this.surveyGetCategoryUseCase = surveyGetCategoryUseCase;
-        this.imageUploadUseCase = imageUploadUseCase;
-        this.surveyOwnerShipUseCase = surveyOwnerShipUseCase;
+
     }
 
     @Override

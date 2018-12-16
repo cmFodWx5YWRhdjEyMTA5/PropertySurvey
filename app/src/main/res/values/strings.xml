@@ -112,6 +112,7 @@
     <string name="signature">Signature</string>
     <string name="unique_id">Unique Id</string>
     <string name="unique_id_type">Unique Id Type</string>
+    <string name="respondent_is_owner">Respondent is owner</string>
 
 
 </resources>

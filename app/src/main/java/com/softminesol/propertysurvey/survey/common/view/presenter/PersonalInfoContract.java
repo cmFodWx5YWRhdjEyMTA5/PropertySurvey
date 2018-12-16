@@ -51,6 +51,8 @@ public interface PersonalInfoContract {
         public OwnerDetailsItem getOwnerDetailItem();
         public void setGenderAdapter(ArrayAdapter<CharSequence> genderAdapter);
 
+        public void setIsRespondantIsOwnerAdapter(ArrayAdapter<CharSequence> yesNoAdapter);
+
         public void setRelationShipAdapter(ArrayAdapter<CharSequence> relationShipAdapter);
 
         public void setOwnerNameError(String error);
