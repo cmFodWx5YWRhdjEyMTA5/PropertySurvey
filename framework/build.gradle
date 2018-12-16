@@ -1,0 +1,35 @@
+apply plugin: 'com.android.library'
+apply from: "$rootProject.projectDir/buildconfig/module.gradle"
+apply plugin: 'com.jakewharton.butterknife'
+
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation rootProject.ext.supportLibDependencies.appCompactV7
+    implementation rootProject.ext.miscDependencies.joda
+    implementation rootProject.ext.butterKnifeDependencies.butterKnife
+    annotationProcessor rootProject.ext.butterKnifeDependencies.butterKnifeCompiler
+    compile rootProject.ext.supportLibDependencies.design
+    compile rootProject.ext.supportLibDependencies.supportV4
+    compile rootProject.ext.miscDependencies.facebook
+    compile rootProject.ext.networkDependencies.retrofit
+    compile rootProject.ext.networkDependencies.converterGson
+    compile rootProject.ext.networkDependencies.okHttp
+    compile rootProject.ext.miscDependencies.gson
+    compile rootProject.ext.networkDependencies.glide
+    compile rootProject.ext.networkDependencies.loggingInterceptor
+    compile rootProject.ext.networkDependencies.adapterRxJava
+    compile rootProject.ext.miscDependencies.rxAndroid
+    compile rootProject.ext.miscDependencies.rxJava
+    compile rootProject.ext.miscDependencies.dagger
+    implementation rootProject.ext.playServicesDependencies.location
+    implementation project(rootProject.ext.libraries.locations)
+
+    implementation project(rootProject.ext.libraries.permissions)
+    annotationProcessor rootProject.ext.miscDependencies.daggerCompiler
+}
+
+android {
+    buildToolsVersion '27.0.1'
+}

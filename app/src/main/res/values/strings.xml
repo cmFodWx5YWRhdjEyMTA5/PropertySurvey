@@ -1,0 +1,117 @@
+<resources>
+    <string name="app_name">GIS Survey App</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+
+    <string name="old_property_id">Old Property Id</string>
+    <string name="property_id">Property Id</string>
+    <string name="uid">UID</string>
+    <string name="owner_name">Owner Name</string>
+    <string name="father_husband">Father/Husband</string>
+    <string name="gender">Gender</string>
+    <string name="current_address">Current Address</string>
+    <string name="present_address">Present Address</string>
+    <string name="mobile_no">Mobile No</string>
+    <string name="email">Email</string>
+    <string name="occupier_name">Occupier Name</string>
+    <string name="ownership_share">Ownership Share</string>
+    <string name="bpl_no">BPl No</string>
+    <string name="floors_id">Floors Type</string>
+    <string name="covered_area">Covered Area</string>
+    <string name="usage_id">Usage Type</string>
+    <string name="rebate_id">Rebate Id</string>
+    <string name="pc_id">Property Category</string>
+    <string name="pt_id">Property Type</string>
+    <string name="ps_id">Property Subtype</string>
+    <string name="type_of_construction">Type Of Construction</string>
+    <string name="year_of_construction">Year Of Construction</string>
+    <string name="dist_code">Dist Code</string>
+    <string name="state_code">State Code</string>
+    <string name="mc_code">MC Code</string>
+    <string name="floor_count">Floor Count</string>
+    <string name="colony_code">Colony Name</string>
+    <string name="ward_no">Ward No</string>
+    <string name="zone">Zone</string>
+    <string name="street_code">Street Code</string>
+    <string name="area_type">Area Type</string>
+    <string name="ownership_type">Ownership Type</string>
+    <string name="photo_id">Photo Id</string>
+    <string name="map_id">Map Id</string>
+    <string name="house_pro_no">House/Pro No</string>
+    <string name="old_prop_no">Old Property No</string>
+    <string name="property_area">Property Area</string>
+    <string name="area_meas_unit">Area Measurement Unit</string>
+    <string name="year_of_occ_build">Year Of Occupation Building</string>
+    <string name="length">Length</string>
+    <string name="width">Width</string>
+    <string name="length_width_meas_unit">Length Width Measurement Unit</string>
+    <string name="w_Con">W Con</string>
+    <string name="sew_con">Sew Con</string>
+    <string name="sew_con_year">Sew Con Year</string>
+    <string name="building_details">Building Details</string>
+    <string name="building_title">Building Title</string>
+    <string name="buisness_type">Buisness Type</string>
+    <string name="year_of_establishment">Year of Establishment</string>
+    <string name="trade_lic_no">Trade Licence No</string>
+    <string name="trade_lic_year">Trade Licence Year</string>
+    <string name="msmo">MSMO</string>
+    <string name="remark">Remark</string>
+    <string name="bill_distribution">Bill Distribution</string>
+    <string name="old_property">Old Property</string>
+    <string name="new_property">New Property</string>
+    <string name="addfloor">Add Floor</string>
+    <string name="addApartment">Add Apartment</string>
+    <string name="coveredarea_measurement_unit">Covered Area Measurement Unit</string>
+    <string name="type_of_buisness">Type of Buisness</string>
+    <string name="title_building">Title of Building</string>
+    <string name="trade_issue_date">Trade Licence Issue Date</string>
+    <string name="year_of_occupying">Year of Occupying</string>
+    <string name="is_BPL">is BPL</string>
+    <string name="select_gender">Select Gender</string>
+    <string name="relation_type">Relation Type</string>
+    <string name="addOwner">Add Owner</string>
+    <string name="no_of_owner">No of Owners</string>
+    <string name="picture_id">Picture Id</string>
+    <string name="status">Status</string>
+    <string name="title_activity_get_high_accuracy_location">Map</string>
+    <string name="get_lat_long">Get Lat-Long</string>
+    <string name="type_of_property">Type of Property</string>
+    <string name="gis_id">GIS Id</string>
+    <string name="parcel_id">Parcel Id</string>
+    <string name="type_of_non_res_property">Type of Non Residential Property</string>
+    <string name="source_of_water">Source Of Water</string>
+    <string name="rain_water_harvesting">Rain Water Harvesting</string>
+    <string name="apartment_building_name">Apartment Building Name</string>
+    <string name="lift_facility">Lift Facility</string>
+    <string name="power_backup">Power Backup</string>
+    <string name="parking_facility">Parking Facility</string>
+    <string name="fire_fighting">Fire Fighting</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="age_of_building">Age Of Building</string>
+    <string name="election_connection_no">Electric Connection No.</string>
+    <string name="shop_apartment_no">ShopNo/ Apartment No.</string>
+    <string name="business_industry_type">Buisness type/ Industry Type</string>
+    <string name="licence_status">Licence Status</string>
+    <string name="licence_no">Licence No.</string>
+    <string name="apartment_shop_area">Apartment/Shop Area</string>
+    <string name="licence_validity">Licence Validity</string>
+    <string name="signature">Signature</string>
+    <string name="unique_id">Unique Id</string>
+    <string name="unique_id_type">Unique Id Type</string>
+
+
+</resources>

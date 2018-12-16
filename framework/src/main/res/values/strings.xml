@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">framework</string>
+
+
+    <!-- { OTP -->
+    <string name="otp_dialog_text">Enter the 6 digit code sent to you via registered email or mobile.</string>
+    <string name="otp_dialog_header">Enter OTP</string>
+    <string name="enter_otp">Enter OTP</string>
+    <string name="title_activity_dash_board">DashBoard</string>
+    <string name="title_activity_book_list">BookListActivity</string>
+    <string name="your_mobile_no">Your Mobile Number</string>
+    <string name="otp_not_match">OTP Not matched</string>
+
+    <!-- OPT }-->
+
+    <string name="submit">Submit</string>
+
+</resources>
