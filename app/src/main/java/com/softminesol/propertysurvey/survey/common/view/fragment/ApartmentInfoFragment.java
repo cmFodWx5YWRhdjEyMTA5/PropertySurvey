@@ -25,6 +25,8 @@ import com.softminesol.propertysurvey.survey.common.view.presenter.ApartmentInfo
 import com.softminesol.propertysurvey.survey.common.view.presenter.ApartmentInfoPresenter;
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -62,6 +64,7 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
 
     public static final String APARTMENT_DETAIL_KEY = "apartmentDetails";
     SurveyComponent surveyComponent;
+    @Inject
     ApartmentInfoPresenter apartmentInfoPresenter;
     public static ApartmentInfoFragment newInstance(ApartmentDetailsItem apartmentDetailsItem) {
         ApartmentInfoFragment fragment = new ApartmentInfoFragment();

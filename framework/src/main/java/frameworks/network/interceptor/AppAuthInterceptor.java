@@ -2,8 +2,6 @@ package frameworks.network.interceptor;
 
 import android.content.Context;
 import android.support.v4.util.ArrayMap;
-import android.util.Log;
-
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -15,12 +13,10 @@ import java.util.Map;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import frameworks.AppBaseApplication;
 import frameworks.appsession.AppSessionManager;
-import frameworks.appsession.SessionValue;
 import frameworks.di.qualifier.ApplicationContext;
-import frameworks.network.Utils;
 import frameworks.routers.ILoginInterceptor;
+import in.healthhunt.framework.BuildConfig;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -61,6 +57,8 @@ public class AppAuthInterceptor extends AppBaseInterceptor {
     private static final String PARAM_BETA_TRUE = "1";
     private static final String RESPONSE_PARAM_TOKEN = "token";
     private static final String REQUEST_PARAM_REFRESH_TOKEN = "refresh_token";
+    private static final String HEADER_X_APP_VERSION = "version";
+    private static final String HEADER_DEVICE = "Device_type";
     private final ILoginInterceptor loginInterceptor;
     private Context context;
     protected AppSessionManager userSession;
@@ -178,6 +176,9 @@ public class AppAuthInterceptor extends AppBaseInterceptor {
             return headerMap;
         }
         headerMap.put(AUTHORIZATION,this.authKey);
+        headerMap.put(HEADER_X_APP_VERSION, String.valueOf(BuildConfig.VERSION_NAME));
+        headerMap.put(HEADER_DEVICE, "android-" + String.valueOf(BuildConfig.VERSION_NAME));
+
         return headerMap;
     }
 
