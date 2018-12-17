@@ -3,6 +3,7 @@ package com.softminesol.propertysurvey.survey.common.view.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -87,6 +88,45 @@ public class PersonalInfoFragment extends AppBaseFragment<PersonalInfoContract.P
     @BindView(R.id.llOwner)
     LinearLayout llOwner;
     Unbinder unbinder;
+    @BindView(R.id.edt_personal_detail_id)
+    EditText edtPersonalDetailId;
+    @BindView(R.id.edt_apartment_building_name)
+    EditText edtApartmentBuildingName;
+    @BindView(R.id.edt_house_no)
+    EditText edtHouseNo;
+    @BindView(R.id.edt_street_name)
+    EditText edtStreetName;
+    @BindView(R.id.edt_colony_code)
+    EditText edtColonyCode;
+    @BindView(R.id.edt_pin_code)
+    EditText edtPinCode;
+    @BindView(R.id.edt_ward_no)
+    EditText edtWardNo;
+    @BindView(R.id.edt_circle_no)
+    EditText edtCircleNo;
+    @BindView(R.id.edt_circle_revenue)
+    EditText edtCircleRevenue;
+    @BindView(R.id.textILayout_respondent_currentAddress)
+    TextInputLayout textILayoutRespondentCurrentAddress;
+    @BindView(R.id.textILayout_respondentShipShare)
+    TextInputLayout textILayoutRespondentShipShare;
+    @BindView(R.id.textILayout_ownerName)
+    TextInputLayout textILayoutOwnerName;
+    @BindView(R.id.textILayout_uniqueId)
+    TextInputLayout textILayoutUniqueId;
+    @BindView(R.id.textILayout_uniqueIdType)
+    TextInputLayout textILayoutUniqueIdType;
+    @BindView(R.id.textILayout_fatherName)
+    TextInputLayout textILayoutFatherName;
+    @BindView(R.id.textILayout_currentAddress)
+    TextInputLayout textILayoutCurrentAddress;
+    @BindView(R.id.textILayout_mobileNo)
+    TextInputLayout textILayoutMobileNo;
+    @BindView(R.id.textILayout_email)
+    TextInputLayout textILayoutEmail;
+    @BindView(R.id.textILayout_ownerShipShare)
+    TextInputLayout textILayoutOwnerShipShare;
+    Unbinder unbinder1;
 
     public static PersonalInfoFragment newInstance(OwnerDetailsItem ownerDetailsItem) {
         PersonalInfoFragment fragment = new PersonalInfoFragment();
@@ -217,6 +257,7 @@ public class PersonalInfoFragment extends AppBaseFragment<PersonalInfoContract.P
     public void setGenderAdapter(ArrayAdapter<CharSequence> genderAdapter) {
         selectGender.setAdapter(genderAdapter);
     }
+
     @Override
     public void setIsRespondantIsOwnerAdapter(ArrayAdapter<CharSequence> genderAdapter) {
         spnRespondentIsRespondent.setAdapter(genderAdapter);
@@ -233,15 +274,15 @@ public class PersonalInfoFragment extends AppBaseFragment<PersonalInfoContract.P
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(spnRespondentIsRespondent.getText().toString().equals("No")){
+                if (spnRespondentIsRespondent.getText().toString().equals("No")) {
                     llOwner.setVisibility(View.VISIBLE);
-                }
-                else {
+                } else {
                     llOwner.setVisibility(View.GONE);
                 }
             }
         });
     }
+
     @Override
     public void setRelationShipAdapter(ArrayAdapter<CharSequence> relationShipAdapter) {
         relationType.setAdapter(relationShipAdapter);
@@ -279,4 +320,17 @@ public class PersonalInfoFragment extends AppBaseFragment<PersonalInfoContract.P
         return true;
     }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        unbinder1 = ButterKnife.bind(this, rootView);
+        return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder1.unbind();
+    }
 }

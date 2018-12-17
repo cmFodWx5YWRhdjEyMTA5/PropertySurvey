@@ -33,6 +33,15 @@ public interface ApartmentInfoContract {
 
         public String getLicenceStatus();
 
+        public void setPropertyUsage(ArrayAdapter customAdapter);
+
+        public void setRespondentStatus(ArrayAdapter customAdapter) ;
+
+        public void setOccupencyStatus(ArrayAdapter customAdapter) ;
+
+        public void setSourceOfWater(ArrayAdapter customAdapter) ;
+
+        public void setConstructionType(ArrayAdapter customAdapter) ;
 
         public void setEdtCoveredArea(String text);
 

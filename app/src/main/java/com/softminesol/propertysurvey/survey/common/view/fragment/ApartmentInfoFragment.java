@@ -13,13 +13,13 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.softminesol.propertysurvey.R;
 import com.softminesol.propertysurvey.SurveyAppApplication;
 import com.softminesol.propertysurvey.survey.common.di.DaggerSurveyComponent;
 import com.softminesol.propertysurvey.survey.common.di.SurveyComponent;
 import com.softminesol.propertysurvey.survey.common.model.formData.ApartmentDetailsItem;
-import com.softminesol.propertysurvey.survey.common.model.formData.FloorDetailsItem;
 import com.softminesol.propertysurvey.survey.common.view.activity.onMenuClick;
 import com.softminesol.propertysurvey.survey.common.view.presenter.ApartmentInfoContract;
 import com.softminesol.propertysurvey.survey.common.view.presenter.ApartmentInfoPresenter;
@@ -66,13 +66,70 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
     SurveyComponent surveyComponent;
     @Inject
     ApartmentInfoPresenter apartmentInfoPresenter;
+    @BindView(R.id.edt_Floor_deatil_Id)
+    EditText edtFloorDeatilId;
+    @BindView(R.id.edt_propertyFloorId)
+    EditText edtPropertyFloorId;
+    @BindView(R.id.spPropertyUsage)
+    MaterialBetterSpinner spPropertyUsage;
+    @BindView(R.id.edt_non_resdental_code)
+    EditText edtNonResdentalCode;
+    @BindView(R.id.edt_shop_name)
+    EditText edtShopName;
+    @BindView(R.id.edt_buisness_code)
+    EditText edtBuisnessCode;
+    @BindView(R.id.edt_respondentName)
+    EditText edtRespondentName;
+    @BindView(R.id.spn_respondent_status)
+    MaterialBetterSpinner spnRespondentStatus;
+    @BindView(R.id.spn_occupency_status)
+    MaterialBetterSpinner spnOccupencyStatus;
+    @BindView(R.id.edt_connection_no)
+    EditText edtConnectionNo;
+    @BindView(R.id.edt_sewerage_con_status)
+    EditText edtSewerageConStatus;
+    @BindView(R.id.spSourceOfWater)
+    MaterialBetterSpinner spSourceOfWater;
+    @BindView(R.id.spConstructiontype)
+    MaterialBetterSpinner spConstructiontype;
+    @BindView(R.id.edt_self_occupied)
+    EditText edtSelfOccupied;
+    @BindView(R.id.edt_tenanted)
+    EditText edtTenanted;
+    @BindView(R.id.spPowerBackup)
+    MaterialBetterSpinner spPowerBackup;
+    @BindView(R.id.spFireFighting)
+    MaterialBetterSpinner spFireFighting;
+    @BindView(R.id.edt_apartment_building_name)
+    EditText edtApartmentBuildingName;
+    @BindView(R.id.edt_house_no)
+    EditText edtHouseNo;
+    @BindView(R.id.edt_street_name)
+    EditText edtStreetName;
+    @BindView(R.id.edt_colony_code)
+    EditText edtColonyCode;
+    @BindView(R.id.edt_pin_code)
+    EditText edtPinCode;
+    @BindView(R.id.edt_ward_no)
+    EditText edtWardNo;
+    @BindView(R.id.edt_circle_no)
+    EditText edtCircleNo;
+    @BindView(R.id.edt_circle_revenue)
+    EditText edtCircleRevenue;
+    @BindView(R.id.btn_add_owner)
+    Button btnAddOwner;
+    @BindView(R.id.owner_values)
+    LinearLayout ownerValues;
+    Unbinder unbinder1;
+
     public static ApartmentInfoFragment newInstance(ApartmentDetailsItem apartmentDetailsItem) {
         ApartmentInfoFragment fragment = new ApartmentInfoFragment();
         Bundle args = new Bundle();
-        args.putSerializable(APARTMENT_DETAIL_KEY,apartmentDetailsItem);
+        args.putSerializable(APARTMENT_DETAIL_KEY, apartmentDetailsItem);
         fragment.setArguments(args);
         return fragment;
     }
+
     public ApartmentInfoFragment() {
         // Required empty public constructor
     }
@@ -100,16 +157,37 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
     }
 
 
-
+    @Override
+    public void setPropertyUsage(ArrayAdapter customAdapter) {
+        spPropertyUsage.setAdapter(customAdapter);
+    }
+    @Override
+    public void setRespondentStatus(ArrayAdapter customAdapter) {
+        spnRespondentStatus.setAdapter(customAdapter);
+    }
+    @Override
+    public void setOccupencyStatus(ArrayAdapter customAdapter) {
+        spnOccupencyStatus.setAdapter(customAdapter);
+    }
+    @Override
+    public void setSourceOfWater(ArrayAdapter customAdapter) {
+        spSourceOfWater.setAdapter(customAdapter);
+    }
+    @Override
+    public void setConstructionType(ArrayAdapter customAdapter) {
+        spConstructiontype.setAdapter(customAdapter);
+    }
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         onMenuClick = (onMenuClick) context;
 
     }
+
     @Override
     public String getEdtCoveredArea() {
-        return edtCoveredArea.getText().toString();    }
+        return edtCoveredArea.getText().toString();
+    }
 
     @Override
     public String getEdtElectionConnectionNo() {
@@ -123,23 +201,28 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
 
     @Override
     public String getEdtBusinessIndustryType() {
-        return edtBusinessIndustryType.getText().toString();    }
+        return edtBusinessIndustryType.getText().toString();
+    }
 
     @Override
     public String getEdtLicenceNo() {
-        return edtLicenceNo.getText().toString();    }
+        return edtLicenceNo.getText().toString();
+    }
 
     @Override
     public String getEdtApartmentShopArea() {
-        return edtApartmentShopArea.getText().toString();    }
+        return edtApartmentShopArea.getText().toString();
+    }
 
     @Override
     public String getEdtLicenceValidity() {
-        return edtLicenceValidity.getText().toString();    }
+        return edtLicenceValidity.getText().toString();
+    }
 
     @Override
     public String getEdtNoOwner() {
-        return edtNoOwner.getText().toString();    }
+        return edtNoOwner.getText().toString();
+    }
 
     @Override
     public String getEdtSignature() {
@@ -231,5 +314,6 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
         finish();
         return true;
     }
+
 
 }

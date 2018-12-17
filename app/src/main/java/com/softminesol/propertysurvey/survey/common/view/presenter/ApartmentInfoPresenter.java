@@ -68,6 +68,12 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
     public void attachView(ApartmentInfoContract.View view) {
         super.attachView(view);
         getView().setLicenceStatus(adapterFactory.getYesNoAdapter());
+        getView().setPropertyUsage(adapterFactory.getTypeOfPropertyUsage());
+        getView().setRespondentStatus(adapterFactory.getRespondentStatus());
+        getView().setOccupencyStatus(adapterFactory.getOccupencyStatus());
+        getView().setConstructionType(adapterFactory.getCustructionType());
+        getView().setSourceOfWater(adapterFactory.getSourceOfWaterProperty());
+
     }
 
 

@@ -13,21 +13,57 @@
         <item>No</item>
     </string-array>
 
-    <string-array name="property_type">
+    <string-array name="property_usage">
         <item>Residential</item>
         <item>Non Residential</item>
+        <item>Mix</item>
+
+    </string-array>
+    <string-array name="property_type">
+        <item>Multi‐storey Building</item>
+        <item>Single Storey</item>
+
+
+    </string-array>
+    <string-array name="occupency_type">
+        <item>Self-occupied</item>
+        <item>Rental</item>
+        <item>Mix</item>
+
+    </string-array>
+    <string-array name="respondent_status_type">
+        <item>Owner</item>
+        <item>Tenent</item>
+        <item>Employee</item>
+        <item>Others</item>
+
     </string-array>
     <string-array name="non_res_property_type">
         <item>Hotels, Restaurants, Bars, Clubs, Health club, Cinema houses, Guest houses, Marriage halls and places of entertainment</item>
         <item>Shops, Show room</item>
-        <item>Commercial offices, financial institution, insurance and financial</item>
-        <item>State Government office and institution and semi govt. offices</item>
+        <item>Commercial offices, financial institutions, insurance and financial services businesses,Commercial Houses, banks, Hospitals and Nursing Homes, Dispensaries, Laboratories</item>
+        <item>State Government office and institutions and semi-govt. offices and institutions and excludes Holdings owned by private parties/ entities
+, Other than Central Government</item>
+        <item>Central Government owned properties</item>
+        <item>Industries and workshops</item>
+        <item>Schools, colleges, and other educational institutions, research institutions, all coaching and study centres and all fees collecting properties owned by individuals or institutions registered as Trusts or under Society Act, Guidance and Training Centres</item>
+        <item>Educational and social institutions run by charitable trusts on noprofit no-loss basis for benefit of poor, physically challenged, social security of women and children</item>
+        <item>Religious places including facilities for Boarding or Lodging for which some charge albeit nominal is made. Such Religious places shall include all Temples, Mosques, Dharam Shalas, and Ashrams, markaz, Haz Bhawan, churches and Monasteries.</item>
+        <item>Any other holdings not covered under (1) to (9)</item>
 
     </string-array>
     <string-array name="source_of_water_type">
         <item>Own</item>
         <item>Municipal connection</item>
-        <item>Any other</item>
+        <item>Public Tap  (Within 100 yards)</item>
+        <item>Water supply not within 100 yards</item>
+
+    </string-array>
+
+    <string-array name="custruction_type">
+        <item>RCC/RBC</item>
+        <item>Asbestos or Corrugated</item>
+        <item>others</item>
 
     </string-array>
 </resources>

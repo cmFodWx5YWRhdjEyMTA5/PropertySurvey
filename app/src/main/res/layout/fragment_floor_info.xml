@@ -19,12 +19,110 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:orientation="vertical">
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/textILayout_propertyFloorId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_vertical_margin">
+
+                    <EditText
+                        android:id="@+id/edt_propertyFloorId"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/property_floor_id"
+                        android:inputType="text|textEmailAddress"
+                        android:maxLines="1" />
+
+                </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/textILayout_propertyId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_vertical_margin">
+
+                    <EditText
+                        android:id="@+id/edt_propertyId"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/property_id"
+                        android:inputType="text|textEmailAddress"
+                        android:maxLines="1" />
+
+                </android.support.design.widget.TextInputLayout>
+                <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                    android:id="@+id/spn_floors"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:focusableInTouchMode="false"
+                    android:hint="@string/floors"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/textILayout_total_property"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_vertical_margin">
+
+
+
+                </android.support.design.widget.TextInputLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/edt_noOwner"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:focusable="false"
+                            android:visibility="gone"
+                            android:hint="@string/no_of_owner"
+                            android:inputType="number" />
+                        <EditText
+                            android:layout_weight="1"
+
+                            android:id="@+id/edt_total_property"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/total_property"
+                            android:inputType="text|textEmailAddress"
+                            android:maxLines="1" />
+
+                        <Button
+                            android:id="@+id/btn_add_apartment"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/addApartment" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/owner_values"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" />
+                </LinearLayout>
 
                 <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
                     android:id="@+id/select_floor_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:focusableInTouchMode="false"
+                    android:visibility="gone"
                     android:hint="@string/floors_id"
                     app:met_floatingLabel="normal" />
 
@@ -33,6 +131,8 @@
                     android:id="@+id/textILayout_covered_area"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
+
                     android:layout_marginTop="@dimen/activity_vertical_margin">
 
                     <EditText
@@ -50,6 +150,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:visibility="gone"
+
                     android:focusableInTouchMode="false"
                     android:hint="@string/coveredarea_measurement_unit"
                     android:inputType="textEmailAddress"
@@ -60,6 +162,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:visibility="gone"
+
                     android:focusableInTouchMode="false"
                     android:hint="@string/usage_id"
                     android:inputType="textEmailAddress"
@@ -70,6 +174,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:visibility="gone"
+
                     android:focusableInTouchMode="false"
                     android:hint="@string/rebate_id"
                     app:met_floatingLabel="normal" />
@@ -79,6 +185,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:visibility="gone"
+
                     android:focusableInTouchMode="false"
                     android:hint="@string/pc_id"
                     app:met_floatingLabel="normal" />
@@ -87,6 +195,8 @@
                     android:id="@+id/textILayout_type_buisness"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:visibility="gone"
+
                     android:layout_marginTop="@dimen/activity_vertical_margin">
 
                     <EditText
@@ -103,6 +213,8 @@
                     android:id="@+id/textILayout_title_building"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:visibility="gone"
+
                     android:layout_marginTop="@dimen/activity_vertical_margin">
 
                     <EditText
@@ -120,6 +232,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:visibility="gone"
+
                     android:focusable="false"
                     android:hint="@string/pt_id" />
 
@@ -129,6 +243,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
                     android:focusable="false"
+                    android:visibility="gone"
+
                     android:hint="@string/ps_id"
                     android:inputType="textEmailAddress"
                     android:maxLines="1" />
@@ -138,6 +254,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:visibility="gone"
+
                     android:hint="@string/type_of_construction"
                     app:met_floatingLabel="normal" />
 
@@ -145,6 +263,8 @@
                     android:id="@+id/textILayout_year_of_construction"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
+
                     android:layout_marginTop="@dimen/activity_vertical_margin">
 
                     <EditText
@@ -161,6 +281,8 @@
                     android:id="@+id/textILayout_year_of_establishment"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:visibility="gone"
+
                     android:layout_marginTop="@dimen/activity_vertical_margin">
 
                     <EditText
@@ -171,43 +293,6 @@
                         android:inputType="textEmailAddress"
                         android:maxLines="1" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="2"
-                            android:orientation="horizontal">
-
-                            <EditText
-                                android:id="@+id/edt_noOwner"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:focusable="false"
-                                android:hint="@string/no_of_owner"
-                                android:inputType="number" />
-
-
-                            <Button
-                                android:id="@+id/btn_add_apartment"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/addApartment" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/owner_values"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical" />
-                    </LinearLayout>
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -215,6 +300,7 @@
                     android:id="@+id/textILayout_trade_licence_no"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:visibility="gone"
                     android:layout_marginTop="@dimen/activity_vertical_margin">
 
                     <EditText
@@ -231,6 +317,8 @@
                     android:id="@+id/textILayout_licence_issue_date"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:visibility="gone"
+
                     android:layout_marginTop="@dimen/activity_vertical_margin">
 
                     <EditText
@@ -247,6 +335,8 @@
                     android:id="@+id/textILayout_propertyImageId"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:visibility="gone"
+
                     android:layout_marginTop="@dimen/activity_vertical_margin">
 
                     <EditText
@@ -264,6 +354,8 @@
                     android:id="@+id/textILayout_occupyer_name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:visibility="gone"
+
                     android:layout_marginTop="@dimen/activity_vertical_margin">
 
                     <EditText
@@ -279,6 +371,8 @@
                     android:id="@+id/textILayout_year_occupying"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:visibility="gone"
+
                     android:layout_marginTop="@dimen/activity_vertical_margin">
 
                     <EditText
@@ -296,6 +390,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:visibility="gone"
+
                     android:hint="@string/is_BPL"
                     app:met_floatingLabel="normal" />
 
@@ -303,6 +399,8 @@
                     android:id="@+id/textILayout_BPLNo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
+
                     android:layout_marginTop="@dimen/activity_vertical_margin">
 
                     <EditText
@@ -320,6 +418,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:visibility="gone"
+
                     android:hint="@string/ownership_type"
                     app:met_floatingLabel="normal" />
 

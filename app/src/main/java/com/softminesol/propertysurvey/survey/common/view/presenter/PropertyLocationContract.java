@@ -106,6 +106,8 @@ public interface PropertyLocationContract {
 
         public void setTypeOfProperty(ArrayAdapter customAdapter);
 
+        public void setPropertyUsage(ArrayAdapter customAdapter);
+
         public void setTypeOfNonesProperty(ArrayAdapter customAdapter);
 
         public void setRainWaterHarvesting(ArrayAdapter customAdapter);

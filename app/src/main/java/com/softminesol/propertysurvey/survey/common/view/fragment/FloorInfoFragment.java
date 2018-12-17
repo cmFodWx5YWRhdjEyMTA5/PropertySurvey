@@ -20,7 +20,6 @@ import com.softminesol.propertysurvey.SurveyAppApplication;
 import com.softminesol.propertysurvey.survey.common.di.DaggerSurveyComponent;
 import com.softminesol.propertysurvey.survey.common.di.SurveyComponent;
 import com.softminesol.propertysurvey.survey.common.model.formData.FloorDetailsItem;
-import com.softminesol.propertysurvey.survey.common.view.activity.FloorInfoActivity;
 import com.softminesol.propertysurvey.survey.common.view.activity.onMenuClick;
 import com.softminesol.propertysurvey.survey.common.view.presenter.FloorInfoContract;
 import com.softminesol.propertysurvey.survey.common.view.presenter.FloorInfoPresenter;
@@ -29,7 +28,9 @@ import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Unbinder;
 import frameworks.basemvp.AppBaseFragment;
 
 /**
@@ -90,14 +91,23 @@ public class FloorInfoFragment extends AppBaseFragment<FloorInfoContract.Present
     onMenuClick onMenuClick;
 
     public static final String FLOOR_DETAIL_KEY = "floorDetails";
+    @BindView(R.id.edt_propertyFloorId)
+    EditText edtPropertyFloorId;
+    @BindView(R.id.edt_propertyId)
+    EditText edtPropertyId;
+    @BindView(R.id.spn_floors)
+    MaterialBetterSpinner spnFloors;
+    @BindView(R.id.edt_total_property)
+    EditText edtTotalProperty;
+    Unbinder unbinder;
+
     public static FloorInfoFragment newInstance(FloorDetailsItem floorDetailsItem) {
         FloorInfoFragment fragment = new FloorInfoFragment();
         Bundle args = new Bundle();
-        args.putSerializable(FLOOR_DETAIL_KEY,floorDetailsItem);
+        args.putSerializable(FLOOR_DETAIL_KEY, floorDetailsItem);
         fragment.setArguments(args);
         return fragment;
     }
-
 
 
     @Override
@@ -406,6 +416,8 @@ public class FloorInfoFragment extends AppBaseFragment<FloorInfoContract.Present
         selectTypeOfConstruction.setAdapter(customAdapter);
     }
 
+
+
     @Override
     public void setBPLOption(ArrayAdapter customAdapter) {
         selectIsBPL.setAdapter(customAdapter);
@@ -492,4 +504,5 @@ public class FloorInfoFragment extends AppBaseFragment<FloorInfoContract.Present
     public void onPropertyImageIDClick() {
         getPresenter().onPropertyImageClick();
     }
+
 }

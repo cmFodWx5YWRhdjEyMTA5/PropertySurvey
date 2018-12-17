@@ -45,6 +45,11 @@ public class AdapterFactory {
                 R.array.property_type, R.layout.dropdown_item);
 
     }
+    public ArrayAdapter<CharSequence> getTypeOfPropertyUsage() {
+        return ArrayAdapter.createFromResource(context,
+                R.array.property_usage, R.layout.dropdown_item);
+
+    }
     public ArrayAdapter<CharSequence> getTypeOfNonResPropertyAdapter() {
         return ArrayAdapter.createFromResource(context,
                 R.array.non_res_property_type, R.layout.dropdown_item);
@@ -53,6 +58,21 @@ public class AdapterFactory {
     public ArrayAdapter<CharSequence> getSourceOfWaterProperty() {
         return ArrayAdapter.createFromResource(context,
                 R.array.source_of_water_type, R.layout.dropdown_item);
+
+    }
+    public ArrayAdapter<CharSequence> getRespondentStatus() {
+        return ArrayAdapter.createFromResource(context,
+                R.array.respondent_status_type, R.layout.dropdown_item);
+
+    }
+    public ArrayAdapter<CharSequence> getOccupencyStatus() {
+        return ArrayAdapter.createFromResource(context,
+                R.array.occupency_type, R.layout.dropdown_item);
+
+    }
+    public ArrayAdapter<CharSequence> getCustructionType() {
+        return ArrayAdapter.createFromResource(context,
+                R.array.custruction_type, R.layout.dropdown_item);
 
     }
     public ArrayAdapter getCustomAdapter(List<CustomAdapterModel> customAdapterModels) {

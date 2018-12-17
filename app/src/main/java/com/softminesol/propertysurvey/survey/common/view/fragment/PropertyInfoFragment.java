@@ -3,6 +3,7 @@ package com.softminesol.propertysurvey.survey.common.view.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputLayout;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -114,6 +116,26 @@ public abstract class PropertyInfoFragment<T extends PropertyLocationContract.Pr
     @BindView(R.id.spSourceOfWater)
     MaterialBetterSpinner spSourceOfWater;
     Unbinder unbinder1;
+    @BindView(R.id.edt_plot_id)
+    EditText edtPlotId;
+    @BindView(R.id.spPropertyUsage)
+    MaterialBetterSpinner spPropertyUsage;
+    @BindView(R.id.edt_total_floor)
+    EditText edtTotalFloor;
+    @BindView(R.id.edt_pin_code)
+    EditText edtPinCode;
+    @BindView(R.id.edt_circle_no)
+    EditText edtCircleNo;
+    @BindView(R.id.edt_circle_revenue)
+    EditText edtCircleRevenue;
+    @BindView(R.id.edt_building_status)
+    EditText edtBuildingStatus;
+    @BindView(R.id.edt_age_of_building)
+    EditText edtAgeOfBuilding;
+    @BindView(R.id.btn_add_floor)
+    Button btnAddFloor;
+    @BindView(R.id.textILayout_remark)
+    TextInputLayout textILayoutRemark;
 
     @Override
     protected void initInjector() {
@@ -232,39 +254,51 @@ public abstract class PropertyInfoFragment<T extends PropertyLocationContract.Pr
     public String getFloorCount() {
         return edtFloorCount.getText().toString();
     }
+
     public String getTypeOfProperty() {
         return spTypeOfProperty.getText().toString();
     }
+
     public String getTypeOfNonResProperty() {
         return spTypeOfNonResProperty.getText().toString();
     }
+
     public String getGisId() {
         return edtGisId.getText().toString();
     }
+
     public String getParcelId() {
         return edtParcelId.getText().toString();
     }
+
     public String getEdtSourceOfWater() {
         return spSourceOfWater.getText().toString();
     }
+
     public String getEdtApartmentBuildingName() {
         return edtApartmentBuildingName.getText().toString();
     }
+
     public String getLiftFacility() {
         return spLiftFacility.getText().toString();
     }
+
     public String getParkingFacility() {
         return spParkingFacility.getText().toString();
     }
+
     public String getFireFighting() {
         return spFireFighting.getText().toString();
     }
+
     public String getRainWaterHarvesting() {
         return spRainWaterHarvesting.getText().toString();
     }
+
     public String getPowerBackup() {
         return spPowerBackup.getText().toString();
     }
+
     @Override
     public void setSewageConnectoion(ArrayAdapter customAdapter) {
         edtSewCon.setAdapter(customAdapter);
@@ -275,37 +309,49 @@ public abstract class PropertyInfoFragment<T extends PropertyLocationContract.Pr
         spTypeOfProperty.setAdapter(customAdapter);
     }
     @Override
+    public void setPropertyUsage(ArrayAdapter customAdapter) {
+        spPropertyUsage.setAdapter(customAdapter);
+    }
+    @Override
     public void setTypeOfNonesProperty(ArrayAdapter customAdapter) {
         spTypeOfNonResProperty.setAdapter(customAdapter);
     }
+
     @Override
     public void setRainWaterHarvesting(ArrayAdapter customAdapter) {
         spRainWaterHarvesting.setAdapter(customAdapter);
     }
+
     @Override
     public void setLiftFacility(ArrayAdapter customAdapter) {
         spLiftFacility.setAdapter(customAdapter);
     }
+
     @Override
     public void setPowerBackup(ArrayAdapter customAdapter) {
         spPowerBackup.setAdapter(customAdapter);
     }
+
     @Override
     public void setParkingFacility(ArrayAdapter customAdapter) {
         spParkingFacility.setAdapter(customAdapter);
     }
+
     @Override
     public void setFireFighting(ArrayAdapter customAdapter) {
         spFireFighting.setAdapter(customAdapter);
     }
+
     @Override
     public void setWaterConnection(ArrayAdapter customAdapter) {
         edtWCon.setAdapter(customAdapter);
     }
+
     @Override
     public void setSourceOfWater(ArrayAdapter customAdapter) {
         spSourceOfWater.setAdapter(customAdapter);
     }
+
     @Override
     public String getEdtYearOfEstabl() {
         return null;
@@ -425,17 +471,5 @@ public abstract class PropertyInfoFragment<T extends PropertyLocationContract.Pr
         getPresenter().onAddressClick();
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        unbinder1 = ButterKnife.bind(this, rootView);
-        return rootView;
-    }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder1.unbind();
-    }
 }

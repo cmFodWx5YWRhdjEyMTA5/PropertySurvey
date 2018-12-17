@@ -19,6 +19,8 @@
     <string name="property_id">Property Id</string>
     <string name="uid">UID</string>
     <string name="owner_name">Owner Name</string>
+    <string name="name">Name</string>
+
     <string name="father_husband">Father/Husband</string>
     <string name="gender">Gender</string>
     <string name="current_address">Current Address</string>
@@ -44,7 +46,7 @@
     <string name="colony_code">Colony Name</string>
     <string name="ward_no">Ward No</string>
     <string name="zone">Zone</string>
-    <string name="street_code">Street Code</string>
+    <string name="street_code">Street Name / Number</string>
     <string name="area_type">Area Type</string>
     <string name="ownership_type">Ownership Type</string>
     <string name="photo_id">Photo Id</string>
@@ -113,6 +115,29 @@
     <string name="unique_id">Unique Id</string>
     <string name="unique_id_type">Unique Id Type</string>
     <string name="respondent_is_owner">Respondent is owner</string>
+    <string name="plot_id">Plot Id</string>
+    <string name="property_usage">Property Usage</string>
+    <string name="total_floor">Total floor excluding ground floor</string>
+    <string name="pincode">Pincode</string>
+    <string name="circle_no">Circle No.</string>
+    <string name="circle_revenue">Circle revenue</string>
+    <string name="building_status">building status</string>
+    <string name="property_floor_id">Property Floor Id</string>
+    <string name="floors">Floors</string>
+    <string name="total_property">Total Properties</string>
+    <string name="floor_detail_id">Floors Details Id</string>
+    <string name="non_res_code">Non Residental Code</string>
+    <string name="shop_industry_name">Shop / Industry Name</string>
+    <string name="buisness_code">Business Code</string>
+    <string name="responent_name">Respodent Name</string>
+    <string name="respondent_status">Respondent Status</string>
+    <string name="occupency_status">Occupency Status</string>
+    <string name="connection_number">Connection number / Consumer Id</string>
+    <string name="sew_con_status">Sewerage Connection Status</string>
+    <string name="constructionType">Construction Type</string>
+    <string name="self_occupied">Self Occupied</string>
+    <string name="tenanted">Tenanted</string>
+    <string name="personal_detail_id">Personal Detail Id</string>
 
 
 </resources>

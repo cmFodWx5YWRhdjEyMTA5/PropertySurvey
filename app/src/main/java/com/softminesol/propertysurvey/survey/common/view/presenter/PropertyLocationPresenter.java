@@ -77,7 +77,7 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
         getView().setSewageConnectoion(adapterFactory.getYesNoAdapter());
         getView().setWaterConnection(adapterFactory.getYesNoAdapter());
         getView().setMsmo(adapterFactory.getYesNoAdapter());
-
+        getView().setPropertyUsage(adapterFactory.getTypeOfPropertyUsage());
         getView().setTypeOfProperty(adapterFactory.getTypeOfPropertyAdapter());
         getView().setTypeOfNonesProperty(adapterFactory.getTypeOfNonResPropertyAdapter());
         getView().setRainWaterHarvesting(adapterFactory.getYesNoAdapter());
