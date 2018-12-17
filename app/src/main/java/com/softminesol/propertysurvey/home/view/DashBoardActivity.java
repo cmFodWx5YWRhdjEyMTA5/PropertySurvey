@@ -36,7 +36,8 @@ public class DashBoardActivity extends AppBaseActivity<DashBoardContractor.Prese
     Button btnOldProperty;
     @BindView(R.id.btn_bill_distribution)
     Button btnBillDistribution;
-
+    @BindView(R.id.btn_add_apartment)
+    Button btnAddApartment;
     @Override
     protected void initInjector() {
         dashBoardComponent = DaggerDashBoardComponent.builder().baseAppComponent(((SurveyAppApplication) getApplication()).getBaseAppComponent()).build();
@@ -65,6 +66,9 @@ public class DashBoardActivity extends AppBaseActivity<DashBoardContractor.Prese
                 break;
             case R.id.btn_bill_distribution:
                 getPresenter().onDistributionClick();
+                break;
+            case R.id.btn_add_apartment:
+                getPresenter().onAddApartmentClick();
                 break;
         }
     }

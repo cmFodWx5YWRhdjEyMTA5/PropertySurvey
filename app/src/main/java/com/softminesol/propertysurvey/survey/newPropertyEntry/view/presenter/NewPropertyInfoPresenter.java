@@ -7,8 +7,11 @@ import com.softminesol.propertysurvey.survey.common.di.SurveyFormScope;
 import com.softminesol.propertysurvey.survey.common.domain.SurveyAreaTypeUseCase;
 import com.softminesol.propertysurvey.survey.common.domain.SurveyMeasurementListUseCase;
 import com.softminesol.propertysurvey.survey.common.model.formData.FormData;
+import com.softminesol.propertysurvey.survey.common.model.property.GetPropertySaveResponse;
+import com.softminesol.propertysurvey.survey.common.model.property.SavePropertyRequest;
 import com.softminesol.propertysurvey.survey.common.view.presenter.PropertyLocationContract;
 import com.softminesol.propertysurvey.survey.common.view.presenter.PropertyLocationPresenter;
+import com.softminesol.propertysurvey.survey.newPropertyEntry.domain.SaveSurveyFormUseCase;
 import com.softminesol.propertysurvey.survey.newPropertyEntry.domain.SurveyFormSubmitUseCase;
 
 import javax.inject.Inject;
@@ -23,27 +26,48 @@ import rx.functions.Action1;
  * Created by sandeep on 13/5/18.
  */
 public class NewPropertyInfoPresenter extends PropertyLocationPresenter implements PropertyLocationContract.Presenter {
-    private final SurveyFormSubmitUseCase surveyFormSubmitUseCase;
+    private final SaveSurveyFormUseCase saveSurveyFormUseCase;
 
 
     @Inject
     NewFormSync syncManager;
 
     @Inject
-    NewPropertyInfoPresenter(AdapterFactory adapterFactory, SurveyAreaTypeUseCase areaTypeUseCase, SurveyMeasurementListUseCase measurementListUseCase, SurveyFormSubmitUseCase surveyFormSubmitUseCase) {
+    NewPropertyInfoPresenter(AdapterFactory adapterFactory, SurveyAreaTypeUseCase areaTypeUseCase, SurveyMeasurementListUseCase measurementListUseCase, SaveSurveyFormUseCase saveSurveyFormUseCase) {
         super(adapterFactory, areaTypeUseCase, measurementListUseCase);
-        this.surveyFormSubmitUseCase = surveyFormSubmitUseCase;
+        this.saveSurveyFormUseCase = saveSurveyFormUseCase;
     }
 
     @Override
     public void onSubmitClick() {
         super.onSubmitClick();
         if (validateForm()) {
-            FormData formData = getFormData();
+            SavePropertyRequest formData = getPropertyData();
             RequestParams requestParams = RequestParams.create();
             requestParams.putObject("formdata", formData);
             getView().showProgressBar();
-            surveyFormSubmitUseCase.execute(requestParams, new Subscriber<BaseResponse>() {
+            saveSurveyFormUseCase.execute(requestParams, new Subscriber<GetPropertySaveResponse>() {
+                @Override
+                public void onCompleted() {
+                    getView().hideProgressBar();
+                   // getView().showSnackBar("Save Successfully");
+                    getView().showToast("Save Successfully");
+                    getView().finish();
+                }
+
+                @Override
+                public void onError(Throwable e) {
+                    getView().hideProgressBar();
+                    getView().showToast("Error");
+
+                }
+
+                @Override
+                public void onNext(GetPropertySaveResponse getPropertySaveResponse) {
+
+                }
+            });
+         /*   surveyFormSubmitUseCase.execute(requestParams, new Subscriber<BaseResponse>() {
                 @Override
                 public void onCompleted() {
                     getView().hideProgressBar();
@@ -60,7 +84,7 @@ public class NewPropertyInfoPresenter extends PropertyLocationPresenter implemen
                     getView().finish();
                     syncToSever();
                 }
-            });
+            });*/
         }
     }
 

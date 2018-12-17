@@ -3,6 +3,7 @@ package com.softminesol.propertysurvey.survey.newPropertyEntry.di;
 import com.softminesol.propertysurvey.survey.newPropertyEntry.data.net.NewServeyAPI;
 import com.softminesol.propertysurvey.survey.newPropertyEntry.data.repository.SurveyFormSubmitRepository;
 import com.softminesol.propertysurvey.survey.newPropertyEntry.data.repository.datasource.SubmitFormDataFactory;
+import com.softminesol.propertysurvey.survey.newPropertyEntry.domain.ISurveyFormSaveRepository;
 import com.softminesol.propertysurvey.survey.newPropertyEntry.domain.ISurveyFormSubmitRepository;
 
 import dagger.Module;
@@ -23,6 +24,9 @@ public class NewSurveyModule {
     ISurveyFormSubmitRepository getSurveyOptionRepository(SubmitFormDataFactory submitFormDataFactory) {
         return new SurveyFormSubmitRepository(submitFormDataFactory);
     }
-
+    @Provides
+    ISurveyFormSaveRepository getSaveSurveyOptionRepository(SubmitFormDataFactory submitFormDataFactory) {
+        return new SurveyFormSubmitRepository(submitFormDataFactory);
+    }
 
 }

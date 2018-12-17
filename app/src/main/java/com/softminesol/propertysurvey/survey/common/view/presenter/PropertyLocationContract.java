@@ -72,6 +72,11 @@ public interface PropertyLocationContract {
         public String getEdtPropertyId();
 
         public String getStateCode();
+        public String getPincode();
+        public String getWardNumber();
+        public String getCircleNumber();
+        public String getRevenueCircle();
+        public String getPropertyUsage();
 
         public String getEdtCurrentAddress();
 
@@ -95,7 +100,10 @@ public interface PropertyLocationContract {
 
         public String getParkingFacility();
 
+        public String getEdtAgeOfBuilding();
+
         public String getFireFighting();
+        public String getEdtIndvStatus();
 
         public String getRainWaterHarvesting();
 

@@ -2,7 +2,10 @@ package com.softminesol.propertysurvey.survey.newPropertyEntry.data.repository;
 
 import com.softminesol.propertysurvey.survey.cloudsync.SyncManager;
 import com.softminesol.propertysurvey.survey.common.model.formData.FormData;
+import com.softminesol.propertysurvey.survey.common.model.property.GetPropertySaveResponse;
+import com.softminesol.propertysurvey.survey.common.model.property.SavePropertyRequest;
 import com.softminesol.propertysurvey.survey.newPropertyEntry.data.repository.datasource.SubmitFormDataFactory;
+import com.softminesol.propertysurvey.survey.newPropertyEntry.domain.ISurveyFormSaveRepository;
 import com.softminesol.propertysurvey.survey.newPropertyEntry.domain.ISurveyFormSubmitRepository;
 
 import javax.inject.Inject;
@@ -14,7 +17,7 @@ import rx.functions.Action1;
 /**
  * Created by sandeep on 13/5/18.
  */
-public class SurveyFormSubmitRepository implements ISurveyFormSubmitRepository {
+public class SurveyFormSubmitRepository implements ISurveyFormSubmitRepository,ISurveyFormSaveRepository {
     SubmitFormDataFactory submitFormDataFactory;
 
     @Inject
@@ -48,6 +51,17 @@ public class SurveyFormSubmitRepository implements ISurveyFormSubmitRepository {
                 submitFormDataFactory.getCacheSubmitFormData().submitFormData(formData);
             }
         }); // Will be added in sycning
+
+    }
+
+
+    public Observable<GetPropertySaveResponse> submitCloudNewProperty(final SavePropertyRequest formData) {
+        return  submitFormDataFactory.getCloudSubmitFomData().submitCloudNewProperty(formData).doOnError(new Action1<Throwable>() {
+            @Override
+            public void call(Throwable throwable) {
+                submitCloudNewProperty(formData);
+            }
+        });
 
     }
 }

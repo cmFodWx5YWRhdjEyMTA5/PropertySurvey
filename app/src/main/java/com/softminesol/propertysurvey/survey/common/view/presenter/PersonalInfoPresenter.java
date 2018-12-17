@@ -3,6 +3,7 @@ package com.softminesol.propertysurvey.survey.common.view.presenter;
 import android.content.Intent;
 import android.text.TextUtils;
 
+import com.softminesol.propertysurvey.survey.common.model.apartment.Owner;
 import com.softminesol.propertysurvey.survey.common.model.formData.OwnerDetailsItem;
 
 import javax.inject.Inject;
@@ -54,8 +55,22 @@ public class PersonalInfoPresenter extends AppBasePresenter<PersonalInfoContract
         return true;
     }
 
-    private OwnerDetailsItem getOwnerDetail() {
-        OwnerDetailsItem ownerDetailsItem = new OwnerDetailsItem();
+    private Owner getOwnerDetail() {
+
+        Owner owner=new Owner();
+        owner.setName(getView().getOwnerName());
+        owner.setUniqueId(getView().getUniqueId());
+        owner.setMobileNo(getView().getMobileNo());
+        owner.setEmail(getView().getEmail());
+        owner.setBuildingName(getView().getBuildingName());
+        owner.setStreet(getView().getStreet());
+        owner.setColony(getView().getColony());
+        owner.setPincode(getView().getPincode());
+        owner.setWardNo(getView().getWardNumber());
+        owner.setCircleNo(getView().getCircleNumber());
+        owner.setRevenueCircle(getView().getRevenueCircle());
+        return owner;
+        /*OwnerDetailsItem ownerDetailsItem = new OwnerDetailsItem();
 
         ownerDetailsItem.setAddressLine1(getView().getCurrentAddress());
         String email = getView().getEmail();
@@ -74,7 +89,7 @@ public class PersonalInfoPresenter extends AppBasePresenter<PersonalInfoContract
         ownerDetailsItem.setName(getView().getOwnerName());
         ownerDetailsItem.setRelationName(getView().getRelationType());
         ownerDetailsItem.setRelationWith(getView().getFatherName());
-        return ownerDetailsItem;
+        return ownerDetailsItem;*/
     }
 
 

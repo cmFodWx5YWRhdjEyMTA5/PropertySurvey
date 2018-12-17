@@ -1,4 +1,4 @@
-package com.softminesol.propertysurvey.survey.newPropertyEntry.data.net;
+package com.softminesol.propertysurvey.survey.apartmentEntry.data.net;
 
 import com.softminesol.propertysurvey.survey.common.model.apartment.SaveApartmentRequest;
 import com.softminesol.propertysurvey.survey.common.model.formData.FormData;
@@ -17,11 +17,6 @@ import rx.Observable;
  */
 public interface NewServeyAPI {
 
-    @POST(NewServeyURL.submitSurveyAPI)
-    Observable<Response<DataResponse<BaseResponse>>> submitNewProperty(@Body FormData formData);
-
     @POST(NewServeyURL.savePropertySurveyAPI)
-    Observable<Response<DataResponse<GetPropertySaveResponse>>> submitNewProperty(@Body SavePropertyRequest formData);
-
-
+    Observable<Response<DataResponse<GetPropertySaveResponse>>> submitNewApartment(@Body SaveApartmentRequest formData);
 }

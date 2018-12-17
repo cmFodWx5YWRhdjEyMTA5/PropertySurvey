@@ -43,7 +43,7 @@ public class LocationUploadManager {
     }
 
     public void uploadLocation(LatLongUpload latLongUpload) {
-        RequestParams requestParams = RequestParams.create();
+        /*RequestParams requestParams = RequestParams.create();
         requestParams.putObject(LocationUploadUseCase.LOCATION_OBJECT, latLongUpload);
         locationUploadUseCase.execute(requestParams, new Subscriber<BaseResponse>() {
             @Override
@@ -60,6 +60,6 @@ public class LocationUploadManager {
             public void onNext(BaseResponse baseResponse) {
 
             }
-        });
+        });*/
     }
 }

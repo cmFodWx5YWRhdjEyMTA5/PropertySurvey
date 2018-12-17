@@ -204,7 +204,7 @@ public abstract class PropertyInfoFragment<T extends PropertyLocationContract.Pr
 
     @Override
     public String getStateCode() {
-        return edtStateCode.getText().toString();
+        return edtStreetCode.getText().toString();
     }
 
     public String getEdtPropertyArea() {
@@ -226,7 +226,20 @@ public abstract class PropertyInfoFragment<T extends PropertyLocationContract.Pr
     public String getEdtWidth() {
         return edtWidth.getText().toString();
     }
+    public String getPincode() {
+        return edtPinCode.getText().toString();
+    }
+    public String getWardNumber() {
+        return edtWardNo.getText().toString();
+    } public String getCircleNumber() {
+        return edtCircleNo.getText().toString();
+    } public String getRevenueCircle() {
+        return edtCircleRevenue.getText().toString();
+    }
 
+    public String getPropertyUsage() {
+        return spPropertyUsage.getText().toString();
+    }
     public String getLengthWidthUnit() {
         return lengthWidthUnit.getText().toString();
     }
@@ -245,6 +258,9 @@ public abstract class PropertyInfoFragment<T extends PropertyLocationContract.Pr
 
     public String getEdtCurrentAddress() {
         return edtCurrentAddress.getText().toString();
+    }
+    public String getEdtAgeOfBuilding() {
+        return edtAgeOfBuilding.getText().toString();
     }
 
     public String getEdtNoFloors() {
@@ -278,7 +294,9 @@ public abstract class PropertyInfoFragment<T extends PropertyLocationContract.Pr
     public String getEdtApartmentBuildingName() {
         return edtApartmentBuildingName.getText().toString();
     }
-
+    public String getEdtIndvStatus() {
+        return edtBuildingStatus.getText().toString();
+    }
     public String getLiftFacility() {
         return spLiftFacility.getText().toString();
     }

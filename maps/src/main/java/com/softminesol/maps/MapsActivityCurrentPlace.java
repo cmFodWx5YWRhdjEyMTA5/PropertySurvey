@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -42,7 +43,7 @@ import com.google.android.gms.tasks.Task;
  * An activity that displays a map showing the place at the device's current location.
  */
 public class MapsActivityCurrentPlace extends AppCompatActivity
-        implements OnMapReadyCallback {
+        implements OnMapReadyCallback , GoogleMap.OnMarkerDragListener{
 
     private static final String TAG = MapsActivityCurrentPlace.class.getSimpleName();
     private GoogleMap mMap;
@@ -179,6 +180,7 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
                 return infoWindow;
             }
         });
+        mMap.setOnMarkerDragListener(this);
 
         // Prompt the user for permission.
         getLocationPermission();
@@ -210,6 +212,9 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
                             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
                                     new LatLng(mLastKnownLocation.getLatitude(),
                                             mLastKnownLocation.getLongitude()), DEFAULT_ZOOM));
+                            LatLng sydney = new LatLng(mLastKnownLocation.getLatitude(), mLastKnownLocation.getLongitude());
+                            mMap.addMarker(new MarkerOptions().position(sydney)).setDraggable(true);
+
                         } else {
                             Log.d(TAG, "Current location is null. Using defaults.");
                             Log.e(TAG, "Exception: %s", task.getException());
@@ -425,4 +430,27 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
             }
         }
     }
+
+    @Override
+    public void onMarkerDragStart(Marker marker) {
+
+
+     //   Toast.makeText(MapsActivityCurrentPlace.this,"start",Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onMarkerDrag(Marker marker) {
+      //  Toast.makeText(MapsActivityCurrentPlace.this,"drag",Toast.LENGTH_LONG).show();
+
+    }
+
+    @Override
+    public void onMarkerDragEnd(Marker marker) {
+        mLastKnownLocation.setLatitude(marker.getPosition().latitude);
+        mLastKnownLocation.setLongitude(marker.getPosition().longitude);
+    //   Toast.makeText(MapsActivityCurrentPlace.this,"end",Toast.LENGTH_LONG).show();
+
+    }
+
+
 }

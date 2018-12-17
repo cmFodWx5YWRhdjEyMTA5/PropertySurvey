@@ -73,6 +73,8 @@
     <string name="bill_distribution">Bill Distribution</string>
     <string name="old_property">Old Property</string>
     <string name="new_property">New Property</string>
+    <string name="add_property">Add Property</string>
+
     <string name="addfloor">Add Floor</string>
     <string name="addApartment">Add Apartment</string>
     <string name="coveredarea_measurement_unit">Covered Area Measurement Unit</string>
@@ -120,24 +122,28 @@
     <string name="total_floor">Total floor excluding ground floor</string>
     <string name="pincode">Pincode</string>
     <string name="circle_no">Circle No.</string>
-    <string name="circle_revenue">Circle revenue</string>
+    <string name="circle_revenue">Revenue Circle</string>
     <string name="building_status">building status</string>
     <string name="property_floor_id">Property Floor Id</string>
     <string name="floors">Floors</string>
     <string name="total_property">Total Properties</string>
-    <string name="floor_detail_id">Floors Details Id</string>
+    <string name="floor_detail_id">Gis Id</string>
     <string name="non_res_code">Non Residental Code</string>
     <string name="shop_industry_name">Shop / Industry Name</string>
     <string name="buisness_code">Business Code</string>
     <string name="responent_name">Respodent Name</string>
     <string name="respondent_status">Respondent Status</string>
     <string name="occupency_status">Occupency Status</string>
-    <string name="connection_number">Connection number / Consumer Id</string>
+    <string name="connection_number">Electronic Connection number</string>
     <string name="sew_con_status">Sewerage Connection Status</string>
     <string name="constructionType">Construction Type</string>
     <string name="self_occupied">Self Occupied</string>
     <string name="tenanted">Tenanted</string>
     <string name="personal_detail_id">Personal Detail Id</string>
+    <string name="add_apartment">Add Apartment</string>
+    <string name="non_reg_category">Non Regidential Category</string>
+    <string name="business_built_area">Business Built Area</string>
+    <string name="election_connection_status">Electricity Connection Status</string>
 
 
 </resources>

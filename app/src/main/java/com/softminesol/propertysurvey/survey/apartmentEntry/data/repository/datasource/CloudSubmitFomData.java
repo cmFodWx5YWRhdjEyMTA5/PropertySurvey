@@ -1,10 +1,10 @@
-package com.softminesol.propertysurvey.survey.newPropertyEntry.data.repository.datasource;
+package com.softminesol.propertysurvey.survey.apartmentEntry.data.repository.datasource;
 
+import com.softminesol.propertysurvey.survey.apartmentEntry.data.net.NewServeyAPI;
 import com.softminesol.propertysurvey.survey.common.model.apartment.SaveApartmentRequest;
 import com.softminesol.propertysurvey.survey.common.model.formData.FormData;
 import com.softminesol.propertysurvey.survey.common.model.property.GetPropertySaveResponse;
 import com.softminesol.propertysurvey.survey.common.model.property.SavePropertyRequest;
-import com.softminesol.propertysurvey.survey.newPropertyEntry.data.net.NewServeyAPI;
 
 import javax.inject.Inject;
 
@@ -25,21 +25,12 @@ public class CloudSubmitFomData {
         this.newServeyAPI = newServeyAPI;
     }
 
-    public Observable<BaseResponse> submitFormData(FormData formData) {
-        return newServeyAPI.submitNewProperty(formData).map(new Func1<Response<DataResponse<BaseResponse>>, BaseResponse>() {
-            @Override
-            public BaseResponse call(Response<DataResponse<BaseResponse>> dataResponseResponse) {
-                return dataResponseResponse.body().getData();
-            }
-        });
-    }
-    public Observable<GetPropertySaveResponse> submitCloudNewProperty(SavePropertyRequest formData) {
-        return newServeyAPI.submitNewProperty(formData).map(new Func1<Response<DataResponse<GetPropertySaveResponse>>, GetPropertySaveResponse>() {
+    public Observable<GetPropertySaveResponse> submitCloudNewApartment(SaveApartmentRequest formData) {
+        return newServeyAPI.submitNewApartment(formData).map(new Func1<Response<DataResponse<GetPropertySaveResponse>>, GetPropertySaveResponse>() {
             @Override
             public GetPropertySaveResponse call(Response<DataResponse<GetPropertySaveResponse>> dataResponseResponse) {
                 return dataResponseResponse.body().getData();
             }
         });
     }
-
 }

@@ -3,7 +3,10 @@ package com.softminesol.propertysurvey.survey.common.view.presenter;
 import android.widget.ArrayAdapter;
 
 import com.pchmn.materialchips.ChipView;
+import com.softminesol.propertysurvey.survey.common.model.apartment.Owner;
 import com.softminesol.propertysurvey.survey.common.model.formData.FloorDetailsItem;
+
+import java.util.List;
 
 import frameworks.basemvp.IPresenter;
 import frameworks.basemvp.IView;
@@ -32,6 +35,70 @@ public interface ApartmentInfoContract {
         public String getEdtSignature();
 
         public String getLicenceStatus();
+
+        public String getGisCode();
+
+        public void gotoHome();
+
+        public String getFloorCount();
+
+        public String getPropertyUsage();
+
+        public String getNonResidentialCode();
+
+        public String getNonRegCategory();
+
+        public String getShopName();
+
+        public String getBusinessType();
+
+        public String getBusinessCode();
+
+        public String getLicenceCode();
+
+        public String getBusinessBuiltArea();
+
+        public String getRespondentName();
+
+        public String getRespondentStatus();
+
+        public String getOccupencyStatus();
+
+        public String getElectronicConnectionStatus();
+
+        public String getElectronicConnectionNumber();
+
+        public String getSewerageStatus();
+
+        public String getSourceWater();
+
+        public String getCunstructionType();
+
+        public String getSelfOccupied();
+
+        public String getTenanted();
+
+        public String getPowerBackUp();
+
+        public String getBuildingName();
+
+        public String getStreet();
+
+        public String getColony();
+
+        public String getPincode();
+
+        public String getWardNumber();
+
+        public String getCircleNumber();
+
+        public String getRevenueCircle();
+
+        public String getOwnerCount();
+
+        public List<Owner> getOwners();
+
+        public void setOwner(Owner owner);
 
         public void setPropertyUsage(ArrayAdapter customAdapter);
 

@@ -13,6 +13,7 @@ import com.softminesol.propertysurvey.survey.common.model.AreaType;
 import com.softminesol.propertysurvey.survey.common.model.MeasurementUnitList;
 import com.softminesol.propertysurvey.survey.common.model.formData.FloorDetailsItem;
 import com.softminesol.propertysurvey.survey.common.model.formData.FormData;
+import com.softminesol.propertysurvey.survey.common.model.property.SavePropertyRequest;
 import com.softminesol.propertysurvey.survey.common.view.activity.FloorInfoActivity;
 
 import java.util.ArrayList;
@@ -103,7 +104,35 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
         return true;
     }
 
+
+    public SavePropertyRequest getPropertyData() {
+
+        SavePropertyRequest savePropertyRequest=new SavePropertyRequest();
+        savePropertyRequest.setMapId(getView().getEdtMapId());
+        savePropertyRequest.setParcelId(getView().getParcelId());
+        savePropertyRequest.setPropertyType(getView().getTypeOfProperty());
+        savePropertyRequest.setRainHarvestingSystem(getView().getRainWaterHarvesting());
+        savePropertyRequest.setIndividualBuilding(getView().getEdtIndvStatus());
+        savePropertyRequest.setLiftFacility(getView().getLiftFacility());
+        savePropertyRequest.setParkingFacility(getView().getParkingFacility());
+        savePropertyRequest.setFireFighting(getView().getFireFighting());
+        savePropertyRequest.setAgeOfProperty(getView().getEdtAgeOfBuilding());
+        savePropertyRequest.setTotalFloor(getView().getFloorCount());
+        savePropertyRequest.setPlotArea(getView().getEdtPropertyArea());
+        savePropertyRequest.setBuildingName(getView().getEdtApartmentBuildingName());
+        savePropertyRequest.setStreet(getView().getStateCode());
+        savePropertyRequest.setColony(getView().getEdtColonyCode());
+        savePropertyRequest.setPincode(getView().getPincode());
+        savePropertyRequest.setWardNo(getView().getWardNumber());
+        savePropertyRequest.setCircleNo(getView().getCircleNumber());
+        savePropertyRequest.setRevenueCircle(getView().getRevenueCircle());
+        savePropertyRequest.setPropertyUsage(getView().getPropertyUsage());
+        return savePropertyRequest;
+    }
+
     public FormData getFormData() {
+
+
         FormData formData = new FormData();
         formData.setAddressLine1(getView().getEdtCurrentAddress());
         formData.setBasePlotSizeLength(getView().getEdtLength());

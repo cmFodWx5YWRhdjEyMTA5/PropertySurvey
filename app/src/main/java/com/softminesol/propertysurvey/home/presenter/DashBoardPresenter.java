@@ -7,6 +7,7 @@ import com.softminesol.propertysurvey.home.domain.DashBoardUseCase;
 import com.softminesol.propertysurvey.rolebase.domain.RoleBaseUseCase;
 import com.softminesol.propertysurvey.rolebase.model.RoleData;
 import com.softminesol.propertysurvey.survey.cloudsync.SyncManager;
+import com.softminesol.propertysurvey.survey.common.view.activity.ApartmentInfoActivity;
 import com.softminesol.propertysurvey.survey.common.view.activity.OldSurveyActivity;
 import com.softminesol.propertysurvey.survey.distributionbill.view.DistributionBillActivity;
 import com.softminesol.propertysurvey.survey.newPropertyEntry.view.activity.NewSurveyActivity;
@@ -38,7 +39,7 @@ public class DashBoardPresenter extends AppBasePresenter<DashBoardContractor.Vie
     @Override
     public void attachView(DashBoardContractor.View view) {
         super.attachView(view);
-        getView().showProgressBar("Syncing").setCancelable(false);
+      /*  getView().showProgressBar("Syncing").setCancelable(false);
         dashBoardUseCase.execute(new Subscriber<RoleData>() {
             @Override
             public void onCompleted() {
@@ -70,7 +71,7 @@ public class DashBoardPresenter extends AppBasePresenter<DashBoardContractor.Vie
                 }
 
             }
-        });
+        });*/
     }
 
     @Override
@@ -86,6 +87,12 @@ public class DashBoardPresenter extends AppBasePresenter<DashBoardContractor.Vie
     @Override
     public void onOldPropertyInfoClick() {
         getView().startActivity(new Intent(getView().getContext(), OldSurveyActivity.class));
+    }
+
+    @Override
+    public void onAddApartmentClick() {
+        getView().startActivity(new Intent(getView().getContext(), ApartmentInfoActivity.class));
+
     }
 
     public void onLogout() {

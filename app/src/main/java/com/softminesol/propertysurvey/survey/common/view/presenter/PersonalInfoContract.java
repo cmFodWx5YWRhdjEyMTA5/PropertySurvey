@@ -16,6 +16,22 @@ public interface PersonalInfoContract {
 
         public String getOwnerName();
 
+        public String getBuildingName();
+
+        public String getStreet();
+
+        public String getColony();
+
+        public String getPincode();
+
+        public String getWardNumber();
+
+        public String getCircleNumber();
+
+        public String getRevenueCircle();
+
+        public String getUniqueId();
+
         public String getFatherName();
 
         public String getSelectGender();

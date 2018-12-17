@@ -19,6 +19,7 @@ import com.softminesol.propertysurvey.R;
 import com.softminesol.propertysurvey.SurveyAppApplication;
 import com.softminesol.propertysurvey.survey.common.di.DaggerSurveyComponent;
 import com.softminesol.propertysurvey.survey.common.di.SurveyComponent;
+import com.softminesol.propertysurvey.survey.common.model.apartment.Owner;
 import com.softminesol.propertysurvey.survey.common.model.formData.OwnerDetailsItem;
 import com.softminesol.propertysurvey.survey.common.view.activity.onMenuClick;
 import com.softminesol.propertysurvey.survey.common.view.presenter.PersonalInfoContract;
@@ -107,7 +108,34 @@ public class PersonalInfoFragment extends AppBaseFragment<PersonalInfoContract.P
     @BindView(R.id.edt_circle_revenue)
     EditText edtCircleRevenue;
     @BindView(R.id.textILayout_respondent_currentAddress)
-    TextInputLayout textILayoutRespondentCurrentAddress;
+
+    Unbinder unbinder1;
+    @BindView(R.id.textILayout_respondentName)
+    TextInputLayout textILayoutRespondentName;
+    @BindView(R.id.textILayout_respondentUniqueId)
+    TextInputLayout textILayoutRespondentUniqueId;
+    @BindView(R.id.textILayout_respondentMobileNo)
+    TextInputLayout textILayoutRespondentMobileNo;
+    @BindView(R.id.textILayout_respondent_email)
+    TextInputLayout textILayoutRespondentEmail;
+    @BindView(R.id.textIApartmentBuildingName)
+    TextInputLayout textIApartmentBuildingName;
+    @BindView(R.id.textILayout_house_no)
+    TextInputLayout textILayoutHouseNo;
+    @BindView(R.id.textILayout_street_name)
+    TextInputLayout textILayoutStreetName;
+    @BindView(R.id.textILayout_colony_code)
+    TextInputLayout textILayoutColonyCode;
+    @BindView(R.id.textILayout_pin_code)
+    TextInputLayout textILayoutPinCode;
+    @BindView(R.id.textILayout_ward_no)
+    TextInputLayout textILayoutWardNo;
+    @BindView(R.id.textILayout_circle_no)
+    TextInputLayout textILayoutCircleNo;
+    @BindView(R.id.textILayout_respondentUniqueIdType)
+    TextInputLayout textILayoutRespondentUniqueIdType;
+    @BindView(R.id.textILayout_respondentfatherName)
+    TextInputLayout textILayoutRespondentfatherName;
     @BindView(R.id.textILayout_respondentShipShare)
     TextInputLayout textILayoutRespondentShipShare;
     @BindView(R.id.textILayout_ownerName)
@@ -126,9 +154,9 @@ public class PersonalInfoFragment extends AppBaseFragment<PersonalInfoContract.P
     TextInputLayout textILayoutEmail;
     @BindView(R.id.textILayout_ownerShipShare)
     TextInputLayout textILayoutOwnerShipShare;
-    Unbinder unbinder1;
+    Unbinder unbinder2;
 
-    public static PersonalInfoFragment newInstance(OwnerDetailsItem ownerDetailsItem) {
+    public static PersonalInfoFragment newInstance(Owner ownerDetailsItem) {
         PersonalInfoFragment fragment = new PersonalInfoFragment();
         Bundle arguments = new Bundle();
         arguments.putSerializable(OWNER_DETAIL_KEY, ownerDetailsItem);
@@ -168,7 +196,51 @@ public class PersonalInfoFragment extends AppBaseFragment<PersonalInfoContract.P
 
     @Override
     public String getOwnerName() {
-        return edtOwnerName.getText().toString();
+        return edtRespondentName.getText().toString();
+    }
+
+    @Override
+    public String getBuildingName() {
+        return edtApartmentBuildingName.getText().toString();
+    }
+
+    @Override
+    public String getStreet() {
+        return edtStreetName.getText().toString();
+    }
+
+    @Override
+    public String getColony() {
+        return edtColonyCode.getText().toString();
+    }
+
+    @Override
+    public String getPincode() {
+        return edtPinCode.getText().toString();
+    }
+
+    @Override
+    public String getWardNumber() {
+        return edtWardNo.getText().toString();
+
+    }
+
+    @Override
+    public String getCircleNumber() {
+        return edtCircleNo.getText().toString();
+
+    }
+
+    @Override
+    public String getRevenueCircle() {
+        return edtRespondentUniqueId.getText().toString();
+
+    }
+
+    @Override
+    public String getUniqueId() {
+        return edtRespondentUniqueId.getText().toString();
+
     }
 
     @Override
@@ -189,12 +261,12 @@ public class PersonalInfoFragment extends AppBaseFragment<PersonalInfoContract.P
 
     @Override
     public String getMobileNo() {
-        return edtMobileNo.getText().toString();
+        return edtRespondentMobileNo.getText().toString();
     }
 
     @Override
     public String getEmail() {
-        return edtEmail.getText().toString();
+        return edtRespondentEmail.getText().toString();
     }
 
     @Override
@@ -320,17 +392,6 @@ public class PersonalInfoFragment extends AppBaseFragment<PersonalInfoContract.P
         return true;
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        unbinder1 = ButterKnife.bind(this, rootView);
-        return rootView;
-    }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder1.unbind();
-    }
+
 }

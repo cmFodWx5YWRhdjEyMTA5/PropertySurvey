@@ -15,7 +15,7 @@ import rx.Observable;
 
 public class LoginEmailUseCase extends UseCase<SessionValue> {
 
-    public static final String USERID = "userID";
+    public static final String USERID = "userid";
     public static final String PASSWORD = "password";
 
     GetTokenUseCase getTokenUseCase;
