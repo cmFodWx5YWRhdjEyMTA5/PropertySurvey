@@ -3,6 +3,7 @@ package com.softminesol.propertysurvey.survey.common.view.activity;
 import android.content.Context;
 import android.content.Intent;
 
+import com.softminesol.propertysurvey.survey.common.model.apartment.Owner;
 import com.softminesol.propertysurvey.survey.common.model.formData.OwnerDetailsItem;
 import com.softminesol.propertysurvey.survey.common.view.fragment.PersonalInfoFragment;
 
@@ -19,7 +20,7 @@ public class OwnerInfoActivity extends ActivitySingleFragment<PersonalInfoFragme
 
     @Override
     protected PersonalInfoFragment getFragment() {
-        fragment = PersonalInfoFragment.newInstance((OwnerDetailsItem) getIntent().getSerializableExtra(OWNER_DETAIL_KEY));
+        fragment = PersonalInfoFragment.newInstance((Owner) getIntent().getSerializableExtra(OWNER_DETAIL_KEY));
         return fragment;
     }
 

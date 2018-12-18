@@ -20,7 +20,7 @@ import com.softminesol.propertysurvey.R;
 import com.softminesol.propertysurvey.SurveyAppApplication;
 import com.softminesol.propertysurvey.home.view.DashBoardActivity;
 import com.softminesol.propertysurvey.survey.apartmentEntry.di.NewApartmentSurveyComponent;
-import com.softminesol.propertysurvey.survey.common.di.DaggerSurveyComponent;
+import com.softminesol.propertysurvey.survey.apartmentEntry.di.DaggerNewApartmentSurveyComponent;
 import com.softminesol.propertysurvey.survey.common.model.apartment.Owner;
 import com.softminesol.propertysurvey.survey.common.model.formData.ApartmentDetailsItem;
 import com.softminesol.propertysurvey.survey.common.view.activity.onMenuClick;
@@ -70,7 +70,7 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
 
     List<Owner> owners=new ArrayList<>();
     public static final String APARTMENT_DETAIL_KEY = "apartmentDetails";
-    @Inject
+
     NewApartmentSurveyComponent surveyComponent;
     ApartmentInfoPresenter apartmentInfoPresenter;
     @BindView(R.id.edt_Floor_deatil_Id)
@@ -155,7 +155,7 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
 
     @Override
     protected void initInjector() {
-        surveyComponent = DaggerSurveyComponent.builder().baseAppComponent(((SurveyAppApplication) getActivity().getApplication()).getBaseAppComponent()).build();
+        surveyComponent = DaggerNewApartmentSurveyComponent.builder().baseAppComponent(((SurveyAppApplication) getActivity().getApplication()).getBaseAppComponent()).build();
         surveyComponent.inject(this);
     }
 
