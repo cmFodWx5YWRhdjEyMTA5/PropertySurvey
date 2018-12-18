@@ -3,7 +3,6 @@ package com.softminesol.propertysurvey.survey.common.view.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.TextInputLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -13,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 
 import com.softminesol.propertysurvey.R;
 import com.softminesol.propertysurvey.SurveyAppApplication;
@@ -24,7 +22,6 @@ import com.softminesol.propertysurvey.survey.common.model.formData.OwnerDetailsI
 import com.softminesol.propertysurvey.survey.common.view.activity.onMenuClick;
 import com.softminesol.propertysurvey.survey.common.view.presenter.PersonalInfoContract;
 import com.softminesol.propertysurvey.survey.common.view.presenter.PersonalInfoPresenter;
-import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
 import javax.inject.Inject;
 
@@ -48,53 +45,12 @@ public class PersonalInfoFragment extends AppBaseFragment<PersonalInfoContract.P
     EditText edtRespondentName;
     @BindView(R.id.edt_respondentUniqueId)
     EditText edtRespondentUniqueId;
-    @BindView(R.id.edt_respondentUniqueIdType)
-    EditText edtRespondentUniqueIdType;
-    @BindView(R.id.respondent_relation_type)
-    MaterialBetterSpinner respondentRelationType;
-    @BindView(R.id.edt_respondent_fatherName)
-    EditText edtRespondentFatherName;
-    @BindView(R.id.respondent_select_gender)
-    MaterialBetterSpinner respondentSelectGender;
-    @BindView(R.id.edt_respondentCurrentAddress)
-    EditText edtRespondentCurrentAddress;
     @BindView(R.id.edt_respondent_mobileNo)
     EditText edtRespondentMobileNo;
     @BindView(R.id.edt_respondent_email)
     EditText edtRespondentEmail;
-    @BindView(R.id.edt_respondentShipShare)
-    EditText edtRespondentShipShare;
-    @BindView(R.id.spnRespondentIsRespondent)
-    MaterialBetterSpinner spnRespondentIsRespondent;
-    @BindView(R.id.edt_ownerName)
-    EditText edtOwnerName;
-    @BindView(R.id.edt_uniqueId)
-    EditText edtUniqueId;
-    @BindView(R.id.edt_uniqueIdType)
-    EditText edtUniqueIdType;
-    @BindView(R.id.relation_type)
-    MaterialBetterSpinner relationType;
-    @BindView(R.id.edt_fatherName)
-    EditText edtFatherName;
-    @BindView(R.id.select_gender)
-    MaterialBetterSpinner selectGender;
-    @BindView(R.id.edt_currentAddress)
-    EditText edtCurrentAddress;
-    @BindView(R.id.edt_mobileNo)
-    EditText edtMobileNo;
-    @BindView(R.id.edt_email)
-    EditText edtEmail;
-    @BindView(R.id.edt_ownerShipShare)
-    EditText edtOwnerShipShare;
-    @BindView(R.id.llOwner)
-    LinearLayout llOwner;
-    Unbinder unbinder;
-    @BindView(R.id.edt_personal_detail_id)
-    EditText edtPersonalDetailId;
     @BindView(R.id.edt_apartment_building_name)
     EditText edtApartmentBuildingName;
-    @BindView(R.id.edt_house_no)
-    EditText edtHouseNo;
     @BindView(R.id.edt_street_name)
     EditText edtStreetName;
     @BindView(R.id.edt_colony_code)
@@ -107,54 +63,8 @@ public class PersonalInfoFragment extends AppBaseFragment<PersonalInfoContract.P
     EditText edtCircleNo;
     @BindView(R.id.edt_circle_revenue)
     EditText edtCircleRevenue;
-    @BindView(R.id.textILayout_respondent_currentAddress)
+    Unbinder unbinder;
 
-    Unbinder unbinder1;
-    @BindView(R.id.textILayout_respondentName)
-    TextInputLayout textILayoutRespondentName;
-    @BindView(R.id.textILayout_respondentUniqueId)
-    TextInputLayout textILayoutRespondentUniqueId;
-    @BindView(R.id.textILayout_respondentMobileNo)
-    TextInputLayout textILayoutRespondentMobileNo;
-    @BindView(R.id.textILayout_respondent_email)
-    TextInputLayout textILayoutRespondentEmail;
-    @BindView(R.id.textIApartmentBuildingName)
-    TextInputLayout textIApartmentBuildingName;
-    @BindView(R.id.textILayout_house_no)
-    TextInputLayout textILayoutHouseNo;
-    @BindView(R.id.textILayout_street_name)
-    TextInputLayout textILayoutStreetName;
-    @BindView(R.id.textILayout_colony_code)
-    TextInputLayout textILayoutColonyCode;
-    @BindView(R.id.textILayout_pin_code)
-    TextInputLayout textILayoutPinCode;
-    @BindView(R.id.textILayout_ward_no)
-    TextInputLayout textILayoutWardNo;
-    @BindView(R.id.textILayout_circle_no)
-    TextInputLayout textILayoutCircleNo;
-    @BindView(R.id.textILayout_respondentUniqueIdType)
-    TextInputLayout textILayoutRespondentUniqueIdType;
-    @BindView(R.id.textILayout_respondentfatherName)
-    TextInputLayout textILayoutRespondentfatherName;
-    @BindView(R.id.textILayout_respondentShipShare)
-    TextInputLayout textILayoutRespondentShipShare;
-    @BindView(R.id.textILayout_ownerName)
-    TextInputLayout textILayoutOwnerName;
-    @BindView(R.id.textILayout_uniqueId)
-    TextInputLayout textILayoutUniqueId;
-    @BindView(R.id.textILayout_uniqueIdType)
-    TextInputLayout textILayoutUniqueIdType;
-    @BindView(R.id.textILayout_fatherName)
-    TextInputLayout textILayoutFatherName;
-    @BindView(R.id.textILayout_currentAddress)
-    TextInputLayout textILayoutCurrentAddress;
-    @BindView(R.id.textILayout_mobileNo)
-    TextInputLayout textILayoutMobileNo;
-    @BindView(R.id.textILayout_email)
-    TextInputLayout textILayoutEmail;
-    @BindView(R.id.textILayout_ownerShipShare)
-    TextInputLayout textILayoutOwnerShipShare;
-    Unbinder unbinder2;
 
     public static PersonalInfoFragment newInstance(Owner ownerDetailsItem) {
         PersonalInfoFragment fragment = new PersonalInfoFragment();
@@ -245,17 +155,17 @@ public class PersonalInfoFragment extends AppBaseFragment<PersonalInfoContract.P
 
     @Override
     public String getFatherName() {
-        return edtFatherName.getText().toString();
+        return null;
     }
 
     @Override
     public String getSelectGender() {
-        return selectGender.getText().toString();
+        return null;
     }
 
     @Override
     public String getCurrentAddress() {
-        return edtCurrentAddress.getText().toString();
+        return null;
     }
 
 
@@ -271,52 +181,52 @@ public class PersonalInfoFragment extends AppBaseFragment<PersonalInfoContract.P
 
     @Override
     public String getOwnerShipShare() {
-        return edtOwnerShipShare.getText().toString();
+        return null;
     }
 
     @Override
     public String getRelationType() {
-        return relationType.getText().toString();
+        return null;
     }
 
     @Override
     public void setOwnerName(String text) {
-        edtOwnerName.setText(text);
+
     }
 
     @Override
     public void setFatherName(String text) {
-        edtFatherName.setText(text);
+
     }
 
     @Override
     public void setSelectGender(String text) {
-        selectGender.setText(text);
+
     }
 
     @Override
     public void setCurrentAddress(String text) {
-        edtCurrentAddress.setText(text);
+
     }
 
     @Override
     public void setMobileNo(String text) {
-        edtMobileNo.setText(text);
+
     }
 
     @Override
     public void setEmail(String text) {
-        edtEmail.setText(text);
+
     }
 
     @Override
     public void setOwnerShipShare(String text) {
-        edtOwnerShipShare.setText(text);
+
     }
 
     @Override
     public void setRelationType(String text) {
-        relationType.setText(text);
+
     }
 
     @Override
@@ -324,46 +234,24 @@ public class PersonalInfoFragment extends AppBaseFragment<PersonalInfoContract.P
         return (OwnerDetailsItem) getArguments().getSerializable(OWNER_DETAIL_KEY);
     }
 
-
     @Override
     public void setGenderAdapter(ArrayAdapter<CharSequence> genderAdapter) {
-        selectGender.setAdapter(genderAdapter);
+
     }
 
     @Override
-    public void setIsRespondantIsOwnerAdapter(ArrayAdapter<CharSequence> genderAdapter) {
-        spnRespondentIsRespondent.setAdapter(genderAdapter);
-        spnRespondentIsRespondent.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+    public void setIsRespondantIsOwnerAdapter(ArrayAdapter<CharSequence> yesNoAdapter) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (spnRespondentIsRespondent.getText().toString().equals("No")) {
-                    llOwner.setVisibility(View.VISIBLE);
-                } else {
-                    llOwner.setVisibility(View.GONE);
-                }
-            }
-        });
     }
 
     @Override
     public void setRelationShipAdapter(ArrayAdapter<CharSequence> relationShipAdapter) {
-        relationType.setAdapter(relationShipAdapter);
+
     }
 
     @Override
     public void setOwnerNameError(String error) {
-        edtOwnerName.setError(error);
-        edtOwnerName.requestFocus();
+
     }
 
 
@@ -391,7 +279,4 @@ public class PersonalInfoFragment extends AppBaseFragment<PersonalInfoContract.P
         finish();
         return true;
     }
-
-
-
 }

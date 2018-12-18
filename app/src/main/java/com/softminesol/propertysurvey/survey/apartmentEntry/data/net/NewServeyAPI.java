@@ -17,6 +17,6 @@ import rx.Observable;
  */
 public interface NewServeyAPI {
 
-    @POST(NewServeyURL.savePropertySurveyAPI)
+    @POST(NewServeyURL.saveApartmentAPI)
     Observable<Response<DataResponse<GetPropertySaveResponse>>> submitNewApartment(@Body SaveApartmentRequest formData);
 }

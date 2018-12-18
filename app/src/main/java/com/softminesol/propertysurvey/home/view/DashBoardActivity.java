@@ -55,7 +55,7 @@ public class DashBoardActivity extends AppBaseActivity<DashBoardContractor.Prese
     }
 
 
-    @OnClick({R.id.btn_new_property, R.id.btn_old_property, R.id.btn_bill_distribution})
+    @OnClick({R.id.btn_new_property, R.id.btn_old_property, R.id.btn_bill_distribution,R.id.btn_add_apartment})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_new_property:

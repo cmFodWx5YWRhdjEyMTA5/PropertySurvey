@@ -92,6 +92,10 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
         getView().setOccupencyStatus(adapterFactory.getOccupencyStatus());
         getView().setConstructionType(adapterFactory.getCustructionType());
         getView().setSourceOfWater(adapterFactory.getSourceOfWaterProperty());
+        getView().setNonRegCategory(adapterFactory.getTypeOfNonResPropertyAdapter());
+        getView().setSpPowerBackup(adapterFactory.getYesNoAdapter());
+        getView().setSpElectricityConnStatus(adapterFactory.getYesNoAdapter());
+        getView().setSpSewerageConnStatus(adapterFactory.getYesNoAdapter());
 
     }
 
@@ -125,7 +129,12 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
         saveApartmentRequest.setRevenueCircle(getView().getRevenueCircle());
         saveApartmentRequest.setOwnerCount(getView().getOwnerCount());
         saveApartmentRequest.setOwners(getView().getOwners());
-      return saveApartmentRequest;
+        saveApartmentRequest.setOccupencyStatus(getView().getOccupencyStatus());
+        saveApartmentRequest.setElectricityConnectionStatus(getView().getElectronicConnectionStatus());
+        saveApartmentRequest.setElectricityConnection(getView().getEdtElectionConnectionNo());
+        saveApartmentRequest.setSewerageStatus(getView().getSewerageStatus());
+
+        return saveApartmentRequest;
 
 
     }
@@ -141,8 +150,7 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
             public void onCompleted() {
                 getView().hideProgressBar();
                 // getView().showSnackBar("Save Successfully");
-                getView().showToast("Save Successfully");
-                getView().gotoHome();
+
             }
 
             @Override
@@ -153,7 +161,8 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
 
             @Override
             public void onNext(GetPropertySaveResponse getPropertySaveResponse) {
-
+                getView().showToast("Save Successfully");
+                getView().gotoHome();
             }
         });
     }

@@ -59,7 +59,12 @@ public class SurveyFormSubmitRepository implements ISurveyFormSubmitRepository,I
         return  submitFormDataFactory.getCloudSubmitFomData().submitCloudNewProperty(formData).doOnError(new Action1<Throwable>() {
             @Override
             public void call(Throwable throwable) {
-                submitCloudNewProperty(formData);
+                //submitCloudNewProperty(formData);
+            }
+        }).doOnNext(new Action1<GetPropertySaveResponse>() {
+            @Override
+            public void call(GetPropertySaveResponse getPropertySaveResponse) {
+
             }
         });
 

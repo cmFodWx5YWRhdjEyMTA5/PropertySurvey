@@ -145,6 +145,9 @@ public interface PropertyLocationContract {
         void setLatLng(String s);
 
         void removeChip(ChipView chiptView);
+
+         void showMessage(String message);
+
     }
 
     public interface Presenter<T extends View> extends IPresenter<T> {

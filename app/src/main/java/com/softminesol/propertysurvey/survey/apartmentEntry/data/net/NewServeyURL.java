@@ -4,6 +4,7 @@ package com.softminesol.propertysurvey.survey.apartmentEntry.data.net;
  * Created by sandeep on 13/5/18.
  */
 public interface NewServeyURL {
-    String savePropertySurveyAPI = "property/create";
+    String saveApartmentAPI = "apartment/create";
+
 
 }

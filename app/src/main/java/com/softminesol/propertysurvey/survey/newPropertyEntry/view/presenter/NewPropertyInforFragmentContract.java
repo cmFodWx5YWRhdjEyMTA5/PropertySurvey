@@ -7,10 +7,9 @@ import com.softminesol.propertysurvey.survey.common.view.presenter.PropertyLocat
  */
 public interface NewPropertyInforFragmentContract {
     public interface View extends PropertyLocationContract.View {
-
+        void showMessage(String message);
     }
 
-    public interface Presenter extends PropertyLocationContract.Presenter {
-
+    public interface Presenter extends PropertyLocationContract.Presenter<View> {
     }
 }

@@ -144,6 +144,7 @@
     <string name="non_reg_category">Non Regidential Category</string>
     <string name="business_built_area">Business Built Area</string>
     <string name="election_connection_status">Electricity Connection Status</string>
+    <string name="ok">Ok</string>
 
 
 </resources>

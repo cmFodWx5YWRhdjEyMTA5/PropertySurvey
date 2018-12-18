@@ -6,6 +6,5 @@ package com.softminesol.propertysurvey.survey.newPropertyEntry.data.net;
 public interface NewServeyURL {
     String submitSurveyAPI = "tracking/save";
     String savePropertySurveyAPI = "property/create";
-    String saveApartmentAPI = "apartment/create";
 
 }

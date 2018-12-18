@@ -126,7 +126,17 @@ public interface ApartmentInfoContract {
 
         public void setEdtSignature(String text);
 
+        void setNonRegCategory(ArrayAdapter customAdapter);
+
         void setLicenceStatus(ArrayAdapter customAdapter);
+
+        void setSpPowerBackup(ArrayAdapter customAdapter);
+
+        void setSpElectricityConnStatus(ArrayAdapter customAdapter);
+
+        void setSpSewerageConnStatus(ArrayAdapter customAdapter);
+
+
 
         void setNoofOwner(String owner);
 

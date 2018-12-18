@@ -25,7 +25,7 @@ import rx.functions.Action1;
 /**
  * Created by sandeep on 13/5/18.
  */
-public class NewPropertyInfoPresenter extends PropertyLocationPresenter implements PropertyLocationContract.Presenter {
+public class NewPropertyInfoPresenter extends PropertyLocationPresenter<NewPropertyInforFragmentContract.View> implements NewPropertyInforFragmentContract.Presenter {
     private final SaveSurveyFormUseCase saveSurveyFormUseCase;
 
 
@@ -51,8 +51,7 @@ public class NewPropertyInfoPresenter extends PropertyLocationPresenter implemen
                 public void onCompleted() {
                     getView().hideProgressBar();
                    // getView().showSnackBar("Save Successfully");
-                    getView().showToast("Save Successfully");
-                    getView().finish();
+
                 }
 
                 @Override
@@ -64,7 +63,7 @@ public class NewPropertyInfoPresenter extends PropertyLocationPresenter implemen
 
                 @Override
                 public void onNext(GetPropertySaveResponse getPropertySaveResponse) {
-
+                    getView().showMessage(getPropertySaveResponse.getMessage());
                 }
             });
          /*   surveyFormSubmitUseCase.execute(requestParams, new Subscriber<BaseResponse>() {

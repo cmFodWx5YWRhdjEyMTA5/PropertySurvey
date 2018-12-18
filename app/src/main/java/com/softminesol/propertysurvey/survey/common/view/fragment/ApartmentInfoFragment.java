@@ -5,7 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,8 +22,8 @@ import android.widget.LinearLayout;
 import com.softminesol.propertysurvey.R;
 import com.softminesol.propertysurvey.SurveyAppApplication;
 import com.softminesol.propertysurvey.home.view.DashBoardActivity;
-import com.softminesol.propertysurvey.survey.apartmentEntry.di.NewApartmentSurveyComponent;
-import com.softminesol.propertysurvey.survey.apartmentEntry.di.DaggerNewApartmentSurveyComponent;
+import com.softminesol.propertysurvey.survey.common.di.DaggerSurveyComponent;
+import com.softminesol.propertysurvey.survey.common.di.SurveyComponent;
 import com.softminesol.propertysurvey.survey.common.model.apartment.Owner;
 import com.softminesol.propertysurvey.survey.common.model.formData.ApartmentDetailsItem;
 import com.softminesol.propertysurvey.survey.common.view.activity.onMenuClick;
@@ -68,10 +71,11 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
     Unbinder unbinder;
     onMenuClick onMenuClick;
 
-    List<Owner> owners=new ArrayList<>();
+    List<Owner> owners = new ArrayList<>();
     public static final String APARTMENT_DETAIL_KEY = "apartmentDetails";
 
-    NewApartmentSurveyComponent surveyComponent;
+    SurveyComponent surveyComponent;
+    @Inject
     ApartmentInfoPresenter apartmentInfoPresenter;
     @BindView(R.id.edt_Floor_deatil_Id)
     EditText edtFloorDeatilId;
@@ -139,6 +143,48 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
     @BindView(R.id.spsewerage_con_status)
     MaterialBetterSpinner spsewerageConStatus;
     Unbinder unbinder2;
+    @BindView(R.id.textILayout_Floor_deatil_Id)
+    TextInputLayout textILayoutFloorDeatilId;
+    @BindView(R.id.textILayout_propertyFloorId)
+    TextInputLayout textILayoutPropertyFloorId;
+    @BindView(R.id.text_input_non_resdental_code)
+    TextInputLayout textInputNonResdentalCode;
+    @BindView(R.id.text_input_shop_name)
+    TextInputLayout textInputShopName;
+    @BindView(R.id.textIBusinessIndustryType)
+    TextInputLayout textIBusinessIndustryType;
+    @BindView(R.id.text_input_buisness_code)
+    TextInputLayout textInputBuisnessCode;
+    @BindView(R.id.textILicenceNo)
+    TextInputLayout textILicenceNo;
+    @BindView(R.id.textILicenceValidity)
+    TextInputLayout textILicenceValidity;
+    @BindView(R.id.textIBusinessBuiltArea)
+    TextInputLayout textIBusinessBuiltArea;
+    @BindView(R.id.textIApartmentShopArea)
+    TextInputLayout textIApartmentShopArea;
+    @BindView(R.id.textIApartmentBuildingName)
+    TextInputLayout textIApartmentBuildingName;
+    @BindView(R.id.textILayout_house_no)
+    TextInputLayout textILayoutHouseNo;
+    @BindView(R.id.textILayout_street_name)
+    TextInputLayout textILayoutStreetName;
+    @BindView(R.id.textILayout_colony_code)
+    TextInputLayout textILayoutColonyCode;
+    @BindView(R.id.textILayout_pin_code)
+    TextInputLayout textILayoutPinCode;
+    @BindView(R.id.textILayout_ward_no)
+    TextInputLayout textILayoutWardNo;
+    @BindView(R.id.textILayout_circle_no)
+    TextInputLayout textILayoutCircleNo;
+    @BindView(R.id.textIAgeOfBuilding)
+    TextInputLayout textIAgeOfBuilding;
+    @BindView(R.id.textIElectricConnectionNo)
+    TextInputLayout textIElectricConnectionNo;
+    @BindView(R.id.textIShopApartmentNo)
+    TextInputLayout textIShopApartmentNo;
+    @BindView(R.id.textISignature)
+    TextInputLayout textISignature;
 
     public static ApartmentInfoFragment newInstance(ApartmentDetailsItem apartmentDetailsItem) {
         ApartmentInfoFragment fragment = new ApartmentInfoFragment();
@@ -155,7 +201,7 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
 
     @Override
     protected void initInjector() {
-        surveyComponent = DaggerNewApartmentSurveyComponent.builder().baseAppComponent(((SurveyAppApplication) getActivity().getApplication()).getBaseAppComponent()).build();
+        surveyComponent = DaggerSurveyComponent.builder().baseAppComponent(((SurveyAppApplication) getActivity().getApplication()).getBaseAppComponent()).build();
         surveyComponent.inject(this);
     }
 
@@ -178,6 +224,43 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
     @Override
     public void setPropertyUsage(ArrayAdapter customAdapter) {
         spPropertyUsage.setAdapter(customAdapter);
+        spPropertyUsage.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (spPropertyUsage.getText().toString().equals("Residential")) {
+                    textInputNonResdentalCode.setVisibility(View.GONE);
+                    spNonRegCategory.setVisibility(View.GONE);
+                    textInputShopName.setVisibility(View.GONE);
+                    textIBusinessIndustryType.setVisibility(View.GONE);
+                    textInputBuisnessCode.setVisibility(View.GONE);
+                    spnLicenceStatus.setVisibility(View.GONE);
+                    textILicenceNo.setVisibility(View.GONE);
+                    textILicenceValidity.setVisibility(View.GONE);
+                    textIBusinessBuiltArea.setVisibility(View.GONE);
+
+                } else {
+                    textInputNonResdentalCode.setVisibility(View.VISIBLE);
+                    spNonRegCategory.setVisibility(View.VISIBLE);
+                    textInputShopName.setVisibility(View.VISIBLE);
+                    textIBusinessIndustryType.setVisibility(View.VISIBLE);
+                    textInputBuisnessCode.setVisibility(View.VISIBLE);
+                    spnLicenceStatus.setVisibility(View.VISIBLE);
+                    textILicenceNo.setVisibility(View.VISIBLE);
+                    textILicenceValidity.setVisibility(View.VISIBLE);
+                    textIBusinessBuiltArea.setVisibility(View.VISIBLE);
+                }
+            }
+        });
     }
 
     @Override
@@ -208,11 +291,12 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
     }
 
 
-    public void gotoHome(){
-        Intent intent=new Intent(getActivity(), DashBoardActivity.class);
+    public void gotoHome() {
+        Intent intent = new Intent(getActivity(), DashBoardActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
+
     @Override
     public String getGisCode() {
         return edtFloorDeatilId.getText().toString();
@@ -378,7 +462,7 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
 
     @Override
     public String getOwnerCount() {
-        return ""+owners.size();
+        return "" + owners.size();
     }
 
     @Override
@@ -482,8 +566,28 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
     }
 
     @Override
-    public void setLicenceStatus(ArrayAdapter customAdapter) {
+    public void setNonRegCategory(ArrayAdapter customAdapter) {
+        spNonRegCategory.setAdapter(customAdapter);
+    }
 
+    @Override
+    public void setSpPowerBackup(ArrayAdapter customAdapter) {
+        spPowerBackup.setAdapter(customAdapter);
+    }
+
+    @Override
+    public void setSpElectricityConnStatus(ArrayAdapter customAdapter) {
+        spElectronicConnectionStatus.setAdapter(customAdapter);
+    }
+
+    @Override
+    public void setSpSewerageConnStatus(ArrayAdapter customAdapter) {
+        spsewerageConStatus.setAdapter(customAdapter);
+    }
+
+    @Override
+    public void setLicenceStatus(ArrayAdapter customAdapter) {
+        spnLicenceStatus.setAdapter(customAdapter);
     }
 
     @Override
