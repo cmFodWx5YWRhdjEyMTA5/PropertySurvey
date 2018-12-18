@@ -19,8 +19,8 @@ import android.widget.LinearLayout;
 import com.softminesol.propertysurvey.R;
 import com.softminesol.propertysurvey.SurveyAppApplication;
 import com.softminesol.propertysurvey.home.view.DashBoardActivity;
+import com.softminesol.propertysurvey.survey.apartmentEntry.di.NewApartmentSurveyComponent;
 import com.softminesol.propertysurvey.survey.common.di.DaggerSurveyComponent;
-import com.softminesol.propertysurvey.survey.common.di.SurveyComponent;
 import com.softminesol.propertysurvey.survey.common.model.apartment.Owner;
 import com.softminesol.propertysurvey.survey.common.model.formData.ApartmentDetailsItem;
 import com.softminesol.propertysurvey.survey.common.view.activity.onMenuClick;
@@ -70,8 +70,8 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
 
     List<Owner> owners=new ArrayList<>();
     public static final String APARTMENT_DETAIL_KEY = "apartmentDetails";
-    SurveyComponent surveyComponent;
     @Inject
+    NewApartmentSurveyComponent surveyComponent;
     ApartmentInfoPresenter apartmentInfoPresenter;
     @BindView(R.id.edt_Floor_deatil_Id)
     EditText edtFloorDeatilId;

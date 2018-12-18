@@ -14,7 +14,7 @@ import retrofit2.Retrofit;
  * Created by sandeep on 6/5/18.
  */
 @Module
-public class NewSurveyModule {
+public class NewApartmentSurveyModule {
     @Provides
     NewServeyAPI provideLoginApi(Retrofit retrofit) {
         return retrofit.create(NewServeyAPI.class);
