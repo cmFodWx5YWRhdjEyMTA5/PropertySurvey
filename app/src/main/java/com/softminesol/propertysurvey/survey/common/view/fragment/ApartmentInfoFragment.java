@@ -599,6 +599,11 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
         getPresenter().onAddOwnerClick();
     }
 
+    @OnClick(R.id.btn_add_apartment_pic)
+    public void addApartmentPic() {
+        getPresenter().addApartmentPic();
+    }
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
@@ -631,7 +636,9 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
         // TODO: inflate a fragment view
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
         unbinder2 = ButterKnife.bind(this, rootView);
-        setGisCode(getArguments().getString(APARTMENT_DETAIL_KEY));
+        if(getArguments() != null ) {
+            setGisCode(getArguments().getString(APARTMENT_DETAIL_KEY));
+        }
         return rootView;
     }
 

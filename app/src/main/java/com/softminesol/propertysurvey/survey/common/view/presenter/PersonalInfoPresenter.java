@@ -1,8 +1,11 @@
 package com.softminesol.propertysurvey.survey.common.view.presenter;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.text.TextUtils;
 
+import com.softmine.imageupload.view.ActivityPicChooser;
 import com.softminesol.propertysurvey.survey.common.model.apartment.Owner;
 import com.softminesol.propertysurvey.survey.common.model.formData.OwnerDetailsItem;
 
@@ -19,6 +22,9 @@ public class PersonalInfoPresenter extends AppBasePresenter<PersonalInfoContract
 
 
     AdapterFactory adapterFactory;
+
+    public static final int REQUEST_PROPERTY_REGISTRY = 1;
+    public static final int REQUEST_OWNER_ID = 2;
 
     @Inject
     public PersonalInfoPresenter(AdapterFactory adapterFactory) {
@@ -46,6 +52,37 @@ public class PersonalInfoPresenter extends AppBasePresenter<PersonalInfoContract
             getView().finish();
         }
     }
+
+    @Override
+    public void onUploadRegistryClick() {
+        getView().startActivityForResult(ActivityPicChooser.createIntent(getView().getContext()),REQUEST_PROPERTY_REGISTRY);
+    }
+
+    @Override
+    public void onUploadIdClick() {
+
+        getView().startActivityForResult(ActivityPicChooser.createIntent(getView().getContext()),REQUEST_OWNER_ID);
+    }
+
+    @Override
+    public boolean onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == Activity.RESULT_OK) {
+            Uri uri = data.getData();
+            if (uri != null) {
+                if (requestCode == REQUEST_PROPERTY_REGISTRY) {
+                    registryPicPath = uri.getPath();
+                }
+                if (requestCode == REQUEST_OWNER_ID) {
+                    userIdPath = uri.getPath();
+                }
+                return true;
+            }
+        }
+        return super.onActivityResult(requestCode,resultCode,data);
+    }
+
+    public String registryPicPath = "";
+    public String userIdPath = "";
 
     public boolean validateForm() {
         if (TextUtils.isEmpty(getView().getOwnerName())) {

@@ -27,6 +27,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 import frameworks.basemvp.AppBaseFragment;
 
@@ -278,5 +279,15 @@ public class PersonalInfoFragment extends AppBaseFragment<PersonalInfoContract.P
         onMenuClick.onBackClick();
         finish();
         return true;
+    }
+
+    @OnClick(R.id.upload_registry)
+    public void onUploadRegisryClick() {
+        getPresenter().onUploadRegistryClick();
+    }
+
+    @OnClick(R.id.upload_id)
+    public void onUploadIdClick() {
+        getPresenter().onUploadIdClick();
     }
 }

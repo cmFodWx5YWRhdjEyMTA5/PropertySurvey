@@ -8,6 +8,7 @@ ext {
     glideVersion = '3.7.0'
     permissionDispatcherVersion = '2.4.0'
     deeplinkDispatchVersion = '3.0.0-rc1'
+    dbFlowVersion = '4.0.3'
     compileSdkVersion = 26
     minSdkVersion = 16
     targetSdkVersion = 26
@@ -110,6 +111,12 @@ ext {
             permissions       : ":permissions",
             maps       : ":maps",
             imageupload : ":imageupload"
+    ]
+
+    dbDependencies = [
+            dbFlow         : "com.github.Raizlabs.DBFlow:dbflow:${dbFlowVersion}",
+            dbFlowCore     : "com.github.Raizlabs.DBFlow:dbflow-core:${dbFlowVersion}",
+            dbFlowProcessor: "com.github.Raizlabs.DBFlow:dbflow-processor:${dbFlowVersion}",
     ]
 
 }

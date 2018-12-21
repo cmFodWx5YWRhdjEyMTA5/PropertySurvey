@@ -147,5 +147,6 @@ public interface ApartmentInfoContract {
 
         public void onAddOwnerClick();
 
+        void addApartmentPic();
     }
 }

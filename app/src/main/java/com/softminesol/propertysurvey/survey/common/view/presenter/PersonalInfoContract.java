@@ -76,5 +76,9 @@ public interface PersonalInfoContract {
 
     public interface Presenter extends IPresenter<View> {
         public void onNextClick();
+
+        void onUploadRegistryClick();
+
+        void onUploadIdClick();
     }
 }

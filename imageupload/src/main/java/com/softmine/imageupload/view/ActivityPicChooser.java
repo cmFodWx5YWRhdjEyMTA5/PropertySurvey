@@ -1,6 +1,7 @@
 package com.softmine.imageupload.view;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -34,6 +35,11 @@ public class ActivityPicChooser extends PermissionActivity {
     public final static int IMAGE_URI_REQUEST = 4;
     boolean isCameraOpenPermission = false;
     boolean isWriteExternalPermission = false;
+
+   public static Intent createIntent(Context context) {
+        return new Intent(context,ActivityPicChooser.class);
+    }
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

@@ -145,6 +145,9 @@
     <string name="business_built_area">Business Built Area</string>
     <string name="election_connection_status">Electricity Connection Status</string>
     <string name="ok">Ok</string>
+    <string name="add_apartment_pic">Add Apartment Pic</string>
+    <string name="upload_registry_pic">Upload Registry Pic</string>
+    <string name="upload_id">Upload Id</string>
 
 
 </resources>

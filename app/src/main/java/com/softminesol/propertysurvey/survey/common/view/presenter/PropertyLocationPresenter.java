@@ -1,7 +1,9 @@
 package com.softminesol.propertysurvey.survey.common.view.presenter;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.location.Location;
+import android.net.Uri;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -27,6 +29,8 @@ import frameworks.basemvp.AppBasePresenter;
 import frameworks.customadapter.CustomAdapterModel;
 import frameworks.utils.AdapterFactory;
 import rx.Subscriber;
+
+import static com.softmine.imageupload.view.ImageUploadActivity.FILE_PATHS;
 
 /**
  * Created by sandeep on 6/5/18.
@@ -203,9 +207,17 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
                       getView().setLatLng(location.getLatitude()+","+location.getLongitude());
                   }
             }
+        }else if (requestCode == ImageUploadActivity.REQUEST_GET_FILE_SERVER_URI) {
+            if(resultCode == Activity.RESULT_OK) {
+               fileUrls = data.getStringArrayListExtra(FILE_PATHS);
+
+            }
         }
-        return super.onActivityResult(requestCode, resultCode, data);
+        return true;
     }
+
+
+    ArrayList<String> fileUrls ;
 
     FloorDetailsItem clickedFloorDetailsItem;
     protected void addChip(final FloorDetailsItem formDetailsItem) {

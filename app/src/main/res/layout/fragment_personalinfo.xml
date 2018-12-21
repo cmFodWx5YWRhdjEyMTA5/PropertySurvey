@@ -186,10 +186,17 @@
                         />
 
                 </android.support.design.widget.TextInputLayout>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/upload_registry"
+                    android:text="@string/upload_registry_pic"/>
 
-
-
-
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/upload_id"
+                    android:text="@string/upload_id"/>
 
 
 

@@ -1,7 +1,10 @@
 package com.softminesol.propertysurvey.survey.common.view.presenter;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 
+import com.softmine.imageupload.view.ActivityPicChooser;
 import com.softminesol.propertysurvey.survey.apartmentEntry.domain.SaveApartmentSurveyFormUseCase;
 import com.softminesol.propertysurvey.survey.common.model.apartment.Owner;
 import com.softminesol.propertysurvey.survey.common.model.apartment.SaveApartmentRequest;
@@ -39,9 +42,17 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
                  getView().setOwner(ownerDetailsItemDetailsItem);
             }
 
+        }else if(requestCode == ActivityPicChooser.IMAGE_URI_REQUEST) {
+            if(resultCode == Activity.RESULT_OK) {
+                Uri uri = data.getData();
+                if (uri != null) {
+                    apartmentPicPath = uri.getPath();
+                }
+            }
         }
-        return super.onActivityResult(requestCode, resultCode, data);
+        return true;
     }
+    String apartmentPicPath;
     @Override
     public void attachView(ApartmentInfoContract.View view) {
         super.attachView(view);
@@ -132,13 +143,10 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
 
     }
 
-
-
-
-
-
-
-
+    @Override
+    public void addApartmentPic() {
+        getView().startActivityForResult(ActivityPicChooser.createIntent(getView().getContext()),ActivityPicChooser.IMAGE_URI_REQUEST);
+    }
 
 
 

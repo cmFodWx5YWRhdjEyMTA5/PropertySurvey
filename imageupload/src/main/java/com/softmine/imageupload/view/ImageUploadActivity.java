@@ -31,7 +31,7 @@ import frameworks.basemvp.AppBaseActivity;
 public class ImageUploadActivity extends AppBaseActivity<IUploadImageContractor.Presenter> implements IUploadImageContractor.View, ImageUploadAdapter.ProductImageListener {
 
 
-    public static final int REQUEST_GET_FILE_SERVER_URI = 0X1;
+    public static final int REQUEST_GET_FILE_SERVER_URI = 0X8;
     private final int SPAN_COUNT_4 = 4;
     @Inject
     ImageUploadPresenter mPresenter;
@@ -39,7 +39,7 @@ public class ImageUploadActivity extends AppBaseActivity<IUploadImageContractor.
     private RecyclerView recyclerView;
     private ImageUploadAdapter adapter;
     private View btnUploadImage;
-
+    public static final String FILE_PATHS = "FILE_PATHS";
 
     public static Intent getIntent(Context context) {
         Intent intent=new Intent(context, ImageUploadActivity.class);
@@ -87,7 +87,9 @@ public class ImageUploadActivity extends AppBaseActivity<IUploadImageContractor.
                     for (ImageUpload imageUpload : adapter.getList()) {
                         fileUrls.add(imageUpload.getFileLoc());
                     }
-                    //startService(ImagesUploadService.getIntent(getContext(), fileUrls));
+                    Intent intent = new Intent();
+                    intent.putStringArrayListExtra(FILE_PATHS, fileUrls);
+                    startService(ImagesUploadService.getIntent(getContext(), fileUrls));
                     //Intent resultData = new Intent();
                     setResult(RESULT_OK);
                     finish();
