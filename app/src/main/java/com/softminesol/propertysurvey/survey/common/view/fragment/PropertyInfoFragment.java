@@ -492,6 +492,10 @@ public abstract class PropertyInfoFragment<T extends PropertyLocationContract.Pr
     }
 
 
+    @OnClick(R.id.upload_image)
+    public void onUploadImageClick() {
+        getPresenter().onUploadImageClick();
+    }
     public  void showMessage( String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(true);

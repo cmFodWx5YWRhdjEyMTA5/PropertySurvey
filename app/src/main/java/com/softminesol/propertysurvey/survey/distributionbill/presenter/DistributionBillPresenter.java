@@ -4,16 +4,12 @@ import android.content.Intent;
 import android.net.Uri;
 import android.widget.ArrayAdapter;
 
+import com.softmine.imageupload.view.ActivityPicChooser;
 import com.softminesol.propertysurvey.GlobalConfig;
 import com.softminesol.propertysurvey.R;
-import com.softminesol.propertysurvey.home.di.DashboardScope;
 import com.softminesol.propertysurvey.imageupload.domain.intractor.ImageUploadUseCase;
 import com.softminesol.propertysurvey.imageupload.model.ImageUploadResponse;
-import com.softminesol.propertysurvey.survey.cloudsync.DistributionFormScope;
 import com.softminesol.propertysurvey.survey.cloudsync.DistributionFormSync;
-import com.softminesol.propertysurvey.survey.cloudsync.SyncManager;
-import com.softminesol.propertysurvey.survey.common.di.SurveyFormScope;
-import com.softminesol.propertysurvey.survey.common.domain.SurveyPropertyIdListUseCase;
 import com.softminesol.propertysurvey.survey.common.model.OLDPropertyUIDS;
 import com.softminesol.propertysurvey.survey.distributionbill.domain.BillDistributionPropertyIdListUseCase;
 import com.softminesol.propertysurvey.survey.distributionbill.domain.GetBillDetailUseCase;
@@ -30,16 +26,14 @@ import frameworks.OTP.data.model.OTPData;
 import frameworks.OTP.view.OtpVerficationActivity;
 import frameworks.basemvp.AppBasePresenter;
 import frameworks.customadapter.CustomAdapterModel;
-import frameworks.imageloader.view.ActivityPicChooser;
 import frameworks.network.model.BaseResponse;
 import frameworks.network.usecases.RequestParams;
 import frameworks.utils.AdapterFactory;
 import rx.Subscriber;
-import rx.functions.Action1;
 
+import static com.softmine.imageupload.view.ActivityPicChooser.IMAGE_URI_REQUEST;
+import static com.softmine.imageupload.view.ActivityPicChooser.IMAGE_URI_RESULT;
 import static com.softminesol.propertysurvey.imageupload.domain.intractor.ImageUploadUseCase.IMAGE_PATH;
-import static frameworks.imageloader.view.ActivityPicChooser.IMAGE_URI_REQUEST;
-import static frameworks.imageloader.view.ActivityPicChooser.IMAGE_URI_RESULT;
 
 /**
  * Created by sandeepgoyal on 14/05/18.

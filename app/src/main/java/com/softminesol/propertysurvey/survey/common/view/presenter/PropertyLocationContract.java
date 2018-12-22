@@ -158,5 +158,6 @@ public interface PropertyLocationContract {
         void onAddFloorCLicked();
 
 
+        void onUploadImageClick();
     }
 }

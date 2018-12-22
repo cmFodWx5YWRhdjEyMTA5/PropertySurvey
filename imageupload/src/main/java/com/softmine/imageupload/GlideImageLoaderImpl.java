@@ -1,11 +1,9 @@
-package frameworks.imageloader;
+package com.softmine.imageupload;
 
 import android.content.Context;
 import android.widget.ImageView;
 
-
 import com.bumptech.glide.Glide;
-
 
 
 /**

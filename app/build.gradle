@@ -55,6 +55,7 @@ dependencies {
     implementation project(rootProject.ext.libraries.locations)
     implementation project(rootProject.ext.libraries.permissions)
     implementation project(rootProject.ext.libraries.maps)
+    implementation project(rootProject.ext.libraries.imageupload)
     implementation rootProject.ext.miscDependencies.rxbinding
     compile rootProject.ext.butterKnifeDependencies.butterKnife
     compile rootProject.ext.miscDependencies.spinnermaterial

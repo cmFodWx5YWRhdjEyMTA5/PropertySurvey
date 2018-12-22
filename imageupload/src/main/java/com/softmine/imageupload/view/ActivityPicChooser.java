@@ -1,4 +1,5 @@
-package frameworks.imageloader.view;
+package com.softmine.imageupload.view;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -11,25 +12,18 @@ import android.support.v4.content.FileProvider;
 import android.view.View;
 import android.widget.Toast;
 
-
 import com.softminesol.permissions.apppermission.PermissionActivity;
 import com.softminesol.permissions.apppermission.Permissions;
+import com.tokopedia.imageupload.R;
+import com.tokopedia.imageupload.R2;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import frameworks.AppBaseApplication;
 
-import frameworks.basemvp.IPresenter;
-import in.healthhunt.framework.R;
-import in.healthhunt.framework.R2;
 /**
  * Created by sandeep on 4/1/18.
  */
@@ -47,6 +41,24 @@ public class ActivityPicChooser extends PermissionActivity {
         isCameraOpenPermission = getPermission(new String[]{Permissions.PERMISSION_CAMERA_OPEN.getPermission(), Permissions.PERMISSION_WRITE_EXTERNAL_STORATE.getPermission()},Permissions.PERMISSION_CAMERA_OPEN.getRequestId());
         setContentView(R.layout.feed_pic_chooser_option);
         ButterKnife.bind(this);
+        findViewById(R.id.btn_camera).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onViewClicked(v);
+            }
+        });
+        findViewById(R.id.btn_open_gallery).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onViewClicked(v);
+            }
+        });
+        findViewById(R.id.btn_cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onViewClicked(v);
+            }
+        });
     }
 
 
@@ -65,9 +77,10 @@ public class ActivityPicChooser extends PermissionActivity {
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri); // set the image file name
 
         startActivityForResult(intent, REQUEST_CAMERA);
+
     }
 
-    @OnClick({R2.id.btn_camera, R2.id.btn_open_gallery, R2.id.btn_cancel})
+
     public void onViewClicked(View view) {
         int i = view.getId();
         if (i  == R.id.btn_camera) {

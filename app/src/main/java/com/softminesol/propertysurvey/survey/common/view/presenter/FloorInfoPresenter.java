@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.pchmn.materialchips.ChipView;
+import com.softmine.imageupload.view.ActivityPicChooser;
 import com.softminesol.propertysurvey.GlobalConfig;
 import com.softminesol.propertysurvey.imageupload.domain.intractor.ImageUploadUseCase;
 import com.softminesol.propertysurvey.imageupload.model.ImageUploadResponse;
@@ -41,14 +42,13 @@ import javax.inject.Inject;
 
 import frameworks.basemvp.AppBasePresenter;
 import frameworks.customadapter.CustomAdapterModel;
-import frameworks.imageloader.view.ActivityPicChooser;
 import frameworks.network.usecases.RequestParams;
 import frameworks.utils.AdapterFactory;
 import rx.Subscriber;
 
+import static com.softmine.imageupload.view.ActivityPicChooser.IMAGE_URI_REQUEST;
+import static com.softmine.imageupload.view.ActivityPicChooser.IMAGE_URI_RESULT;
 import static com.softminesol.propertysurvey.imageupload.domain.intractor.ImageUploadUseCase.IMAGE_PATH;
-import static frameworks.imageloader.view.ActivityPicChooser.IMAGE_URI_REQUEST;
-import static frameworks.imageloader.view.ActivityPicChooser.IMAGE_URI_RESULT;
 
 /**
  * Created by sandeep on 6/5/18.

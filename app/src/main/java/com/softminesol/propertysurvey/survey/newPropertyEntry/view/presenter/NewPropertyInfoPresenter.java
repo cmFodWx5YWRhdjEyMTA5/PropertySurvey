@@ -9,6 +9,7 @@ import com.softminesol.propertysurvey.survey.common.domain.SurveyMeasurementList
 import com.softminesol.propertysurvey.survey.common.model.formData.FormData;
 import com.softminesol.propertysurvey.survey.common.model.property.GetPropertySaveResponse;
 import com.softminesol.propertysurvey.survey.common.model.property.SavePropertyRequest;
+import com.softminesol.propertysurvey.survey.common.view.activity.ApartmentInfoActivity;
 import com.softminesol.propertysurvey.survey.common.view.presenter.PropertyLocationContract;
 import com.softminesol.propertysurvey.survey.common.view.presenter.PropertyLocationPresenter;
 import com.softminesol.propertysurvey.survey.newPropertyEntry.domain.SaveSurveyFormUseCase;
@@ -50,7 +51,7 @@ public class NewPropertyInfoPresenter extends PropertyLocationPresenter<NewPrope
                 @Override
                 public void onCompleted() {
                     getView().hideProgressBar();
-                   // getView().showSnackBar("Save Successfully");
+                    getView().showSnackBar("Save Successfully");
 
                 }
 
@@ -63,7 +64,7 @@ public class NewPropertyInfoPresenter extends PropertyLocationPresenter<NewPrope
 
                 @Override
                 public void onNext(GetPropertySaveResponse getPropertySaveResponse) {
-                    getView().showMessage(getPropertySaveResponse.getMessage());
+                    getView().startActivity(ApartmentInfoActivity.createIntent(getView().getContext(),getPropertySaveResponse.getData().getGisId()));
                 }
             });
          /*   surveyFormSubmitUseCase.execute(requestParams, new Subscriber<BaseResponse>() {

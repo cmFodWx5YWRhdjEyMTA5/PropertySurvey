@@ -1,0 +1,49 @@
+
+apply plugin: 'com.android.library'
+apply from: "$rootProject.projectDir/buildconfig/module.gradle"
+apply plugin: 'com.jakewharton.butterknife'
+
+
+android {
+    compileSdkVersion 28
+
+
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation rootProject.ext.butterKnifeDependencies.butterKnife
+    compile rootProject.ext.networkDependencies.retrofit
+    compile rootProject.ext.networkDependencies.converterGson
+    compile rootProject.ext.networkDependencies.okHttp
+    compile rootProject.ext.miscDependencies.gson
+    compile rootProject.ext.networkDependencies.glide
+    compile rootProject.ext.networkDependencies.loggingInterceptor
+    compile rootProject.ext.networkDependencies.adapterRxJava
+    compile rootProject.ext.miscDependencies.rxAndroid
+    compile rootProject.ext.miscDependencies.rxJava
+    compile rootProject.ext.miscDependencies.dagger
+    implementation project(rootProject.ext.libraries.permissions)
+    implementation project(rootProject.ext.libraries.framework)
+    implementation project(rootProject.ext.libraries.locations)
+
+    implementation rootProject.ext.playServicesDependencies.location
+    annotationProcessor rootProject.ext.miscDependencies.daggerCompiler
+}

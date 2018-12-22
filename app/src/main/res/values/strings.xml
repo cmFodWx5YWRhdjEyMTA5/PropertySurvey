@@ -137,8 +137,8 @@
     <string name="connection_number">Electronic Connection number</string>
     <string name="sew_con_status">Sewerage Connection Status</string>
     <string name="constructionType">Construction Type</string>
-    <string name="self_occupied">Self Occupied</string>
-    <string name="tenanted">Tenanted</string>
+    <string name="self_occupied">Self Occupied Carpet Area</string>
+    <string name="tenanted">Tenanted Carpet Area</string>
     <string name="personal_detail_id">Personal Detail Id</string>
     <string name="add_apartment">Add Apartment</string>
     <string name="non_reg_category">Non Regidential Category</string>

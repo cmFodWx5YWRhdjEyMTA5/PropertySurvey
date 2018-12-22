@@ -1,4 +1,4 @@
-package frameworks.imageloader;
+package com.softmine.imageupload;
 
 import android.widget.ImageView;
 

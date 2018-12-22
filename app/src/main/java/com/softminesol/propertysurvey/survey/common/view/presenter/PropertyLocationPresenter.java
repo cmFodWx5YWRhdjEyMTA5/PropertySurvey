@@ -6,6 +6,8 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.pchmn.materialchips.ChipView;
+import com.softmine.imageupload.model.ImageUpload;
+import com.softmine.imageupload.view.ImageUploadActivity;
 import com.softminesol.maps.MapsActivityCurrentPlace;
 import com.softminesol.propertysurvey.survey.common.domain.SurveyAreaTypeUseCase;
 import com.softminesol.propertysurvey.survey.common.domain.SurveyMeasurementListUseCase;
@@ -171,6 +173,11 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
     @Override
     public void onAddFloorCLicked() {
         getView().startActivityForResult(new Intent(getView().getContext(), FloorInfoActivity.class), 1);
+    }
+
+    @Override
+    public void onUploadImageClick() {
+        getView().startActivityForResult(ImageUploadActivity.getIntent(getView().getContext()),ImageUploadActivity.REQUEST_GET_FILE_SERVER_URI);
     }
 
     @Override

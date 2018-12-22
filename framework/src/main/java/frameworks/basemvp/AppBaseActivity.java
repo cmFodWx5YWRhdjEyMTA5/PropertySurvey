@@ -49,9 +49,9 @@ public abstract class AppBaseActivity<T extends IPresenter> extends BaseLocation
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(getViewToCreate());
         initInjector();
         mPresenter = getPresenter();
+        setContentView(getViewToCreate());
         if (mPresenter != null) {
             mPresenter.attachView(this);
         }

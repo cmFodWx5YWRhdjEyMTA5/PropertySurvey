@@ -108,7 +108,8 @@ ext {
             framework       : ":framework",
             locations       : ":locations",
             permissions       : ":permissions",
-            maps       : ":maps"
+            maps       : ":maps",
+            imageupload : ":imageupload"
     ]
 
 }

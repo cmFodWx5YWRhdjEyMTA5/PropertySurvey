@@ -5,6 +5,7 @@ import android.location.Location;
 import android.support.multidex.MultiDex;
 
 import com.crashlytics.android.Crashlytics;
+import com.softmine.imageupload.data.net.ImageUploadURL;
 import com.softminesol.propertysurvey.location.LocationUploadManager;
 import com.softminesol.propertysurvey.location.model.LatLongUpload;
 import com.softminesol.propertysurvey.login.view.LoginActivity;
@@ -40,6 +41,7 @@ public class SurveyAppApplication extends AppBaseApplication implements ILoginIn
         Fabric.with(this, new Crashlytics());
         initRealm();
         sessionValue = new AppSessionManager(this);
+        initURLS();
     }
 
     @Override
@@ -49,6 +51,10 @@ public class SurveyAppApplication extends AppBaseApplication implements ILoginIn
                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                 Intent.FLAG_ACTIVITY_NEW_TASK);
         mApplication.getBaseContext().startActivity(i);
+    }
+
+    public void initURLS() {
+        ImageUploadURL.BASE_URL = CommonBaseUrl.BASE_URL;
     }
 
     @Override

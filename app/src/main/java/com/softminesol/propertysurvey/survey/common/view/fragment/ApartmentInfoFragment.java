@@ -186,11 +186,10 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
     @BindView(R.id.textISignature)
     TextInputLayout textISignature;
 
-    public static ApartmentInfoFragment newInstance(ApartmentDetailsItem apartmentDetailsItem) {
+    public static ApartmentInfoFragment newInstance(String  string) {
         ApartmentInfoFragment fragment = new ApartmentInfoFragment();
         Bundle args = new Bundle();
-        args.putSerializable(APARTMENT_DETAIL_KEY, apartmentDetailsItem);
-        fragment.setArguments(args);
+        args.putString(APARTMENT_DETAIL_KEY, string);
         return fragment;
     }
 
@@ -632,7 +631,12 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
         // TODO: inflate a fragment view
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
         unbinder2 = ButterKnife.bind(this, rootView);
+        setGisCode(getArguments().getString(APARTMENT_DETAIL_KEY));
         return rootView;
+    }
+
+    private void setGisCode(String string) {
+        edtFloorDeatilId.setText(string);
     }
 
     @Override

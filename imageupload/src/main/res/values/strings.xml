@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">imageupload</string>
+
+    <string name="upload_images">Upload Images</string>
+
+    <string name="title_upload_items_images">Upload Item Images</string>
+
+    <string name="select_atleast_one_image">Please select atleast one image to upload!</string>
+
+    <string name="submitted_success">Images uploaded successfully</string>
+
+    <string name="submit_fail">Images Uploading failed</string>
+</resources>
