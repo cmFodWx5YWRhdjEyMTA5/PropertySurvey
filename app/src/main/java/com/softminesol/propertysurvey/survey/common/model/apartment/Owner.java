@@ -4,6 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Owner implements Serializable{
     @SerializedName("name")
@@ -39,6 +40,17 @@ public class Owner implements Serializable{
     @SerializedName("revenue_circle")
     @Expose
     private String revenueCircle;
+    @SerializedName("image")
+    @Expose
+    List<String> registryImage;
+
+    public List<String> getRegistryImage() {
+        return registryImage;
+    }
+
+    public void setRegistryImage(List<String> registryImage) {
+        this.registryImage = registryImage;
+    }
 
     public String getName() {
         return name;

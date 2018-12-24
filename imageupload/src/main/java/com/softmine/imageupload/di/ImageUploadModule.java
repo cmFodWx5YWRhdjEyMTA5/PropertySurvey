@@ -46,7 +46,6 @@ public class ImageUploadModule {
     }
 
     @Provides
-    @ImageUploadScope
     ImageUploadAPI provideImageUploadApi(Retrofit retrofit) {
         return retrofit.create(ImageUploadAPI.class);
     }

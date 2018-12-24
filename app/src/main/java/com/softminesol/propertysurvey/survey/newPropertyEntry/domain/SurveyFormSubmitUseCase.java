@@ -1,8 +1,8 @@
 package com.softminesol.propertysurvey.survey.newPropertyEntry.domain;
 
+import com.softmine.imageupload.domain.ImageUploadUseCase;
+import com.softmine.imageupload.model.ImageUploadResponse;
 import com.softminesol.propertysurvey.GlobalConfig;
-import com.softminesol.propertysurvey.imageupload.domain.intractor.ImageUploadUseCase;
-import com.softminesol.propertysurvey.imageupload.model.ImageUploadResponse;
 import com.softminesol.propertysurvey.survey.common.model.formData.FloorDetailsItem;
 import com.softminesol.propertysurvey.survey.common.model.formData.FormData;
 
@@ -15,7 +15,8 @@ import rx.Observable;
 import rx.functions.Action1;
 import rx.functions.Func1;
 
-import static com.softminesol.propertysurvey.imageupload.domain.intractor.ImageUploadUseCase.IMAGE_PATH;
+import static com.softmine.imageupload.domain.ImageUploadUseCase.IMAGE_PATH;
+
 
 /**
  * Created by sandeep on 13/5/18.
@@ -50,7 +51,7 @@ public class SurveyFormSubmitUseCase extends UseCase<BaseResponse> {
                     }).doOnNext(new Action1<ImageUploadResponse>() {
                         @Override
                         public void call(ImageUploadResponse imageUploadResponse) {
-                            floorDetailsItem.setPropertyImageID(imageUploadResponse.getImage().get(0).getPropertyimagesid() + "");
+                            floorDetailsItem.setPropertyImageID(imageUploadResponse.getUploadResponseData().getImageId() + "");
                         }
                     });
                 }

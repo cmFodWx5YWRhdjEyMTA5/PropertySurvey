@@ -28,6 +28,10 @@ public class CloudImageUploader {
         return imageUploadAPI.uploadImage(params);
     }
 
+    public Observable<ImageUploadResponse> uploadImage(MultipartBody.Part params,String url) {
+        return imageUploadAPI.uploadImage(params,url);
+    }
+
     public Observable<ImageUploadResponse> submitImages(SubmitImagesBody submitImagesBody) {
         return null;
     }

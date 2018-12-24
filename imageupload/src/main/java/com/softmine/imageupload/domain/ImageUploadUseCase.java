@@ -21,6 +21,9 @@ import rx.Observable;
 
 public class ImageUploadUseCase extends UseCase<ImageUploadResponse> {
     public static String IMAGE_PATH = "PATH";
+    public static String URL = "URL";
+    public static String PARAM_NAME = "PARAM_NAME";
+
     IImageUploadRepository repository;
 
     @Inject
@@ -30,28 +33,24 @@ public class ImageUploadUseCase extends UseCase<ImageUploadResponse> {
 
     @Override
     public Observable<ImageUploadResponse> createObservable(RequestParams requestParams) {
-        return repository.uploadImage(generateRequestImage(requestParams.getString(IMAGE_PATH, "")));
-    }
 
-    public Map<String, RequestBody> getParamsUploadImage(String pathFile) {
-        Map<String, RequestBody> paramsUploadImage = new HashMap<>();
+        String url = requestParams.getString(URL, null);
+        if(url != null) {
+            return repository.uploadImage(generateRequestImage(requestParams.getString(IMAGE_PATH, ""), requestParams.getString(PARAM_NAME, "image")),url);
 
-        File file = new File(pathFile);
-
-        RequestBody fileToUpload = RequestBody.create(MediaType.parse("image/*"), file);
-
-        paramsUploadImage.put("image", fileToUpload);
-
-        return paramsUploadImage;
+        }else {
+            return repository.uploadImage(generateRequestImage(requestParams.getString(IMAGE_PATH, ""), requestParams.getString(PARAM_NAME, "image")));
+        }
     }
 
 
-    private MultipartBody.Part generateRequestImage(String pathFile) {
+
+
+    private MultipartBody.Part generateRequestImage(String pathFile,String param_name) {
 
         File file = new File(pathFile);
         RequestBody requestBody = RequestBody.create(MediaType.parse("image/*"), file);
-
-        return MultipartBody.Part.createFormData("image", file.getName(), requestBody);
+        return MultipartBody.Part.createFormData(param_name, file.getName(), requestBody);
 
     }
 

@@ -11,12 +11,11 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.softmine.imageupload.adapter.ImageUploadAdapter;
-import com.softmine.imageupload.di.ImageUploadComponent;
 import com.softmine.imageupload.di.DaggerImageUploadComponent;
+import com.softmine.imageupload.di.ImageUploadComponent;
 import com.softmine.imageupload.model.ImageUpload;
 import com.softmine.imageupload.presenter.IUploadImageContractor;
 import com.softmine.imageupload.presenter.ImageUploadPresenter;
-import com.softmine.imageupload.service.ImagesUploadService;
 import com.tokopedia.imageupload.R;
 
 import java.util.ArrayList;
@@ -89,9 +88,9 @@ public class ImageUploadActivity extends AppBaseActivity<IUploadImageContractor.
                     }
                     Intent intent = new Intent();
                     intent.putStringArrayListExtra(FILE_PATHS, fileUrls);
-                    startService(ImagesUploadService.getIntent(getContext(), fileUrls));
+                    //startService(ImagesUploadService.getIntent(getContext(), fileUrls));
                     //Intent resultData = new Intent();
-                    setResult(RESULT_OK);
+                    setResult(RESULT_OK,intent);
                     finish();
                 }else{
                     Toast.makeText(getContext(), getResources().getString(R.string.select_atleast_one_image), Toast.LENGTH_SHORT).show();

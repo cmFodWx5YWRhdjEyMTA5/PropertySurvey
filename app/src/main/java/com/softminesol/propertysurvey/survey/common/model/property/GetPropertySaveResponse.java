@@ -14,6 +14,20 @@ public class GetPropertySaveResponse {
     @Expose
     private PropertySave data;
 
+    @SerializedName("gis_id")
+    @Expose
+    private String gisId;
+
+
+    public String getGisId() {
+        return gisId;
+    }
+
+    public void setGisId(String gisId) {
+        this.gisId = gisId;
+    }
+
+
     public Integer getStatusCode() {
         return statusCode;
     }

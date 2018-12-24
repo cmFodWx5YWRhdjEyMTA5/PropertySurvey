@@ -9,11 +9,16 @@ import com.softmine.imageupload.view.ActivityPicChooser;
 import com.softminesol.propertysurvey.survey.common.model.apartment.Owner;
 import com.softminesol.propertysurvey.survey.common.model.formData.OwnerDetailsItem;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import frameworks.basemvp.AppBasePresenter;
 import frameworks.utils.AdapterFactory;
 import frameworks.utils.Validator;
+
+import static com.softmine.imageupload.view.ActivityPicChooser.IMAGE_URI_RESULT;
 
 /**
  * Created by sandeep on 6/5/18.
@@ -66,7 +71,7 @@ public class PersonalInfoPresenter extends AppBasePresenter<PersonalInfoContract
 
     @Override
     public boolean onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(resultCode == Activity.RESULT_OK) {
+        if(resultCode == IMAGE_URI_RESULT) {
             Uri uri = data.getData();
             if (uri != null) {
                 if (requestCode == REQUEST_PROPERTY_REGISTRY) {
@@ -106,6 +111,9 @@ public class PersonalInfoPresenter extends AppBasePresenter<PersonalInfoContract
         owner.setWardNo(getView().getWardNumber());
         owner.setCircleNo(getView().getCircleNumber());
         owner.setRevenueCircle(getView().getRevenueCircle());
+        List<String> registryList = new ArrayList<>();
+        registryList.add(registryPicPath);
+        owner.setRegistryImage(registryList);
         return owner;
         /*OwnerDetailsItem ownerDetailsItem = new OwnerDetailsItem();
 

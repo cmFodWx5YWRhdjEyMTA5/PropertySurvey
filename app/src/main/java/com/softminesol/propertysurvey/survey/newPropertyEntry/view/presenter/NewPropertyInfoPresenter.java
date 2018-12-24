@@ -58,13 +58,13 @@ public class NewPropertyInfoPresenter extends PropertyLocationPresenter<NewPrope
                 @Override
                 public void onError(Throwable e) {
                     getView().hideProgressBar();
-                    getView().showToast("Error");
+                    getView().showToast(e.getMessage());
 
                 }
 
                 @Override
                 public void onNext(GetPropertySaveResponse getPropertySaveResponse) {
-                    getView().startActivity(ApartmentInfoActivity.createIntent(getView().getContext(),getPropertySaveResponse.getData().getGisId()));
+                    getView().startActivity(ApartmentInfoActivity.createIntent(getView().getContext(),getPropertySaveResponse.getGisId()));
                 }
             });
          /*   surveyFormSubmitUseCase.execute(requestParams, new Subscriber<BaseResponse>() {

@@ -1,7 +1,7 @@
 package com.softminesol.propertysurvey.survey.cloudsync;
 
-import com.softminesol.propertysurvey.imageupload.domain.intractor.ImageUploadUseCase;
-import com.softminesol.propertysurvey.imageupload.model.ImageUploadResponse;
+import com.softmine.imageupload.domain.ImageUploadUseCase;
+import com.softmine.imageupload.model.ImageUploadResponse;
 import com.softminesol.propertysurvey.survey.common.model.formData.FloorDetailsItem;
 import com.softminesol.propertysurvey.survey.common.model.formData.FormData;
 import com.softminesol.propertysurvey.survey.common.realm.RealmPropertyDataMapper;
@@ -13,7 +13,8 @@ import rx.Observable;
 import rx.functions.Action1;
 import rx.functions.Func1;
 
-import static com.softminesol.propertysurvey.imageupload.domain.intractor.ImageUploadUseCase.IMAGE_PATH;
+import static com.softmine.imageupload.domain.ImageUploadUseCase.IMAGE_PATH;
+
 
 public abstract class FormSync extends UseCase<BaseResponse>{
 
@@ -43,7 +44,7 @@ public abstract class FormSync extends UseCase<BaseResponse>{
                     @Override
                     public Observable<BaseResponse> call(ImageUploadResponse imageUploadResponse) {
                         floorDetailsItem.setImagePath("");
-                        floorDetailsItem.setPropertyImageID(imageUploadResponse.getImage().get(0).getPropertyimagesid() + "");
+                        floorDetailsItem.setPropertyImageID(imageUploadResponse.getUploadResponseData().getImageId() + "");
                         return syncPictures(formData1);
 
                     }

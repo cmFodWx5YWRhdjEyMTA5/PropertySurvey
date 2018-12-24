@@ -1,7 +1,7 @@
 package com.softminesol.propertysurvey.survey.cloudsync;
 
-import com.softminesol.propertysurvey.imageupload.domain.intractor.ImageUploadUseCase;
-import com.softminesol.propertysurvey.imageupload.model.ImageUploadResponse;
+import com.softmine.imageupload.domain.ImageUploadUseCase;
+import com.softmine.imageupload.model.ImageUploadResponse;
 import com.softminesol.propertysurvey.survey.common.realm.RealmPropertyDataMapper;
 import com.softminesol.propertysurvey.survey.distributionbill.domain.OffLIneBillDistributionUseCase;
 import com.softminesol.propertysurvey.survey.distributionbill.domain.UploadBillDetailUseCase;
@@ -9,7 +9,6 @@ import com.softminesol.propertysurvey.survey.distributionbill.model.BillDetails;
 
 import java.util.List;
 
-import javax.crypto.interfaces.PBEKey;
 import javax.inject.Inject;
 
 import frameworks.network.model.BaseResponse;
@@ -18,7 +17,8 @@ import frameworks.network.usecases.UseCase;
 import rx.Observable;
 import rx.functions.Func1;
 
-import static com.softminesol.propertysurvey.imageupload.domain.intractor.ImageUploadUseCase.IMAGE_PATH;
+import static com.softmine.imageupload.domain.ImageUploadUseCase.IMAGE_PATH;
+
 
 public class DistributionFormSync extends UseCase<BaseResponse>{
     RealmPropertyDataMapper realmPropertyDataMapper;
@@ -60,7 +60,7 @@ public class DistributionFormSync extends UseCase<BaseResponse>{
                                 return imageUploadUseCase.createObservable(requestParams).flatMap(new Func1<ImageUploadResponse, Observable<BaseResponse>>() {
                                     @Override
                                     public Observable<BaseResponse> call(ImageUploadResponse imageUploadResponse) {
-                                        billDetails.setImageID(imageUploadResponse.getImage().get(0).getPropertyimagesid() + "");
+                                        billDetails.setImageID(imageUploadResponse.getUploadResponseData().getImageId()+ "");
                                         return uploadBill(billDetails);
                                     }
                                 });

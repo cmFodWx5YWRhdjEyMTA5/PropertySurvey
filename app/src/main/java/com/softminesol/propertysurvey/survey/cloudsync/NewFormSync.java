@@ -1,6 +1,6 @@
 package com.softminesol.propertysurvey.survey.cloudsync;
 
-import com.softminesol.propertysurvey.imageupload.domain.intractor.ImageUploadUseCase;
+import com.softmine.imageupload.domain.ImageUploadUseCase;
 import com.softminesol.propertysurvey.survey.cloudsync.domain.SubmitCloudUseCase;
 import com.softminesol.propertysurvey.survey.common.model.formData.FormData;
 import com.softminesol.propertysurvey.survey.common.realm.RealmPropertyDataMapper;

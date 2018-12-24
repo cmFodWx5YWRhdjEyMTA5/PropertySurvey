@@ -148,6 +148,7 @@ public interface PropertyLocationContract {
 
          void showMessage(String message);
 
+        void setBuidlingStatus(ArrayAdapter buildingStatus);
     }
 
     public interface Presenter<T extends View> extends IPresenter<T> {

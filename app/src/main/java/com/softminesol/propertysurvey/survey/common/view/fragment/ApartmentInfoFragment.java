@@ -25,7 +25,6 @@ import com.softminesol.propertysurvey.home.view.DashBoardActivity;
 import com.softminesol.propertysurvey.survey.common.di.DaggerSurveyComponent;
 import com.softminesol.propertysurvey.survey.common.di.SurveyComponent;
 import com.softminesol.propertysurvey.survey.common.model.apartment.Owner;
-import com.softminesol.propertysurvey.survey.common.model.formData.ApartmentDetailsItem;
 import com.softminesol.propertysurvey.survey.common.view.activity.onMenuClick;
 import com.softminesol.propertysurvey.survey.common.view.presenter.ApartmentInfoContract;
 import com.softminesol.propertysurvey.survey.common.view.presenter.ApartmentInfoPresenter;
@@ -190,6 +189,7 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
         ApartmentInfoFragment fragment = new ApartmentInfoFragment();
         Bundle args = new Bundle();
         args.putString(APARTMENT_DETAIL_KEY, string);
+        fragment.setArguments(args);
         return fragment;
     }
 

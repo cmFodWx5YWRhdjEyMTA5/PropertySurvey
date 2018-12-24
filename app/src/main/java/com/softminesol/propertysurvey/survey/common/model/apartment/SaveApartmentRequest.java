@@ -105,6 +105,17 @@ public class SaveApartmentRequest implements Serializable {
     @Expose
     private List<Owner> owners = null;
 
+    @SerializedName("image")
+    private List<String> apartmentImage;
+
+    public List<String> getApartmentImage() {
+        return apartmentImage;
+    }
+
+    public void setApartmentImage(List<String> apartmentImage) {
+        this.apartmentImage = apartmentImage;
+    }
+
     public String getGisId() {
         return gisId;
     }

@@ -131,7 +131,7 @@ public abstract class PropertyInfoFragment<T extends PropertyLocationContract.Pr
     @BindView(R.id.edt_circle_revenue)
     EditText edtCircleRevenue;
     @BindView(R.id.edt_building_status)
-    EditText edtBuildingStatus;
+    MaterialBetterSpinner edtBuildingStatus;
     @BindView(R.id.edt_age_of_building)
     EditText edtAgeOfBuilding;
     @BindView(R.id.btn_add_floor)
@@ -508,5 +508,10 @@ public abstract class PropertyInfoFragment<T extends PropertyLocationContract.Pr
         });
         builder.setMessage(message);
         builder.show();
+    }
+
+    @Override
+    public void setBuidlingStatus(ArrayAdapter buildingStatus) {
+        edtBuildingStatus.setAdapter(buildingStatus);
     }
 }

@@ -4,6 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class SavePropertyRequest implements Serializable{
     @SerializedName("map_id")
@@ -63,6 +64,18 @@ public class SavePropertyRequest implements Serializable{
     @SerializedName("revenue_circle")
     @Expose
     private String revenueCircle;
+
+    @SerializedName("image")
+    private List<String> imagesList;
+
+
+    public List<String> getImagesList() {
+        return imagesList;
+    }
+
+    public void setImagesList(List<String> imagesList) {
+        this.imagesList = imagesList;
+    }
 
     public String getMapId() {
         return mapId;

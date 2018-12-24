@@ -11,6 +11,9 @@ import com.softminesol.propertysurvey.survey.common.model.apartment.SaveApartmen
 import com.softminesol.propertysurvey.survey.common.model.property.GetPropertySaveResponse;
 import com.softminesol.propertysurvey.survey.common.view.activity.OwnerInfoActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import frameworks.basemvp.AppBasePresenter;
@@ -43,7 +46,7 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
             }
 
         }else if(requestCode == ActivityPicChooser.IMAGE_URI_REQUEST) {
-            if(resultCode == Activity.RESULT_OK) {
+            if(resultCode == ActivityPicChooser.IMAGE_URI_RESULT) {
                 Uri uri = data.getData();
                 if (uri != null) {
                     apartmentPicPath = uri.getPath();
@@ -104,6 +107,10 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
         saveApartmentRequest.setElectricityConnection(getView().getEdtElectionConnectionNo());
         saveApartmentRequest.setSewerageStatus(getView().getSewerageStatus());
 
+        List<String> apartmetnImage = new ArrayList<String>(1);
+        apartmetnImage.add(apartmentPicPath);
+        saveApartmentRequest.setApartmentImage(apartmetnImage);
+
         return saveApartmentRequest;
 
 
@@ -126,7 +133,8 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
             @Override
             public void onError(Throwable e) {
                 getView().hideProgressBar();
-                getView().showToast("Error");
+                getView().showToast(e.getMessage());
+                e.printStackTrace();
             }
 
             @Override

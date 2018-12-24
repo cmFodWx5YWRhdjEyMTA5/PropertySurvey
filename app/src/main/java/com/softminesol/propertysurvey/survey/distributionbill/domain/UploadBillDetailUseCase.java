@@ -1,8 +1,8 @@
 package com.softminesol.propertysurvey.survey.distributionbill.domain;
 
+import com.softmine.imageupload.domain.ImageUploadUseCase;
+import com.softmine.imageupload.model.ImageUploadResponse;
 import com.softminesol.propertysurvey.GlobalConfig;
-import com.softminesol.propertysurvey.imageupload.domain.intractor.ImageUploadUseCase;
-import com.softminesol.propertysurvey.imageupload.model.ImageUploadResponse;
 import com.softminesol.propertysurvey.survey.distributionbill.model.BillDetails;
 
 import javax.inject.Inject;
@@ -15,7 +15,8 @@ import rx.Subscriber;
 import rx.functions.Action1;
 import rx.functions.Func1;
 
-import static com.softminesol.propertysurvey.imageupload.domain.intractor.ImageUploadUseCase.IMAGE_PATH;
+import static com.softmine.imageupload.domain.ImageUploadUseCase.IMAGE_PATH;
+
 
 /**
  * Created by sandeepgoyal on 14/05/18.
@@ -49,7 +50,7 @@ public class UploadBillDetailUseCase extends UseCase<BaseResponse> {
             }).flatMap(new Func1<ImageUploadResponse, Observable<BaseResponse>>() {
                 @Override
                 public Observable<BaseResponse> call(ImageUploadResponse imageUploadResponse) {
-                    billDetail.setImageID(imageUploadResponse.getImage().get(0).getPropertyimagesid()+"");
+                    billDetail.setImageID(imageUploadResponse.getUploadResponseData().getImageId()+"");
                     billDetail.setImagePath("");
                     return billDistributionRepository.uploadBillDistributionData(billDetail);
                 }

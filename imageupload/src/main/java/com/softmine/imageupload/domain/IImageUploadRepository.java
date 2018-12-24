@@ -16,6 +16,7 @@ import rx.Observable;
 public interface IImageUploadRepository {
     Observable<ImageUploadResponse> uploadImage(MultipartBody.Part params);
 
+    Observable<ImageUploadResponse> uploadImage(MultipartBody.Part params,String path);
     Observable<ImageUploadResponse> submitImages(SubmitImagesBody submitImagesBody);
 
 

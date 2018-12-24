@@ -93,6 +93,7 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
         getView().setParkingFacility(adapterFactory.getYesNoAdapter());
         getView().setFireFighting(adapterFactory.getYesNoAdapter());
         getView().setSourceOfWater(adapterFactory.getSourceOfWaterProperty());
+        getView().setBuidlingStatus(adapterFactory.getBuildingStatus());
 
     }
 
@@ -133,6 +134,7 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
         savePropertyRequest.setCircleNo(getView().getCircleNumber());
         savePropertyRequest.setRevenueCircle(getView().getRevenueCircle());
         savePropertyRequest.setPropertyUsage(getView().getPropertyUsage());
+        savePropertyRequest.setImagesList(fileUrls);
         return savePropertyRequest;
     }
 

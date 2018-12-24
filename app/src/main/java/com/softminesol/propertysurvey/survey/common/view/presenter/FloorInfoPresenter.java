@@ -6,10 +6,10 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.pchmn.materialchips.ChipView;
+import com.softmine.imageupload.domain.ImageUploadUseCase;
+import com.softmine.imageupload.model.ImageUploadResponse;
 import com.softmine.imageupload.view.ActivityPicChooser;
 import com.softminesol.propertysurvey.GlobalConfig;
-import com.softminesol.propertysurvey.imageupload.domain.intractor.ImageUploadUseCase;
-import com.softminesol.propertysurvey.imageupload.model.ImageUploadResponse;
 import com.softminesol.propertysurvey.survey.common.domain.SurveyConstructionTypeUseCase;
 import com.softminesol.propertysurvey.survey.common.domain.SurveyFloorListUseCase;
 import com.softminesol.propertysurvey.survey.common.domain.SurveyGetCategoryUseCase;
@@ -46,9 +46,9 @@ import frameworks.network.usecases.RequestParams;
 import frameworks.utils.AdapterFactory;
 import rx.Subscriber;
 
+import static com.softmine.imageupload.domain.ImageUploadUseCase.IMAGE_PATH;
 import static com.softmine.imageupload.view.ActivityPicChooser.IMAGE_URI_REQUEST;
 import static com.softmine.imageupload.view.ActivityPicChooser.IMAGE_URI_RESULT;
-import static com.softminesol.propertysurvey.imageupload.domain.intractor.ImageUploadUseCase.IMAGE_PATH;
 
 /**
  * Created by sandeep on 6/5/18.
@@ -376,7 +376,7 @@ public class FloorInfoPresenter extends AppBasePresenter<FloorInfoContract.View>
                     @Override
                     public void onNext(ImageUploadResponse imageUploadResponse) {
                         imageSyncPassed = true;
-                        getView().setImageURIPath(imageUploadResponse.getImage().get(0).getPropertyimagesid() + "");
+                        getView().setImageURIPath(imageUploadResponse.getUploadResponseData().getImageId() + "");
                     }
                 });
             }

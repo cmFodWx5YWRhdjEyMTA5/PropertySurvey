@@ -4,11 +4,11 @@ import android.content.Intent;
 import android.net.Uri;
 import android.widget.ArrayAdapter;
 
+import com.softmine.imageupload.domain.ImageUploadUseCase;
+import com.softmine.imageupload.model.ImageUploadResponse;
 import com.softmine.imageupload.view.ActivityPicChooser;
 import com.softminesol.propertysurvey.GlobalConfig;
 import com.softminesol.propertysurvey.R;
-import com.softminesol.propertysurvey.imageupload.domain.intractor.ImageUploadUseCase;
-import com.softminesol.propertysurvey.imageupload.model.ImageUploadResponse;
 import com.softminesol.propertysurvey.survey.cloudsync.DistributionFormSync;
 import com.softminesol.propertysurvey.survey.common.model.OLDPropertyUIDS;
 import com.softminesol.propertysurvey.survey.distributionbill.domain.BillDistributionPropertyIdListUseCase;
@@ -31,9 +31,9 @@ import frameworks.network.usecases.RequestParams;
 import frameworks.utils.AdapterFactory;
 import rx.Subscriber;
 
+import static com.softmine.imageupload.domain.ImageUploadUseCase.IMAGE_PATH;
 import static com.softmine.imageupload.view.ActivityPicChooser.IMAGE_URI_REQUEST;
 import static com.softmine.imageupload.view.ActivityPicChooser.IMAGE_URI_RESULT;
-import static com.softminesol.propertysurvey.imageupload.domain.intractor.ImageUploadUseCase.IMAGE_PATH;
 
 /**
  * Created by sandeepgoyal on 14/05/18.
@@ -228,7 +228,7 @@ public class DistributionBillPresenter extends AppBasePresenter<DistributionBill
 
                     @Override
                     public void onNext(ImageUploadResponse imageUploadResponse) {
-                        getView().setEdtPicId(imageUploadResponse.getImage().get(0).getPropertyimagesid() + "");
+                        getView().setEdtPicId(imageUploadResponse.getUploadResponseData().getImageId() + "");
                     }
                 });
             }

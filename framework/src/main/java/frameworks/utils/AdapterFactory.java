@@ -80,4 +80,9 @@ public class AdapterFactory {
                 customAdapterModels);
 
     }
+
+    public ArrayAdapter getBuildingStatus() {
+        return ArrayAdapter.createFromResource(context,
+                R.array.building_status, R.layout.dropdown_item);
+    }
 }

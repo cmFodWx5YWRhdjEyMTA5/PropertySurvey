@@ -2,6 +2,11 @@ package com.softminesol.propertysurvey.survey.common.di;
 
 import android.content.Context;
 
+import com.softmine.imageupload.data.net.ImageUploadAPI;
+import com.softmine.imageupload.data.repository.ImageUploadRepository;
+import com.softmine.imageupload.data.repository.datasource.ImageUploadFactory;
+import com.softmine.imageupload.di.ImageUploadScope;
+import com.softmine.imageupload.domain.IImageUploadRepository;
 import com.softminesol.propertysurvey.survey.apartmentEntry.data.net.NewServeyAPI;
 import com.softminesol.propertysurvey.survey.apartmentEntry.data.repository.ApartmentSurveyFormSubmitRepository;
 import com.softminesol.propertysurvey.survey.apartmentEntry.data.repository.datasource.SubmitFormDataFactory;
@@ -90,5 +95,14 @@ public class SurveyModule {
         return RealmPropertyDataMapper.getInstance(context);
     }
 
+    @Provides
+    IImageUploadRepository getImageUploadRepository(ImageUploadFactory imageUploadFactory) {
+        return new ImageUploadRepository(imageUploadFactory);
+    }
+
+    @Provides
+    ImageUploadAPI provideImageUploadApi(Retrofit retrofit) {
+        return retrofit.create(ImageUploadAPI.class);
+    }
 
 }

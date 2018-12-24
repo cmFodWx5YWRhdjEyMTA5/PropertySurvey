@@ -66,4 +66,12 @@
         <item>others</item>
 
     </string-array>
+
+    <string-array name="building_status">
+        <item>Locked</item>
+        <item>Vacant Building / land</item>
+        <item>Owner denied documents</item>
+        <item>Docs verified</item>
+
+    </string-array>
 </resources>
