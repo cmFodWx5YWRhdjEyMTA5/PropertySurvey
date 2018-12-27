@@ -109,7 +109,7 @@ public interface PropertyLocationContract {
 
         public String getPowerBackup();
 
-
+        public void setMixCategory(ArrayAdapter customAdapter);
         public void setSewageConnectoion(ArrayAdapter customAdapter);
 
         public void setTypeOfProperty(ArrayAdapter customAdapter);

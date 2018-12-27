@@ -26,7 +26,6 @@ import com.softminesol.propertysurvey.survey.common.view.presenter.PropertyLocat
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import frameworks.basemvp.AppBaseFragment;
@@ -128,8 +127,6 @@ public abstract class PropertyInfoFragment<T extends PropertyLocationContract.Pr
     EditText edtPinCode;
     @BindView(R.id.edt_circle_no)
     EditText edtCircleNo;
-    @BindView(R.id.edt_circle_revenue)
-    EditText edtCircleRevenue;
     @BindView(R.id.edt_building_status)
     MaterialBetterSpinner edtBuildingStatus;
     @BindView(R.id.edt_age_of_building)
@@ -139,8 +136,16 @@ public abstract class PropertyInfoFragment<T extends PropertyLocationContract.Pr
     @BindView(R.id.textILayout_remark)
     TextInputLayout textILayoutRemark;
 
+    @BindView(R.id.spMixCategory)
+    MaterialBetterSpinner spMixCategory;
+
+
     @Override
     protected void initInjector() {
+    }
+
+    public String getEdMixCategory() {
+        return spMixCategory.getText().toString();
     }
 
     public String getEdtDistCode() {
@@ -235,9 +240,8 @@ public abstract class PropertyInfoFragment<T extends PropertyLocationContract.Pr
         return edtWardNo.getText().toString();
     } public String getCircleNumber() {
         return edtCircleNo.getText().toString();
-    } public String getRevenueCircle() {
-        return edtCircleRevenue.getText().toString();
     }
+
 
     public String getPropertyUsage() {
         return spPropertyUsage.getText().toString();
@@ -317,6 +321,10 @@ public abstract class PropertyInfoFragment<T extends PropertyLocationContract.Pr
 
     public String getPowerBackup() {
         return spPowerBackup.getText().toString();
+    }
+    @Override
+    public void setMixCategory(ArrayAdapter customAdapter) {
+        spMixCategory.setAdapter(customAdapter);
     }
 
     @Override

@@ -3,12 +3,10 @@ package com.softminesol.propertysurvey.survey.common.view.presenter;
 import android.app.Activity;
 import android.content.Intent;
 import android.location.Location;
-import android.net.Uri;
-import android.view.MotionEvent;
 import android.view.View;
 
+import com.google.android.gms.maps.GoogleMap;
 import com.pchmn.materialchips.ChipView;
-import com.softmine.imageupload.model.ImageUpload;
 import com.softmine.imageupload.view.ImageUploadActivity;
 import com.softminesol.maps.MapsActivityCurrentPlace;
 import com.softminesol.propertysurvey.survey.common.domain.SurveyAreaTypeUseCase;
@@ -94,6 +92,7 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
         getView().setFireFighting(adapterFactory.getYesNoAdapter());
         getView().setSourceOfWater(adapterFactory.getSourceOfWaterProperty());
         getView().setBuidlingStatus(adapterFactory.getBuildingStatus());
+        getView().setMixCategory(adapterFactory.getYesNoAdapter());
 
     }
 
@@ -104,7 +103,7 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
 
     @Override
     public void onAddressClick() {
-        getView().startActivityForResult(new Intent(getView().getContext(), MapsActivityCurrentPlace.class),2);
+        getView().startActivityForResult(MapsActivityCurrentPlace.getInstance(getView().getContext(),GoogleMap.MAP_TYPE_SATELLITE),2);
     }
 
     public boolean validateForm() {

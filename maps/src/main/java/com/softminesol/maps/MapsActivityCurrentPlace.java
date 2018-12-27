@@ -1,6 +1,7 @@
 package com.softminesol.maps;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -70,6 +71,7 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
     // Keys for storing activity state.
     private static final String KEY_CAMERA_POSITION = "camera_position";
     private static final String KEY_LOCATION = "location";
+    private static final String EXTRA_MAP_TYPE = "EXTRA_MAP_TYPE";
 
     // Used for selecting the current place.
     private static final int M_MAX_ENTRIES = 5;
@@ -77,6 +79,16 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
     private String[] mLikelyPlaceAddresses;
     private String[] mLikelyPlaceAttributions;
     private LatLng[] mLikelyPlaceLatLngs;
+
+    public static Intent getInstance(Context context) {
+        return new Intent(context, MapsActivityCurrentPlace.class);
+    }
+
+    public static Intent getInstance(Context context,int mapType) {
+        Intent intent = new Intent(context,MapsActivityCurrentPlace.class);
+        intent.putExtra(EXTRA_MAP_TYPE,mapType);
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -190,6 +202,9 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
 
         // Get the current location of the device and set the position of the map.
         getDeviceLocation();
+        if(getIntent().getExtras() != null) {
+            mMap.setMapType(getIntent().getExtras().getInt(EXTRA_MAP_TYPE));
+        }
     }
 
     /**

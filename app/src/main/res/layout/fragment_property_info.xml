@@ -228,7 +228,7 @@
                         android:id="@+id/edt_circle_no"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/circle_no"
+                        android:hint="@string/zone_id"
                         android:inputType="number" />
 
                 </android.support.design.widget.TextInputLayout>
@@ -238,13 +238,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/activity_vertical_margin">
-
-                    <EditText
-                        android:id="@+id/edt_circle_revenue"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/circle_revenue"
-                         />
 
                 </android.support.design.widget.TextInputLayout>
                 <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
@@ -521,6 +514,14 @@
                     android:hint="@string/fire_fighting"
                     app:met_floatingLabel="normal" />
 
+                <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                    android:id="@+id/spMixCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+
+                    android:hint="@string/fire_fighting"
+                    app:met_floatingLabel="normal" />
 
                 <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
                     android:id="@+id/area_meas_unit"
