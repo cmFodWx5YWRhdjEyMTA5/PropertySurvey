@@ -524,6 +524,14 @@
                     app:met_floatingLabel="normal" />
 
                 <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                    android:id="@+id/spRoadWidth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:hint="@string/road_width"
+                    app:met_floatingLabel="normal" />
+
+                <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
                     android:id="@+id/area_meas_unit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

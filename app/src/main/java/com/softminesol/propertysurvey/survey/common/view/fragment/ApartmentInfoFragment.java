@@ -185,6 +185,9 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
     @BindView(R.id.textISignature)
     TextInputLayout textISignature;
 
+    @BindView(R.id.edt_sewarage_connection_no)
+    EditText edtSewerageConNo;
+
     public static ApartmentInfoFragment newInstance(String  string) {
         ApartmentInfoFragment fragment = new ApartmentInfoFragment();
         Bundle args = new Bundle();
@@ -439,6 +442,10 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
     public String getPincode() {
         return edtPinCode.getText().toString();
 
+    }
+
+    public String getSewerageConnNumber() {
+        return edtSewerageConNo.getText().toString();
     }
 
     @Override

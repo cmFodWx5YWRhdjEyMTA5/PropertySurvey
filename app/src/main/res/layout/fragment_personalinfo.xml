@@ -47,7 +47,7 @@
                         android:id="@+id/edt_respondentUniqueId"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/unique_id"
+                        android:hint="@string/aadhar_id"
                         android:inputType="textEmailAddress"
                         android:maxLines="1" />
 
@@ -168,24 +168,11 @@
                         android:id="@+id/edt_circle_no"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/circle_no"
+                        android:hint="@string/zone_id"
                         android:inputType="number" />
 
                 </android.support.design.widget.TextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/activity_vertical_margin">
-
-                    <EditText
-                        android:id="@+id/edt_circle_revenue"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/circle_revenue"
-                        />
-
-                </android.support.design.widget.TextInputLayout>
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

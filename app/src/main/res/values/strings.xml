@@ -149,6 +149,9 @@
     <string name="upload_registry_pic">Upload Registry Pic</string>
     <string name="upload_id">Upload Id</string>
     <string name="zone_id">Zone Id</string>
+    <string name="road_width">Road Width</string>
+    <string name="floor_number">Floor Number</string>
+    <string name="aadhar_id">Aadhar ID</string>
 
 
 </resources>

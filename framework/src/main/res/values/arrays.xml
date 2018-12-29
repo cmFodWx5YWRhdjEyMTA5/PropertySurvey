@@ -16,7 +16,6 @@
     <string-array name="property_usage">
         <item>Residential</item>
         <item>Non Residential</item>
-        <item>Mix</item>
 
     </string-array>
     <string-array name="property_type">
@@ -73,5 +72,12 @@
         <item>Owner denied documents</item>
         <item>Docs verified</item>
 
+    </string-array>
+
+
+    <string-array name="width_road">
+        <item> less than 12 meter </item>
+        <item>12 to 14 meter</item>
+        <item>More than 24 meter</item>
     </string-array>
 </resources>

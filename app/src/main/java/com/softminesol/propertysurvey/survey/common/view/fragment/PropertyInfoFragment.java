@@ -139,6 +139,11 @@ public abstract class PropertyInfoFragment<T extends PropertyLocationContract.Pr
     @BindView(R.id.spMixCategory)
     MaterialBetterSpinner spMixCategory;
 
+    @BindView(R.id.spRoadWidth)
+    MaterialBetterSpinner spRoadWidth;
+
+
+
 
     @Override
     protected void initInjector() {
@@ -521,5 +526,11 @@ public abstract class PropertyInfoFragment<T extends PropertyLocationContract.Pr
     @Override
     public void setBuidlingStatus(ArrayAdapter buildingStatus) {
         edtBuildingStatus.setAdapter(buildingStatus);
+    }
+
+
+    @Override
+    public void setRoadWidth(ArrayAdapter customAdapter) {
+        spRoadWidth.setAdapter(customAdapter);
     }
 }

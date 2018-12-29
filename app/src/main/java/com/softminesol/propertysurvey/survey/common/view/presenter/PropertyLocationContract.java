@@ -75,7 +75,6 @@ public interface PropertyLocationContract {
         public String getPincode();
         public String getWardNumber();
         public String getCircleNumber();
-        public String getRevenueCircle();
         public String getPropertyUsage();
 
         public String getEdtCurrentAddress();
@@ -149,6 +148,7 @@ public interface PropertyLocationContract {
          void showMessage(String message);
 
         void setBuidlingStatus(ArrayAdapter buildingStatus);
+        void setRoadWidth(ArrayAdapter customAdapter);
     }
 
     public interface Presenter<T extends View> extends IPresenter<T> {

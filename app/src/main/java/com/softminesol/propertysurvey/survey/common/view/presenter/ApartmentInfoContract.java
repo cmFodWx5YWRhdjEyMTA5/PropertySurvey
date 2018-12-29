@@ -136,6 +136,7 @@ public interface ApartmentInfoContract {
 
         void setSpSewerageConnStatus(ArrayAdapter customAdapter);
 
+        public String getSewerageConnNumber();
 
 
         void setNoofOwner(String owner);

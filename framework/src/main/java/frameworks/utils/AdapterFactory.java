@@ -81,6 +81,11 @@ public class AdapterFactory {
 
     }
 
+
+    public ArrayAdapter getRoadWidth() {
+        return ArrayAdapter.createFromResource(context,
+                R.array.width_road, R.layout.dropdown_item);
+    }
     public ArrayAdapter getBuildingStatus() {
         return ArrayAdapter.createFromResource(context,
                 R.array.building_status, R.layout.dropdown_item);
