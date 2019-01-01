@@ -21,13 +21,13 @@
                 android:orientation="vertical">
 
                 <android.support.design.widget.TextInputLayout
-                    android:id="@+id/textILayout_Floor_deatil_Id"
+                    android:id="@+id/textILayout_GSId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/activity_vertical_margin">
 
                     <EditText
-                        android:id="@+id/edt_Floor_deatil_Id"
+                        android:id="@+id/edt_GSId"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/floor_detail_id"
@@ -294,7 +294,7 @@
                         android:id="@+id/edt_sewarage_connection_no"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/connection_number"
+                        android:hint="@string/sew_con_number"
                         android:maxLines="1" />
 
                 </android.support.design.widget.TextInputLayout>
@@ -457,22 +457,7 @@
 
                 </android.support.design.widget.TextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/textIElectricConnectionNo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/activity_vertical_margin"
 
-                    android:visibility="gone">
-
-                    <EditText
-                        android:id="@+id/edt_election_connection_no"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/election_connection_no"
-                        android:maxLines="1" />
-
-                </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/textIShopApartmentNo"

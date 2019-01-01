@@ -16,8 +16,6 @@ import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
-import javax.inject.Inject;
-
 import frameworks.AppBaseApplication;
 import frameworks.appsession.AppSessionManager;
 import frameworks.basemvp.AppBaseActivity;

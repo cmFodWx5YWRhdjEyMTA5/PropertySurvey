@@ -9,9 +9,7 @@ import com.softminesol.propertysurvey.survey.common.model.ConstructionType;
 import com.softminesol.propertysurvey.survey.common.model.FloorsList;
 import com.softminesol.propertysurvey.survey.common.model.MeasurementUnitList;
 import com.softminesol.propertysurvey.survey.common.model.OLDPropertyUIDS;
-import com.softminesol.propertysurvey.survey.common.model.OldPropertyUIDItem;
 import com.softminesol.propertysurvey.survey.common.model.OwnerShipList;
-import com.softminesol.propertysurvey.survey.common.model.PropertyCategory;
 import com.softminesol.propertysurvey.survey.common.model.PropertyCategoryList;
 import com.softminesol.propertysurvey.survey.common.model.PropertySubCategoryList;
 import com.softminesol.propertysurvey.survey.common.model.PropertyTypes;
@@ -29,12 +27,10 @@ import com.softminesol.propertysurvey.survey.common.realm.mapper.OldPropertyUIDS
 import com.softminesol.propertysurvey.survey.common.realm.mapper.OwnerShipListModelMapper;
 import com.softminesol.propertysurvey.survey.common.realm.mapper.PropertyCategoryListModelMapper;
 import com.softminesol.propertysurvey.survey.common.realm.mapper.PropertySubCategoryListModelMapper;
-import com.softminesol.propertysurvey.survey.common.realm.mapper.PropertyTypeModelMapper;
 import com.softminesol.propertysurvey.survey.common.realm.mapper.PropertyTypesModelMapper;
 import com.softminesol.propertysurvey.survey.common.realm.mapper.RebateListModelMapper;
 import com.softminesol.propertysurvey.survey.common.realm.mapper.UsageListModelMapper;
 import com.softminesol.propertysurvey.survey.common.realm.model.AreaTypeModel;
-import com.softminesol.propertysurvey.survey.common.realm.model.BillDetailModel;
 import com.softminesol.propertysurvey.survey.common.realm.model.BillDetailsModel;
 import com.softminesol.propertysurvey.survey.common.realm.model.ColonyListModel;
 import com.softminesol.propertysurvey.survey.common.realm.model.ConstructionTypeModel;
@@ -45,9 +41,7 @@ import com.softminesol.propertysurvey.survey.common.realm.model.OldPropertyUIDIt
 import com.softminesol.propertysurvey.survey.common.realm.model.OldPropertyUIDSModel;
 import com.softminesol.propertysurvey.survey.common.realm.model.OwnerShipListModel;
 import com.softminesol.propertysurvey.survey.common.realm.model.PropertyCategoryListModel;
-import com.softminesol.propertysurvey.survey.common.realm.model.PropertyCategoryModel;
 import com.softminesol.propertysurvey.survey.common.realm.model.PropertySubCategoryListModel;
-import com.softminesol.propertysurvey.survey.common.realm.model.PropertyTypeModel;
 import com.softminesol.propertysurvey.survey.common.realm.model.PropertyTypesModel;
 import com.softminesol.propertysurvey.survey.common.realm.model.RebateListModel;
 import com.softminesol.propertysurvey.survey.common.realm.model.UsageListModel;
@@ -57,12 +51,10 @@ import com.softminesol.propertysurvey.survey.distributionbill.model.BillDetails;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
-import rx.Observable;
 import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmResults;
+import rx.Observable;
 
 /**
  * Created by madhurigupta on 26/05/18.

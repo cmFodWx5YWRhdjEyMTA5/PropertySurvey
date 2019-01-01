@@ -16,6 +16,7 @@
     <string-array name="property_usage">
         <item>Residential</item>
         <item>Non Residential</item>
+        <item>Mix</item>
 
     </string-array>
     <string-array name="property_type">

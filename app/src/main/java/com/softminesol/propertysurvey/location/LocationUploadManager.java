@@ -10,10 +10,6 @@ import com.softminesol.propertysurvey.location.model.LatLongUpload;
 
 import javax.inject.Inject;
 
-import frameworks.network.model.BaseResponse;
-import frameworks.network.usecases.RequestParams;
-import rx.Subscriber;
-
 /**
  * Created by sandeepgoyal on 18/05/18.
  */

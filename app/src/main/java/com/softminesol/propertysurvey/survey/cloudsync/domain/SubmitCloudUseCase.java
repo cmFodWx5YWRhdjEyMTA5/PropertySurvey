@@ -2,7 +2,6 @@ package com.softminesol.propertysurvey.survey.cloudsync.domain;
 
 import com.softminesol.propertysurvey.survey.common.model.formData.FormData;
 import com.softminesol.propertysurvey.survey.newPropertyEntry.domain.ISurveyFormSubmitRepository;
-import com.softminesol.propertysurvey.survey.updatePropertyEntry.domain.ISurveyFormUpdateRepository;
 
 import javax.inject.Inject;
 

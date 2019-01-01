@@ -97,7 +97,8 @@ ext {
             spinnermaterial       : "com.weiwangcn.betterspinner:library-material:1.1.0",
             chipview              : 'com.github.pchmn:MaterialChipsInput:1.0.8',
             spinnermaterial_new     : 'com.jaredrummler:material-spinner:1.2.5',
-            crashlytics             : 'com.crashlytics.sdk.android:crashlytics:2.9.3@aar'
+            crashlytics             : 'com.crashlytics.sdk.android:crashlytics:2.9.3@aar',
+            imagecompression         :  'id.zelory:compressor:2.1.0'
     ]
 
 

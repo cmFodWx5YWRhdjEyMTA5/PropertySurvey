@@ -34,20 +34,28 @@
             android:name=".login.view.LoginActivity"
             android:label="@string/title_activity_login"
             android:launchMode="singleTask"
-            android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".survey.newPropertyEntry.view.activity.NewSurveyActivity" />
-        <activity android:name=".splash.view.SplashActivity">
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".survey.newPropertyEntry.view.activity.NewSurveyActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".splash.view.SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".survey.common.view.activity.OldSurveyActivity" />
-        <activity android:name=".home.view.DashBoardActivity" />
-        <activity android:name=".survey.distributionbill.view.DistributionBillActivity" />
-        <activity android:name=".survey.common.view.activity.FloorInfoActivity" />
-        <activity android:name=".survey.common.view.activity.OwnerInfoActivity" />
+        <activity android:name=".survey.common.view.activity.OldSurveyActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".home.view.DashBoardActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".survey.distributionbill.view.DistributionBillActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".survey.common.view.activity.FloorInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".survey.common.view.activity.OwnerInfoActivity"
+            android:screenOrientation="portrait" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -64,7 +72,8 @@
             android:name="io.fabric.ApiKey"
             android:value="8cc901a5e7a4a0b09e3a21db971c4c2e96c035cb" />
 
-        <activity android:name=".survey.common.view.activity.ApartmentInfoActivity"></activity>
+        <activity android:name=".survey.common.view.activity.ApartmentInfoActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

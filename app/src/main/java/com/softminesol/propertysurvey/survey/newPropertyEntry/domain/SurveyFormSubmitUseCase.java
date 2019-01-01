@@ -13,7 +13,6 @@ import frameworks.network.usecases.RequestParams;
 import frameworks.network.usecases.UseCase;
 import rx.Observable;
 import rx.functions.Action1;
-import rx.functions.Func1;
 
 import static com.softmine.imageupload.domain.ImageUploadUseCase.IMAGE_PATH;
 

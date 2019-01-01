@@ -10,9 +10,9 @@ public class Owner implements Serializable{
     @SerializedName("name")
     @Expose
     private String name;
-    @SerializedName("unique_id")
+    @SerializedName("aadhar_id")
     @Expose
-    private String uniqueId;
+    private String aadharId;
     @SerializedName("mobile_no")
     @Expose
     private String mobileNo;
@@ -34,12 +34,10 @@ public class Owner implements Serializable{
     @SerializedName("ward_no")
     @Expose
     private String wardNo;
-    @SerializedName("circle_no")
+    @SerializedName("zone_id")
     @Expose
-    private String circleNo;
-    @SerializedName("revenue_circle")
-    @Expose
-    private String revenueCircle;
+    private String zoneId;
+
     @SerializedName("image")
     @Expose
     List<String> registryImage;
@@ -60,12 +58,12 @@ public class Owner implements Serializable{
         this.name = name;
     }
 
-    public String getUniqueId() {
-        return uniqueId;
+    public String getAadharId() {
+        return aadharId;
     }
 
-    public void setUniqueId(String uniqueId) {
-        this.uniqueId = uniqueId;
+    public void setAadharId(String aadharId) {
+        this.aadharId = aadharId;
     }
 
     public String getMobileNo() {
@@ -124,20 +122,11 @@ public class Owner implements Serializable{
         this.wardNo = wardNo;
     }
 
-    public String getCircleNo() {
-        return circleNo;
+    public String getZoneId() {
+        return zoneId;
     }
 
-    public void setCircleNo(String circleNo) {
-        this.circleNo = circleNo;
+    public void setZoneId(String zoneId) {
+        this.zoneId = zoneId;
     }
-
-    public String getRevenueCircle() {
-        return revenueCircle;
-    }
-
-    public void setRevenueCircle(String revenueCircle) {
-        this.revenueCircle = revenueCircle;
-    }
-
 }

@@ -43,6 +43,7 @@ dependencies {
     implementation project(rootProject.ext.libraries.permissions)
     implementation project(rootProject.ext.libraries.framework)
     implementation project(rootProject.ext.libraries.locations)
+    implementation rootProject.ext.miscDependencies.imagecompression
 
     implementation rootProject.ext.playServicesDependencies.location
     annotationProcessor rootProject.ext.miscDependencies.daggerCompiler

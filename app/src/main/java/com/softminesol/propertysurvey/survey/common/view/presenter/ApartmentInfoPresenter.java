@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.net.Uri;
 
 import com.softmine.imageupload.view.ActivityPicChooser;
+import com.softmine.imageupload.view.ImageUploadActivity;
+import com.softminesol.propertysurvey.CommonBaseUrl;
 import com.softminesol.propertysurvey.survey.apartmentEntry.domain.SaveApartmentSurveyFormUseCase;
 import com.softminesol.propertysurvey.survey.common.model.apartment.Owner;
 import com.softminesol.propertysurvey.survey.common.model.apartment.SaveApartmentRequest;
@@ -21,6 +23,9 @@ import frameworks.network.usecases.RequestParams;
 import frameworks.utils.AdapterFactory;
 import rx.Subscriber;
 
+import static com.softmine.imageupload.view.ImageUploadActivity.FILE_PATHS;
+import static com.softmine.imageupload.view.ImageUploadActivity.REQUEST_GET_FILE_SERVER_URI;
+
 /**
  * Created by sandeep on 6/5/18.
  */
@@ -31,7 +36,7 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
 
 
     @Inject
-    public ApartmentInfoPresenter(AdapterFactory adapterFactory,SaveApartmentSurveyFormUseCase saveApartmentSurveyFormUseCase) {
+    public ApartmentInfoPresenter(AdapterFactory adapterFactory, SaveApartmentSurveyFormUseCase saveApartmentSurveyFormUseCase) {
         this.adapterFactory = adapterFactory;
         this.saveApartmentSurveyFormUseCase = saveApartmentSurveyFormUseCase;
 
@@ -42,20 +47,19 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
         if (requestCode == 1) {
             if (resultCode == 1) {
                 Owner ownerDetailsItemDetailsItem = (Owner) data.getSerializableExtra("ownerDetail");
-                 getView().setOwner(ownerDetailsItemDetailsItem);
+                getView().setOwner(ownerDetailsItemDetailsItem);
             }
 
-        }else if(requestCode == ActivityPicChooser.IMAGE_URI_REQUEST) {
-            if(resultCode == ActivityPicChooser.IMAGE_URI_RESULT) {
-                Uri uri = data.getData();
-                if (uri != null) {
-                    apartmentPicPath = uri.getPath();
-                }
+        } else if (requestCode == REQUEST_GET_FILE_SERVER_URI) {
+            if (resultCode == Activity.RESULT_OK) {
+                fileUrls = data.getStringArrayListExtra(FILE_PATHS);
             }
         }
         return true;
     }
+
     String apartmentPicPath;
+
     @Override
     public void attachView(ApartmentInfoContract.View view) {
         super.attachView(view);
@@ -73,52 +77,43 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
     }
 
     public SaveApartmentRequest getApartmentData() {
-        SaveApartmentRequest saveApartmentRequest=new SaveApartmentRequest();
-        saveApartmentRequest.setGisId(getView().getGisCode());
-        saveApartmentRequest.setFloor(getView().getFloorCount());
+        SaveApartmentRequest saveApartmentRequest = new SaveApartmentRequest();
+        saveApartmentRequest.setGisId(getView().getGsid());
+        saveApartmentRequest.setFloor(getView().getFloorNumber());
         saveApartmentRequest.setPropertyUsage(getView().getPropertyUsage());
-        saveApartmentRequest.setNonResidentialCode(getView().getNonResidentialCode());
-        saveApartmentRequest.setNonResidentialCategory(getView().getNonRegCategory());
+        saveApartmentRequest.setNonResidentialCode(getView().getNonResedentalCode());
+        saveApartmentRequest.setNonResidentialCategory(getView().getNonResidentalCategory());
         saveApartmentRequest.setShopName(getView().getShopName());
-        saveApartmentRequest.setBusinessType(getView().getBusinessType());
-        saveApartmentRequest.setBusinessCode(getView().getBusinessCode());
-        saveApartmentRequest.setLicenseNumber(getView().getEdtLicenceNo());
-        saveApartmentRequest.setLicenseValidity(getView().getEdtLicenceValidity());
-        saveApartmentRequest.setLicenseStatus(getView().getLicenceStatus());
-        saveApartmentRequest.setBusinessBuiltArea(getView().getBusinessBuiltArea());
-        saveApartmentRequest.setRespodentName(getView().getRespondentName());
+        saveApartmentRequest.setBusinessType(getView().getBuisnessType());
+        saveApartmentRequest.setBusinessCode(getView().getBuisnessCode());
+        saveApartmentRequest.setLicenseNumber(getView().getLicenceNo());
+        saveApartmentRequest.setLicenseValidity(getView().getLicenceValidity());
+        saveApartmentRequest.setLicenseStatus(getView().getLiceceStatus());
+        saveApartmentRequest.setBusinessBuiltArea(getView().getBuisnessBuiltArea());
+        saveApartmentRequest.setRespodentName(getView().getRespodentName());
         saveApartmentRequest.setRespodentStatus(getView().getRespondentStatus());
-        saveApartmentRequest.setSourceWater(getView().getSourceWater());
-        saveApartmentRequest.setConstructionType(getView().getCunstructionType());
-        saveApartmentRequest.setSelfOccupied(getView().getSelfOccupied());
-        saveApartmentRequest.setTenanted(getView().getTenanted());
-        saveApartmentRequest.setPowerBackup(getView().getPowerBackUp());
-        saveApartmentRequest.setBuildingName(getView().getBuildingName());
-        saveApartmentRequest.setStreet(getView().getStreet());
-        saveApartmentRequest.setColony(getView().getColony());
-        saveApartmentRequest.setPincode(getView().getPincode());
-        saveApartmentRequest.setWardNo(getView().getWardNumber());
-        saveApartmentRequest.setCircleNo(getView().getCircleNumber());
-        saveApartmentRequest.setRevenueCircle(getView().getRevenueCircle());
+        saveApartmentRequest.setOccupencyStatus(getView().getOccupencyStatus());
+        saveApartmentRequest.setElectricityConnectionStatus(getView().getElectricityStatus());
+        saveApartmentRequest.setElectricityConnection(getView().getElectricConnectionNumber());
+        saveApartmentRequest.setSewerageStatus(getView().getSewarageConnectionStatus());
+        saveApartmentRequest.setSewerageConnectionNumber(getView().getSewarageConnectionNumber());
+        saveApartmentRequest.setSourceWater(getView().getSourceOfWater());
+        saveApartmentRequest.setConstructionType(getView().getConstructionType());
+        saveApartmentRequest.setSelfOccupiedArea(getView().getSelfCarpetArea());
+        saveApartmentRequest.setTenantedCarpetArea(getView().getTenantedCarpetArea());
+        saveApartmentRequest.setPowerBackup(getView().getPowerBackup());
         saveApartmentRequest.setOwnerCount(getView().getOwnerCount());
         saveApartmentRequest.setOwners(getView().getOwners());
-        saveApartmentRequest.setOccupencyStatus(getView().getOccupencyStatus());
-        saveApartmentRequest.setElectricityConnectionStatus(getView().getElectronicConnectionStatus());
-        saveApartmentRequest.setElectricityConnection(getView().getEdtElectionConnectionNo());
-        saveApartmentRequest.setSewerageStatus(getView().getSewerageStatus());
-
-        List<String> apartmetnImage = new ArrayList<String>(1);
-        apartmetnImage.add(apartmentPicPath);
-        saveApartmentRequest.setApartmentImage(apartmetnImage);
+        saveApartmentRequest.setApartmentImage(fileUrls);
 
         return saveApartmentRequest;
 
 
     }
-
+    List<String> fileUrls;
     @Override
     public void onNextClick() {
-        SaveApartmentRequest formData=getApartmentData();
+        SaveApartmentRequest formData = getApartmentData();
         RequestParams requestParams = RequestParams.create();
         requestParams.putObject("formdata", formData);
         getView().showProgressBar();
@@ -153,10 +148,11 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
 
     @Override
     public void addApartmentPic() {
-        getView().startActivityForResult(ActivityPicChooser.createIntent(getView().getContext()),ActivityPicChooser.IMAGE_URI_REQUEST);
+
+        String url = CommonBaseUrl.BASE_URL + "apartment/uploadapartmentImage";
+        String param_name = "apartmentImage";
+        getView().startActivityForResult(ImageUploadActivity.getIntent(getView().getContext(), url, param_name), REQUEST_GET_FILE_SERVER_URI);
     }
-
-
 
 
 }

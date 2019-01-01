@@ -136,6 +136,7 @@
     <string name="occupency_status">Occupency Status</string>
     <string name="connection_number">Electronic Connection number</string>
     <string name="sew_con_status">Sewerage Connection Status</string>
+    <string name="sew_con_number">Sewerage Connection Number</string>
     <string name="constructionType">Construction Type</string>
     <string name="self_occupied">Self Occupied Carpet Area</string>
     <string name="tenanted">Tenanted Carpet Area</string>
@@ -152,6 +153,7 @@
     <string name="road_width">Road Width</string>
     <string name="floor_number">Floor Number</string>
     <string name="aadhar_id">Aadhar ID</string>
+    <string name="mix_category">Mix Category</string>
 
 
 </resources>

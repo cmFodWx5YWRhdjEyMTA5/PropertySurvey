@@ -15,10 +15,8 @@ import com.softminesol.propertysurvey.home.presenter.DashBoardPresenter;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import frameworks.basemvp.AppBaseActivity;
-import frameworks.routers.ILoginInterceptor;
 
 /**
  * Created by sandeepgoyal on 10/05/18.

@@ -61,6 +61,7 @@ dependencies {
     compile rootProject.ext.miscDependencies.spinnermaterial
     compile rootProject.ext.miscDependencies.chipview
     compile rootProject.ext.miscDependencies.multiDex
+    compile rootProject.ext.miscDependencies.imagecompression
     implementation 'com.google.code.findbugs:jsr305:3.0.2'
     implementation rootProject.ext.playServicesDependencies.location
     implementation rootProject.ext.miscDependencies.joda

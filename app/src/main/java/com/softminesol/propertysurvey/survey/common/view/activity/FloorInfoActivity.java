@@ -2,7 +2,6 @@ package com.softminesol.propertysurvey.survey.common.view.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 
 import com.softminesol.propertysurvey.survey.common.model.formData.FloorDetailsItem;
 import com.softminesol.propertysurvey.survey.common.view.fragment.FloorInfoFragment;

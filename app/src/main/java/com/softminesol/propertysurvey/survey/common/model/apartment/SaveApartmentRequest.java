@@ -62,42 +62,27 @@ public class SaveApartmentRequest implements Serializable {
     @SerializedName("sewerage_status")
     @Expose
     private String sewerageStatus;
+
+    @SerializedName("sewerage_connection_number")
+    @Expose
+    private String sewerageConnectionNumber;
     @SerializedName("source_water")
     @Expose
     private String sourceWater;
     @SerializedName("construction_type")
     @Expose
     private String constructionType;
-    @SerializedName("self_occupied")
+    @SerializedName("self_occupied_area")
     @Expose
-    private String selfOccupied;
-    @SerializedName("tenanted")
+    private String selfOccupiedArea;
+    @SerializedName("tenanted_carpet_area")
     @Expose
-    private String tenanted;
+    private String tenantedCarpetArea;
     @SerializedName("power_backup")
     @Expose
     private String powerBackup;
-    @SerializedName("building_name")
-    @Expose
-    private String buildingName;
-    @SerializedName("street")
-    @Expose
-    private String street;
-    @SerializedName("colony")
-    @Expose
-    private String colony;
-    @SerializedName("pincode")
-    @Expose
-    private String pincode;
-    @SerializedName("ward_no")
-    @Expose
-    private String wardNo;
-    @SerializedName("circle_no")
-    @Expose
-    private String circleNo;
-    @SerializedName("revenue_circle")
-    @Expose
-    private String revenueCircle;
+
+
     @SerializedName("ownerCount")
     @Expose
     private String ownerCount;
@@ -168,14 +153,6 @@ public class SaveApartmentRequest implements Serializable {
         return businessType;
     }
 
-    public String getRespodentName() {
-        return respodentName;
-    }
-
-    public void setRespodentName(String respodentName) {
-        this.respodentName = respodentName;
-    }
-
     public void setBusinessType(String businessType) {
         this.businessType = businessType;
     }
@@ -228,6 +205,14 @@ public class SaveApartmentRequest implements Serializable {
         this.respodentStatus = respodentStatus;
     }
 
+    public String getRespodentName() {
+        return respodentName;
+    }
+
+    public void setRespodentName(String respodentName) {
+        this.respodentName = respodentName;
+    }
+
     public String getOccupencyStatus() {
         return occupencyStatus;
     }
@@ -260,6 +245,14 @@ public class SaveApartmentRequest implements Serializable {
         this.sewerageStatus = sewerageStatus;
     }
 
+    public String getSewerageConnectionNumber() {
+        return sewerageConnectionNumber;
+    }
+
+    public void setSewerageConnectionNumber(String sewerageConnectionNumber) {
+        this.sewerageConnectionNumber = sewerageConnectionNumber;
+    }
+
     public String getSourceWater() {
         return sourceWater;
     }
@@ -276,20 +269,20 @@ public class SaveApartmentRequest implements Serializable {
         this.constructionType = constructionType;
     }
 
-    public String getSelfOccupied() {
-        return selfOccupied;
+    public String getSelfOccupiedArea() {
+        return selfOccupiedArea;
     }
 
-    public void setSelfOccupied(String selfOccupied) {
-        this.selfOccupied = selfOccupied;
+    public void setSelfOccupiedArea(String selfOccupiedArea) {
+        this.selfOccupiedArea = selfOccupiedArea;
     }
 
-    public String getTenanted() {
-        return tenanted;
+    public String getTenantedCarpetArea() {
+        return tenantedCarpetArea;
     }
 
-    public void setTenanted(String tenanted) {
-        this.tenanted = tenanted;
+    public void setTenantedCarpetArea(String tenantedCarpetArea) {
+        this.tenantedCarpetArea = tenantedCarpetArea;
     }
 
     public String getPowerBackup() {
@@ -298,62 +291,6 @@ public class SaveApartmentRequest implements Serializable {
 
     public void setPowerBackup(String powerBackup) {
         this.powerBackup = powerBackup;
-    }
-
-    public String getBuildingName() {
-        return buildingName;
-    }
-
-    public void setBuildingName(String buildingName) {
-        this.buildingName = buildingName;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getColony() {
-        return colony;
-    }
-
-    public void setColony(String colony) {
-        this.colony = colony;
-    }
-
-    public String getPincode() {
-        return pincode;
-    }
-
-    public void setPincode(String pincode) {
-        this.pincode = pincode;
-    }
-
-    public String getWardNo() {
-        return wardNo;
-    }
-
-    public void setWardNo(String wardNo) {
-        this.wardNo = wardNo;
-    }
-
-    public String getCircleNo() {
-        return circleNo;
-    }
-
-    public void setCircleNo(String circleNo) {
-        this.circleNo = circleNo;
-    }
-
-    public String getRevenueCircle() {
-        return revenueCircle;
-    }
-
-    public void setRevenueCircle(String revenueCircle) {
-        this.revenueCircle = revenueCircle;
     }
 
     public String getOwnerCount() {

@@ -4,10 +4,6 @@ import com.softminesol.propertysurvey.cachehandler.data.net.CacheGetterAPI;
 
 import javax.inject.Inject;
 
-import frameworks.appsession.SessionValue;
-import frameworks.network.usecases.RequestParams;
-import rx.Observable;
-
 /**
  * Created by sandeep on 5/5/18.
  */

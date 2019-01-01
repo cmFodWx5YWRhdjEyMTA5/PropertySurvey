@@ -38,13 +38,13 @@
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
-                    android:id="@+id/textILayout_respondentUniqueId"
+                    android:id="@+id/textILayout_respondentAadharId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/activity_vertical_margin">
 
                     <EditText
-                        android:id="@+id/edt_respondentUniqueId"
+                        android:id="@+id/edt_respondentAadharId"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/aadhar_id"
@@ -159,13 +159,13 @@
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
-                    android:id="@+id/textILayout_circle_no"
+                    android:id="@+id/textILayout_zone_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/activity_vertical_margin">
 
                     <EditText
-                        android:id="@+id/edt_circle_no"
+                        android:id="@+id/edt_zone_id"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/zone_id"
@@ -183,6 +183,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/upload_id"
+                    android:visibility="gone"
                     android:text="@string/upload_id"/>
 
 

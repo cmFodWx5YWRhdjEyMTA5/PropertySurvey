@@ -1,12 +1,8 @@
 package com.softminesol.propertysurvey.survey.common.view.activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 
-import com.softminesol.propertysurvey.R;
-import com.softminesol.propertysurvey.survey.common.model.formData.ApartmentDetailsItem;
 import com.softminesol.propertysurvey.survey.common.view.fragment.ApartmentInfoFragment;
 
 import frameworks.customlayout.ActivitySingleFragment;

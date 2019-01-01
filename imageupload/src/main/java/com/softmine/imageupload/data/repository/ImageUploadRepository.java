@@ -27,12 +27,16 @@ public class ImageUploadRepository implements IImageUploadRepository {
 
     @Override
     public Observable<ImageUploadResponse> uploadImage(MultipartBody.Part params) {
-        return imageUploadFactory.uploadImage(params);
+        return uploadImage(params,"");
     }
 
     @Override
     public Observable<ImageUploadResponse> uploadImage(MultipartBody.Part params, String path) {
-        return imageUploadFactory.uploadImage(params,path);
+        if(path == null || path.isEmpty()) {
+            return imageUploadFactory.uploadImage(params);
+        }else {
+            return imageUploadFactory.uploadImage(params, path);
+        }
     }
 
     @Override

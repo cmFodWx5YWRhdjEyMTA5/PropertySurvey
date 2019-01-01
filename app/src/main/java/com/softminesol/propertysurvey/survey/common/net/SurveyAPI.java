@@ -12,7 +12,6 @@ import com.softminesol.propertysurvey.survey.common.model.PropertySubCategoryLis
 import com.softminesol.propertysurvey.survey.common.model.PropertyTypes;
 import com.softminesol.propertysurvey.survey.common.model.RebateList;
 import com.softminesol.propertysurvey.survey.common.model.UsageList;
-import com.softminesol.propertysurvey.survey.common.model.formData.FormData;
 import com.softminesol.propertysurvey.survey.common.model.formData.PropertyDetails;
 
 import frameworks.network.model.DataResponse;

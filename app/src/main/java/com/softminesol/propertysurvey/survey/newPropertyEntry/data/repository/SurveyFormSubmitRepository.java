@@ -1,6 +1,5 @@
 package com.softminesol.propertysurvey.survey.newPropertyEntry.data.repository;
 
-import com.softminesol.propertysurvey.survey.cloudsync.SyncManager;
 import com.softminesol.propertysurvey.survey.common.model.formData.FormData;
 import com.softminesol.propertysurvey.survey.common.model.property.GetPropertySaveResponse;
 import com.softminesol.propertysurvey.survey.common.model.property.SavePropertyRequest;

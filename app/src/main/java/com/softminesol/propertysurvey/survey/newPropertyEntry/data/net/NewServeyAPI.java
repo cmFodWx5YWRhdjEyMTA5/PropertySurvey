@@ -1,6 +1,5 @@
 package com.softminesol.propertysurvey.survey.newPropertyEntry.data.net;
 
-import com.softminesol.propertysurvey.survey.common.model.apartment.SaveApartmentRequest;
 import com.softminesol.propertysurvey.survey.common.model.formData.FormData;
 import com.softminesol.propertysurvey.survey.common.model.property.GetPropertySaveResponse;
 import com.softminesol.propertysurvey.survey.common.model.property.SavePropertyRequest;

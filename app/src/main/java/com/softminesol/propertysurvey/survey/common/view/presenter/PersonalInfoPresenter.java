@@ -6,6 +6,8 @@ import android.net.Uri;
 import android.text.TextUtils;
 
 import com.softmine.imageupload.view.ActivityPicChooser;
+import com.softmine.imageupload.view.ImageUploadActivity;
+import com.softminesol.propertysurvey.CommonBaseUrl;
 import com.softminesol.propertysurvey.survey.common.model.apartment.Owner;
 import com.softminesol.propertysurvey.survey.common.model.formData.OwnerDetailsItem;
 
@@ -16,9 +18,10 @@ import javax.inject.Inject;
 
 import frameworks.basemvp.AppBasePresenter;
 import frameworks.utils.AdapterFactory;
-import frameworks.utils.Validator;
 
 import static com.softmine.imageupload.view.ActivityPicChooser.IMAGE_URI_RESULT;
+import static com.softmine.imageupload.view.ImageUploadActivity.FILE_PATHS;
+import static com.softmine.imageupload.view.ImageUploadActivity.REQUEST_GET_FILE_SERVER_URI;
 
 /**
  * Created by sandeep on 6/5/18.
@@ -60,32 +63,26 @@ public class PersonalInfoPresenter extends AppBasePresenter<PersonalInfoContract
 
     @Override
     public void onUploadRegistryClick() {
-        getView().startActivityForResult(ActivityPicChooser.createIntent(getView().getContext()),REQUEST_PROPERTY_REGISTRY);
+        String url = CommonBaseUrl.BASE_URL+"person/uploadPersonImage";
+        String param_name = "personImage";
+        getView().startActivityForResult(ImageUploadActivity.getIntent(getView().getContext(),url,param_name),REQUEST_GET_FILE_SERVER_URI);
     }
 
-    @Override
-    public void onUploadIdClick() {
-
-        getView().startActivityForResult(ActivityPicChooser.createIntent(getView().getContext()),REQUEST_OWNER_ID);
-    }
 
     @Override
     public boolean onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(resultCode == IMAGE_URI_RESULT) {
+        if(resultCode == Activity.RESULT_OK) {
             Uri uri = data.getData();
             if (uri != null) {
-                if (requestCode == REQUEST_PROPERTY_REGISTRY) {
-                    registryPicPath = uri.getPath();
-                }
-                if (requestCode == REQUEST_OWNER_ID) {
-                    userIdPath = uri.getPath();
+                if (requestCode == REQUEST_GET_FILE_SERVER_URI) {
+                    fileUrls = data.getStringArrayListExtra(FILE_PATHS);
                 }
                 return true;
             }
         }
         return super.onActivityResult(requestCode,resultCode,data);
     }
-
+    ArrayList<String> fileUrls;
     public String registryPicPath = "";
     public String userIdPath = "";
 
@@ -101,7 +98,7 @@ public class PersonalInfoPresenter extends AppBasePresenter<PersonalInfoContract
 
         Owner owner=new Owner();
         owner.setName(getView().getOwnerName());
-        owner.setUniqueId(getView().getUniqueId());
+        owner.setAadharId(getView().getAdharId());
         owner.setMobileNo(getView().getMobileNo());
         owner.setEmail(getView().getEmail());
         owner.setBuildingName(getView().getBuildingName());
@@ -109,32 +106,9 @@ public class PersonalInfoPresenter extends AppBasePresenter<PersonalInfoContract
         owner.setColony(getView().getColony());
         owner.setPincode(getView().getPincode());
         owner.setWardNo(getView().getWardNumber());
-        owner.setCircleNo(getView().getCircleNumber());
-        owner.setRevenueCircle(getView().getRevenueCircle());
-        List<String> registryList = new ArrayList<>();
-        registryList.add(registryPicPath);
-        owner.setRegistryImage(registryList);
+        owner.setZoneId(getView().getZondeid());
+        owner.setRegistryImage(fileUrls);
         return owner;
-        /*OwnerDetailsItem ownerDetailsItem = new OwnerDetailsItem();
-
-        ownerDetailsItem.setAddressLine1(getView().getCurrentAddress());
-        String email = getView().getEmail();
-        if (Validator.validateEmail(email)) {
-            ownerDetailsItem.setEmailID(email);
-        } else {
-            //set error message
-        }
-        ownerDetailsItem.setGender(getView().getSelectGender());
-        String mobile = getView().getMobileNo();
-        if (Validator.validateMobile(mobile)) {
-            ownerDetailsItem.setMobileNumber(getView().getMobileNo());
-        } else {
-
-        }
-        ownerDetailsItem.setName(getView().getOwnerName());
-        ownerDetailsItem.setRelationName(getView().getRelationType());
-        ownerDetailsItem.setRelationWith(getView().getFatherName());
-        return ownerDetailsItem;*/
     }
 
 

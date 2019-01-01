@@ -1,6 +1,5 @@
 package com.softminesol.propertysurvey.survey.common.view.presenter;
 
-import android.os.Bundle;
 import android.widget.ArrayAdapter;
 
 import com.pchmn.materialchips.ChipView;

@@ -1,10 +1,8 @@
 package com.softminesol.propertysurvey.survey.newPropertyEntry.domain;
 
-import com.softminesol.propertysurvey.survey.common.model.formData.FormData;
 import com.softminesol.propertysurvey.survey.common.model.property.GetPropertySaveResponse;
 import com.softminesol.propertysurvey.survey.common.model.property.SavePropertyRequest;
 
-import frameworks.network.model.BaseResponse;
 import rx.Observable;
 
 /**

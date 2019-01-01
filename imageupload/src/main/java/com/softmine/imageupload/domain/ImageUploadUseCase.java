@@ -14,6 +14,7 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import rx.Observable;
+import rx.functions.Func1;
 
 /**
  * Created by sandeepgoyal on 13/05/18.
@@ -23,24 +24,36 @@ public class ImageUploadUseCase extends UseCase<ImageUploadResponse> {
     public static String IMAGE_PATH = "PATH";
     public static String URL = "URL";
     public static String PARAM_NAME = "PARAM_NAME";
+    private final CompressImageUseCase compressImageUseCase;
 
     IImageUploadRepository repository;
 
     @Inject
-    public ImageUploadUseCase(IImageUploadRepository repository) {
+    public ImageUploadUseCase(IImageUploadRepository repository,CompressImageUseCase compressImageUseCase) {
         this.repository = repository;
+        this.compressImageUseCase = compressImageUseCase;
     }
 
+
+    public RequestParams createRequestParams(String imagePath,String url,String param_name) {
+        RequestParams requestParams = RequestParams.create();
+        requestParams.putObject(IMAGE_PATH, imagePath);
+        requestParams.putString(URL,url);
+        requestParams.putString(PARAM_NAME,param_name);
+        return requestParams;
+    }
     @Override
-    public Observable<ImageUploadResponse> createObservable(RequestParams requestParams) {
+    public Observable<ImageUploadResponse> createObservable(final RequestParams requestParams) {
 
-        String url = requestParams.getString(URL, null);
-        if(url != null) {
-            return repository.uploadImage(generateRequestImage(requestParams.getString(IMAGE_PATH, ""), requestParams.getString(PARAM_NAME, "image")),url);
+        final String url = requestParams.getString(URL, null);
 
-        }else {
-            return repository.uploadImage(generateRequestImage(requestParams.getString(IMAGE_PATH, ""), requestParams.getString(PARAM_NAME, "image")));
-        }
+            return compressImageUseCase.createObservable(compressImageUseCase.createRequestParams(requestParams.getString(IMAGE_PATH, ""))).flatMap(new Func1<String, Observable<ImageUploadResponse>>() {
+                @Override
+                public Observable<ImageUploadResponse> call(String s) {
+                    return repository.uploadImage(generateRequestImage(s, requestParams.getString(PARAM_NAME, "image")),url);
+                }
+            });
+
     }
 
 

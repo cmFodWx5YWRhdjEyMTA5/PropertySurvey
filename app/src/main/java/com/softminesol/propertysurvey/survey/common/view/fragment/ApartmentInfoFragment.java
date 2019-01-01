@@ -49,7 +49,7 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
 
     @BindView(R.id.edt_covered_area)
     EditText edtCoveredArea;
-    @BindView(R.id.edt_election_connection_no)
+    @BindView(R.id.edt_connection_no)
     EditText edtElectionConnectionNo;
     @BindView(R.id.edt_shop_apartment_no)
     EditText edtShopApartmentNo;
@@ -76,8 +76,8 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
     SurveyComponent surveyComponent;
     @Inject
     ApartmentInfoPresenter apartmentInfoPresenter;
-    @BindView(R.id.edt_Floor_deatil_Id)
-    EditText edtFloorDeatilId;
+    @BindView(R.id.edt_GSId)
+    EditText edtGSID;
     @BindView(R.id.edt_propertyFloorId)
     EditText edtPropertyFloorId;
     @BindView(R.id.spPropertyUsage)
@@ -94,8 +94,6 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
     MaterialBetterSpinner spnRespondentStatus;
     @BindView(R.id.spn_occupency_status)
     MaterialBetterSpinner spnOccupencyStatus;
-    @BindView(R.id.edt_connection_no)
-    EditText edtConnectionNo;
     @BindView(R.id.edt_sewerage_con_status)
     EditText edtSewerageConStatus;
     @BindView(R.id.spSourceOfWater)
@@ -103,29 +101,14 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
     @BindView(R.id.spConstructiontype)
     MaterialBetterSpinner spConstructiontype;
     @BindView(R.id.edt_self_occupied)
-    EditText edtSelfOccupied;
+    EditText edtSelfOccupiedArea;
     @BindView(R.id.edt_tenanted)
-    EditText edtTenanted;
+    EditText edtTenantedArea;
     @BindView(R.id.spPowerBackup)
     MaterialBetterSpinner spPowerBackup;
     @BindView(R.id.spFireFighting)
     MaterialBetterSpinner spFireFighting;
-    @BindView(R.id.edt_apartment_building_name)
-    EditText edtApartmentBuildingName;
-    @BindView(R.id.edt_house_no)
-    EditText edtHouseNo;
-    @BindView(R.id.edt_street_name)
-    EditText edtStreetName;
-    @BindView(R.id.edt_colony_code)
-    EditText edtColonyCode;
-    @BindView(R.id.edt_pin_code)
-    EditText edtPinCode;
-    @BindView(R.id.edt_ward_no)
-    EditText edtWardNo;
-    @BindView(R.id.edt_circle_no)
-    EditText edtCircleNo;
-    @BindView(R.id.edt_circle_revenue)
-    EditText edtCircleRevenue;
+
     @BindView(R.id.btn_add_owner)
     Button btnAddOwner;
     @BindView(R.id.owner_values)
@@ -142,8 +125,8 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
     @BindView(R.id.spsewerage_con_status)
     MaterialBetterSpinner spsewerageConStatus;
     Unbinder unbinder2;
-    @BindView(R.id.textILayout_Floor_deatil_Id)
-    TextInputLayout textILayoutFloorDeatilId;
+    @BindView(R.id.textILayout_GSId)
+    TextInputLayout textILayouGSId;
     @BindView(R.id.textILayout_propertyFloorId)
     TextInputLayout textILayoutPropertyFloorId;
     @BindView(R.id.text_input_non_resdental_code)
@@ -162,24 +145,10 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
     TextInputLayout textIBusinessBuiltArea;
     @BindView(R.id.textIApartmentShopArea)
     TextInputLayout textIApartmentShopArea;
-    @BindView(R.id.textIApartmentBuildingName)
-    TextInputLayout textIApartmentBuildingName;
     @BindView(R.id.textILayout_house_no)
     TextInputLayout textILayoutHouseNo;
-    @BindView(R.id.textILayout_street_name)
-    TextInputLayout textILayoutStreetName;
-    @BindView(R.id.textILayout_colony_code)
-    TextInputLayout textILayoutColonyCode;
-    @BindView(R.id.textILayout_pin_code)
-    TextInputLayout textILayoutPinCode;
-    @BindView(R.id.textILayout_ward_no)
-    TextInputLayout textILayoutWardNo;
-    @BindView(R.id.textILayout_circle_no)
-    TextInputLayout textILayoutCircleNo;
     @BindView(R.id.textIAgeOfBuilding)
     TextInputLayout textIAgeOfBuilding;
-    @BindView(R.id.textIElectricConnectionNo)
-    TextInputLayout textIElectricConnectionNo;
     @BindView(R.id.textIShopApartmentNo)
     TextInputLayout textIShopApartmentNo;
     @BindView(R.id.textISignature)
@@ -199,6 +168,8 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
     public ApartmentInfoFragment() {
         // Required empty public constructor
     }
+
+
 
 
     @Override
@@ -226,43 +197,6 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
     @Override
     public void setPropertyUsage(ArrayAdapter customAdapter) {
         spPropertyUsage.setAdapter(customAdapter);
-        spPropertyUsage.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (spPropertyUsage.getText().toString().equals("Residential")) {
-                    textInputNonResdentalCode.setVisibility(View.GONE);
-                    spNonRegCategory.setVisibility(View.GONE);
-                    textInputShopName.setVisibility(View.GONE);
-                    textIBusinessIndustryType.setVisibility(View.GONE);
-                    textInputBuisnessCode.setVisibility(View.GONE);
-                    spnLicenceStatus.setVisibility(View.GONE);
-                    textILicenceNo.setVisibility(View.GONE);
-                    textILicenceValidity.setVisibility(View.GONE);
-                    textIBusinessBuiltArea.setVisibility(View.GONE);
-
-                } else {
-                    textInputNonResdentalCode.setVisibility(View.VISIBLE);
-                    spNonRegCategory.setVisibility(View.VISIBLE);
-                    textInputShopName.setVisibility(View.VISIBLE);
-                    textIBusinessIndustryType.setVisibility(View.VISIBLE);
-                    textInputBuisnessCode.setVisibility(View.VISIBLE);
-                    spnLicenceStatus.setVisibility(View.VISIBLE);
-                    textILicenceNo.setVisibility(View.VISIBLE);
-                    textILicenceValidity.setVisibility(View.VISIBLE);
-                    textIBusinessBuiltArea.setVisibility(View.VISIBLE);
-                }
-            }
-        });
     }
 
     @Override
@@ -299,13 +233,14 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
         startActivity(intent);
     }
 
+
     @Override
-    public String getGisCode() {
-        return edtFloorDeatilId.getText().toString();
+    public String getGsid() {
+        return edtGSID.getText().toString() ;
     }
 
     @Override
-    public String getFloorCount() {
+    public String getFloorNumber() {
         return edtFloorNo.getText().toString();
     }
 
@@ -315,13 +250,12 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
     }
 
     @Override
-    public String getNonResidentialCode() {
+    public String getNonResedentalCode() {
         return edtNonResdentalCode.getText().toString();
-
     }
 
     @Override
-    public String getNonRegCategory() {
+    public String getNonResidentalCategory() {
         return spNonRegCategory.getText().toString();
     }
 
@@ -332,33 +266,40 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
     }
 
     @Override
-    public String getBusinessType() {
+    public String getBuisnessType() {
         return edtBusinessIndustryType.getText().toString();
     }
 
     @Override
-    public String getBusinessCode() {
+    public String getBuisnessCode() {
         return edtBuisnessCode.getText().toString();
-
     }
 
     @Override
-    public String getLicenceCode() {
+    public String getLiceceStatus() {
+        return spnLicenceStatus.getText().toString();
+    }
+
+    @Override
+    public String getLicenceNo() {
         return edtLicenceNo.getText().toString();
-
     }
 
     @Override
-    public String getBusinessBuiltArea() {
+    public String getLicenceValidity() {
+        return edtLicenceValidity.getText().toString();
+    }
+
+    @Override
+    public String getBuisnessBuiltArea() {
         return edtBuisnessBuiltArea.getText().toString();
-
     }
 
     @Override
-    public String getRespondentName() {
+    public String getRespodentName() {
         return edtRespondentName.getText().toString();
-
     }
+
 
     @Override
     public String getRespondentStatus() {
@@ -373,97 +314,48 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
     }
 
     @Override
-    public String getElectronicConnectionStatus() {
+    public String getElectricityStatus() {
         return spElectronicConnectionStatus.getText().toString();
-
     }
 
     @Override
-    public String getElectronicConnectionNumber() {
+    public String getElectricConnectionNumber() {
         return edtElectionConnectionNo.getText().toString();
-
     }
 
     @Override
-    public String getSewerageStatus() {
+    public String getSewarageConnectionStatus() {
         return spsewerageConStatus.getText().toString();
-
     }
 
     @Override
-    public String getSourceWater() {
-        return spSourceOfWater.getText().toString();
-
-    }
-
-    @Override
-    public String getCunstructionType() {
-        return spConstructiontype.getText().toString();
-
-    }
-
-    @Override
-    public String getSelfOccupied() {
-        return edtSelfOccupied.getText().toString();
-
-    }
-
-    @Override
-    public String getTenanted() {
-        return edtTenanted.getText().toString();
-
-    }
-
-    @Override
-    public String getPowerBackUp() {
-        return spPowerBackup.getText().toString();
-
-    }
-
-    @Override
-    public String getBuildingName() {
-        return edtApartmentBuildingName.getText().toString();
-
-    }
-
-    @Override
-    public String getStreet() {
-        return edtStreetName.getText().toString();
-
-    }
-
-    @Override
-    public String getColony() {
-        return edtColonyCode.getText().toString();
-
-    }
-
-    @Override
-    public String getPincode() {
-        return edtPinCode.getText().toString();
-
-    }
-
-    public String getSewerageConnNumber() {
+    public String getSewarageConnectionNumber() {
         return edtSewerageConNo.getText().toString();
     }
 
     @Override
-    public String getWardNumber() {
-        return edtWardNo.getText().toString();
-
+    public String getSourceOfWater() {
+        return spSourceOfWater.getText().toString();
     }
 
     @Override
-    public String getCircleNumber() {
-        return edtCircleNo.getText().toString();
-
+    public String getConstructionType() {
+        return spConstructiontype.getText().toString();
     }
 
     @Override
-    public String getRevenueCircle() {
-        return edtCircleRevenue.getText().toString();
+    public String getSelfCarpetArea() {
+        return edtSelfOccupiedArea.getText().toString();
+    }
 
+    @Override
+    public String getTenantedCarpetArea() {
+        return edtTenantedArea.getText().toString();
+    }
+
+    @Override
+    public String getPowerBackup() {
+        return spPowerBackup.getText().toString();
     }
 
     @Override
@@ -481,57 +373,7 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
         owners.add(owner);
     }
 
-    @Override
-    public String getEdtCoveredArea() {
-        return edtCoveredArea.getText().toString();
-    }
-
-    @Override
-    public String getEdtElectionConnectionNo() {
-        return edtElectionConnectionNo.getText().toString();
-    }
-
-    @Override
-    public String getEdtShopApartmentNo() {
-        return edtShopApartmentNo.getText().toString();
-    }
-
-    @Override
-    public String getEdtBusinessIndustryType() {
-        return edtBusinessIndustryType.getText().toString();
-    }
-
-    @Override
-    public String getEdtLicenceNo() {
-        return edtLicenceNo.getText().toString();
-    }
-
-    @Override
-    public String getEdtApartmentShopArea() {
-        return edtApartmentShopArea.getText().toString();
-    }
-
-    @Override
-    public String getEdtLicenceValidity() {
-        return edtLicenceValidity.getText().toString();
-    }
-
-    @Override
-    public String getEdtNoOwner() {
-        return edtNoOwner.getText().toString();
-    }
-
-    @Override
-    public String getEdtSignature() {
-        return edtSignature.getText().toString();
-    }
-
-    @Override
-    public String getLicenceStatus() {
-        return spnLicenceStatus.getText().toString();
-    }
-
-    @Override
+       @Override
     public void setEdtCoveredArea(String text) {
 
     }
@@ -590,6 +432,7 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
     public void setSpSewerageConnStatus(ArrayAdapter customAdapter) {
         spsewerageConStatus.setAdapter(customAdapter);
     }
+
 
     @Override
     public void setLicenceStatus(ArrayAdapter customAdapter) {
@@ -650,7 +493,7 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
     }
 
     private void setGisCode(String string) {
-        edtFloorDeatilId.setText(string);
+        edtGSID.setText(string);
     }
 
     @Override

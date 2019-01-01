@@ -15,7 +15,9 @@ public interface PersonalInfoContract {
 
 
         public String getOwnerName();
-
+        public String getAdharId();
+        public String getMobileNo();
+        public String getEmail();
         public String getBuildingName();
 
         public String getStreet();
@@ -26,26 +28,10 @@ public interface PersonalInfoContract {
 
         public String getWardNumber();
 
-        public String getCircleNumber();
-
-        public String getRevenueCircle();
-
-        public String getUniqueId();
-
-        public String getFatherName();
-
-        public String getSelectGender();
-
-        public String getCurrentAddress();
+        public String getZondeid();
 
 
-        public String getMobileNo();
 
-        public String getEmail();
-
-        public String getOwnerShipShare();
-
-        public String getRelationType();
 
         public void setOwnerName(String text);
 
@@ -79,6 +65,5 @@ public interface PersonalInfoContract {
 
         void onUploadRegistryClick();
 
-        void onUploadIdClick();
     }
 }

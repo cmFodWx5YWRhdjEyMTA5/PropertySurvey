@@ -2,7 +2,6 @@ package com.softminesol.propertysurvey.cachehandler.domain;
 
 import javax.inject.Inject;
 
-import frameworks.appsession.SessionValue;
 import frameworks.network.usecases.RequestParams;
 import frameworks.network.usecases.UseCase;
 import rx.Observable;

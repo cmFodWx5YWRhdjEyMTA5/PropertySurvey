@@ -30,6 +30,9 @@ import frameworks.basemvp.AppBaseActivity;
 public class ImageUploadActivity extends AppBaseActivity<IUploadImageContractor.Presenter> implements IUploadImageContractor.View, ImageUploadAdapter.ProductImageListener {
 
 
+    public static String URL = "URL";
+    public static String PARAM_NAME = "PARAM_NAME";
+
     public static final int REQUEST_GET_FILE_SERVER_URI = 0X8;
     private final int SPAN_COUNT_4 = 4;
     @Inject
@@ -42,6 +45,13 @@ public class ImageUploadActivity extends AppBaseActivity<IUploadImageContractor.
 
     public static Intent getIntent(Context context) {
         Intent intent=new Intent(context, ImageUploadActivity.class);
+        return intent;
+    }
+
+    public static Intent getIntent(Context context,String url,String param_name) {
+        Intent intent=new Intent(context, ImageUploadActivity.class);
+        intent.putExtra(URL,url);
+        intent.putExtra(PARAM_NAME,param_name);
         return intent;
     }
 
@@ -69,6 +79,14 @@ public class ImageUploadActivity extends AppBaseActivity<IUploadImageContractor.
         setLeftMenuEnable(true);
     }
 
+    public String getURL() {
+        return getIntent().getStringExtra(URL);
+    }
+
+    public String getParamName() {
+        return getIntent().getStringExtra(PARAM_NAME);
+    }
+
     @Override
     public void initVariables() {
         recyclerView = findViewById(R.id.recyclerItems);
@@ -86,12 +104,8 @@ public class ImageUploadActivity extends AppBaseActivity<IUploadImageContractor.
                     for (ImageUpload imageUpload : adapter.getList()) {
                         fileUrls.add(imageUpload.getFileLoc());
                     }
-                    Intent intent = new Intent();
-                    intent.putStringArrayListExtra(FILE_PATHS, fileUrls);
-                    //startService(ImagesUploadService.getIntent(getContext(), fileUrls));
-                    //Intent resultData = new Intent();
-                    setResult(RESULT_OK,intent);
-                    finish();
+
+                    getPresenter().uploadImages(fileUrls);
                 }else{
                     Toast.makeText(getContext(), getResources().getString(R.string.select_atleast_one_image), Toast.LENGTH_SHORT).show();
                 }

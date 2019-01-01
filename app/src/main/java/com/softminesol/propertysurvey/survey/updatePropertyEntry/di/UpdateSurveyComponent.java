@@ -1,6 +1,5 @@
 package com.softminesol.propertysurvey.survey.updatePropertyEntry.di;
 
-import com.softmine.imageupload.di.ImageUploadModule;
 import com.softminesol.propertysurvey.survey.common.di.SurveyFormScope;
 import com.softminesol.propertysurvey.survey.common.di.SurveyModule;
 import com.softminesol.propertysurvey.survey.updatePropertyEntry.view.fragment.UpdatePropertyInfoFragment;

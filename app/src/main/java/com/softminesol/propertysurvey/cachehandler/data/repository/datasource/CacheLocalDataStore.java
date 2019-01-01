@@ -2,7 +2,6 @@ package com.softminesol.propertysurvey.cachehandler.data.repository.datasource;
 
 import android.content.Context;
 
-import com.softminesol.propertysurvey.survey.common.model.PropertyCategoryList;
 import com.softminesol.propertysurvey.survey.common.model.formData.FormData;
 import com.softminesol.propertysurvey.survey.common.realm.RealmPropertyDataMapper;
 import com.softminesol.propertysurvey.survey.distributionbill.model.BillDetails;
@@ -13,7 +12,6 @@ import javax.inject.Inject;
 
 import frameworks.di.qualifier.ApplicationContext;
 import rx.Observable;
-import rx.functions.Action1;
 import rx.functions.Func1;
 
 public class CacheLocalDataStore {

@@ -42,7 +42,7 @@ public abstract class PropertyInfoFragment<T extends PropertyLocationContract.Pr
     protected EditText edtColonyCode;
     @BindView(R.id.edt_ward_no)
     protected EditText edtWardNo;
-    @BindView(R.id.edt_zone)
+    @BindView(R.id.edt_zone_id)
     protected EditText edtZone;
     @BindView(R.id.edt_street_code)
     protected EditText edtStreetCode;
@@ -125,19 +125,14 @@ public abstract class PropertyInfoFragment<T extends PropertyLocationContract.Pr
     EditText edtTotalFloor;
     @BindView(R.id.edt_pin_code)
     EditText edtPinCode;
-    @BindView(R.id.edt_circle_no)
-    EditText edtCircleNo;
     @BindView(R.id.edt_building_status)
-    MaterialBetterSpinner edtBuildingStatus;
+    MaterialBetterSpinner spBuildingStatus;
     @BindView(R.id.edt_age_of_building)
     EditText edtAgeOfBuilding;
     @BindView(R.id.btn_add_floor)
     Button btnAddFloor;
     @BindView(R.id.textILayout_remark)
     TextInputLayout textILayoutRemark;
-
-    @BindView(R.id.spMixCategory)
-    MaterialBetterSpinner spMixCategory;
 
     @BindView(R.id.spRoadWidth)
     MaterialBetterSpinner spRoadWidth;
@@ -149,188 +144,6 @@ public abstract class PropertyInfoFragment<T extends PropertyLocationContract.Pr
     protected void initInjector() {
     }
 
-    public String getEdMixCategory() {
-        return spMixCategory.getText().toString();
-    }
-
-    public String getEdtDistCode() {
-        return edtDistCode.getText().toString();
-    }
-
-    public String getEdtMcCode() {
-        return edtMcCode.getText().toString();
-    }
-
-    public String getEdtColonyCode() {
-        return edtColonyCode.getText().toString();
-    }
-
-    public String getEdtWardNo() {
-        return edtWardNo.getText().toString();
-    }
-
-    public String getEdtZone() {
-        return edtZone.getText().toString();
-    }
-
-    public String getEdtStreetCode() {
-        return edtStreetCode.getText().toString();
-    }
-
-    public String getAreaType() {
-        return areaType.getText().toString();
-    }
-
-    @Override
-    public void setAreaType(ArrayAdapter customAdapte) {
-        areaType.setAdapter(customAdapte);
-    }
-
-    @Override
-    public String getOwnershipType() {
-        return null;
-    }
-
-    @Override
-    public String getEdtPhotoId() {
-        return null;
-    }
-
-    public String getEdtMapId() {
-        return edtMapId.getText().toString();
-    }
-
-    public String getEdtHouseNo() {
-        return edtHouseNo.getText().toString();
-    }
-
-    @Override
-    public String getEdtOldPropertyNo() {
-        return edtOldpropertyId.getText().toString();
-    }
-
-    @Override
-    public String getEdtPropertyId() {
-        return edtPropertyId.getText().toString();
-    }
-
-    @Override
-    public String getStateCode() {
-        return edtStreetCode.getText().toString();
-    }
-
-    public String getEdtPropertyArea() {
-        return edtPropertyArea.getText().toString();
-    }
-
-    public String getAreaMeasUnit() {
-        return areaMeasUnit.getText().toString();
-    }
-
-    public String getEdtYearOfOccBuilding() {
-        return edtYearOfOccBuilding.getText().toString();
-    }
-
-    public String getEdtLength() {
-        return edtLength.getText().toString();
-    }
-
-    public String getEdtWidth() {
-        return edtWidth.getText().toString();
-    }
-    public String getPincode() {
-        return edtPinCode.getText().toString();
-    }
-    public String getWardNumber() {
-        return edtWardNo.getText().toString();
-    } public String getCircleNumber() {
-        return edtCircleNo.getText().toString();
-    }
-
-
-    public String getPropertyUsage() {
-        return spPropertyUsage.getText().toString();
-    }
-    public String getLengthWidthUnit() {
-        return lengthWidthUnit.getText().toString();
-    }
-
-    public String getEdtWCon() {
-        return edtWCon.getText().toString();
-    }
-
-    public String getEdtSewCon() {
-        return edtSewCon.getText().toString();
-    }
-
-    public String getEdtSewConYear() {
-        return edtSewConYear.getText().toString();
-    }
-
-    public String getEdtCurrentAddress() {
-        return edtCurrentAddress.getText().toString();
-    }
-    public String getEdtAgeOfBuilding() {
-        return edtAgeOfBuilding.getText().toString();
-    }
-
-    public String getEdtNoFloors() {
-        return edtnoFloors.getText().toString();
-    }
-
-    public String getFloorCount() {
-        return edtFloorCount.getText().toString();
-    }
-
-    public String getTypeOfProperty() {
-        return spTypeOfProperty.getText().toString();
-    }
-
-    public String getTypeOfNonResProperty() {
-        return spTypeOfNonResProperty.getText().toString();
-    }
-
-    public String getGisId() {
-        return edtGisId.getText().toString();
-    }
-
-    public String getParcelId() {
-        return edtParcelId.getText().toString();
-    }
-
-    public String getEdtSourceOfWater() {
-        return spSourceOfWater.getText().toString();
-    }
-
-    public String getEdtApartmentBuildingName() {
-        return edtApartmentBuildingName.getText().toString();
-    }
-    public String getEdtIndvStatus() {
-        return edtBuildingStatus.getText().toString();
-    }
-    public String getLiftFacility() {
-        return spLiftFacility.getText().toString();
-    }
-
-    public String getParkingFacility() {
-        return spParkingFacility.getText().toString();
-    }
-
-    public String getFireFighting() {
-        return spFireFighting.getText().toString();
-    }
-
-    public String getRainWaterHarvesting() {
-        return spRainWaterHarvesting.getText().toString();
-    }
-
-    public String getPowerBackup() {
-        return spPowerBackup.getText().toString();
-    }
-    @Override
-    public void setMixCategory(ArrayAdapter customAdapter) {
-        spMixCategory.setAdapter(customAdapter);
-    }
 
     @Override
     public void setSewageConnectoion(ArrayAdapter customAdapter) {
@@ -386,21 +199,99 @@ public abstract class PropertyInfoFragment<T extends PropertyLocationContract.Pr
     }
 
     @Override
-    public String getEdtYearOfEstabl() {
-        return null;
+    public String getMapId() {
+        return edtMapId.getText().toString();
     }
 
     @Override
-    public String getEdtTradeLicNo() {
-        return null;
+    public String getParcelId() {
+        return edtParcelId.getText().toString();
     }
 
-    public String getEdtTradeLicYear() {
-        return edtTradeLicYear.getText().toString();
+    @Override
+    public String getPropertyType() {
+        return spTypeOfProperty.getText().toString();
     }
 
-    public String getMsmo() {
-        return msmo.getText().toString();
+    @Override
+    public String getPropertyUsage() {
+        return spPropertyUsage.getText().toString();
+    }
+
+    @Override
+    public String getBuildingName() {
+        return edtApartmentBuildingName.getText().toString();
+    }
+
+    @Override
+    public String getStreetName() {
+        return edtStreetCode.getText().toString();
+    }
+
+    @Override
+    public String getColonyName() {
+        return edtColonyCode.getText().toString();
+    }
+
+    @Override
+    public String getPinCode() {
+        return edtPinCode.getText().toString();
+    }
+
+    @Override
+    public String getWardNo() {
+        return edtWardNo.getText().toString();
+    }
+
+    @Override
+    public String getZoneId() {
+        return edtZone.getText().toString();
+    }
+
+    @Override
+    public String getRainWaterHarvesting() {
+        return spRainWaterHarvesting.getText().toString();
+    }
+
+    @Override
+    public String getBuildingStatus() {
+        return spBuildingStatus.getText().toString();
+    }
+
+    @Override
+    public String getPropetyArea() {
+        return edtPropertyArea.getText().toString();
+    }
+
+    @Override
+    public String getLiftFacility() {
+        return spLiftFacility.getText().toString();
+    }
+
+    @Override
+    public String getParkingFacility() {
+        return spParkingFacility.getText().toString();
+    }
+
+    @Override
+    public String getAgeOfBuilding() {
+        return edtAgeOfBuilding.getText().toString();
+    }
+
+    @Override
+    public String getfloorCount() {
+        return edtFloorCount.getText().toString();
+    }
+
+    @Override
+    public String getFireFighting() {
+        return spFireFighting.getText().toString();
+    }
+
+
+    @Override
+    public String getRoadWidth() {
+        return spRoadWidth.getText().toString();
     }
 
     @Override
@@ -525,7 +416,7 @@ public abstract class PropertyInfoFragment<T extends PropertyLocationContract.Pr
 
     @Override
     public void setBuidlingStatus(ArrayAdapter buildingStatus) {
-        edtBuildingStatus.setAdapter(buildingStatus);
+        spBuildingStatus.setAdapter(buildingStatus);
     }
 
 

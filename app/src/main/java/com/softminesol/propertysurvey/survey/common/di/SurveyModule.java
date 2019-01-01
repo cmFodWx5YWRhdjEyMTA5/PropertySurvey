@@ -5,19 +5,11 @@ import android.content.Context;
 import com.softmine.imageupload.data.net.ImageUploadAPI;
 import com.softmine.imageupload.data.repository.ImageUploadRepository;
 import com.softmine.imageupload.data.repository.datasource.ImageUploadFactory;
-import com.softmine.imageupload.di.ImageUploadScope;
 import com.softmine.imageupload.domain.IImageUploadRepository;
 import com.softminesol.propertysurvey.survey.apartmentEntry.data.net.NewServeyAPI;
 import com.softminesol.propertysurvey.survey.apartmentEntry.data.repository.ApartmentSurveyFormSubmitRepository;
 import com.softminesol.propertysurvey.survey.apartmentEntry.data.repository.datasource.SubmitFormDataFactory;
 import com.softminesol.propertysurvey.survey.apartmentEntry.domain.IApartmentSurveyFormSaveRepository;
-import com.softminesol.propertysurvey.survey.cloudsync.DistributionFormScope;
-import com.softminesol.propertysurvey.survey.cloudsync.DistributionFormSync;
-import com.softminesol.propertysurvey.survey.cloudsync.NewFormSync;
-import com.softminesol.propertysurvey.survey.cloudsync.NewPropertyScope;
-import com.softminesol.propertysurvey.survey.cloudsync.OLDProperyScope;
-import com.softminesol.propertysurvey.survey.cloudsync.OldFormSync;
-import com.softminesol.propertysurvey.survey.cloudsync.SyncManager;
 import com.softminesol.propertysurvey.survey.common.domain.ISurveyOptionRepository;
 import com.softminesol.propertysurvey.survey.common.net.SurveyAPI;
 import com.softminesol.propertysurvey.survey.common.net.SurveyAPIURL;
@@ -26,8 +18,6 @@ import com.softminesol.propertysurvey.survey.common.repository.SurveyOptionRepos
 import com.softminesol.propertysurvey.survey.common.repository.datasource.SurveyOptionCloudDataSource;
 import com.softminesol.propertysurvey.survey.common.repository.datasource.SurveyOptionFactory;
 
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
 import frameworks.di.qualifier.ApplicationContext;
@@ -35,7 +25,6 @@ import frameworks.network.interceptor.AppAuthInterceptor;
 import frameworks.network.interceptor.ErrorResponseInterceptor;
 import frameworks.network.model.BaseResponseError;
 import frameworks.utils.GsonFactory;
-import okhttp3.Connection;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;

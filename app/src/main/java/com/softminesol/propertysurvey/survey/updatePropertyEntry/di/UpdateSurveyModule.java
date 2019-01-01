@@ -1,8 +1,5 @@
 package com.softminesol.propertysurvey.survey.updatePropertyEntry.di;
 
-import com.softminesol.propertysurvey.survey.newPropertyEntry.data.repository.SurveyFormSubmitRepository;
-import com.softminesol.propertysurvey.survey.newPropertyEntry.data.repository.datasource.SubmitFormDataFactory;
-import com.softminesol.propertysurvey.survey.newPropertyEntry.domain.ISurveyFormSubmitRepository;
 import com.softminesol.propertysurvey.survey.updatePropertyEntry.data.net.UpdateServeyAPI;
 import com.softminesol.propertysurvey.survey.updatePropertyEntry.data.repository.UpdateFormSubmitRepository;
 import com.softminesol.propertysurvey.survey.updatePropertyEntry.data.repository.datasource.UpdateFormDataFactory;

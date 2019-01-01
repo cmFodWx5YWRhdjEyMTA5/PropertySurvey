@@ -26,23 +26,7 @@ public class ImageUploadPresenterImpl implements IUploadImagesServiceContract.Up
 
     @Override
     public void uploadImages(ArrayList<String> filePaths, int deliveryId) {
-        imageUploadUseCase.execute(imageUploadUseCase.createRequestParams(filePaths, deliveryId), new Subscriber<ImageUploadResponse>() {
-            @Override
-            public void onCompleted() {
-                Log.d("OnCompletedExecuted", "true");
-                uploadImagesListener.onProgressComplete();
-            }
 
-            @Override
-            public void onError(Throwable e) {
-                uploadImagesListener.onProgressFail();
-            }
-
-            @Override
-            public void onNext(ImageUploadResponse imageUploadResponse) {
-                Log.d("uploadresp", imageUploadResponse.toString());
-            }
-        });
     }
 
 

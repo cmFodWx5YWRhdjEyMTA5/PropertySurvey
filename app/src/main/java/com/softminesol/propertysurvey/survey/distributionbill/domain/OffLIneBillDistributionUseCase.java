@@ -1,6 +1,5 @@
 package com.softminesol.propertysurvey.survey.distributionbill.domain;
 
-import com.softminesol.propertysurvey.survey.distributionbill.model.BillDetail;
 import com.softminesol.propertysurvey.survey.distributionbill.model.BillDetails;
 
 import javax.inject.Inject;

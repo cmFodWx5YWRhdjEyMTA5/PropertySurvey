@@ -1,7 +1,6 @@
 package com.softminesol.propertysurvey.survey.distributionbill.view;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.view.MotionEvent;
 import android.view.View;

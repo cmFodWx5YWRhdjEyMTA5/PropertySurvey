@@ -7,11 +7,9 @@ import com.softminesol.propertysurvey.rolebase.model.RoleData;
 
 import javax.inject.Inject;
 
-import frameworks.appsession.SessionValue;
 import frameworks.network.usecases.RequestParams;
 import frameworks.network.usecases.UseCase;
 import rx.Observable;
-import rx.functions.Action1;
 import rx.functions.Func1;
 
 public class DashBoardUseCase extends UseCase<RoleData>{

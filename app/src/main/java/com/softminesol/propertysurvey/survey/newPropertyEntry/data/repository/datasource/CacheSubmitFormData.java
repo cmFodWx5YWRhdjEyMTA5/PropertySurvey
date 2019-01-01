@@ -8,8 +8,6 @@ import com.softminesol.propertysurvey.survey.common.realm.RealmPropertyDataMappe
 import javax.inject.Inject;
 
 import frameworks.di.qualifier.ApplicationContext;
-import frameworks.network.model.BaseResponse;
-import rx.Observable;
 
 public class CacheSubmitFormData {
     private final RealmPropertyDataMapper realmPropertyDataMapper;

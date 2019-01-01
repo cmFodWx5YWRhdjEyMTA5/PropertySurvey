@@ -3,8 +3,6 @@ package com.softminesol.propertysurvey.survey.common.view.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -26,7 +24,6 @@ import com.softminesol.propertysurvey.survey.common.view.presenter.PersonalInfoP
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import frameworks.basemvp.AppBaseFragment;
@@ -44,8 +41,8 @@ public class PersonalInfoFragment extends AppBaseFragment<PersonalInfoContract.P
     public static String OWNER_DETAIL_KEY = "OWNER_DETAIL_KEY";
     @BindView(R.id.edt_respondentName)
     EditText edtRespondentName;
-    @BindView(R.id.edt_respondentUniqueId)
-    EditText edtRespondentUniqueId;
+    @BindView(R.id.edt_respondentAadharId)
+    EditText edtRespondentAadharId;
     @BindView(R.id.edt_respondent_mobileNo)
     EditText edtRespondentMobileNo;
     @BindView(R.id.edt_respondent_email)
@@ -60,10 +57,8 @@ public class PersonalInfoFragment extends AppBaseFragment<PersonalInfoContract.P
     EditText edtPinCode;
     @BindView(R.id.edt_ward_no)
     EditText edtWardNo;
-    @BindView(R.id.edt_circle_no)
-    EditText edtCircleNo;
-    @BindView(R.id.edt_circle_revenue)
-    EditText edtCircleRevenue;
+    @BindView(R.id.edt_zone_id)
+    EditText edtZoneId;
     Unbinder unbinder;
 
 
@@ -111,6 +106,11 @@ public class PersonalInfoFragment extends AppBaseFragment<PersonalInfoContract.P
     }
 
     @Override
+    public String getAdharId() {
+        return edtRespondentAadharId.getText().toString();
+    }
+
+    @Override
     public String getBuildingName() {
         return edtApartmentBuildingName.getText().toString();
     }
@@ -137,36 +137,8 @@ public class PersonalInfoFragment extends AppBaseFragment<PersonalInfoContract.P
     }
 
     @Override
-    public String getCircleNumber() {
-        return edtCircleNo.getText().toString();
-
-    }
-
-    @Override
-    public String getRevenueCircle() {
-        return edtRespondentUniqueId.getText().toString();
-
-    }
-
-    @Override
-    public String getUniqueId() {
-        return edtRespondentUniqueId.getText().toString();
-
-    }
-
-    @Override
-    public String getFatherName() {
-        return null;
-    }
-
-    @Override
-    public String getSelectGender() {
-        return null;
-    }
-
-    @Override
-    public String getCurrentAddress() {
-        return null;
+    public String getZondeid() {
+        return edtZoneId.getText().toString();
     }
 
 
@@ -180,15 +152,6 @@ public class PersonalInfoFragment extends AppBaseFragment<PersonalInfoContract.P
         return edtRespondentEmail.getText().toString();
     }
 
-    @Override
-    public String getOwnerShipShare() {
-        return null;
-    }
-
-    @Override
-    public String getRelationType() {
-        return null;
-    }
 
     @Override
     public void setOwnerName(String text) {
@@ -286,8 +249,5 @@ public class PersonalInfoFragment extends AppBaseFragment<PersonalInfoContract.P
         getPresenter().onUploadRegistryClick();
     }
 
-    @OnClick(R.id.upload_id)
-    public void onUploadIdClick() {
-        getPresenter().onUploadIdClick();
-    }
+
 }

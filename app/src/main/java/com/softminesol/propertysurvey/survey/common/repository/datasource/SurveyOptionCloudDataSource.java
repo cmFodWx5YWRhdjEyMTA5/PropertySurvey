@@ -19,7 +19,6 @@ import com.softminesol.propertysurvey.survey.common.net.SurveyAPI;
 import javax.inject.Inject;
 
 import frameworks.network.model.DataResponse;
-import frameworks.network.usecases.RequestParams;
 import retrofit2.Response;
 import rx.Observable;
 import rx.functions.Func1;

@@ -1,10 +1,6 @@
 package com.softminesol.propertysurvey.survey.updatePropertyEntry.view.presenter;
 
-import com.softminesol.propertysurvey.survey.cloudsync.DistributionFormSync;
-import com.softminesol.propertysurvey.survey.cloudsync.OLDProperyScope;
 import com.softminesol.propertysurvey.survey.cloudsync.OldFormSync;
-import com.softminesol.propertysurvey.survey.cloudsync.SyncManager;
-import com.softminesol.propertysurvey.survey.common.di.SurveyFormScope;
 import com.softminesol.propertysurvey.survey.common.domain.GetPropertyInfoUseCase;
 import com.softminesol.propertysurvey.survey.common.domain.SurveyAreaTypeUseCase;
 import com.softminesol.propertysurvey.survey.common.domain.SurveyMeasurementListUseCase;
@@ -21,12 +17,9 @@ import java.util.List;
 import javax.inject.Inject;
 
 import frameworks.customadapter.CustomAdapterModel;
-import frameworks.di.qualifier.ApplicationContext;
-import frameworks.network.model.BaseResponse;
 import frameworks.network.usecases.RequestParams;
 import frameworks.utils.AdapterFactory;
 import rx.Subscriber;
-import rx.functions.Action1;
 
 /**
  * Created by sandeepgoyal on 13/05/18.
@@ -126,45 +119,7 @@ public class UpdatePropertyPresenter extends PropertyLocationPresenter<UpdatePro
     public void onSubmitClick() {
         super.onSubmitClick();
         if (validateForm()) {
-            FormData formData = getFormData();
-            RequestParams requestParams = RequestParams.create();
-            requestParams.putObject("formdata", formData);
-            getView().showProgressBar();
-            surveyFormUpdateUseCase.execute(requestParams, new Subscriber<BaseResponse>() {
-                @Override
-                public void onCompleted() {
-                    getView().hideProgressBar();
-                }
 
-                @Override
-                public void onError(Throwable e) {
-                    getView().hideProgressBar();
-                    getView().showToast("Unable to update please try later");
-                }
-
-                @Override
-                public void onNext(BaseResponse baseResponse) {
-                    syncManager.execute(new Subscriber<BaseResponse>() {
-                        @Override
-                        public void onCompleted() {
-
-                        }
-
-                        @Override
-                        public void onError(Throwable e) {
-
-                        }
-
-                        @Override
-                        public void onNext(BaseResponse baseResponse) {
-
-                        }
-                    });
-                    getView().showToast(baseResponse.getMessage());
-                    getView().finish();
-
-                }
-            });
         }
     }
 

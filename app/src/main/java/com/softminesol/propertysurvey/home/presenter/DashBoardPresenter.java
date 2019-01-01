@@ -4,8 +4,6 @@ import android.content.Intent;
 
 import com.softminesol.propertysurvey.SurveyAppApplication;
 import com.softminesol.propertysurvey.home.domain.DashBoardUseCase;
-import com.softminesol.propertysurvey.rolebase.domain.RoleBaseUseCase;
-import com.softminesol.propertysurvey.rolebase.model.RoleData;
 import com.softminesol.propertysurvey.survey.cloudsync.SyncManager;
 import com.softminesol.propertysurvey.survey.common.view.activity.ApartmentInfoActivity;
 import com.softminesol.propertysurvey.survey.common.view.activity.OldSurveyActivity;
@@ -15,7 +13,6 @@ import com.softminesol.propertysurvey.survey.newPropertyEntry.view.activity.NewS
 import javax.inject.Inject;
 
 import frameworks.basemvp.AppBasePresenter;
-import frameworks.network.Utils;
 import frameworks.network.model.BaseResponse;
 import frameworks.routers.ILoginInterceptor;
 import rx.Subscriber;

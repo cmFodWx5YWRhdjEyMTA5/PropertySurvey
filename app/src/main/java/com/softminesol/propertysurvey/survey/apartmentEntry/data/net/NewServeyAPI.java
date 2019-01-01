@@ -1,11 +1,8 @@
 package com.softminesol.propertysurvey.survey.apartmentEntry.data.net;
 
 import com.softminesol.propertysurvey.survey.common.model.apartment.SaveApartmentRequest;
-import com.softminesol.propertysurvey.survey.common.model.formData.FormData;
 import com.softminesol.propertysurvey.survey.common.model.property.GetPropertySaveResponse;
-import com.softminesol.propertysurvey.survey.common.model.property.SavePropertyRequest;
 
-import frameworks.network.model.BaseResponse;
 import frameworks.network.model.DataResponse;
 import retrofit2.Response;
 import retrofit2.http.Body;

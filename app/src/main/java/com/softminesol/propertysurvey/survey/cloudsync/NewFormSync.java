@@ -12,7 +12,6 @@ import javax.inject.Inject;
 import frameworks.network.model.BaseResponse;
 import frameworks.network.usecases.RequestParams;
 import rx.Observable;
-import rx.Subscriber;
 import rx.functions.Func1;
 
 public class NewFormSync extends FormSync{

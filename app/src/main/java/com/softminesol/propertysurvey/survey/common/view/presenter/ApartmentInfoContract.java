@@ -2,9 +2,7 @@ package com.softminesol.propertysurvey.survey.common.view.presenter;
 
 import android.widget.ArrayAdapter;
 
-import com.pchmn.materialchips.ChipView;
 import com.softminesol.propertysurvey.survey.common.model.apartment.Owner;
-import com.softminesol.propertysurvey.survey.common.model.formData.FloorDetailsItem;
 
 import java.util.List;
 
@@ -16,86 +14,32 @@ public interface ApartmentInfoContract {
 
 
 
-        public String getEdtCoveredArea();
-
-        public String getEdtElectionConnectionNo();
-
-        public String getEdtShopApartmentNo();
-
-        public String getEdtBusinessIndustryType();
-
-        public String getEdtLicenceNo();
-
-        public String getEdtApartmentShopArea();
-
-        public String getEdtLicenceValidity();
-
-        public String getEdtNoOwner();
-
-        public String getEdtSignature();
-
-        public String getLicenceStatus();
-
-        public String getGisCode();
-
-        public void gotoHome();
-
-        public String getFloorCount();
-
+        public String getGsid();
+        public String getFloorNumber();
         public String getPropertyUsage();
-
-        public String getNonResidentialCode();
-
-        public String getNonRegCategory();
-
+        public String getNonResedentalCode();
+        public String getNonResidentalCategory();
         public String getShopName();
-
-        public String getBusinessType();
-
-        public String getBusinessCode();
-
-        public String getLicenceCode();
-
-        public String getBusinessBuiltArea();
-
-        public String getRespondentName();
-
+        public String getBuisnessType();
+        public String getBuisnessCode();
+        public String getLiceceStatus();
+        public String getLicenceNo();
+        public String getLicenceValidity();
+        public String getBuisnessBuiltArea();
+        public String getRespodentName();
         public String getRespondentStatus();
-
         public String getOccupencyStatus();
-
-        public String getElectronicConnectionStatus();
-
-        public String getElectronicConnectionNumber();
-
-        public String getSewerageStatus();
-
-        public String getSourceWater();
-
-        public String getCunstructionType();
-
-        public String getSelfOccupied();
-
-        public String getTenanted();
-
-        public String getPowerBackUp();
-
-        public String getBuildingName();
-
-        public String getStreet();
-
-        public String getColony();
-
-        public String getPincode();
-
-        public String getWardNumber();
-
-        public String getCircleNumber();
-
-        public String getRevenueCircle();
-
+        public String getElectricityStatus();
+        public String getElectricConnectionNumber();
+        public String getSewarageConnectionStatus();
+        public String getSewarageConnectionNumber();
+        public String getSourceOfWater();
+        public String getConstructionType();
+        public String getSelfCarpetArea();
+        public String getTenantedCarpetArea();
+        public String getPowerBackup();
+        public void gotoHome();
         public String getOwnerCount();
-
         public List<Owner> getOwners();
 
         public void setOwner(Owner owner);
@@ -136,7 +80,6 @@ public interface ApartmentInfoContract {
 
         void setSpSewerageConnStatus(ArrayAdapter customAdapter);
 
-        public String getSewerageConnNumber();
 
 
         void setNoofOwner(String owner);

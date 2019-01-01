@@ -13,7 +13,6 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 
 import frameworks.appsession.AppSessionManager;
-import frameworks.appsession.SessionValue;
 import frameworks.network.Utils;
 import frameworks.network.usecases.RequestParams;
 import rx.Observable;

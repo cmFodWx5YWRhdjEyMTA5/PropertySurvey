@@ -1,6 +1,5 @@
 package com.softminesol.propertysurvey.home.di;
 
-import com.softmine.imageupload.di.ImageUploadModule;
 import com.softminesol.propertysurvey.rolebase.data.net.RoleBaseAPI;
 import com.softminesol.propertysurvey.survey.common.di.SurveyModule;
 

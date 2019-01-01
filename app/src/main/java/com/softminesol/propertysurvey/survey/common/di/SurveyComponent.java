@@ -1,6 +1,5 @@
 package com.softminesol.propertysurvey.survey.common.di;
 
-import com.softmine.imageupload.di.ImageUploadModule;
 import com.softminesol.propertysurvey.survey.common.view.fragment.ApartmentInfoFragment;
 import com.softminesol.propertysurvey.survey.common.view.fragment.FloorInfoFragment;
 import com.softminesol.propertysurvey.survey.common.view.fragment.PersonalInfoFragment;

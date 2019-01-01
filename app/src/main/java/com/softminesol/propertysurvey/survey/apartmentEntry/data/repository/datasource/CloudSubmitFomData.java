@@ -2,13 +2,10 @@ package com.softminesol.propertysurvey.survey.apartmentEntry.data.repository.dat
 
 import com.softminesol.propertysurvey.survey.apartmentEntry.data.net.NewServeyAPI;
 import com.softminesol.propertysurvey.survey.common.model.apartment.SaveApartmentRequest;
-import com.softminesol.propertysurvey.survey.common.model.formData.FormData;
 import com.softminesol.propertysurvey.survey.common.model.property.GetPropertySaveResponse;
-import com.softminesol.propertysurvey.survey.common.model.property.SavePropertyRequest;
 
 import javax.inject.Inject;
 
-import frameworks.network.model.BaseResponse;
 import frameworks.network.model.DataResponse;
 import retrofit2.Response;
 import rx.Observable;

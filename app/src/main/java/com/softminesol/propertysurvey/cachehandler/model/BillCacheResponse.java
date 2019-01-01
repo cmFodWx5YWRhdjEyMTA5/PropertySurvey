@@ -1,6 +1,5 @@
 package com.softminesol.propertysurvey.cachehandler.model;
 
-import com.softminesol.propertysurvey.survey.common.model.formData.FormData;
 import com.softminesol.propertysurvey.survey.distributionbill.model.BillDetails;
 
 import java.util.List;

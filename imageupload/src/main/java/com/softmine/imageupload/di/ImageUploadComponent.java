@@ -8,7 +8,7 @@ import frameworks.di.component.BaseAppComponent;
 
 @ImageUploadScope
 @Component(modules = {ImageUploadModule.class}, dependencies = BaseAppComponent.class)
-public interface ImageUploadComponent {
+public interface  ImageUploadComponent {
 
 
     void inject(ImageUploadActivity imageUploadActivity);

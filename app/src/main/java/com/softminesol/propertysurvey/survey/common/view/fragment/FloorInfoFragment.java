@@ -28,7 +28,6 @@ import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import frameworks.basemvp.AppBaseFragment;
