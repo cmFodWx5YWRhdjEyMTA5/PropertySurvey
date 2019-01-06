@@ -11,6 +11,7 @@ public class ApartmentInfoActivity  extends ActivitySingleFragment<ApartmentInfo
     ApartmentInfoFragment fragment;
 
     public static final String APARTMENT_DETAIL_KEY = "apartmentDetails";
+    public static final String APARTMENT_DETAIL_TEMP_KEY = "apartmentTempDetails";
 
 
     @Override
@@ -21,6 +22,12 @@ public class ApartmentInfoActivity  extends ActivitySingleFragment<ApartmentInfo
     public static Intent createIntent(Context context, String gisCode) {
         Intent i = new Intent(context,ApartmentInfoActivity.class);
         i.putExtra(APARTMENT_DETAIL_KEY,gisCode);
+        return i;
+    }
+
+    public static Intent createIntent(Context context, long tempid) {
+        Intent i = new Intent(context,ApartmentInfoActivity.class);
+        i.putExtra(APARTMENT_DETAIL_KEY,tempid);
         return i;
     }
 

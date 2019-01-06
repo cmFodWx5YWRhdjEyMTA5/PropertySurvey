@@ -72,6 +72,7 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
 
     List<Owner> owners = new ArrayList<>();
     public static final String APARTMENT_DETAIL_KEY = "apartmentDetails";
+    public static final String APARTMENT_TEMP_KEY = "apartmentTempDetails";
 
     SurveyComponent surveyComponent;
     @Inject
@@ -165,6 +166,14 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
         return fragment;
     }
 
+    public static ApartmentInfoFragment newInstance(long  string) {
+        ApartmentInfoFragment fragment = new ApartmentInfoFragment();
+        Bundle args = new Bundle();
+        args.putLong(APARTMENT_TEMP_KEY, string);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     public ApartmentInfoFragment() {
         // Required empty public constructor
     }
@@ -236,7 +245,11 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
 
     @Override
     public String getGsid() {
-        return edtGSID.getText().toString() ;
+        return getArguments().getString(APARTMENT_DETAIL_KEY) ;
+    }
+
+    public Long getTempId() {
+        return getArguments().getLong(APARTMENT_TEMP_KEY);
     }
 
     @Override
@@ -487,7 +500,13 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
         unbinder2 = ButterKnife.bind(this, rootView);
         if(getArguments() != null ) {
-            setGisCode(getArguments().getString(APARTMENT_DETAIL_KEY));
+            if(getArguments().getString(APARTMENT_DETAIL_KEY) != null) {
+                setGisCode(getArguments().getString(APARTMENT_DETAIL_KEY));
+            }else {
+                if(getArguments().getString(APARTMENT_TEMP_KEY) != null) {
+                    setGisCode(getArguments().getString(APARTMENT_TEMP_KEY));
+                }
+            }
         }
         return rootView;
     }

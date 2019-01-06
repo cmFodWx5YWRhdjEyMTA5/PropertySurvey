@@ -10,8 +10,11 @@ import com.pchmn.materialchips.ChipView;
 import com.softmine.imageupload.domain.ImageUploadUseCase;
 import com.softmine.imageupload.presenter.ImageUploadPresenter;
 import com.softmine.imageupload.view.ImageUploadActivity;
+import com.softminesol.locations.locationmanager.data.ReverseGeoCodeAddress;
+import com.softminesol.locations.locationmanager.domain.GetLocationAddressUseCase;
 import com.softminesol.maps.MapsActivityCurrentPlace;
 import com.softminesol.propertysurvey.CommonBaseUrl;
+import com.softminesol.propertysurvey.R;
 import com.softminesol.propertysurvey.survey.common.domain.SurveyAreaTypeUseCase;
 import com.softminesol.propertysurvey.survey.common.domain.SurveyMeasurementListUseCase;
 import com.softminesol.propertysurvey.survey.common.model.formData.FloorDetailsItem;
@@ -26,6 +29,7 @@ import javax.inject.Inject;
 import frameworks.basemvp.AppBasePresenter;
 import frameworks.network.usecases.RequestParams;
 import frameworks.utils.AdapterFactory;
+import rx.Subscriber;
 
 import static com.softmine.imageupload.view.ImageUploadActivity.FILE_PATHS;
 
@@ -38,11 +42,14 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
     private final SurveyMeasurementListUseCase measurementListUseCase;
     protected List<FloorDetailsItem> floorDetailsItems = new ArrayList<>();
 
+    GetLocationAddressUseCase reverseGeoCodeAddress;
+
     @Inject
-    public PropertyLocationPresenter(AdapterFactory adapterFactory, SurveyAreaTypeUseCase areaTypeUseCase, SurveyMeasurementListUseCase measurementListUseCase) {
+    public PropertyLocationPresenter(AdapterFactory adapterFactory, SurveyAreaTypeUseCase areaTypeUseCase, SurveyMeasurementListUseCase measurementListUseCase, GetLocationAddressUseCase reverseGeoCodeAddress) {
         this.adapterFactory = adapterFactory;
         this.areaTypeUseCase = areaTypeUseCase;
         this.measurementListUseCase = measurementListUseCase;
+        this.reverseGeoCodeAddress = reverseGeoCodeAddress;
     }
 
     @Override
@@ -72,7 +79,7 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
 
     @Override
     public void onAddressClick() {
-        getView().startActivityForResult(MapsActivityCurrentPlace.getInstance(getView().getContext(),GoogleMap.MAP_TYPE_SATELLITE),2);
+        getView().startActivityForResult(MapsActivityCurrentPlace.getInstance(getView().getContext(), GoogleMap.MAP_TYPE_SATELLITE), 2);
     }
 
     public boolean validateForm() {
@@ -82,7 +89,7 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
 
     public SavePropertyRequest getPropertyData() {
 
-        SavePropertyRequest savePropertyRequest=new SavePropertyRequest();
+        SavePropertyRequest savePropertyRequest = new SavePropertyRequest();
         savePropertyRequest.setMapId(getView().getMapId());
         savePropertyRequest.setParcelId(getView().getParcelId());
         savePropertyRequest.setPropertyType(getView().getPropertyType());
@@ -102,9 +109,9 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
         savePropertyRequest.setTotalFloor(getView().getfloorCount());
         savePropertyRequest.setFireFighting(getView().getFireFighting());
         savePropertyRequest.setRoadWidth(getView().getRoadWidth());
-        if(location != null) {
-            savePropertyRequest.setLattitude(location.getLatitude()+"");
-            savePropertyRequest.setLongitude(location.getLongitude()+"");
+        if (location != null) {
+            savePropertyRequest.setLattitude(location.getLatitude() + "");
+            savePropertyRequest.setLongitude(location.getLongitude() + "");
         }
         savePropertyRequest.setImagesList(fileUrls);
         savePropertyRequest.setImagePathList(filePaths);
@@ -112,6 +119,7 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
     }
 
     Location location;
+
     //TODO change requestcode to static constant
     @Override
     public void onAddFloorCLicked() {
@@ -120,16 +128,16 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
 
     @Override
     public void onUploadImageClick() {
-        String url = CommonBaseUrl.BASE_URL+"property/uploadPropertImage";
+        String url = CommonBaseUrl.BASE_URL + "property/uploadPropertImage";
         String param_name = "propertyImage";
 
-        getView().startActivityForResult(ImageUploadActivity.getIntent(getView().getContext(),url,param_name),ImageUploadActivity.REQUEST_GET_FILE_SERVER_URI);
+        getView().startActivityForResult(ImageUploadActivity.getIntent(getView().getContext(), url, param_name), ImageUploadActivity.REQUEST_GET_FILE_SERVER_URI);
     }
 
     @Override
     public boolean onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1 ) {
-            if(resultCode == 1) {
+        if (requestCode == 1) {
+            if (resultCode == 1) {
                 if (clickedFloorDetailsItem != null) {
                     floorDetailsItems.remove(clickedFloorDetailsItem);
                 }
@@ -138,21 +146,38 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
             }
             // IF user just cancel then null clickeditem clickedFloorDetailsItem added new floor it always be null
             getView().clearChips();
-            for(FloorDetailsItem floorDetailsItem: floorDetailsItems) {
+            for (FloorDetailsItem floorDetailsItem : floorDetailsItems) {
                 addChip(floorDetailsItem);
             }
             clickedFloorDetailsItem = null;
-        }else if(requestCode == 2) {
-            if(resultCode == 2) {
-                  location = (Location) data.getParcelableExtra("Location");
-                  if(location != null) {
-                      getView().setLatLng(location.getLatitude()+","+location.getLongitude());
-                  }
+        } else if (requestCode == 2) {
+            if (resultCode == 2) {
+                location = (Location) data.getParcelableExtra("Location");
+                if (location != null) {
+                    reverseGeoCodeAddress.execute(reverseGeoCodeAddress.createRequestParams(location.getLatitude() + "", location.getLongitude() + "",
+                            getView().getContext().getString(R.string.google_maps_key)), new Subscriber<ReverseGeoCodeAddress>() {
+                        @Override
+                        public void onCompleted() {
+
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+
+                        }
+
+                        @Override
+                        public void onNext(ReverseGeoCodeAddress reverseGeoCodeAddress) {
+                            getView().setLatLng(reverseGeoCodeAddress.getFormattedAddress());
+                        }
+                    });
+                    // getView().setLatLng(location.getLatitude()+","+location.getLongitude());
+                }
             }
-        }else if (requestCode == ImageUploadActivity.REQUEST_GET_FILE_SERVER_URI) {
-            if(resultCode == ImageUploadPresenter.RESULT_FILE_URI) {
-               fileUrls = data.getStringArrayListExtra(FILE_PATHS);
-            }else if(resultCode == ImageUploadPresenter.RESULT_FILE_PATHS) {
+        } else if (requestCode == ImageUploadActivity.REQUEST_GET_FILE_SERVER_URI) {
+            if (resultCode == ImageUploadPresenter.RESULT_FILE_URI) {
+                fileUrls = data.getStringArrayListExtra(FILE_PATHS);
+            } else if (resultCode == ImageUploadPresenter.RESULT_FILE_PATHS) {
                 filePaths = data.getStringArrayListExtra(FILE_PATHS);
             }
         }
@@ -160,10 +185,11 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
     }
 
 
-    ArrayList<String> fileUrls ;
-    ArrayList<String> filePaths ;
+    ArrayList<String> fileUrls;
+    ArrayList<String> filePaths;
 
     FloorDetailsItem clickedFloorDetailsItem;
+
     protected void addChip(final FloorDetailsItem formDetailsItem) {
         final ChipView chipView = new ChipView(getView().getContext());
         chipView.setDeletable(true);
@@ -181,7 +207,7 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
             @Override
             public void onClick(View v) {
                 clickedFloorDetailsItem = formDetailsItem;
-                getView().startActivityForResult(FloorInfoActivity.getFloorInfoIntet(getView().getContext(),formDetailsItem),1);
+                getView().startActivityForResult(FloorInfoActivity.getFloorInfoIntet(getView().getContext(), formDetailsItem), 1);
 
             }
         });

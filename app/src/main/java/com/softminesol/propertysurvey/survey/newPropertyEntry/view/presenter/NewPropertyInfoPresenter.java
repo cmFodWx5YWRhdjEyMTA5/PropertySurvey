@@ -56,7 +56,13 @@ public class NewPropertyInfoPresenter extends PropertyLocationPresenter<NewPrope
 
                 @Override
                 public void onNext(GetPropertySaveResponse getPropertySaveResponse) {
-                    getView().startActivity(ApartmentInfoActivity.createIntent(getView().getContext(),getPropertySaveResponse.getGisId()));
+                    if(getPropertySaveResponse.getGisId()!= null) {
+                        getView().startActivity(ApartmentInfoActivity.createIntent(getView().getContext(), getPropertySaveResponse.getGisId()));
+                    }else {
+                        if(getPropertySaveResponse.getTempId() > 0) {
+                            getView().startActivity(ApartmentInfoActivity.createIntent(getView().getContext(),getPropertySaveResponse.getTempId()));
+                        }
+                    }
                 }
             });
 

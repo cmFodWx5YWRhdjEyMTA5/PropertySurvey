@@ -80,7 +80,11 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
 
     public SaveApartmentRequest getApartmentData() {
         SaveApartmentRequest saveApartmentRequest = new SaveApartmentRequest();
-        saveApartmentRequest.setGisId(getView().getGsid());
+        if(getView().getGsid() == null) {
+            saveApartmentRequest.setTempId(getView().getTempId());
+        }else {
+            saveApartmentRequest.setGisId(getView().getGsid());
+        }
         saveApartmentRequest.setFloor(getView().getFloorNumber());
         saveApartmentRequest.setPropertyUsage(getView().getPropertyUsage());
         saveApartmentRequest.setNonResidentialCode(getView().getNonResedentalCode());

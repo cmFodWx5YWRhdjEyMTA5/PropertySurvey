@@ -21,4 +21,8 @@ public interface SurveyApartmentDao {
 
     @Delete
     void delete(SaveApartmentRequest owner);
+
+
+    @Query("UPDATE saveApartmentrequest SET gisId = :gsid WHERE tempPropertyApartmentId = :tid")
+    int updateTour(long tid, String gsid);
 }

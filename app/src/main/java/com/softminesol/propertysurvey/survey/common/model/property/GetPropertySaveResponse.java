@@ -16,7 +16,7 @@ public class GetPropertySaveResponse {
 
     @SerializedName("gis_id")
     @Expose
-    private String gisId;
+    private String gisId = null;
 
     private long tempId;
 
@@ -61,4 +61,11 @@ public class GetPropertySaveResponse {
         this.data = data;
     }
 
+    public long getTempId() {
+        return tempId;
+    }
+
+    public void setTempId(long tempId) {
+        this.tempId = tempId;
+    }
 }

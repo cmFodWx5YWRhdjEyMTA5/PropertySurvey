@@ -7,5 +7,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation rootProject.ext.playServicesDependencies.location
     implementation project(rootProject.ext.libraries.permissions)
+    implementation rootProject.ext.miscDependencies.gson
     compile rootProject.ext.supportLibDependencies.appCompactV7
+    compile project(path: ':framework')
 }

@@ -13,7 +13,10 @@ import java.util.List;
 public class SaveApartmentRequest implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
-    private int tempId;
+    private long tempId;
+
+    private long tempPropertyApartmentId;
+
 
     @SerializedName("gis_id")
     @Expose
@@ -337,11 +340,19 @@ public class SaveApartmentRequest implements Serializable {
         this.owners = owners;
     }
 
-    public int getTempId() {
+    public long getTempId() {
         return tempId;
     }
 
-    public void setTempId(int tempId) {
+    public void setTempId(long tempId) {
         this.tempId = tempId;
+    }
+
+    public long getTempPropertyApartmentId() {
+        return tempPropertyApartmentId;
+    }
+
+    public void setTempPropertyApartmentId(long tempPropertyApartmentId) {
+        this.tempPropertyApartmentId = tempPropertyApartmentId;
     }
 }

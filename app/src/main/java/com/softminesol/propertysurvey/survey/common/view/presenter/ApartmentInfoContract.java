@@ -13,7 +13,7 @@ public interface ApartmentInfoContract {
     public interface View extends IView {
 
 
-
+        public Long getTempId() ;
         public String getGsid();
         public String getFloorNumber();
         public String getPropertyUsage();

@@ -26,6 +26,12 @@ public class SaveSurveyFormUseCase extends UseCase<GetPropertySaveResponse> {
         this.surveyFormSubmitRepository = surveyFormSubmitRepository;
     }
 
+
+    public RequestParams createRequestParams(SavePropertyRequest savePropertyRequest) {
+        RequestParams requestParams = RequestParams.create();
+        requestParams.putObject("formdata",savePropertyRequest);
+        return requestParams;
+    }
     @Override
     public Observable<GetPropertySaveResponse> createObservable(final RequestParams requestParams) {
 
