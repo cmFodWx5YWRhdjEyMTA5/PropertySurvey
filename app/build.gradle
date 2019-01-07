@@ -65,7 +65,8 @@ dependencies {
     implementation 'com.google.code.findbugs:jsr305:3.0.2'
     implementation rootProject.ext.playServicesDependencies.location
     implementation rootProject.ext.miscDependencies.joda
-
+    implementation rootProject.ext.dbDependencies.dbRoomRuntime
+    annotationProcessor rootProject.ext.dbDependencies.dbRoomCompiler
     implementation(rootProject.ext.miscDependencies.crashlytics) {
         transitive = true;
     }
