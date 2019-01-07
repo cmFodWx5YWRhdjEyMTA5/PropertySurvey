@@ -20,7 +20,6 @@ public class SubmitFormDataFactory {
     }
 
     public CloudSubmitFomData getCloudSubmitFomData() {
-
         return cloudSubmitFomData;
     }
 }

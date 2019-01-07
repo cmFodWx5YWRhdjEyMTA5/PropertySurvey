@@ -1,12 +1,26 @@
 package com.softminesol.propertysurvey.survey.common.model.property;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.List;
-
+@Entity
 public class SavePropertyRequest implements Serializable{
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
     @SerializedName("map_id")
     @Expose
     private String mapId;
@@ -66,6 +80,8 @@ public class SavePropertyRequest implements Serializable{
     private String roadWidth;
     @SerializedName("image")
     private List<String> imagesList;
+
+    private List<String> imagePathList;
 
     @SerializedName("lattitude")
     @Expose
@@ -250,5 +266,13 @@ public class SavePropertyRequest implements Serializable{
 
     public void setImagesList(List<String> imagesList) {
         this.imagesList = imagesList;
+    }
+
+    public List<String> getImagePathList() {
+        return imagePathList;
+    }
+
+    public void setImagePathList(List<String> imagePathList) {
+        this.imagePathList = imagePathList;
     }
 }

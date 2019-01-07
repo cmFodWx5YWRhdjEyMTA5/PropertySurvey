@@ -26,15 +26,7 @@ public class SurveyFormSubmitRepository implements ISurveyFormSubmitRepository,I
 
     @Override
     public Observable<BaseResponse> submitNewProperty(FormData formData) {
-        formData.setState("NEW");
-        if(submitFormDataFactory.getCacheSubmitFormData().submitFormData(formData)) {
-            BaseResponse baseResponse = new BaseResponse();
-            baseResponse.setMessage("Submitted Successfully to Cache");
-            return Observable.just(baseResponse);
-
-        }else {
-            return Observable.error(new Throwable("There is some problem please try again"));
-        }
+       return null;//turn Observable.error(new Throwable("There is some problem please try again"));
     }
 
     public Observable<BaseResponse> submitCloudNewProperty(final FormData formData) {
@@ -47,7 +39,7 @@ public class SurveyFormSubmitRepository implements ISurveyFormSubmitRepository,I
             @Override
             public void call(BaseResponse baseResponse) {
                 formData.setState("");
-                submitFormDataFactory.getCacheSubmitFormData().submitFormData(formData);
+
             }
         }); // Will be added in sycning
 
@@ -55,17 +47,21 @@ public class SurveyFormSubmitRepository implements ISurveyFormSubmitRepository,I
 
 
     public Observable<GetPropertySaveResponse> submitCloudNewProperty(final SavePropertyRequest formData) {
-        return  submitFormDataFactory.getCloudSubmitFomData().submitCloudNewProperty(formData).doOnError(new Action1<Throwable>() {
-            @Override
-            public void call(Throwable throwable) {
-                //submitCloudNewProperty(formData);
-            }
-        }).doOnNext(new Action1<GetPropertySaveResponse>() {
-            @Override
-            public void call(GetPropertySaveResponse getPropertySaveResponse) {
+        if(formData.getImagePathList().size()>0) {
+            return submitFormDataFactory.getCacheSubmitFormData().submitFormData(formData);
+        }else {
+            return submitFormDataFactory.getCloudSubmitFomData().submitCloudNewProperty(formData).doOnError(new Action1<Throwable>() {
+                @Override
+                public void call(Throwable throwable) {
+                    submitFormDataFactory.getCacheSubmitFormData().submitFormData(formData);
+                }
+            }).doOnNext(new Action1<GetPropertySaveResponse>() {
+                @Override
+                public void call(GetPropertySaveResponse getPropertySaveResponse) {
 
-            }
-        });
+                }
+            });
+        }
 
     }
 }

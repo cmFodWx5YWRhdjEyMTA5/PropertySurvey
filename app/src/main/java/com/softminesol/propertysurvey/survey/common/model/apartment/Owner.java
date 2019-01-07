@@ -1,10 +1,15 @@
 package com.softminesol.propertysurvey.survey.common.model.apartment;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.List;
+
+import javax.annotation.Nonnull;
 
 public class Owner implements Serializable{
     @SerializedName("name")
@@ -42,6 +47,12 @@ public class Owner implements Serializable{
     @Expose
     List<String> registryImage;
 
+    public List<String> getRegistryImagePath() {
+        return registryImagePath;
+    }
+
+    private List<String> registryImagePath;
+
     public List<String> getRegistryImage() {
         return registryImage;
     }
@@ -50,6 +61,10 @@ public class Owner implements Serializable{
         this.registryImage = registryImage;
     }
 
+
+    public void setRegistryImagePath(List<String> registerImagePath) {
+        this.registryImagePath = registerImagePath;
+    }
     public String getName() {
         return name;
     }

@@ -8,6 +8,7 @@ import android.view.View;
 import com.google.android.gms.maps.GoogleMap;
 import com.pchmn.materialchips.ChipView;
 import com.softmine.imageupload.domain.ImageUploadUseCase;
+import com.softmine.imageupload.presenter.ImageUploadPresenter;
 import com.softmine.imageupload.view.ImageUploadActivity;
 import com.softminesol.maps.MapsActivityCurrentPlace;
 import com.softminesol.propertysurvey.CommonBaseUrl;
@@ -106,6 +107,7 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
             savePropertyRequest.setLongitude(location.getLongitude()+"");
         }
         savePropertyRequest.setImagesList(fileUrls);
+        savePropertyRequest.setImagePathList(filePaths);
         return savePropertyRequest;
     }
 
@@ -148,9 +150,10 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
                   }
             }
         }else if (requestCode == ImageUploadActivity.REQUEST_GET_FILE_SERVER_URI) {
-            if(resultCode == Activity.RESULT_OK) {
+            if(resultCode == ImageUploadPresenter.RESULT_FILE_URI) {
                fileUrls = data.getStringArrayListExtra(FILE_PATHS);
-
+            }else if(resultCode == ImageUploadPresenter.RESULT_FILE_PATHS) {
+                filePaths = data.getStringArrayListExtra(FILE_PATHS);
             }
         }
         return true;
@@ -158,6 +161,7 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
 
 
     ArrayList<String> fileUrls ;
+    ArrayList<String> filePaths ;
 
     FloorDetailsItem clickedFloorDetailsItem;
     protected void addChip(final FloorDetailsItem formDetailsItem) {

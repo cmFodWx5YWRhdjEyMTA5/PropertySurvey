@@ -19,20 +19,17 @@ import rx.Observable;
  */
 public class SaveSurveyFormUseCase extends UseCase<GetPropertySaveResponse> {
 
-    private final ImageUploadUseCase imageUploadUseCase;
     ISurveyFormSaveRepository surveyFormSubmitRepository;
 
     @Inject
-    public SaveSurveyFormUseCase(ISurveyFormSaveRepository surveyFormSubmitRepository, ImageUploadUseCase imageUploadUseCase) {
+    public SaveSurveyFormUseCase(ISurveyFormSaveRepository surveyFormSubmitRepository) {
         this.surveyFormSubmitRepository = surveyFormSubmitRepository;
-        this.imageUploadUseCase = imageUploadUseCase;
     }
 
     @Override
     public Observable<GetPropertySaveResponse> createObservable(final RequestParams requestParams) {
 
         final SavePropertyRequest formData = (SavePropertyRequest) requestParams.getObject("formdata");
-        List<String> fileURIs = formData.getImagesList();
         return surveyFormSubmitRepository.submitCloudNewProperty(formData);
       }
 

@@ -18,6 +18,15 @@ public class GetPropertySaveResponse {
     @Expose
     private String gisId;
 
+    private long tempId;
+
+    public GetPropertySaveResponse(long tempId) {
+        this.tempId = tempId;
+    }
+
+
+    public GetPropertySaveResponse() {
+    }
 
     public String getGisId() {
         return gisId;

@@ -1,12 +1,19 @@
 package com.softminesol.propertysurvey.survey.common.model.apartment;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.List;
 
+@Entity
 public class SaveApartmentRequest implements Serializable {
+
+    @PrimaryKey(autoGenerate = true)
+    private int tempId;
 
     @SerializedName("gis_id")
     @Expose
@@ -90,8 +97,29 @@ public class SaveApartmentRequest implements Serializable {
     @Expose
     private List<Owner> owners = null;
 
+    @Expose
     @SerializedName("image")
     private List<String> apartmentImage;
+
+    public List<String> getApartmentImagepath() {
+        return apartmentImagepath;
+    }
+
+    public void setApartmentImagepath(List<String> apartmentImagepath) {
+        this.apartmentImagepath = apartmentImagepath;
+    }
+
+    private List<String> apartmentImagepath;
+
+    private boolean updatedToServer;
+
+    public boolean isUpdatedToServer() {
+        return updatedToServer;
+    }
+
+    public void setUpdatedToServer(boolean updatedToServer) {
+        this.updatedToServer = updatedToServer;
+    }
 
     public List<String> getApartmentImage() {
         return apartmentImage;
@@ -307,5 +335,13 @@ public class SaveApartmentRequest implements Serializable {
 
     public void setOwners(List<Owner> owners) {
         this.owners = owners;
+    }
+
+    public int getTempId() {
+        return tempId;
+    }
+
+    public void setTempId(int tempId) {
+        this.tempId = tempId;
     }
 }

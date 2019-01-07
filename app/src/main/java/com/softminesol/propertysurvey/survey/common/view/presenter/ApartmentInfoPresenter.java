@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 
+import com.softmine.imageupload.presenter.ImageUploadPresenter;
 import com.softmine.imageupload.view.ActivityPicChooser;
 import com.softmine.imageupload.view.ImageUploadActivity;
 import com.softminesol.propertysurvey.CommonBaseUrl;
@@ -50,15 +51,16 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
                 getView().setOwner(ownerDetailsItemDetailsItem);
             }
 
-        } else if (requestCode == REQUEST_GET_FILE_SERVER_URI) {
-            if (resultCode == Activity.RESULT_OK) {
+        } if (requestCode == ImageUploadActivity.REQUEST_GET_FILE_SERVER_URI) {
+            if(resultCode == ImageUploadPresenter.RESULT_FILE_URI) {
                 fileUrls = data.getStringArrayListExtra(FILE_PATHS);
+            }else if(resultCode == ImageUploadPresenter.RESULT_FILE_PATHS) {
+                filePaths = data.getStringArrayListExtra(FILE_PATHS);
             }
         }
         return true;
     }
 
-    String apartmentPicPath;
 
     @Override
     public void attachView(ApartmentInfoContract.View view) {
@@ -105,12 +107,13 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
         saveApartmentRequest.setOwnerCount(getView().getOwnerCount());
         saveApartmentRequest.setOwners(getView().getOwners());
         saveApartmentRequest.setApartmentImage(fileUrls);
-
+        saveApartmentRequest.setApartmentImagepath(filePaths);
         return saveApartmentRequest;
 
 
     }
     List<String> fileUrls;
+    List<String> filePaths;
     @Override
     public void onNextClick() {
         SaveApartmentRequest formData = getApartmentData();

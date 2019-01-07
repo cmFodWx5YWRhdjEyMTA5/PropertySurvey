@@ -2,23 +2,26 @@ package com.softminesol.propertysurvey.survey.newPropertyEntry.data.repository.d
 
 import android.content.Context;
 
-import com.softminesol.propertysurvey.survey.common.model.formData.FormData;
-import com.softminesol.propertysurvey.survey.common.realm.RealmPropertyDataMapper;
+import com.softminesol.propertysurvey.roomDb.PropertySurveyDB;
+import com.softminesol.propertysurvey.survey.common.model.property.GetPropertySaveResponse;
+import com.softminesol.propertysurvey.survey.common.model.property.SavePropertyRequest;
 
 import javax.inject.Inject;
 
 import frameworks.di.qualifier.ApplicationContext;
+import rx.Observable;
 
 public class CacheSubmitFormData {
-    private final RealmPropertyDataMapper realmPropertyDataMapper;
+    private final PropertySurveyDB propertySurveyDB;
 
     @Inject
     public CacheSubmitFormData(@ApplicationContext Context context) {
-        this.realmPropertyDataMapper = RealmPropertyDataMapper.getInstance(context);
+        this.propertySurveyDB = PropertySurveyDB.getInstance(context);
     }
 
 
-    public boolean submitFormData(FormData formData) {
-        return realmPropertyDataMapper.addPropertyData(formData);
+    public Observable<GetPropertySaveResponse> submitFormData(SavePropertyRequest formData) {
+        long id = propertySurveyDB.getPropertyDao().insert(formData);
+        return Observable.just(new GetPropertySaveResponse(id));
     }
 }

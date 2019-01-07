@@ -10,4 +10,5 @@ import rx.Observable;
  */
 public interface ISurveyFormSaveRepository {
     public Observable<GetPropertySaveResponse> submitCloudNewProperty(SavePropertyRequest formData);
+
 }

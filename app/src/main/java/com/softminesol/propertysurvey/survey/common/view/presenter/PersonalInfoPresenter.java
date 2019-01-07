@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.text.TextUtils;
 
+import com.softmine.imageupload.presenter.ImageUploadPresenter;
 import com.softmine.imageupload.view.ActivityPicChooser;
 import com.softmine.imageupload.view.ImageUploadActivity;
 import com.softminesol.propertysurvey.CommonBaseUrl;
@@ -71,18 +72,17 @@ public class PersonalInfoPresenter extends AppBasePresenter<PersonalInfoContract
 
     @Override
     public boolean onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(resultCode == Activity.RESULT_OK) {
-            Uri uri = data.getData();
-            if (uri != null) {
-                if (requestCode == REQUEST_GET_FILE_SERVER_URI) {
-                    fileUrls = data.getStringArrayListExtra(FILE_PATHS);
-                }
-                return true;
+        if (requestCode == ImageUploadActivity.REQUEST_GET_FILE_SERVER_URI) {
+            if(resultCode == ImageUploadPresenter.RESULT_FILE_URI) {
+                fileUrls = data.getStringArrayListExtra(FILE_PATHS);
+            }else if(resultCode == ImageUploadPresenter.RESULT_FILE_PATHS) {
+                filePaths = data.getStringArrayListExtra(FILE_PATHS);
             }
         }
         return super.onActivityResult(requestCode,resultCode,data);
     }
     ArrayList<String> fileUrls;
+    ArrayList<String> filePaths;
     public String registryPicPath = "";
     public String userIdPath = "";
 
@@ -108,6 +108,7 @@ public class PersonalInfoPresenter extends AppBasePresenter<PersonalInfoContract
         owner.setWardNo(getView().getWardNumber());
         owner.setZoneId(getView().getZondeid());
         owner.setRegistryImage(fileUrls);
+        owner.setRegistryImagePath(filePaths);
         return owner;
     }
 

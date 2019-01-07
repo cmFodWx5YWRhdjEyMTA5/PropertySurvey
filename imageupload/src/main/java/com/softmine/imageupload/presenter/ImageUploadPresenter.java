@@ -22,6 +22,9 @@ public class ImageUploadPresenter extends AppBasePresenter<IUploadImageContracto
     private final ImageListUploadSubmitUseCase imageListUploadSubmitUseCase;
 
     public static final String FILE_PATHS = "FILE_PATHS";
+    public static final int RESULT_FILE_PATHS = 1;
+    public static final int RESULT_FILE_URI = 2;
+
     @Inject
     public ImageUploadPresenter(ImageUploadUseCase imageUploadUseCase, ImageListUploadSubmitUseCase imageListUploadSubmitUseCase) {
         this.imageListUploadSubmitUseCase = imageListUploadSubmitUseCase;
@@ -35,7 +38,7 @@ public class ImageUploadPresenter extends AppBasePresenter<IUploadImageContracto
 
 
     @Override
-    public void uploadImages(List<String> fileUris) {
+    public void uploadImages(final List<String> fileUris) {
         RequestParams requestParams = imageListUploadSubmitUseCase.createRequestParams(fileUris,getView().getURL(),getView().getParamName());
         getView().showProgressBar("Please Wait");
         imageListUploadSubmitUseCase.execute(requestParams, new Subscriber<List<String>>() {
@@ -48,6 +51,10 @@ public class ImageUploadPresenter extends AppBasePresenter<IUploadImageContracto
             public void onError(Throwable e) {
                 getView().hideProgressBar();
                 getView().showSnackBar(e.getMessage());
+                Intent intent = new Intent();
+                intent.putStringArrayListExtra(FILE_PATHS, (ArrayList<String>) fileUris);
+                getView().setResult(RESULT_FILE_URI,intent);
+                getView().finish();
             }
 
             @Override
@@ -55,7 +62,7 @@ public class ImageUploadPresenter extends AppBasePresenter<IUploadImageContracto
 
                 Intent intent = new Intent();
                 intent.putStringArrayListExtra(FILE_PATHS, (ArrayList<String>) strings);
-                getView().setResult(Activity.RESULT_OK,intent);
+                getView().setResult(RESULT_FILE_PATHS,intent);
                 getView().finish();
 
             }
