@@ -111,6 +111,9 @@ public class SaveApartmentRequest implements Serializable {
 
     public void setApartmentImagepath(List<String> apartmentImagepath) {
         this.apartmentImagepath = apartmentImagepath;
+        if(this.apartmentImagepath == null) {
+            this.apartmentImagepath = new ArrayList<>();
+        }
     }
 
     private List<String> apartmentImagepath = new ArrayList<>();
@@ -131,6 +134,9 @@ public class SaveApartmentRequest implements Serializable {
 
     public void setApartmentImage(List<String> apartmentImage) {
         this.apartmentImage = apartmentImage;
+        if(this.apartmentImage == null) {
+            this.apartmentImage = new ArrayList<>();
+        }
     }
 
     public String getGisId() {
