@@ -21,6 +21,6 @@ public class SurveyAreaTypeUseCase extends UseCase<AreaType> {
 
     @Override
     public Observable<AreaType> createObservable(RequestParams requestParams) {
-        return repository.getAreaType();
+        return Observable.just(new AreaType());
     }
 }

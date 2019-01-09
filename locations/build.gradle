@@ -7,7 +7,12 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation rootProject.ext.playServicesDependencies.location
     implementation project(rootProject.ext.libraries.permissions)
+    implementation project(rootProject.ext.libraries.usecase)
     implementation rootProject.ext.miscDependencies.gson
+    compile rootProject.ext.miscDependencies.dagger
     compile rootProject.ext.supportLibDependencies.appCompactV7
-    compile project(path: ':framework')
+    compile rootProject.ext.networkDependencies.retrofit
+    compile rootProject.ext.networkDependencies.converterGson
+    compile rootProject.ext.networkDependencies.okHttp
+
 }

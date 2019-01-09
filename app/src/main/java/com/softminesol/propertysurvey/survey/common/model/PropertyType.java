@@ -8,7 +8,7 @@ public class PropertyType extends CustomAdapterModel {
 
     @SerializedName("propert_type")
     private String mPropertType;
-    @SerializedName("propertytypeid")
+    @SerializedName("property_type_id")
     private Long mPropertytypeid;
 
     public String getPropertType() {

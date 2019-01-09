@@ -1,5 +1,6 @@
 package com.softminesol.propertysurvey.survey.common.domain;
 
+import com.softminesol.propertysurvey.survey.common.model.ColonyList;
 import com.softminesol.propertysurvey.survey.common.model.UsageList;
 
 import javax.inject.Inject;
@@ -22,6 +23,6 @@ public class SurveyUsageListUseCase extends UseCase<UsageList> {
 
     @Override
     public Observable<UsageList> createObservable(RequestParams requestParams) {
-        return repository.getUsageList();
+        return Observable.just(new UsageList());
     }
 }

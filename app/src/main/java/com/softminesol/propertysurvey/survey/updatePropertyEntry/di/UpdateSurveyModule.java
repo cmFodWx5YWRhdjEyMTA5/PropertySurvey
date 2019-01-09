@@ -1,5 +1,9 @@
 package com.softminesol.propertysurvey.survey.updatePropertyEntry.di;
 
+import com.softminesol.locations.locationmanager.data.source.api.PlaceApi;
+import com.softminesol.locations.locationmanager.domain.PlaceRepository;
+import com.softminesol.locations.locationmanager.repository.PlaceDataRepository;
+import com.softminesol.locations.locationmanager.repository.PlaceDataStoreFactory;
 import com.softminesol.propertysurvey.survey.updatePropertyEntry.data.net.UpdateServeyAPI;
 import com.softminesol.propertysurvey.survey.updatePropertyEntry.data.repository.UpdateFormSubmitRepository;
 import com.softminesol.propertysurvey.survey.updatePropertyEntry.data.repository.datasource.UpdateFormDataFactory;
@@ -13,7 +17,7 @@ import retrofit2.Retrofit;
  * Created by sandeep on 6/5/18.
  */
 @Module
-public class UpdateSurveyModule {
+public class UpdateSurveyModule  {
     @Provides
     UpdateServeyAPI provideLoginApi(Retrofit retrofit) {
         return retrofit.create(UpdateServeyAPI.class);
@@ -23,6 +27,14 @@ public class UpdateSurveyModule {
     ISurveyFormUpdateRepository getSurveyOptionRepository(UpdateFormDataFactory updateFormDataFactory) {
         return new UpdateFormSubmitRepository(updateFormDataFactory);
     }
+    @Provides
+    PlaceRepository providePlaceRepository(PlaceDataStoreFactory placeDataStoreFactory) {
+        return new PlaceDataRepository(placeDataStoreFactory);
+    }
 
+    @Provides
+    PlaceApi providePlaceAPi(Retrofit retrofit) {
+        return retrofit.create(PlaceApi.class);
+    }
 
 }

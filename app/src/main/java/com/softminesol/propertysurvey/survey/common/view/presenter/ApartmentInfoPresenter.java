@@ -8,6 +8,7 @@ import com.softmine.imageupload.presenter.ImageUploadPresenter;
 import com.softmine.imageupload.view.ActivityPicChooser;
 import com.softmine.imageupload.view.ImageUploadActivity;
 import com.softminesol.propertysurvey.CommonBaseUrl;
+import com.softminesol.propertysurvey.localcachesync.domain.NewApartmentUseCase;
 import com.softminesol.propertysurvey.survey.apartmentEntry.domain.SaveApartmentSurveyFormUseCase;
 import com.softminesol.propertysurvey.survey.common.model.apartment.Owner;
 import com.softminesol.propertysurvey.survey.common.model.apartment.SaveApartmentRequest;
@@ -34,12 +35,14 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
 
     private final AdapterFactory adapterFactory;
     private final SaveApartmentSurveyFormUseCase saveApartmentSurveyFormUseCase;
-
+    private NewApartmentUseCase newApartmentUseCas;
 
     @Inject
-    public ApartmentInfoPresenter(AdapterFactory adapterFactory, SaveApartmentSurveyFormUseCase saveApartmentSurveyFormUseCase) {
+    public ApartmentInfoPresenter(AdapterFactory adapterFactory, SaveApartmentSurveyFormUseCase saveApartmentSurveyFormUseCase,
+                                  NewApartmentUseCase newApartmentUseCase) {
         this.adapterFactory = adapterFactory;
         this.saveApartmentSurveyFormUseCase = saveApartmentSurveyFormUseCase;
+        this.newApartmentUseCas = newApartmentUseCase;
 
     }
 
@@ -54,8 +57,14 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
         } if (requestCode == ImageUploadActivity.REQUEST_GET_FILE_SERVER_URI) {
             if(resultCode == ImageUploadPresenter.RESULT_FILE_URI) {
                 fileUrls = data.getStringArrayListExtra(FILE_PATHS);
+                if (fileUrls != null) {
+                    fileUrls = new ArrayList<>();
+                }
             }else if(resultCode == ImageUploadPresenter.RESULT_FILE_PATHS) {
                 filePaths = data.getStringArrayListExtra(FILE_PATHS);
+                if(filePaths != null) {
+                    filePaths = new ArrayList<>();
+                }
             }
         }
         return true;
@@ -80,7 +89,7 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
 
     public SaveApartmentRequest getApartmentData() {
         SaveApartmentRequest saveApartmentRequest = new SaveApartmentRequest();
-        if(getView().getGsid() == null) {
+        if(getView().getGsid() == null || getView().getGsid().isEmpty()) {
             saveApartmentRequest.setTempId(getView().getTempId());
         }else {
             saveApartmentRequest.setGisId(getView().getGsid());
@@ -116,8 +125,8 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
 
 
     }
-    List<String> fileUrls;
-    List<String> filePaths;
+    List<String> fileUrls = new ArrayList<>();
+    List<String> filePaths = new ArrayList<>();
     @Override
     public void onNextClick() {
         SaveApartmentRequest formData = getApartmentData();
@@ -136,12 +145,29 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
             public void onError(Throwable e) {
                 getView().hideProgressBar();
                 getView().showToast(e.getMessage());
+                getView().gotoHome();
                 e.printStackTrace();
             }
 
             @Override
             public void onNext(GetPropertySaveResponse getPropertySaveResponse) {
                 getView().showToast("Save Successfully");
+                newApartmentUseCas.execute(new Subscriber<List<GetPropertySaveResponse>>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(List<GetPropertySaveResponse> getPropertySaveResponses) {
+
+                    }
+                });
                 getView().gotoHome();
             }
         });

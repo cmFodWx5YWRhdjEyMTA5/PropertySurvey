@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import com.softminesol.propertysurvey.survey.common.view.fragment.ApartmentInfoFragment;
 
+import frameworks.basemvp.AppBasePresenter;
 import frameworks.customlayout.ActivitySingleFragment;
 
 public class ApartmentInfoActivity  extends ActivitySingleFragment<ApartmentInfoFragment> implements onMenuClick {
@@ -27,13 +28,18 @@ public class ApartmentInfoActivity  extends ActivitySingleFragment<ApartmentInfo
 
     public static Intent createIntent(Context context, long tempid) {
         Intent i = new Intent(context,ApartmentInfoActivity.class);
-        i.putExtra(APARTMENT_DETAIL_KEY,tempid);
+        i.putExtra(APARTMENT_DETAIL_TEMP_KEY,tempid);
         return i;
     }
 
     @Override
     protected ApartmentInfoFragment getFragment() {
-        fragment = ApartmentInfoFragment.newInstance(getIntent().getStringExtra(APARTMENT_DETAIL_KEY));
+        long id  = getIntent().getLongExtra(APARTMENT_DETAIL_TEMP_KEY,0);
+        if(id>0) {
+            fragment = ApartmentInfoFragment.newInstance(id);
+        }else {
+            fragment = ApartmentInfoFragment.newInstance(getIntent().getStringExtra(APARTMENT_DETAIL_KEY));
+        }
         return fragment;
     }
 

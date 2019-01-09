@@ -13,6 +13,13 @@ import com.softminesol.propertysurvey.survey.common.model.PropertyTypes;
 import com.softminesol.propertysurvey.survey.common.model.RebateList;
 import com.softminesol.propertysurvey.survey.common.model.UsageList;
 import com.softminesol.propertysurvey.survey.common.model.formData.PropertyDetails;
+import com.softminesol.propertysurvey.survey.common.model.newmodel.BuildingAge;
+import com.softminesol.propertysurvey.survey.common.model.newmodel.Floors;
+import com.softminesol.propertysurvey.survey.common.model.newmodel.NonResidentalCategory;
+import com.softminesol.propertysurvey.survey.common.model.newmodel.OccupancyStatus;
+import com.softminesol.propertysurvey.survey.common.model.newmodel.PropertyUsage;
+import com.softminesol.propertysurvey.survey.common.model.newmodel.RespondentStatus;
+import com.softminesol.propertysurvey.survey.common.model.newmodel.SourceWater;
 
 import frameworks.network.model.DataResponse;
 import retrofit2.Response;
@@ -30,7 +37,7 @@ public interface SurveyAPI {
     public Observable<Response<DataResponse<PropertyCategoryList>>> getPropertyCategory();
 
     @GET(SurveyAPIURL.PROPERTY_TYPE_API)
-    public Observable<Response<DataResponse<PropertyTypes>>> getPropertyTypes(@Path("id") int id);
+    public Observable<Response<DataResponse<PropertyTypes>>> getPropertyTypes();
 
     @GET(SurveyAPIURL.PROPERTY_SUBCATEGORY_API)
     public Observable<Response<DataResponse<PropertySubCategoryList>>> getPropertySubCategoryList(@Path("id") int id);
@@ -64,5 +71,33 @@ public interface SurveyAPI {
 
     @GET(SurveyAPIURL.PROPERTY_DETAIL)
     public Observable<Response<DataResponse<PropertyDetails>>> getPropertyDetail(@Path("id") String query);
+
+
+    @GET(SurveyAPIURL.PROPERTY_USAGE1)
+    Observable<Response<DataResponse<PropertyUsage>>> getPropertyUsage1();
+
+    @GET(SurveyAPIURL.RESPODENT)
+    Observable<Response<DataResponse<RespondentStatus>>> getRespondentStatus();
+
+    @GET(SurveyAPIURL.OCCUPENCY)
+    Observable<Response<DataResponse<OccupancyStatus>>> getOccupancyStatus();
+
+    @GET(SurveyAPIURL.BUILDING_AGE)
+    Observable<Response<DataResponse<BuildingAge>>> getBuildingAge();
+
+    @GET(SurveyAPIURL.CONSTRUCTION_TYPE)
+    Observable<Response<DataResponse<com.softminesol.propertysurvey.survey.common.model.newmodel.ConstructionType>>> getConstructionType1();
+
+    @GET(SurveyAPIURL.FLOOR)
+    Observable<Response<DataResponse<Floors>>> getFloors();
+
+    @GET(SurveyAPIURL.NON_RESIDENTAL_CATEGORY)
+    Observable<Response<DataResponse<NonResidentalCategory>>> getNonResidentalCategorys();
+
+    @GET(SurveyAPIURL.SOURCE_WATER)
+    Observable<Response<DataResponse<SourceWater>>> getSourceWater();
+
+
+
 
 }

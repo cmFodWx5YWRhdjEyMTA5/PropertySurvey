@@ -1,5 +1,6 @@
 package com.softminesol.propertysurvey.survey.common.domain;
 
+import com.softminesol.propertysurvey.survey.common.model.ColonyList;
 import com.softminesol.propertysurvey.survey.common.model.OwnerShipList;
 
 import javax.inject.Inject;
@@ -22,6 +23,6 @@ public class SurveyOwnerShipUseCase extends UseCase<OwnerShipList> {
 
     @Override
     public Observable<OwnerShipList> createObservable(RequestParams requestParams) {
-        return repository.getOwnerShipList();
+        return Observable.just(new OwnerShipList());
     }
 }

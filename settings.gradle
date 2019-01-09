@@ -1,1 +1,1 @@
-include ':app',':framework', ':locations',  ':permissions', ':maps', ':imageupload'
+include ':app',':framework', ':locations',  ':permissions', ':maps', ':imageupload', ':usecase'

@@ -1,5 +1,7 @@
 package com.softminesol.propertysurvey.survey.newPropertyEntry.view.presenter;
 
+import com.softminesol.locations.locationmanager.domain.GetLocationAddressUseCase;
+import com.softminesol.propertysurvey.localcachesync.domain.NewProperySyncUseCase;
 import com.softminesol.propertysurvey.survey.cloudsync.NewFormSync;
 import com.softminesol.propertysurvey.survey.common.domain.SurveyAreaTypeUseCase;
 import com.softminesol.propertysurvey.survey.common.domain.SurveyMeasurementListUseCase;
@@ -8,6 +10,8 @@ import com.softminesol.propertysurvey.survey.common.model.property.SavePropertyR
 import com.softminesol.propertysurvey.survey.common.view.activity.ApartmentInfoActivity;
 import com.softminesol.propertysurvey.survey.common.view.presenter.PropertyLocationPresenter;
 import com.softminesol.propertysurvey.survey.newPropertyEntry.domain.SaveSurveyFormUseCase;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -26,8 +30,11 @@ public class NewPropertyInfoPresenter extends PropertyLocationPresenter<NewPrope
     NewFormSync syncManager;
 
     @Inject
-    NewPropertyInfoPresenter(AdapterFactory adapterFactory, SurveyAreaTypeUseCase areaTypeUseCase, SurveyMeasurementListUseCase measurementListUseCase, SaveSurveyFormUseCase saveSurveyFormUseCase) {
-        super(adapterFactory, areaTypeUseCase, measurementListUseCase);
+    NewProperySyncUseCase newProperySyncUseCase;
+
+    @Inject
+    NewPropertyInfoPresenter(AdapterFactory adapterFactory, SurveyAreaTypeUseCase areaTypeUseCase, SurveyMeasurementListUseCase measurementListUseCase, SaveSurveyFormUseCase saveSurveyFormUseCase, GetLocationAddressUseCase reverseGeoCodeAddress) {
+        super(adapterFactory, areaTypeUseCase, measurementListUseCase, reverseGeoCodeAddress);
         this.saveSurveyFormUseCase = saveSurveyFormUseCase;
     }
 
@@ -58,9 +65,27 @@ public class NewPropertyInfoPresenter extends PropertyLocationPresenter<NewPrope
                 public void onNext(GetPropertySaveResponse getPropertySaveResponse) {
                     if(getPropertySaveResponse.getGisId()!= null) {
                         getView().startActivity(ApartmentInfoActivity.createIntent(getView().getContext(), getPropertySaveResponse.getGisId()));
+                        newProperySyncUseCase.execute(RequestParams.EMPTY, new Subscriber<List<String>>() {
+                            @Override
+                            public void onCompleted() {
+
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+
+                            }
+
+                            @Override
+                            public void onNext(List<String> strings) {
+
+                            }
+                        });
+                        getView().finish();
                     }else {
                         if(getPropertySaveResponse.getTempId() > 0) {
                             getView().startActivity(ApartmentInfoActivity.createIntent(getView().getContext(),getPropertySaveResponse.getTempId()));
+                            getView().finish();
                         }
                     }
                 }

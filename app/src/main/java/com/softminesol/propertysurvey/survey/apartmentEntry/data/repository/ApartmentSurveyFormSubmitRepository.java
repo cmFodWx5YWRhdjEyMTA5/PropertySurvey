@@ -2,8 +2,11 @@ package com.softminesol.propertysurvey.survey.apartmentEntry.data.repository;
 
 import com.softminesol.propertysurvey.survey.apartmentEntry.data.repository.datasource.SubmitFormDataFactory;
 import com.softminesol.propertysurvey.survey.apartmentEntry.domain.IApartmentSurveyFormSaveRepository;
+import com.softminesol.propertysurvey.survey.common.model.apartment.Owner;
 import com.softminesol.propertysurvey.survey.common.model.apartment.SaveApartmentRequest;
 import com.softminesol.propertysurvey.survey.common.model.property.GetPropertySaveResponse;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -24,11 +27,27 @@ public class ApartmentSurveyFormSubmitRepository implements IApartmentSurveyForm
 
     @Override
     public Observable<GetPropertySaveResponse> submitCloudNewApartment(final SaveApartmentRequest formData) {
-        return  submitFormDataFactory.getCloudSubmitFomData().submitCloudNewApartment(formData).doOnError(new Action1<Throwable>() {
-            @Override
-            public void call(Throwable throwable) {
-                submitCloudNewApartment(formData);
+        List<Owner> ownerList = formData.getOwners();
+        for(Owner owner: ownerList) {
+            if(owner.getRegistryImagePath().size()>0) {
+                submitFormDataFactory.getCacheSubmitFormData().submitFormData(formData);
+                return Observable.error(new Throwable("Unable to update to server"));
             }
-        });
+        }
+
+        if(formData.getApartmentImagepath().size()>0) {
+            submitFormDataFactory.getCacheSubmitFormData().submitFormData(formData);
+            return Observable.error(new Throwable("Unable to update to server"));
+        }else if(formData.getGisId()== null) {
+            submitFormDataFactory.getCacheSubmitFormData().submitFormData(formData);
+            return Observable.error(new Throwable("Unable to update to server"));
+        } else{
+            return submitFormDataFactory.getCloudSubmitFomData().submitCloudNewApartment(formData).doOnError(new Action1<Throwable>() {
+                @Override
+                public void call(Throwable throwable) {
+                    submitFormDataFactory.getCacheSubmitFormData().submitFormData(formData);
+                }
+            });
+        }
     }
 }

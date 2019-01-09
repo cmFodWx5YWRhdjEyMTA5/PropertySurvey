@@ -240,6 +240,7 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
         Intent intent = new Intent(getActivity(), DashBoardActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
+        finish();
     }
 
 
@@ -503,8 +504,8 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
             if(getArguments().getString(APARTMENT_DETAIL_KEY) != null) {
                 setGisCode(getArguments().getString(APARTMENT_DETAIL_KEY));
             }else {
-                if(getArguments().getString(APARTMENT_TEMP_KEY) != null) {
-                    setGisCode(getArguments().getString(APARTMENT_TEMP_KEY));
+                if(getArguments().getLong(APARTMENT_TEMP_KEY,0) != 0) {
+                    setGisCode(getArguments().getLong(APARTMENT_TEMP_KEY,0)+"");
                 }
             }
         }

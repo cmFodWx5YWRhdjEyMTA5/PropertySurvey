@@ -1,5 +1,9 @@
 package com.softminesol.propertysurvey.survey.newPropertyEntry.di;
 
+import com.softminesol.locations.locationmanager.data.source.api.PlaceApi;
+import com.softminesol.locations.locationmanager.domain.PlaceRepository;
+import com.softminesol.locations.locationmanager.repository.PlaceDataRepository;
+import com.softminesol.locations.locationmanager.repository.PlaceDataStoreFactory;
 import com.softminesol.propertysurvey.survey.newPropertyEntry.data.net.NewServeyAPI;
 import com.softminesol.propertysurvey.survey.newPropertyEntry.data.repository.SurveyFormSubmitRepository;
 import com.softminesol.propertysurvey.survey.newPropertyEntry.data.repository.datasource.SubmitFormDataFactory;
@@ -29,4 +33,13 @@ public class NewSurveyModule {
         return new SurveyFormSubmitRepository(submitFormDataFactory);
     }
 
+    @Provides
+    PlaceRepository providePlaceRepository(PlaceDataStoreFactory placeDataStoreFactory) {
+        return new PlaceDataRepository(placeDataStoreFactory);
+    }
+
+    @Provides
+    PlaceApi providePlaceAPi(Retrofit retrofit) {
+        return retrofit.create(PlaceApi.class);
+    }
 }

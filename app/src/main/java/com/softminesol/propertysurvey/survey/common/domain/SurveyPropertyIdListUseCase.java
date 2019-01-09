@@ -1,5 +1,6 @@
 package com.softminesol.propertysurvey.survey.common.domain;
 
+import com.softminesol.propertysurvey.survey.common.model.ColonyList;
 import com.softminesol.propertysurvey.survey.common.model.OLDPropertyUIDS;
 
 import javax.inject.Inject;
@@ -23,6 +24,6 @@ public class SurveyPropertyIdListUseCase extends UseCase<OLDPropertyUIDS> {
 
     @Override
     public Observable<OLDPropertyUIDS> createObservable(RequestParams requestParams) {
-        return repository.getPropertyIdList(requestParams.getString("query", ""));
+        return Observable.just(new OLDPropertyUIDS());
     }
 }

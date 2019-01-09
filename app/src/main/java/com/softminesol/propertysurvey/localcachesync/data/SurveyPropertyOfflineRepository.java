@@ -1,4 +1,4 @@
-package com.softminesol.propertysurvey.localcachesync.domain;
+package com.softminesol.propertysurvey.localcachesync.data;
 
 import android.content.Context;
 
@@ -14,7 +14,6 @@ import frameworks.di.qualifier.ApplicationContext;
 
 public class SurveyPropertyOfflineRepository {
     PropertySurveyDB propertySurveyDB;
-    SurveyApartmentDao surveyApartmentDao;
 
     @Inject
     public SurveyPropertyOfflineRepository(@ApplicationContext Context context) {

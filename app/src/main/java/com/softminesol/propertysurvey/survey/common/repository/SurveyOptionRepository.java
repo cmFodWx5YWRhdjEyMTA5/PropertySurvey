@@ -1,24 +1,19 @@
 package com.softminesol.propertysurvey.survey.common.repository;
 
 import com.softminesol.propertysurvey.survey.common.domain.ISurveyOptionRepository;
-import com.softminesol.propertysurvey.survey.common.model.AreaType;
-import com.softminesol.propertysurvey.survey.common.model.ColonyList;
 import com.softminesol.propertysurvey.survey.common.model.ConstructionType;
-import com.softminesol.propertysurvey.survey.common.model.FloorsList;
-import com.softminesol.propertysurvey.survey.common.model.MeasurementUnitList;
-import com.softminesol.propertysurvey.survey.common.model.OLDPropertyUIDS;
-import com.softminesol.propertysurvey.survey.common.model.OwnerShipList;
-import com.softminesol.propertysurvey.survey.common.model.PropertyCategoryList;
-import com.softminesol.propertysurvey.survey.common.model.PropertySubCategoryList;
 import com.softminesol.propertysurvey.survey.common.model.PropertyTypes;
-import com.softminesol.propertysurvey.survey.common.model.RebateList;
-import com.softminesol.propertysurvey.survey.common.model.UsageList;
-import com.softminesol.propertysurvey.survey.common.model.formData.FormData;
+import com.softminesol.propertysurvey.survey.common.model.newmodel.BuildingAge;
+import com.softminesol.propertysurvey.survey.common.model.newmodel.Floors;
+import com.softminesol.propertysurvey.survey.common.model.newmodel.NonResidentalCategory;
+import com.softminesol.propertysurvey.survey.common.model.newmodel.OccupancyStatus;
+import com.softminesol.propertysurvey.survey.common.model.newmodel.PropertyUsage;
+import com.softminesol.propertysurvey.survey.common.model.newmodel.RespondentStatus;
+import com.softminesol.propertysurvey.survey.common.model.newmodel.SourceWater;
 import com.softminesol.propertysurvey.survey.common.repository.datasource.SurveyOptionFactory;
 
 import javax.inject.Inject;
 
-import frameworks.network.usecases.RequestParams;
 import rx.Observable;
 import rx.functions.Action1;
 import rx.functions.Func1;
@@ -34,38 +29,23 @@ public class SurveyOptionRepository implements ISurveyOptionRepository {
         this.surveyOptionFactory = surveyOptionFactory;
     }
 
-    @Override
-    public Observable<PropertyCategoryList> getPropertyCategory() {
-        return surveyOptionFactory.getSurveyOptionCacheDataSource().getPropertyCategory().flatMap(new Func1<PropertyCategoryList, Observable<PropertyCategoryList>>() {
-            @Override
-            public Observable<PropertyCategoryList> call(PropertyCategoryList propertyCategoryList) {
-                if(propertyCategoryList != null) {
-                    return Observable.just(propertyCategoryList);
-                }else {
-                    return surveyOptionFactory.getSurveyOptionCloudDataSource().getPropertyCategory().doOnNext(new Action1<PropertyCategoryList>() {
-                        @Override
-                        public void call(PropertyCategoryList propertyCategoryList) {
-                            surveyOptionFactory.getSurveyOptionCacheDataSource().savePropertyCategoryList(propertyCategoryList);
-                        }
-                    });
-                }
-            }
-        });
-    }
+
+
+
+
 
     @Override
-    public Observable<PropertyTypes> getProperyTypes(RequestParams requestParams) {
-        final int id = (requestParams.getInt("id", -1));
-        return  surveyOptionFactory.getSurveyOptionCacheDataSource().getPropertyTypes(id).flatMap(new Func1<PropertyTypes, Observable<PropertyTypes>>() {
+    public Observable<PropertyTypes> getPropertyType() {
+        return  surveyOptionFactory.getSurveyOptionCacheDataSource().getPropertyTypes().flatMap(new Func1<PropertyTypes, Observable<PropertyTypes>>() {
             @Override
             public Observable<PropertyTypes> call(PropertyTypes propertyTypes) {
                 if(propertyTypes != null) {
                     return Observable.just(propertyTypes);
                 }else {
-                    return surveyOptionFactory.getSurveyOptionCloudDataSource().getPropertyTypes(id).doOnNext(new Action1<PropertyTypes>() {
+                    return surveyOptionFactory.getSurveyOptionCloudDataSource().getPropertyTypes().doOnNext(new Action1<PropertyTypes>() {
                         @Override
                         public void call(PropertyTypes propertyTypes) {
-                            surveyOptionFactory.getSurveyOptionCacheDataSource().savePropertyTypes(propertyTypes, id);
+                            surveyOptionFactory.getSurveyOptionCacheDataSource().savePropertyTypes(propertyTypes);
                         }
                     });
                 }
@@ -74,18 +54,17 @@ public class SurveyOptionRepository implements ISurveyOptionRepository {
     }
 
     @Override
-    public Observable<PropertySubCategoryList> getPropertySubCategoryList(RequestParams requestParams) {
-        final int id = (requestParams.getInt("id", -1));
-        return surveyOptionFactory.getSurveyOptionCacheDataSource().getPropertySubeCategoryList(id).flatMap(new Func1<PropertySubCategoryList, Observable<PropertySubCategoryList>>() {
+    public Observable<PropertyUsage> getPropertyUsage() {
+        return  surveyOptionFactory.getSurveyOptionCacheDataSource().getPropertyUsage().flatMap(new Func1<PropertyUsage, Observable<PropertyUsage>>() {
             @Override
-            public Observable<PropertySubCategoryList> call(PropertySubCategoryList propertySubCategoryList) {
-                if(propertySubCategoryList != null) {
-                    return Observable.just(propertySubCategoryList);
+            public Observable<PropertyUsage> call(PropertyUsage propertyTypes) {
+                if(propertyTypes != null) {
+                    return Observable.just(propertyTypes);
                 }else {
-                    return surveyOptionFactory.getSurveyOptionCloudDataSource().getPropertySubeCategoryList(id).doOnNext(new Action1<PropertySubCategoryList>() {
+                    return surveyOptionFactory.getSurveyOptionCloudDataSource().getPropertyUsage().doOnNext(new Action1<PropertyUsage>() {
                         @Override
-                        public void call(PropertySubCategoryList propertySubCategoryList) {
-                            surveyOptionFactory.getSurveyOptionCacheDataSource().savePropertySubCategoryList(propertySubCategoryList, id);
+                        public void call(PropertyUsage propertyTypes) {
+                            surveyOptionFactory.getSurveyOptionCacheDataSource().savePropertyUsage(propertyTypes);
                         }
                     });
                 }
@@ -94,17 +73,17 @@ public class SurveyOptionRepository implements ISurveyOptionRepository {
     }
 
     @Override
-    public Observable<RebateList> getPropertyRebateList() {
-        return surveyOptionFactory.getSurveyOptionCacheDataSource().getRebateList().flatMap(new Func1<RebateList, Observable<RebateList>>() {
+    public Observable<RespondentStatus> getRespondentStatus() {
+        return  surveyOptionFactory.getSurveyOptionCacheDataSource().getRespondentStatus().flatMap(new Func1<RespondentStatus, Observable<RespondentStatus>>() {
             @Override
-            public Observable<RebateList> call(RebateList propertyCategoryList) {
-                if(propertyCategoryList != null) {
-                    return Observable.just(propertyCategoryList);
+            public Observable<RespondentStatus> call(RespondentStatus propertyTypes) {
+                if(propertyTypes != null) {
+                    return Observable.just(propertyTypes);
                 }else {
-                    return surveyOptionFactory.getSurveyOptionCloudDataSource().getRebateList().doOnNext(new Action1<RebateList>() {
+                    return surveyOptionFactory.getSurveyOptionCloudDataSource().getRespondentStatus().doOnNext(new Action1<RespondentStatus>() {
                         @Override
-                        public void call(RebateList rebateList) {
-                            surveyOptionFactory.getSurveyOptionCacheDataSource().saveRebateList(rebateList);
+                        public void call(RespondentStatus propertyTypes) {
+                            surveyOptionFactory.getSurveyOptionCacheDataSource().saveRespondentStatus(propertyTypes);
                         }
                     });
                 }
@@ -112,17 +91,18 @@ public class SurveyOptionRepository implements ISurveyOptionRepository {
         });
     }
 
-    public Observable<ColonyList> getColonyList() {
-        return surveyOptionFactory.getSurveyOptionCacheDataSource().getColonyList().flatMap(new Func1<ColonyList, Observable<ColonyList>>() {
+    @Override
+    public Observable<OccupancyStatus> getOccupancyStatus() {
+        return  surveyOptionFactory.getSurveyOptionCacheDataSource().getOccupancyStatus().flatMap(new Func1<OccupancyStatus, Observable<OccupancyStatus>>() {
             @Override
-            public Observable<ColonyList> call(ColonyList propertyCategoryList) {
-                if(propertyCategoryList != null) {
-                    return Observable.just(propertyCategoryList);
+            public Observable<OccupancyStatus> call(OccupancyStatus propertyTypes) {
+                if(propertyTypes != null) {
+                    return Observable.just(propertyTypes);
                 }else {
-                    return surveyOptionFactory.getSurveyOptionCloudDataSource().getColonyList().doOnNext(new Action1<ColonyList>() {
+                    return surveyOptionFactory.getSurveyOptionCloudDataSource().getOccupancyStatus().doOnNext(new Action1<OccupancyStatus>() {
                         @Override
-                        public void call(ColonyList colonyList) {
-                            surveyOptionFactory.getSurveyOptionCacheDataSource().saveColonyList(colonyList);
+                        public void call(OccupancyStatus propertyTypes) {
+                            surveyOptionFactory.getSurveyOptionCacheDataSource().saveOccupancyStatus(propertyTypes);
                         }
                     });
                 }
@@ -130,142 +110,97 @@ public class SurveyOptionRepository implements ISurveyOptionRepository {
         });
     }
 
-    public Observable<UsageList> getUsageList() {
-        return surveyOptionFactory.getSurveyOptionCacheDataSource().getUsageList().flatMap(new Func1<UsageList, Observable<UsageList>>() {
-            @Override
-            public Observable<UsageList> call(UsageList usageList) {
-
-                return surveyOptionFactory.getSurveyOptionCloudDataSource().getUsageList().doOnNext(new Action1<UsageList>() {
-                    @Override
-                    public void call(UsageList usageList) {
-                        surveyOptionFactory.getSurveyOptionCacheDataSource().saveUsageList(usageList);
-                    }
-                });
-            }
-        });
-    }
-
-    public Observable<MeasurementUnitList> getMeasurementList() {
-        return surveyOptionFactory.getSurveyOptionCacheDataSource().getMeasurementList().flatMap(new Func1<MeasurementUnitList, Observable<MeasurementUnitList>>() {
-            @Override
-            public Observable<MeasurementUnitList> call(MeasurementUnitList measurementUnitList) {
-                if(measurementUnitList  != null) {
-                    return Observable.just(measurementUnitList);
-                }
-                return surveyOptionFactory.getSurveyOptionCloudDataSource().getMeasurementList().doOnNext(new Action1<MeasurementUnitList>() {
-                    @Override
-                    public void call(MeasurementUnitList measurementUnitList) {
-                        surveyOptionFactory.getSurveyOptionCacheDataSource().saveMeasurementList(measurementUnitList);
-                    }
-                });
-            }
-        });
-    }
-
     @Override
-    public Observable<FloorsList> getFloorList() {
-        return surveyOptionFactory.getSurveyOptionCacheDataSource().getFloorList().flatMap(new Func1<FloorsList, Observable<FloorsList>>() {
+    public Observable<BuildingAge> getBuildingAge() {
+        return  surveyOptionFactory.getSurveyOptionCacheDataSource().getBuildingAges().flatMap(new Func1<BuildingAge, Observable<BuildingAge>>() {
             @Override
-            public Observable<FloorsList> call(FloorsList floorsList) {
-                if(floorsList!= null) {
-                    return Observable.just(floorsList);
+            public Observable<BuildingAge> call(BuildingAge propertyTypes) {
+                if(propertyTypes != null) {
+                    return Observable.just(propertyTypes);
+                }else {
+                    return surveyOptionFactory.getSurveyOptionCloudDataSource().getBuildingAge().doOnNext(new Action1<BuildingAge>() {
+                        @Override
+                        public void call(BuildingAge propertyTypes) {
+                            surveyOptionFactory.getSurveyOptionCacheDataSource().saveBuildingAge(propertyTypes);
+                        }
+                    });
                 }
-                return surveyOptionFactory.getSurveyOptionCloudDataSource().getFloorList().doOnNext(new Action1<FloorsList>() {
-                    @Override
-                    public void call(FloorsList floorsList) {
-                        surveyOptionFactory.getSurveyOptionCacheDataSource().saveFloorList(floorsList);
-                    }
-                });
-            }
-        });
-    }
-
-    @Override
-    public Observable<OwnerShipList> getOwnerShipList() {
-        return surveyOptionFactory.getSurveyOptionCacheDataSource().getOwnerShipList().flatMap(new Func1<OwnerShipList, Observable<OwnerShipList>>() {
-            @Override
-            public Observable<OwnerShipList> call(OwnerShipList ownerShipList) {
-                if(ownerShipList != null) {
-                    return Observable.just(ownerShipList);
-                }
-                return surveyOptionFactory.getSurveyOptionCloudDataSource().getOwnerShipList().doOnNext(new Action1<OwnerShipList>() {
-                    @Override
-                    public void call(OwnerShipList ownerShipList) {
-                        surveyOptionFactory.getSurveyOptionCacheDataSource().saveOwnerShipList(ownerShipList);
-                    }
-                });
-            }
-        });
-    }
-
-    @Override
-    public Observable<AreaType> getAreaType() {
-        return surveyOptionFactory.getSurveyOptionCacheDataSource().getAreaType().flatMap(new Func1<AreaType, Observable<AreaType>>() {
-            @Override
-            public Observable<AreaType> call(AreaType areaType) {
-                if(areaType != null) {
-                    return Observable.just(areaType);
-                }
-                return surveyOptionFactory.getSurveyOptionCloudDataSource().getAreaType().doOnNext(new Action1<AreaType>() {
-                    @Override
-                    public void call(AreaType areaType) {
-                        surveyOptionFactory.getSurveyOptionCacheDataSource().saveAreaType(areaType);
-                    }
-                });
             }
         });
     }
 
     @Override
     public Observable<ConstructionType> getConstructionType() {
-        return surveyOptionFactory.getSurveyOptionCacheDataSource().getConstructionType().flatMap(new Func1<ConstructionType, Observable<ConstructionType>>() {
+        return  surveyOptionFactory.getSurveyOptionCacheDataSource().getConstructionType().flatMap(new Func1<ConstructionType, Observable<ConstructionType>>() {
             @Override
-            public Observable<ConstructionType> call(ConstructionType constructionType) {
-                if(constructionType != null) {
-                    return Observable.just(constructionType);
+            public Observable<ConstructionType> call(ConstructionType propertyTypes) {
+                if(propertyTypes != null) {
+                    return Observable.just(propertyTypes);
+                }else {
+                    return surveyOptionFactory.getSurveyOptionCloudDataSource().getConstructionType().doOnNext(new Action1<ConstructionType>() {
+                        @Override
+                        public void call(ConstructionType propertyTypes) {
+                            surveyOptionFactory.getSurveyOptionCacheDataSource().saveConstructionType(propertyTypes);
+                        }
+                    });
                 }
-                return surveyOptionFactory.getSurveyOptionCloudDataSource().getConstructionType().doOnNext(new Action1<ConstructionType>() {
-                    @Override
-                    public void call(ConstructionType constructionType) {
-                        surveyOptionFactory.getSurveyOptionCacheDataSource().saveConstructionType(constructionType);
-                    }
-                });
             }
         });
     }
 
     @Override
-    public Observable<OLDPropertyUIDS> getPropertyIdList(final String query) {
-       return surveyOptionFactory.getSurveyOptionCacheDataSource().getPropertyIdList(query).flatMap(new Func1<OLDPropertyUIDS, Observable<OLDPropertyUIDS>>() {
+    public Observable<Floors> getFloors() {
+        return  surveyOptionFactory.getSurveyOptionCacheDataSource().getFloors().flatMap(new Func1<Floors, Observable<Floors>>() {
             @Override
-            public Observable<OLDPropertyUIDS> call(OLDPropertyUIDS oldPropertyUIDS) {
-                if(oldPropertyUIDS != null)
-                    return Observable.just(oldPropertyUIDS);
-                return surveyOptionFactory.getSurveyOptionCloudDataSource().getPropertyIdList(query);
+            public Observable<Floors> call(Floors propertyTypes) {
+                if(propertyTypes != null) {
+                    return Observable.just(propertyTypes);
+                }else {
+                    return surveyOptionFactory.getSurveyOptionCloudDataSource().getFloors().doOnNext(new Action1<Floors>() {
+                        @Override
+                        public void call(Floors propertyTypes) {
+                            surveyOptionFactory.getSurveyOptionCacheDataSource().saveFloorse(propertyTypes);
+                        }
+                    });
+                }
             }
         });
     }
 
     @Override
-    public Observable<OLDPropertyUIDS> getPropertyBillingIdList(final String query) {
-        return surveyOptionFactory.getSurveyOptionCacheDataSource().getPropertyBillingIdList(query).flatMap(new Func1<OLDPropertyUIDS, Observable<OLDPropertyUIDS>>() {
+    public Observable<NonResidentalCategory> getNonResidentalCategory() {
+        return  surveyOptionFactory.getSurveyOptionCacheDataSource().getNonResidentalCategorys().flatMap(new Func1<NonResidentalCategory, Observable<NonResidentalCategory>>() {
             @Override
-            public Observable<OLDPropertyUIDS> call(OLDPropertyUIDS oldPropertyUIDS) {
-                if(oldPropertyUIDS != null)
-                    return Observable.just(oldPropertyUIDS);
-                return surveyOptionFactory.getSurveyOptionCloudDataSource().getPropertyIdList(query);
+            public Observable<NonResidentalCategory> call(NonResidentalCategory propertyTypes) {
+                if(propertyTypes != null) {
+                    return Observable.just(propertyTypes);
+                }else {
+                    return surveyOptionFactory.getSurveyOptionCloudDataSource().getNonResidentalCategorys().doOnNext(new Action1<NonResidentalCategory>() {
+                        @Override
+                        public void call(NonResidentalCategory propertyTypes) {
+                            surveyOptionFactory.getSurveyOptionCacheDataSource().saveNonResidentalCategory(propertyTypes);
+                        }
+                    });
+                }
             }
         });
     }
 
     @Override
-    public Observable<FormData> getFormData(final String query) {
-     return    surveyOptionFactory.getSurveyOptionCacheDataSource().getFormData(query).flatMap(new Func1<FormData, Observable<FormData>>() {
+    public Observable<SourceWater> getSourceWater() {
+        return  surveyOptionFactory.getSurveyOptionCacheDataSource().getSourceWater().flatMap(new Func1<SourceWater, Observable<SourceWater>>() {
             @Override
-            public Observable<FormData> call(FormData formData) {
-                if(formData != null)
-                    return Observable.just(formData);
-                return surveyOptionFactory.getSurveyOptionCloudDataSource().getFormData(query);
+            public Observable<SourceWater> call(SourceWater propertyTypes) {
+                if(propertyTypes != null) {
+                    return Observable.just(propertyTypes);
+                }else {
+                    return surveyOptionFactory.getSurveyOptionCloudDataSource().getSourceWater().doOnNext(new Action1<SourceWater>() {
+                        @Override
+                        public void call(SourceWater propertyTypes) {
+                            surveyOptionFactory.getSurveyOptionCacheDataSource().saveSourceWatery(propertyTypes);
+                        }
+                    });
+                }
             }
         });
     }

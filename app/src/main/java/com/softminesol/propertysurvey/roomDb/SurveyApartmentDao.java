@@ -4,6 +4,7 @@ import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 import com.softminesol.propertysurvey.survey.common.model.apartment.Owner;
 import com.softminesol.propertysurvey.survey.common.model.apartment.SaveApartmentRequest;
@@ -17,12 +18,18 @@ public interface SurveyApartmentDao {
 
 
     @Insert
-    void insert(SaveApartmentRequest owner);
+    void insert(SaveApartmentRequest saveApartmentRequest);
 
     @Delete
-    void delete(SaveApartmentRequest owner);
+    void delete(SaveApartmentRequest saveApartmentRequest);
+
+    @Update
+    void update(SaveApartmentRequest saveApartmentRequest);
 
 
     @Query("UPDATE saveApartmentrequest SET gisId = :gsid WHERE tempPropertyApartmentId = :tid")
     int updateTour(long tid, String gsid);
+
+    @Query("select * from saveApartmentrequest WHERE gisId is Not Null")
+    List<SaveApartmentRequest> getApartments();
 }

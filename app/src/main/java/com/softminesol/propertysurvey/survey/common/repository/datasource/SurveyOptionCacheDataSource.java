@@ -2,142 +2,186 @@ package com.softminesol.propertysurvey.survey.common.repository.datasource;
 
 import android.content.Context;
 
-import com.softminesol.propertysurvey.survey.common.model.AreaType;
-import com.softminesol.propertysurvey.survey.common.model.ColonyList;
+import com.softminesol.propertysurvey.roomDb.PropertySurveyDB;
+import com.softminesol.propertysurvey.roomDb.Type;
 import com.softminesol.propertysurvey.survey.common.model.ConstructionType;
-import com.softminesol.propertysurvey.survey.common.model.FloorsList;
-import com.softminesol.propertysurvey.survey.common.model.MeasurementUnitList;
-import com.softminesol.propertysurvey.survey.common.model.OLDPropertyUIDS;
-import com.softminesol.propertysurvey.survey.common.model.OwnerShipList;
-import com.softminesol.propertysurvey.survey.common.model.PropertyCategoryList;
-import com.softminesol.propertysurvey.survey.common.model.PropertySubCategoryList;
 import com.softminesol.propertysurvey.survey.common.model.PropertyTypes;
-import com.softminesol.propertysurvey.survey.common.model.RebateList;
-import com.softminesol.propertysurvey.survey.common.model.UsageList;
-import com.softminesol.propertysurvey.survey.common.model.formData.FormData;
-import com.softminesol.propertysurvey.survey.common.realm.RealmPropertyDataMapper;
+import com.softminesol.propertysurvey.survey.common.model.newmodel.BuildingAge;
+import com.softminesol.propertysurvey.survey.common.model.newmodel.Floors;
+import com.softminesol.propertysurvey.survey.common.model.newmodel.NonResidentalCategory;
+import com.softminesol.propertysurvey.survey.common.model.newmodel.OccupancyStatus;
+import com.softminesol.propertysurvey.survey.common.model.newmodel.PropertyUsage;
+import com.softminesol.propertysurvey.survey.common.model.newmodel.RespondentStatus;
+import com.softminesol.propertysurvey.survey.common.model.newmodel.SourceWater;
 
 import javax.inject.Inject;
 
 import frameworks.di.qualifier.ApplicationContext;
+import frameworks.utils.GsonFactory;
 import rx.Observable;
 
 public class SurveyOptionCacheDataSource {
-    RealmPropertyDataMapper realmPropertyDataMapper;
+     PropertySurveyDB propertySurveyDB;
+     public static final String PROPERTY_TYPE = "property_type";
+     public static final String PROPERTY_USAGE = "property_usage";
+     public static final String RESPONDENT_STATUS = "respondent_status";
+     public static final String OCCUPANCY_STATUS = "ocupancy_status";
+     public static final String BUILDING_AGE = "building_age";
+     public static final String CONSTRUCTION_TYPE = "construction_type";
+     public static final String Floors = "floors";
+     public static final String NON_RESIDENTAL_CATEGORY = "NonResidentalCategory";
+
 
     @Inject
     public SurveyOptionCacheDataSource(@ApplicationContext Context context) {
-        this.realmPropertyDataMapper = RealmPropertyDataMapper.getInstance(context);
-    }
-
-    public Observable<PropertyCategoryList> getPropertyCategory() {
-        return realmPropertyDataMapper.getPropertyCategoryList();
-    }
-
-    public void savePropertyCategoryList(PropertyCategoryList propertyCategoryList) {
-        realmPropertyDataMapper.savePropertyCategory(propertyCategoryList);
-    }
-
-    public Observable<PropertyTypes> getPropertyTypes(int id) {
-        return realmPropertyDataMapper.getPropertyTypes(id);
-    }
-
-    public Observable<RebateList> getRebateList() {
-        return realmPropertyDataMapper.getRebateList();
-    }
-
-    public void saveRebateList(RebateList rebateList) {
-        realmPropertyDataMapper.saveRebateList(rebateList);
-    }
-
-    public Observable<ColonyList> getColonyList() {
-        return realmPropertyDataMapper.getColonyList();
-    }
-
-    public void saveColonyList(ColonyList colonyList) {
-        realmPropertyDataMapper.saveColonyList(colonyList);
-    }
-
-    public Observable<UsageList> getUsageList() {
-        return realmPropertyDataMapper.getUsageList();
-    }
-
-    public void saveUsageList(UsageList usageList) {
-         realmPropertyDataMapper.saveUsageList(usageList);
+        this.propertySurveyDB = PropertySurveyDB.getInstance(context);
     }
 
 
-    public Observable<MeasurementUnitList> getMeasurementList() {
-        return realmPropertyDataMapper.getMeasurementUnitList();
-    }
-
-    public void saveMeasurementList(MeasurementUnitList measurementUnitLis) {
-        realmPropertyDataMapper.saveMeasurementList(measurementUnitLis);
-    }
-
-
-    public Observable<FloorsList> getFloorList() {
-        return realmPropertyDataMapper.getFloorList();
+    public Observable<PropertyTypes> getPropertyTypes() {
+        Type type =propertySurveyDB.getapiDao().select(PROPERTY_TYPE);
+        PropertyTypes propertyTypes = GsonFactory.getGson().fromJson(type.getJson(),PropertyTypes.class);
+        return Observable.just(propertyTypes);
     }
 
 
-    public void saveFloorList(FloorsList floorList) {
-        realmPropertyDataMapper.saveFloorList(floorList);
+
+    public void savePropertyTypes(PropertyTypes propertyTypes) {
+        String json = GsonFactory.getGson().toJson(propertyTypes);
+        Type type = new Type();
+        type.setJson(json);
+        type.setType(PROPERTY_TYPE);
+        propertySurveyDB.getapiDao().insert(type);
     }
 
-    public Observable<OwnerShipList> getOwnerShipList() {
-        return realmPropertyDataMapper.getOwnerShipList();
+    public Observable<PropertyUsage> getPropertyUsage() {
+        Type type =propertySurveyDB.getapiDao().select(PROPERTY_USAGE);
+        PropertyUsage propertyTypes = GsonFactory.getGson().fromJson(type.getJson(),PropertyUsage.class);
+        return Observable.just(propertyTypes);
     }
 
-    public void  saveOwnerShipList(OwnerShipList ownerShipList) {
-        realmPropertyDataMapper.saveOwnerShipList(ownerShipList);
+
+
+    public void savePropertyUsage(PropertyUsage propertyTypes) {
+        String json = GsonFactory.getGson().toJson(propertyTypes);
+        Type type = new Type();
+        type.setJson(json);
+        type.setType(PROPERTY_USAGE);
+        propertySurveyDB.getapiDao().insert(type);
     }
 
-    public Observable<AreaType> getAreaType() {
-        return realmPropertyDataMapper.getAreaType();
+    public Observable<RespondentStatus> getRespondentStatus() {
+        Type type =propertySurveyDB.getapiDao().select(RESPONDENT_STATUS);
+        RespondentStatus propertyTypes = GsonFactory.getGson().fromJson(type.getJson(),RespondentStatus.class);
+        return Observable.just(propertyTypes);
     }
-    public void  saveAreaType(AreaType areaType) {
-        realmPropertyDataMapper.saveAreaType(areaType);
+
+
+
+    public void saveRespondentStatus(RespondentStatus propertyTypes) {
+        String json = GsonFactory.getGson().toJson(propertyTypes);
+        Type type = new Type();
+        type.setJson(json);
+        type.setType(RESPONDENT_STATUS);
+        propertySurveyDB.getapiDao().insert(type);
+    }
+
+    public Observable<OccupancyStatus> getOccupancyStatus() {
+        Type type =propertySurveyDB.getapiDao().select(OCCUPANCY_STATUS);
+        OccupancyStatus propertyTypes = GsonFactory.getGson().fromJson(type.getJson(),OccupancyStatus.class);
+        return Observable.just(propertyTypes);
+    }
+
+
+
+    public void saveOccupancyStatus(OccupancyStatus propertyTypes) {
+        String json = GsonFactory.getGson().toJson(propertyTypes);
+        Type type = new Type();
+        type.setJson(json);
+        type.setType(OCCUPANCY_STATUS);
+        propertySurveyDB.getapiDao().insert(type);
+    }
+
+    public Observable<BuildingAge> getBuildingAges() {
+        Type type =propertySurveyDB.getapiDao().select(BUILDING_AGE);
+        BuildingAge propertyTypes = GsonFactory.getGson().fromJson(type.getJson(),BuildingAge.class);
+        return Observable.just(propertyTypes);
+    }
+
+
+
+    public void saveBuildingAge(BuildingAge propertyTypes) {
+        String json = GsonFactory.getGson().toJson(propertyTypes);
+        Type type = new Type();
+        type.setJson(json);
+        type.setType(BUILDING_AGE);
+        propertySurveyDB.getapiDao().insert(type);
     }
 
     public Observable<ConstructionType> getConstructionType() {
-        return realmPropertyDataMapper.getConstructionType();
-    }
-
-    public void saveConstructionType(ConstructionType constructionType) {
-        realmPropertyDataMapper.saveConstructionType(constructionType);
-    }
-
-    public void savePropertyTypes(PropertyTypes propertyTypes, int id) {
-        realmPropertyDataMapper.savePropertyTypes(propertyTypes,id);
-    }
-
-    public Observable<PropertySubCategoryList> getPropertySubeCategoryList(int id) {
-        return realmPropertyDataMapper.getPropertySubCategoryList(id);
-    }
-
-    public void savePropertySubCategoryList(PropertySubCategoryList propertySubCategoryList, int id) {
-        realmPropertyDataMapper.savePropertySubCategoryList(propertySubCategoryList,id);
+        Type type =propertySurveyDB.getapiDao().select(CONSTRUCTION_TYPE);
+        ConstructionType propertyTypes = GsonFactory.getGson().fromJson(type.getJson(),ConstructionType.class);
+        return Observable.just(propertyTypes);
     }
 
 
-    public Observable<OLDPropertyUIDS> getPropertyIdList(String query) {
-        return realmPropertyDataMapper.getPropertyIdList(query);
-    }
-    public Observable<OLDPropertyUIDS> getPropertyBillingIdList(String query) {
-        return realmPropertyDataMapper.getDistributionPropertyIdList(query);
+
+    public void saveConstructionType(ConstructionType propertyTypes) {
+        String json = GsonFactory.getGson().toJson(propertyTypes);
+        Type type = new Type();
+        type.setJson(json);
+        type.setType(CONSTRUCTION_TYPE);
+        propertySurveyDB.getapiDao().insert(type);
     }
 
-    public Observable<FormData> getFormData(String query) {
-        return realmPropertyDataMapper.getFormData(query);
+    public Observable<Floors> getFloors() {
+        Type type =propertySurveyDB.getapiDao().select(Floors);
+        Floors propertyTypes = GsonFactory.getGson().fromJson(type.getJson(),Floors.class);
+        return Observable.just(propertyTypes);
     }
-/*
-    public Observable<FormData> getFormData(String query) {
-        return surveyAPI.getPropertyDetail(query).map(new Func1<Response<DataResponse<PropertyDetails>>, FormData>() {
-            @Override
-            public FormData call(Response<DataResponse<PropertyDetails>> dataResponseResponse) {
-                return dataResponseResponse.body().getData().getFormData();
-            }
-        });
-    }*/
+
+
+
+    public void saveFloorse(Floors propertyTypes) {
+        String json = GsonFactory.getGson().toJson(propertyTypes);
+        Type type = new Type();
+        type.setJson(json);
+        type.setType(Floors);
+        propertySurveyDB.getapiDao().insert(type);
+    }
+
+    public Observable<NonResidentalCategory> getNonResidentalCategorys() {
+        Type type =propertySurveyDB.getapiDao().select(NON_RESIDENTAL_CATEGORY);
+        NonResidentalCategory propertyTypes = GsonFactory.getGson().fromJson(type.getJson(),NonResidentalCategory.class);
+        return Observable.just(propertyTypes);
+    }
+
+
+
+    public void saveNonResidentalCategory(NonResidentalCategory propertyTypes) {
+        String json = GsonFactory.getGson().toJson(propertyTypes);
+        Type type = new Type();
+        type.setJson(json);
+        type.setType(NON_RESIDENTAL_CATEGORY);
+        propertySurveyDB.getapiDao().insert(type);
+    }
+
+
+    public Observable<SourceWater> getSourceWater() {
+        Type type =propertySurveyDB.getapiDao().select(OCCUPANCY_STATUS);
+        SourceWater propertyTypes = GsonFactory.getGson().fromJson(type.getJson(),SourceWater.class);
+        return Observable.just(propertyTypes);
+    }
+
+
+
+    public void saveSourceWatery(SourceWater propertyTypes) {
+        String json = GsonFactory.getGson().toJson(propertyTypes);
+        Type type = new Type();
+        type.setJson(json);
+        type.setType(OCCUPANCY_STATUS);
+        propertySurveyDB.getapiDao().insert(type);
+    }
+
+
 }

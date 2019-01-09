@@ -28,9 +28,12 @@ public class SaveApartmentSurveyFormUseCase extends UseCase<GetPropertySaveRespo
     @Override
     public Observable<GetPropertySaveResponse> createObservable(final RequestParams requestParams) {
         final SaveApartmentRequest formData = (SaveApartmentRequest) requestParams.getObject("formdata");
-
-
         return iApartmentSurveyFormSaveRepository.submitCloudNewApartment(formData);
     }
 
+    public RequestParams createRequestParams(SaveApartmentRequest saveApartmentRequest) {
+        RequestParams requestParams = RequestParams.create();
+        requestParams.putObject("formdata",saveApartmentRequest);
+        return requestParams;
+    }
 }

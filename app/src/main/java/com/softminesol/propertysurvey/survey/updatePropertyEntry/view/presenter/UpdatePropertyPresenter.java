@@ -1,5 +1,6 @@
 package com.softminesol.propertysurvey.survey.updatePropertyEntry.view.presenter;
 
+import com.softminesol.locations.locationmanager.domain.GetLocationAddressUseCase;
 import com.softminesol.propertysurvey.survey.cloudsync.OldFormSync;
 import com.softminesol.propertysurvey.survey.common.domain.GetPropertyInfoUseCase;
 import com.softminesol.propertysurvey.survey.common.domain.SurveyAreaTypeUseCase;
@@ -34,8 +35,8 @@ public class UpdatePropertyPresenter extends PropertyLocationPresenter<UpdatePro
     OldFormSync syncManager;
     @Inject
     public UpdatePropertyPresenter(AdapterFactory adapterFactory, SurveyAreaTypeUseCase areaTypeUseCase, SurveyMeasurementListUseCase measurementListUseCase, SurveyPropertyIdListUseCase surveyPropertyIdListUseCase,
-                                   GetPropertyInfoUseCase getPropertyInfoUseCase, SurveyFormUpdateUseCase surveyFormUpdateUseCase,OldFormSync oldFormSync) {
-        super(adapterFactory, areaTypeUseCase, measurementListUseCase);
+                                   GetPropertyInfoUseCase getPropertyInfoUseCase, SurveyFormUpdateUseCase surveyFormUpdateUseCase,OldFormSync oldFormSync, GetLocationAddressUseCase reverseGeoCodeAddress) {
+        super(adapterFactory, areaTypeUseCase, measurementListUseCase,reverseGeoCodeAddress);
         this.surveyPropertyIdListUseCase = surveyPropertyIdListUseCase;
         this.getPropertyInfoUseCase = getPropertyInfoUseCase;
         this.surveyFormUpdateUseCase = surveyFormUpdateUseCase;

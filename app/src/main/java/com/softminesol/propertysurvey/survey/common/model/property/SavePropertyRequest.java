@@ -7,6 +7,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 @Entity
 public class SavePropertyRequest implements Serializable{
@@ -79,9 +80,9 @@ public class SavePropertyRequest implements Serializable{
     @Expose
     private String roadWidth;
     @SerializedName("image")
-    private List<String> imagesList;
+    private List<String> imagesList = new ArrayList<>();
 
-    private List<String> imagePathList;
+    private List<String> imagePathList = new ArrayList<>();
 
     @SerializedName("lattitude")
     @Expose

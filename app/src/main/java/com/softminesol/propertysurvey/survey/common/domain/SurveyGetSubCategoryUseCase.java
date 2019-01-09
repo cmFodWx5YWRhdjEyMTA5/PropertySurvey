@@ -1,5 +1,6 @@
 package com.softminesol.propertysurvey.survey.common.domain;
 
+import com.softminesol.propertysurvey.survey.common.model.ColonyList;
 import com.softminesol.propertysurvey.survey.common.model.PropertySubCategoryList;
 
 import javax.inject.Inject;
@@ -22,6 +23,6 @@ public class SurveyGetSubCategoryUseCase extends UseCase<PropertySubCategoryList
 
     @Override
     public Observable<PropertySubCategoryList> createObservable(RequestParams requestParams) {
-        return repository.getPropertySubCategoryList(requestParams);
+        return Observable.just(new PropertySubCategoryList());
     }
 }

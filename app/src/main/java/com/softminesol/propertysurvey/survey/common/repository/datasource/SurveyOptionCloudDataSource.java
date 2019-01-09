@@ -14,6 +14,13 @@ import com.softminesol.propertysurvey.survey.common.model.RebateList;
 import com.softminesol.propertysurvey.survey.common.model.UsageList;
 import com.softminesol.propertysurvey.survey.common.model.formData.FormData;
 import com.softminesol.propertysurvey.survey.common.model.formData.PropertyDetails;
+import com.softminesol.propertysurvey.survey.common.model.newmodel.BuildingAge;
+import com.softminesol.propertysurvey.survey.common.model.newmodel.Floors;
+import com.softminesol.propertysurvey.survey.common.model.newmodel.NonResidentalCategory;
+import com.softminesol.propertysurvey.survey.common.model.newmodel.OccupancyStatus;
+import com.softminesol.propertysurvey.survey.common.model.newmodel.PropertyUsage;
+import com.softminesol.propertysurvey.survey.common.model.newmodel.RespondentStatus;
+import com.softminesol.propertysurvey.survey.common.model.newmodel.SourceWater;
 import com.softminesol.propertysurvey.survey.common.net.SurveyAPI;
 
 import javax.inject.Inject;
@@ -43,14 +50,6 @@ public class SurveyOptionCloudDataSource {
         });
     }
 
-    public Observable<PropertyTypes> getPropertyTypes(int id) {
-        return surveyAPI.getPropertyTypes(id).map(new Func1<Response<DataResponse<PropertyTypes>>, PropertyTypes>() {
-            @Override
-            public PropertyTypes call(Response<DataResponse<PropertyTypes>> dataResponseResponse) {
-                return dataResponseResponse.body().getData();
-            }
-        });
-    }
 
     public Observable<PropertySubCategoryList> getPropertySubeCategoryList(int id) {
         return surveyAPI.getPropertySubCategoryList(id).map(new Func1<Response<DataResponse<PropertySubCategoryList>>, PropertySubCategoryList>() {
@@ -149,5 +148,96 @@ public class SurveyOptionCloudDataSource {
                 return dataResponseResponse.body().getData().getFormData();
             }
         });
+    }
+
+    public Observable<PropertyTypes> getPropertyTypes() {
+        return surveyAPI.getPropertyTypes().map(new Func1<Response<DataResponse<PropertyTypes>>, PropertyTypes>() {
+            @Override
+            public PropertyTypes call(Response<DataResponse<PropertyTypes>> dataResponseResponse) {
+                return dataResponseResponse.body().getData();
+            }
+        });
+    }
+
+
+    public Observable<PropertyUsage> getPropertyUsage() {
+        return surveyAPI.getPropertyUsage1().map(new Func1<Response<DataResponse<PropertyUsage>>, PropertyUsage>() {
+            @Override
+            public PropertyUsage call(Response<DataResponse<PropertyUsage>> dataResponseResponse) {
+                return dataResponseResponse.body().getData();
+            }
+        });
+
+    }
+
+    public Observable<RespondentStatus> getRespondentStatus() {
+        return surveyAPI.getRespondentStatus().map(new Func1<Response<DataResponse<RespondentStatus>>, RespondentStatus>() {
+            @Override
+            public RespondentStatus call(Response<DataResponse<RespondentStatus>> dataResponseResponse) {
+                return dataResponseResponse.body().getData();
+            }
+        });
+
+    }
+
+
+    public Observable<OccupancyStatus> getOccupancyStatus() {
+        return surveyAPI.getOccupancyStatus().map(new Func1<Response<DataResponse<OccupancyStatus>>, OccupancyStatus>() {
+            @Override
+            public OccupancyStatus call(Response<DataResponse<OccupancyStatus>> dataResponseResponse) {
+                return dataResponseResponse.body().getData();
+            }
+        });
+
+    }
+
+    public Observable<BuildingAge> getBuildingAge() {
+        return surveyAPI.getBuildingAge().map(new Func1<Response<DataResponse<BuildingAge>>, BuildingAge>() {
+            @Override
+            public BuildingAge call(Response<DataResponse<BuildingAge>> dataResponseResponse) {
+                return dataResponseResponse.body().getData();
+            }
+        });
+
+    }
+
+    public Observable<com.softminesol.propertysurvey.survey.common.model.newmodel.ConstructionType> getConstructionType1() {
+        return surveyAPI.getConstructionType1().map(new Func1<Response<DataResponse<com.softminesol.propertysurvey.survey.common.model.newmodel.ConstructionType>>, com.softminesol.propertysurvey.survey.common.model.newmodel.ConstructionType>() {
+            @Override
+            public com.softminesol.propertysurvey.survey.common.model.newmodel.ConstructionType call(Response<DataResponse<com.softminesol.propertysurvey.survey.common.model.newmodel.ConstructionType>> dataResponseResponse) {
+                return dataResponseResponse.body().getData();
+            }
+        });
+
+    }
+
+    public Observable<Floors> getFloors() {
+        return surveyAPI.getFloors().map(new Func1<Response<DataResponse<Floors>>, Floors>() {
+            @Override
+            public Floors call(Response<DataResponse<Floors>> dataResponseResponse) {
+                return dataResponseResponse.body().getData();
+            }
+        });
+
+    }
+
+    public Observable<NonResidentalCategory> getNonResidentalCategorys() {
+        return surveyAPI.getNonResidentalCategorys().map(new Func1<Response<DataResponse<NonResidentalCategory>>, NonResidentalCategory>() {
+            @Override
+            public NonResidentalCategory call(Response<DataResponse<NonResidentalCategory>> dataResponseResponse) {
+                return dataResponseResponse.body().getData();
+            }
+        });
+
+    }
+
+    public Observable<SourceWater> getSourceWater() {
+        return surveyAPI.getSourceWater().map(new Func1<Response<DataResponse<SourceWater>>, SourceWater>() {
+            @Override
+            public SourceWater call(Response<DataResponse<SourceWater>> dataResponseResponse) {
+                return dataResponseResponse.body().getData();
+            }
+        });
+
     }
 }

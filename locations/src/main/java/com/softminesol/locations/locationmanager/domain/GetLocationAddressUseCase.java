@@ -2,11 +2,11 @@ package com.softminesol.locations.locationmanager.domain;
 
 
 import com.softminesol.locations.locationmanager.data.ReverseGeoCodeAddress;
+import com.tokopedia.usecase.RequestParams;
+import com.tokopedia.usecase.UseCase;
 
 import javax.inject.Inject;
 
-import frameworks.network.usecases.RequestParams;
-import frameworks.network.usecases.UseCase;
 import rx.Observable;
 
 public class GetLocationAddressUseCase extends UseCase<ReverseGeoCodeAddress> {
@@ -21,11 +21,11 @@ public class GetLocationAddressUseCase extends UseCase<ReverseGeoCodeAddress> {
     }
 
 
-    public RequestParams createRequestParams(String latitude,String longitude,String key) {
+    public RequestParams createRequestParams(String latitude, String longitude, String key) {
         RequestParams requestParams = RequestParams.create();
         requestParams.putString(PARAM_LATITUDE, latitude);
         requestParams.putString(PARAM_LONGITUDE, longitude);
-        requestParams.putString(PARAM_LONGITUDE, key);
+        requestParams.putString(PARAM_KEY, key);
         return requestParams;
     }
 

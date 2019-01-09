@@ -7,6 +7,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -102,7 +103,7 @@ public class SaveApartmentRequest implements Serializable {
 
     @Expose
     @SerializedName("image")
-    private List<String> apartmentImage;
+    private List<String> apartmentImage= new ArrayList<>();
 
     public List<String> getApartmentImagepath() {
         return apartmentImagepath;
@@ -112,7 +113,7 @@ public class SaveApartmentRequest implements Serializable {
         this.apartmentImagepath = apartmentImagepath;
     }
 
-    private List<String> apartmentImagepath;
+    private List<String> apartmentImagepath = new ArrayList<>();
 
     private boolean updatedToServer;
 

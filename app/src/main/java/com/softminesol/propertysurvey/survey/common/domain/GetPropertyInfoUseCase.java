@@ -22,6 +22,6 @@ public class GetPropertyInfoUseCase extends UseCase<FormData> {
 
     @Override
     public Observable<FormData> createObservable(RequestParams requestParams) {
-        return repository.getFormData(requestParams.getString("query", ""));
+        return Observable.just(new FormData());
     }
 }

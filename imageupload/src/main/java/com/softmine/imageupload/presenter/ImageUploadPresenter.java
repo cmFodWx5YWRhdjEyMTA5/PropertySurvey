@@ -53,7 +53,7 @@ public class ImageUploadPresenter extends AppBasePresenter<IUploadImageContracto
                 getView().showSnackBar(e.getMessage());
                 Intent intent = new Intent();
                 intent.putStringArrayListExtra(FILE_PATHS, (ArrayList<String>) fileUris);
-                getView().setResult(RESULT_FILE_URI,intent);
+                getView().setResult(RESULT_FILE_PATHS,intent);
                 getView().finish();
             }
 
@@ -62,7 +62,7 @@ public class ImageUploadPresenter extends AppBasePresenter<IUploadImageContracto
 
                 Intent intent = new Intent();
                 intent.putStringArrayListExtra(FILE_PATHS, (ArrayList<String>) strings);
-                getView().setResult(RESULT_FILE_PATHS,intent);
+                getView().setResult(RESULT_FILE_URI,intent);
                 getView().finish();
 
             }

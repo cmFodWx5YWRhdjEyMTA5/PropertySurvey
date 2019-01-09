@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import frameworks.network.model.BaseResponse;
 import rx.Observable;
 import rx.functions.Action1;
+import rx.functions.Func1;
 
 /**
  * Created by sandeep on 13/5/18.
@@ -47,18 +48,13 @@ public class SurveyFormSubmitRepository implements ISurveyFormSubmitRepository,I
 
 
     public Observable<GetPropertySaveResponse> submitCloudNewProperty(final SavePropertyRequest formData) {
-        if(formData.getImagePathList().size()>0) {
+        if(formData.getImagePathList()!= null && formData.getImagePathList().size()>0) {
             return submitFormDataFactory.getCacheSubmitFormData().submitFormData(formData);
         }else {
-            return submitFormDataFactory.getCloudSubmitFomData().submitCloudNewProperty(formData).doOnError(new Action1<Throwable>() {
+            return submitFormDataFactory.getCloudSubmitFomData().submitCloudNewProperty(formData).onErrorResumeNext(new Func1<Throwable, Observable<GetPropertySaveResponse>>() {
                 @Override
-                public void call(Throwable throwable) {
-                    submitFormDataFactory.getCacheSubmitFormData().submitFormData(formData);
-                }
-            }).doOnNext(new Action1<GetPropertySaveResponse>() {
-                @Override
-                public void call(GetPropertySaveResponse getPropertySaveResponse) {
-
+                public Observable<GetPropertySaveResponse> call(Throwable throwable) {
+                    return submitFormDataFactory.getCacheSubmitFormData().submitFormData(formData);
                 }
             });
         }

@@ -1,11 +1,9 @@
-package com.softminesol.propertysurvey.localcachesync.data;
+package com.softminesol.propertysurvey.localcachesync.domain;
 
-import com.softmine.imageupload.data.repository.ImageUploadRepository;
-import com.softmine.imageupload.domain.ImageListUploadSubmitUseCase;
 import com.softmine.imageupload.domain.ImageUploadUseCase;
 import com.softmine.imageupload.model.ImageUploadResponse;
 import com.softminesol.propertysurvey.CommonBaseUrl;
-import com.softminesol.propertysurvey.localcachesync.domain.SurveyPropertyOfflineRepository;
+import com.softminesol.propertysurvey.localcachesync.data.SurveyPropertyOfflineRepository;
 import com.softminesol.propertysurvey.survey.common.model.property.GetPropertySaveResponse;
 import com.softminesol.propertysurvey.survey.common.model.property.SavePropertyRequest;
 import com.softminesol.propertysurvey.survey.newPropertyEntry.domain.SaveSurveyFormUseCase;
@@ -40,7 +38,7 @@ public class NewProperySyncUseCase extends UseCase<List<String>> {
             public Observable<GetPropertySaveResponse> call(final SavePropertyRequest savePropertyRequest) {
                 final List<String> imagePathList = savePropertyRequest.getImagePathList();
 
-                if (savePropertyRequest != null && savePropertyRequest.getImagePathList().size() > 0) {
+                if (imagePathList != null && imagePathList.size() > 0) {
                     return Observable.from(imagePathList).concatMap(new Func1<String, Observable<GetPropertySaveResponse>>() {
                         @Override
                         public Observable<GetPropertySaveResponse> call(final String s) {

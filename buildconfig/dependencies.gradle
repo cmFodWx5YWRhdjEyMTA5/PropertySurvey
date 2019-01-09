@@ -111,7 +111,8 @@ ext {
             locations       : ":locations",
             permissions       : ":permissions",
             maps       : ":maps",
-            imageupload : ":imageupload"
+            imageupload : ":imageupload",
+            usecase : ":usecase"
     ]
 
     dbDependencies = [

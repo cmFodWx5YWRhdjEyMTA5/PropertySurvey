@@ -7,6 +7,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Nonnull;
@@ -45,13 +46,13 @@ public class Owner implements Serializable{
 
     @SerializedName("image")
     @Expose
-    List<String> registryImage;
+    List<String> registryImage = new ArrayList<>();
 
     public List<String> getRegistryImagePath() {
         return registryImagePath;
     }
 
-    private List<String> registryImagePath;
+    private List<String> registryImagePath = new ArrayList<>();
 
     public List<String> getRegistryImage() {
         return registryImage;

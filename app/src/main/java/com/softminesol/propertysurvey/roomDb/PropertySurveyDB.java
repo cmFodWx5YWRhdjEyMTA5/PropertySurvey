@@ -12,11 +12,12 @@ import com.softminesol.propertysurvey.survey.common.model.apartment.SaveApartmen
 import com.softminesol.propertysurvey.survey.common.model.property.SavePropertyRequest;
 
 @Database(entities = {
-        SaveApartmentRequest.class,SavePropertyRequest.class},version = 1)
+        SaveApartmentRequest.class,SavePropertyRequest.class,Type.class},version = 1)
 @TypeConverters({OwnerTypeConverter.class,ListStringConverter.class})
 public abstract class PropertySurveyDB extends RoomDatabase {
     public abstract SurveyApartmentDao getApartmentDao();
     public abstract SurveyPropertyDao getPropertyDao();
+    public abstract GETAPIDao getapiDao();
     private static PropertySurveyDB INSTANCE = null;
     public static PropertySurveyDB getInstance(Context context) {
         if (INSTANCE == null) {
@@ -24,7 +25,7 @@ public abstract class PropertySurveyDB extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context,
                             PropertySurveyDB.class, "PropertySurveyDB.db")
-                            .build();
+                            .allowMainThreadQueries().build();
                 }
             }
         }
