@@ -92,14 +92,10 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
         } if (requestCode == ImageUploadActivity.REQUEST_GET_FILE_SERVER_URI) {
             if(resultCode == ImageUploadPresenter.RESULT_FILE_URI) {
                 fileUrls = data.getStringArrayListExtra(FILE_PATHS);
-                if (fileUrls != null) {
-                    fileUrls = new ArrayList<>();
-                }
+
             }else if(resultCode == ImageUploadPresenter.RESULT_FILE_PATHS) {
                 filePaths = data.getStringArrayListExtra(FILE_PATHS);
-                if(filePaths != null) {
-                    filePaths = new ArrayList<>();
-                }
+
             }
         }
         return true;

@@ -267,6 +267,9 @@ public class SavePropertyRequest implements Serializable{
 
     public void setImagesList(List<String> imagesList) {
         this.imagesList = imagesList;
+        if (imagesList == null) {
+            imagesList = new ArrayList<>();
+        }
     }
 
     public List<String> getImagePathList() {
@@ -275,5 +278,8 @@ public class SavePropertyRequest implements Serializable{
 
     public void setImagePathList(List<String> imagePathList) {
         this.imagePathList = imagePathList;
+        if(imagePathList == null) {
+            imagePathList = new ArrayList<>();
+        }
     }
 }

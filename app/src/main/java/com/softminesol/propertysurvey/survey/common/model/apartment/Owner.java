@@ -60,11 +60,17 @@ public class Owner implements Serializable{
 
     public void setRegistryImage(List<String> registryImage) {
         this.registryImage = registryImage;
+        if(this.registryImage == null) {
+            this.registryImage = new ArrayList<>();
+        }
     }
 
 
     public void setRegistryImagePath(List<String> registerImagePath) {
         this.registryImagePath = registerImagePath;
+        if(this.registryImagePath == null) {
+            this.registryImagePath = new ArrayList<>();
+        }
     }
     public String getName() {
         return name;
