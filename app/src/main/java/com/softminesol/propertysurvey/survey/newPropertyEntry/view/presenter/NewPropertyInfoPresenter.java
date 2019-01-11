@@ -4,7 +4,10 @@ import com.softminesol.locations.locationmanager.domain.GetLocationAddressUseCas
 import com.softminesol.propertysurvey.localcachesync.domain.NewProperySyncUseCase;
 import com.softminesol.propertysurvey.survey.cloudsync.NewFormSync;
 import com.softminesol.propertysurvey.survey.common.domain.SurveyAreaTypeUseCase;
+import com.softminesol.propertysurvey.survey.common.domain.SurveyGetPropertyTypeUseCase;
 import com.softminesol.propertysurvey.survey.common.domain.SurveyMeasurementListUseCase;
+import com.softminesol.propertysurvey.survey.common.domain_luc.SurveyPropertyUsage;
+import com.softminesol.propertysurvey.survey.common.model.newmodel.PropertyUsage;
 import com.softminesol.propertysurvey.survey.common.model.property.GetPropertySaveResponse;
 import com.softminesol.propertysurvey.survey.common.model.property.SavePropertyRequest;
 import com.softminesol.propertysurvey.survey.common.view.activity.ApartmentInfoActivity;
@@ -33,9 +36,11 @@ public class NewPropertyInfoPresenter extends PropertyLocationPresenter<NewPrope
     NewProperySyncUseCase newProperySyncUseCase;
 
     @Inject
-    NewPropertyInfoPresenter(AdapterFactory adapterFactory, SurveyAreaTypeUseCase areaTypeUseCase, SurveyMeasurementListUseCase measurementListUseCase, SaveSurveyFormUseCase saveSurveyFormUseCase, GetLocationAddressUseCase reverseGeoCodeAddress) {
-        super(adapterFactory, areaTypeUseCase, measurementListUseCase, reverseGeoCodeAddress);
+    NewPropertyInfoPresenter(AdapterFactory adapterFactory, SurveyGetPropertyTypeUseCase getPropertyTypeUseCase,
+                             SurveyPropertyUsage surveyPropertyUsage,SaveSurveyFormUseCase saveSurveyFormUseCase, GetLocationAddressUseCase reverseGeoCodeAddress) {
+        super(adapterFactory, getPropertyTypeUseCase,surveyPropertyUsage,reverseGeoCodeAddress);
         this.saveSurveyFormUseCase = saveSurveyFormUseCase;
+
     }
 
     @Override

@@ -10,8 +10,24 @@ import com.softmine.imageupload.view.ImageUploadActivity;
 import com.softminesol.propertysurvey.CommonBaseUrl;
 import com.softminesol.propertysurvey.localcachesync.domain.NewApartmentUseCase;
 import com.softminesol.propertysurvey.survey.apartmentEntry.domain.SaveApartmentSurveyFormUseCase;
+import com.softminesol.propertysurvey.survey.common.domain.SurveyFloorListUseCase;
+import com.softminesol.propertysurvey.survey.common.domain_luc.SurveyConstructionType;
+import com.softminesol.propertysurvey.survey.common.domain_luc.SurveyFloor;
+import com.softminesol.propertysurvey.survey.common.domain_luc.SurveyNonResidentCategory;
+import com.softminesol.propertysurvey.survey.common.domain_luc.SurveyOccupancyStatus;
+import com.softminesol.propertysurvey.survey.common.domain_luc.SurveyPropertyUsage;
+import com.softminesol.propertysurvey.survey.common.domain_luc.SurveyRespodentStatus;
+import com.softminesol.propertysurvey.survey.common.domain_luc.SurveySourceWaterUseCase;
+import com.softminesol.propertysurvey.survey.common.model.FloorsList;
 import com.softminesol.propertysurvey.survey.common.model.apartment.Owner;
 import com.softminesol.propertysurvey.survey.common.model.apartment.SaveApartmentRequest;
+import com.softminesol.propertysurvey.survey.common.model.newmodel.ConstructionType;
+import com.softminesol.propertysurvey.survey.common.model.newmodel.Floors;
+import com.softminesol.propertysurvey.survey.common.model.newmodel.NonResidentalCategory;
+import com.softminesol.propertysurvey.survey.common.model.newmodel.OccupancyStatus;
+import com.softminesol.propertysurvey.survey.common.model.newmodel.PropertyUsage;
+import com.softminesol.propertysurvey.survey.common.model.newmodel.RespondentStatus;
+import com.softminesol.propertysurvey.survey.common.model.newmodel.SourceWater;
 import com.softminesol.propertysurvey.survey.common.model.property.GetPropertySaveResponse;
 import com.softminesol.propertysurvey.survey.common.view.activity.OwnerInfoActivity;
 
@@ -21,6 +37,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import frameworks.basemvp.AppBasePresenter;
+import frameworks.customadapter.CustomAdapterModel;
 import frameworks.network.usecases.RequestParams;
 import frameworks.utils.AdapterFactory;
 import rx.Subscriber;
@@ -35,14 +52,31 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
 
     private final AdapterFactory adapterFactory;
     private final SaveApartmentSurveyFormUseCase saveApartmentSurveyFormUseCase;
+    private final SurveyFloor surveyFloorListUseCase;
+    private final SurveyPropertyUsage surveyPropertyUsage;
+    private final SurveyNonResidentCategory surveyNonResidentCategory;
+    private final SurveyRespodentStatus surveyRespodentStatus;
+    private final SurveyOccupancyStatus surveyOccupancyStatus;
+    private final SurveySourceWaterUseCase surveySourceWaterUseCase;
+    private final SurveyConstructionType surveyConstructionType;
     private NewApartmentUseCase newApartmentUseCas;
 
     @Inject
     public ApartmentInfoPresenter(AdapterFactory adapterFactory, SaveApartmentSurveyFormUseCase saveApartmentSurveyFormUseCase,
-                                  NewApartmentUseCase newApartmentUseCase) {
+                                  NewApartmentUseCase newApartmentUseCase, SurveyFloor surveyFloorListUseCase,
+                                  SurveyPropertyUsage surveyPropertyUsage, SurveyNonResidentCategory surveyNonResidentCategory,
+                                  SurveyRespodentStatus surveyRespodentStatus, SurveyOccupancyStatus surveyOccupancyStatus, SurveySourceWaterUseCase surveySourceWaterUseCase,
+                                  SurveyConstructionType surveyConstructionType) {
         this.adapterFactory = adapterFactory;
         this.saveApartmentSurveyFormUseCase = saveApartmentSurveyFormUseCase;
         this.newApartmentUseCas = newApartmentUseCase;
+        this.surveyFloorListUseCase = surveyFloorListUseCase;
+        this.surveyPropertyUsage = surveyPropertyUsage;
+        this.surveyNonResidentCategory = surveyNonResidentCategory;
+        this.surveyRespodentStatus = surveyRespodentStatus;
+        this.surveyOccupancyStatus = surveyOccupancyStatus;
+        this.surveySourceWaterUseCase = surveySourceWaterUseCase;
+        this.surveyConstructionType = surveyConstructionType;
 
     }
 
@@ -75,12 +109,123 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
     public void attachView(ApartmentInfoContract.View view) {
         super.attachView(view);
         getView().setLicenceStatus(adapterFactory.getYesNoAdapter());
-        getView().setPropertyUsage(adapterFactory.getTypeOfPropertyUsage());
-        getView().setRespondentStatus(adapterFactory.getRespondentStatus());
-        getView().setOccupencyStatus(adapterFactory.getOccupencyStatus());
-        getView().setConstructionType(adapterFactory.getCustructionType());
-        getView().setSourceOfWater(adapterFactory.getSourceOfWaterProperty());
-        getView().setNonRegCategory(adapterFactory.getTypeOfNonResPropertyAdapter());
+        surveyFloorListUseCase.execute(new Subscriber<Floors>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(Floors floors) {
+
+                getView().setFloorList(adapterFactory.getCustomAdapter((List<CustomAdapterModel>) (List<?>) floors.getFloors()));
+            }
+        });
+        surveyPropertyUsage.execute(new Subscriber<PropertyUsage>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(PropertyUsage propertyUsage) {
+
+                getView().setPropertyUsage(adapterFactory.getCustomAdapter((List<CustomAdapterModel>) (List<?>) propertyUsage.getPropertyUsage()));
+            }
+        });
+        surveyRespodentStatus.execute(new Subscriber<RespondentStatus>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(RespondentStatus respondentStatus) {
+                getView().setRespondentStatus(adapterFactory.getCustomAdapter((List<CustomAdapterModel>) (List<?>) respondentStatus.getRespodentStatus()));
+            }
+        });
+
+        surveyOccupancyStatus.execute(new Subscriber<OccupancyStatus>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(OccupancyStatus occupancyStatus) {
+                getView().setOccupencyStatus(adapterFactory.getCustomAdapter((List<CustomAdapterModel>) (List<?>) occupancyStatus.getOccupancyStatus()));
+            }
+        });
+        surveyConstructionType.execute(new Subscriber<ConstructionType>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(ConstructionType constructionType) {
+                getView().setConstructionType(adapterFactory.getCustomAdapter((List<CustomAdapterModel>) (List<?>) constructionType.getConstructionTypes()));
+            }
+        });
+        surveySourceWaterUseCase.execute(new Subscriber<SourceWater>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(SourceWater sourceWater) {
+                getView().setSourceOfWater(adapterFactory.getCustomAdapter((List<CustomAdapterModel>) (List<?>) sourceWater.getSourceWater()));
+            }
+        });
+        surveyNonResidentCategory.execute(new Subscriber<NonResidentalCategory>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(NonResidentalCategory nonResidentalCategory) {
+                getView().setNonRegCategory(adapterFactory.getCustomAdapter((List<CustomAdapterModel>) (List<?>) nonResidentalCategory.getNonResidentalCategory()));
+            }
+        });
+
+
         getView().setSpPowerBackup(adapterFactory.getYesNoAdapter());
         getView().setSpElectricityConnStatus(adapterFactory.getYesNoAdapter());
         getView().setSpSewerageConnStatus(adapterFactory.getYesNoAdapter());

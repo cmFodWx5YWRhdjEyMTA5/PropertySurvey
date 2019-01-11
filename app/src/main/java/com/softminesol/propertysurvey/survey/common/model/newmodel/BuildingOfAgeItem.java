@@ -2,7 +2,9 @@ package com.softminesol.propertysurvey.survey.common.model.newmodel;
 
 import com.google.gson.annotations.SerializedName;
 
-public class BuildingOfAgeItem{
+import frameworks.customadapter.CustomAdapterModel;
+
+public class BuildingOfAgeItem extends CustomAdapterModel {
 
 	@SerializedName("building_age")
 	private String buildingAge;
@@ -28,10 +30,12 @@ public class BuildingOfAgeItem{
 
 	@Override
  	public String toString(){
-		return 
-			"BuildingOfAgeItem{" + 
-			"building_age = '" + buildingAge + '\'' + 
-			",building_age_id = '" + buildingAgeId + '\'' + 
-			"}";
+		return
+				buildingAge;
 		}
+
+	@Override
+	public String getText() {
+		return buildingAge;
+	}
 }

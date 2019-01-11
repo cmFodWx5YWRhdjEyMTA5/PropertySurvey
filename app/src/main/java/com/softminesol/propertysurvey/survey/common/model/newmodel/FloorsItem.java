@@ -2,7 +2,9 @@ package com.softminesol.propertysurvey.survey.common.model.newmodel;
 
 import com.google.gson.annotations.SerializedName;
 
-public class FloorsItem{
+import frameworks.customadapter.CustomAdapterModel;
+
+public class FloorsItem extends CustomAdapterModel {
 
 	@SerializedName("floor_id")
 	private int floorId;
@@ -29,9 +31,11 @@ public class FloorsItem{
 	@Override
  	public String toString(){
 		return 
-			"FloorsItem{" + 
-			"floor_id = '" + floorId + '\'' + 
-			",floor = '" + floor + '\'' + 
-			"}";
+			floor;
 		}
+
+	@Override
+	public String getText() {
+		return floor;
+	}
 }

@@ -1,7 +1,15 @@
 package com.softminesol.propertysurvey.survey.common.model.newmodel;
 
-public class SourceWaterItem{
+import com.google.gson.annotations.SerializedName;
+
+import frameworks.customadapter.CustomAdapterModel;
+
+public class SourceWaterItem extends CustomAdapterModel {
+
+	@SerializedName("water_source")
 	private String waterSource;
+
+	@SerializedName("water_source_id")
 	private int waterSourceId;
 
 	public void setWaterSource(String waterSource){
@@ -23,9 +31,11 @@ public class SourceWaterItem{
 	@Override
  	public String toString(){
 		return 
-			"SourceWaterItem{" + 
-			"water_source = '" + waterSource + '\'' + 
-			",water_source_id = '" + waterSourceId + '\'' + 
-			"}";
+			getText();
 		}
+
+	@Override
+	public String getText() {
+		return waterSource;
+	}
 }

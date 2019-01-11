@@ -37,19 +37,28 @@
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/textILayout_TempId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/activity_vertical_margin">
 
                     <EditText
-                        android:id="@+id/edt_Floor_No"
+                        android:id="@+id/edt_TempId"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/floor_number"
+                        android:hint="@string/temp_id"
                         android:inputType="text|textEmailAddress"
                         android:maxLines="1" />
 
                 </android.support.design.widget.TextInputLayout>
+                <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                    android:id="@+id/edt_Floor_No"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:hint="@string/floor_number"
+                    app:met_floatingLabel="normal" />
+
 
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/textILayout_propertyFloorId"

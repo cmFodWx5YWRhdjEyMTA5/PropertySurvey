@@ -130,16 +130,16 @@ public class SurveyOptionRepository implements ISurveyOptionRepository {
     }
 
     @Override
-    public Observable<ConstructionType> getConstructionType() {
-        return  surveyOptionFactory.getSurveyOptionCacheDataSource().getConstructionType().flatMap(new Func1<ConstructionType, Observable<ConstructionType>>() {
+    public Observable<com.softminesol.propertysurvey.survey.common.model.newmodel.ConstructionType> getConstructionType() {
+        return  surveyOptionFactory.getSurveyOptionCacheDataSource().getConstructionType().flatMap(new Func1<com.softminesol.propertysurvey.survey.common.model.newmodel.ConstructionType, Observable<com.softminesol.propertysurvey.survey.common.model.newmodel.ConstructionType>>() {
             @Override
-            public Observable<ConstructionType> call(ConstructionType propertyTypes) {
+            public Observable<com.softminesol.propertysurvey.survey.common.model.newmodel.ConstructionType> call(com.softminesol.propertysurvey.survey.common.model.newmodel.ConstructionType propertyTypes) {
                 if(propertyTypes != null) {
                     return Observable.just(propertyTypes);
                 }else {
-                    return surveyOptionFactory.getSurveyOptionCloudDataSource().getConstructionType().doOnNext(new Action1<ConstructionType>() {
+                    return surveyOptionFactory.getSurveyOptionCloudDataSource().getConstructionType1().doOnNext(new Action1<com.softminesol.propertysurvey.survey.common.model.newmodel.ConstructionType>() {
                         @Override
-                        public void call(ConstructionType propertyTypes) {
+                        public void call(com.softminesol.propertysurvey.survey.common.model.newmodel.ConstructionType propertyTypes) {
                             surveyOptionFactory.getSurveyOptionCacheDataSource().saveConstructionType(propertyTypes);
                         }
                     });

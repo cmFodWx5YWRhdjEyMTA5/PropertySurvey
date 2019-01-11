@@ -128,6 +128,7 @@
     <string name="floors">Floors</string>
     <string name="total_property">Total Properties</string>
     <string name="floor_detail_id">Gis Id</string>
+    <string name="temp_id">Temp Id</string>
     <string name="non_res_code">Non Residental Code</string>
     <string name="shop_industry_name">Shop / Industry Name</string>
     <string name="buisness_code">Business Code</string>
@@ -154,6 +155,8 @@
     <string name="floor_number">Floor Number</string>
     <string name="aadhar_id">Aadhar ID</string>
     <string name="mix_category">Mix Category</string>
+    <string name="mapid_parcelid">Map Id/ Parcel Id</string>
+    <string name="old_property_no">Old Property Number</string>
 
 
 </resources>

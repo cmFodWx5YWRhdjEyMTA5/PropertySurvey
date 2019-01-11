@@ -6,10 +6,13 @@ import com.softminesol.propertysurvey.survey.common.model.newmodel.OccupancyStat
 import com.tokopedia.usecase.RequestParams;
 import com.tokopedia.usecase.UseCase;
 
+import javax.inject.Inject;
+
 import rx.Observable;
 
 public class SurveyOccupancyStatus extends UseCase<OccupancyStatus> {
     ISurveyOptionRepository repository;
+    @Inject
     public SurveyOccupancyStatus(ISurveyOptionRepository repository) {
         this.repository = repository;
     }

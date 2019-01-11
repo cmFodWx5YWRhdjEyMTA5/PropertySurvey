@@ -2,7 +2,9 @@ package com.softminesol.propertysurvey.survey.common.model.newmodel;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ConstructionTypesItem{
+import frameworks.customadapter.CustomAdapterModel;
+
+public class ConstructionTypesItem extends CustomAdapterModel {
 
 	@SerializedName("construction_type")
 	private String constructionType;
@@ -28,10 +30,12 @@ public class ConstructionTypesItem{
 
 	@Override
  	public String toString(){
-		return 
-			"ConstructionTypesItem{" + 
-			"construction_type = '" + constructionType + '\'' + 
-			",construction_type_id = '" + constructionTypeId + '\'' + 
-			"}";
+		return
+				constructionType;
 		}
+
+	@Override
+	public String getText() {
+		return constructionType;
+	}
 }

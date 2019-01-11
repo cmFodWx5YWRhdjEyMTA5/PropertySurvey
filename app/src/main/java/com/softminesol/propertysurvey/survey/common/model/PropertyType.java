@@ -6,7 +6,7 @@ import frameworks.customadapter.CustomAdapterModel;
 
 public class PropertyType extends CustomAdapterModel {
 
-    @SerializedName("propert_type")
+    @SerializedName("property_type")
     private String mPropertType;
     @SerializedName("property_type_id")
     private Long mPropertytypeid;

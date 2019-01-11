@@ -1,9 +1,15 @@
 package com.softminesol.propertysurvey.roomDb;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
+import javax.annotation.Nonnull;
 
 @Entity
 public class Type {
+    @PrimaryKey
+    @NonNull
     String type;
     String json;
 

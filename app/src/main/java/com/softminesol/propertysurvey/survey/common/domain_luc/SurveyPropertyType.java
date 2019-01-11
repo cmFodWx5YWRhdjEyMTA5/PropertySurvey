@@ -6,10 +6,13 @@ import com.softminesol.propertysurvey.survey.common.model.PropertyTypes;
 import com.tokopedia.usecase.RequestParams;
 import com.tokopedia.usecase.UseCase;
 
+import javax.inject.Inject;
+
 import rx.Observable;
 
 public class SurveyPropertyType extends UseCase<PropertyTypes> {
     ISurveyOptionRepository repository;
+    @Inject
     public SurveyPropertyType(ISurveyOptionRepository repository) {
         this.repository = repository;
     }

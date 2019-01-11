@@ -2,7 +2,9 @@ package com.softminesol.propertysurvey.survey.common.model.newmodel;
 
 import com.google.gson.annotations.SerializedName;
 
-public class NonResidentalCategoryItem{
+import frameworks.customadapter.CustomAdapterModel;
+
+public class NonResidentalCategoryItem extends CustomAdapterModel {
 
 	@SerializedName("code")
 	private String code;
@@ -39,11 +41,12 @@ public class NonResidentalCategoryItem{
 
 	@Override
  	public String toString(){
-		return 
-			"NonResidentalCategoryItem{" + 
-			"code = '" + code + '\'' + 
-			",category_id = '" + categoryId + '\'' + 
-			",category = '" + category + '\'' + 
-			"}";
+		return
+				category;
 		}
+
+	@Override
+	public String getText() {
+		return category;
+	}
 }

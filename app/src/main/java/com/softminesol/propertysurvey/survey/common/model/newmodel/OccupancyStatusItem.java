@@ -2,7 +2,9 @@ package com.softminesol.propertysurvey.survey.common.model.newmodel;
 
 import com.google.gson.annotations.SerializedName;
 
-public class OccupancyStatusItem{
+import frameworks.customadapter.CustomAdapterModel;
+
+public class OccupancyStatusItem extends CustomAdapterModel {
 
 	@SerializedName("occupency")
 	private String occupency;
@@ -29,9 +31,11 @@ public class OccupancyStatusItem{
 	@Override
  	public String toString(){
 		return 
-			"OccupancyStatusItem{" + 
-			"occupency = '" + occupency + '\'' + 
-			",occupency_id = '" + occupencyId + '\'' + 
-			"}";
+			getText();
 		}
+
+	@Override
+	public String getText() {
+		return occupency;
+	}
 }

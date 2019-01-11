@@ -30,6 +30,7 @@ public class SurveyOptionCacheDataSource {
      public static final String CONSTRUCTION_TYPE = "construction_type";
      public static final String Floors = "floors";
      public static final String NON_RESIDENTAL_CATEGORY = "NonResidentalCategory";
+     public static final String SOURCE_OF_WATER = "sourceOfWater";
 
 
     @Inject
@@ -40,7 +41,10 @@ public class SurveyOptionCacheDataSource {
 
     public Observable<PropertyTypes> getPropertyTypes() {
         Type type =propertySurveyDB.getapiDao().select(PROPERTY_TYPE);
-        PropertyTypes propertyTypes = GsonFactory.getGson().fromJson(type.getJson(),PropertyTypes.class);
+        PropertyTypes propertyTypes = null;
+                if(type != null) {
+                    propertyTypes = GsonFactory.getGson().fromJson(type.getJson(),PropertyTypes.class);
+                }
         return Observable.just(propertyTypes);
     }
 
@@ -56,7 +60,11 @@ public class SurveyOptionCacheDataSource {
 
     public Observable<PropertyUsage> getPropertyUsage() {
         Type type =propertySurveyDB.getapiDao().select(PROPERTY_USAGE);
-        PropertyUsage propertyTypes = GsonFactory.getGson().fromJson(type.getJson(),PropertyUsage.class);
+        PropertyUsage propertyTypes =  null;
+        if(type != null) {
+            propertyTypes = GsonFactory.getGson().fromJson(type.getJson(),PropertyUsage.class);
+        }
+
         return Observable.just(propertyTypes);
     }
 
@@ -72,7 +80,11 @@ public class SurveyOptionCacheDataSource {
 
     public Observable<RespondentStatus> getRespondentStatus() {
         Type type =propertySurveyDB.getapiDao().select(RESPONDENT_STATUS);
-        RespondentStatus propertyTypes = GsonFactory.getGson().fromJson(type.getJson(),RespondentStatus.class);
+        RespondentStatus propertyTypes = null;
+        if(type != null) {
+            propertyTypes =GsonFactory.getGson().fromJson(type.getJson(),RespondentStatus.class);
+        }
+
         return Observable.just(propertyTypes);
     }
 
@@ -88,7 +100,12 @@ public class SurveyOptionCacheDataSource {
 
     public Observable<OccupancyStatus> getOccupancyStatus() {
         Type type =propertySurveyDB.getapiDao().select(OCCUPANCY_STATUS);
-        OccupancyStatus propertyTypes = GsonFactory.getGson().fromJson(type.getJson(),OccupancyStatus.class);
+        OccupancyStatus propertyTypes = null;
+
+        if(type != null) {
+            propertyTypes = GsonFactory.getGson().fromJson(type.getJson(),OccupancyStatus.class);
+        }
+
         return Observable.just(propertyTypes);
     }
 
@@ -104,7 +121,10 @@ public class SurveyOptionCacheDataSource {
 
     public Observable<BuildingAge> getBuildingAges() {
         Type type =propertySurveyDB.getapiDao().select(BUILDING_AGE);
-        BuildingAge propertyTypes = GsonFactory.getGson().fromJson(type.getJson(),BuildingAge.class);
+        BuildingAge propertyTypes = null;
+        if(type != null) {
+            propertyTypes =GsonFactory.getGson().fromJson(type.getJson(),BuildingAge.class);
+        }
         return Observable.just(propertyTypes);
     }
 
@@ -118,15 +138,18 @@ public class SurveyOptionCacheDataSource {
         propertySurveyDB.getapiDao().insert(type);
     }
 
-    public Observable<ConstructionType> getConstructionType() {
+    public Observable<com.softminesol.propertysurvey.survey.common.model.newmodel.ConstructionType> getConstructionType() {
         Type type =propertySurveyDB.getapiDao().select(CONSTRUCTION_TYPE);
-        ConstructionType propertyTypes = GsonFactory.getGson().fromJson(type.getJson(),ConstructionType.class);
+        com.softminesol.propertysurvey.survey.common.model.newmodel.ConstructionType propertyTypes = null;
+        if(type!=null) {
+            propertyTypes = GsonFactory.getGson().fromJson(type.getJson(), com.softminesol.propertysurvey.survey.common.model.newmodel.ConstructionType.class);
+        }
         return Observable.just(propertyTypes);
     }
 
 
 
-    public void saveConstructionType(ConstructionType propertyTypes) {
+    public void saveConstructionType(com.softminesol.propertysurvey.survey.common.model.newmodel.ConstructionType propertyTypes) {
         String json = GsonFactory.getGson().toJson(propertyTypes);
         Type type = new Type();
         type.setJson(json);
@@ -136,7 +159,10 @@ public class SurveyOptionCacheDataSource {
 
     public Observable<Floors> getFloors() {
         Type type =propertySurveyDB.getapiDao().select(Floors);
-        Floors propertyTypes = GsonFactory.getGson().fromJson(type.getJson(),Floors.class);
+        Floors propertyTypes = null;
+        if(type!=null) {
+            propertyTypes = GsonFactory.getGson().fromJson(type.getJson(),Floors.class);
+        }
         return Observable.just(propertyTypes);
     }
 
@@ -152,7 +178,10 @@ public class SurveyOptionCacheDataSource {
 
     public Observable<NonResidentalCategory> getNonResidentalCategorys() {
         Type type =propertySurveyDB.getapiDao().select(NON_RESIDENTAL_CATEGORY);
-        NonResidentalCategory propertyTypes = GsonFactory.getGson().fromJson(type.getJson(),NonResidentalCategory.class);
+        NonResidentalCategory propertyTypes = null;
+        if(type != null) {
+            propertyTypes = GsonFactory.getGson().fromJson(type.getJson(),NonResidentalCategory.class);
+        }
         return Observable.just(propertyTypes);
     }
 
@@ -168,8 +197,11 @@ public class SurveyOptionCacheDataSource {
 
 
     public Observable<SourceWater> getSourceWater() {
-        Type type =propertySurveyDB.getapiDao().select(OCCUPANCY_STATUS);
-        SourceWater propertyTypes = GsonFactory.getGson().fromJson(type.getJson(),SourceWater.class);
+        Type type =propertySurveyDB.getapiDao().select(SOURCE_OF_WATER);
+        SourceWater propertyTypes = null;
+        if(type != null) {
+            propertyTypes = GsonFactory.getGson().fromJson(type.getJson(), SourceWater.class);
+        }
         return Observable.just(propertyTypes);
     }
 
@@ -179,7 +211,7 @@ public class SurveyOptionCacheDataSource {
         String json = GsonFactory.getGson().toJson(propertyTypes);
         Type type = new Type();
         type.setJson(json);
-        type.setType(OCCUPANCY_STATUS);
+        type.setType(SOURCE_OF_WATER);
         propertySurveyDB.getapiDao().insert(type);
     }
 

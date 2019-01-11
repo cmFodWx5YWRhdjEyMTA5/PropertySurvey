@@ -6,7 +6,7 @@ import java.util.List;
 
 public class PropertyTypes {
 
-    @SerializedName("propertyTypes")
+    @SerializedName("PropertyTypes")
     private List<PropertyType> mPropertyTypes;
 
     public List<PropertyType> getPropertyTypes() {

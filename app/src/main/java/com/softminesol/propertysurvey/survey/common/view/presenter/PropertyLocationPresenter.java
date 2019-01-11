@@ -16,8 +16,12 @@ import com.softminesol.maps.MapsActivityCurrentPlace;
 import com.softminesol.propertysurvey.CommonBaseUrl;
 import com.softminesol.propertysurvey.R;
 import com.softminesol.propertysurvey.survey.common.domain.SurveyAreaTypeUseCase;
+import com.softminesol.propertysurvey.survey.common.domain.SurveyGetPropertyTypeUseCase;
 import com.softminesol.propertysurvey.survey.common.domain.SurveyMeasurementListUseCase;
+import com.softminesol.propertysurvey.survey.common.domain_luc.SurveyPropertyUsage;
+import com.softminesol.propertysurvey.survey.common.model.PropertyTypes;
 import com.softminesol.propertysurvey.survey.common.model.formData.FloorDetailsItem;
+import com.softminesol.propertysurvey.survey.common.model.newmodel.PropertyUsage;
 import com.softminesol.propertysurvey.survey.common.model.property.SavePropertyRequest;
 import com.softminesol.propertysurvey.survey.common.view.activity.FloorInfoActivity;
 
@@ -27,6 +31,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import frameworks.basemvp.AppBasePresenter;
+import frameworks.customadapter.CustomAdapterModel;
 import frameworks.network.usecases.RequestParams;
 import frameworks.utils.AdapterFactory;
 import rx.Subscriber;
@@ -38,18 +43,19 @@ import static com.softmine.imageupload.view.ImageUploadActivity.FILE_PATHS;
  */
 public class PropertyLocationPresenter<T extends PropertyLocationContract.View> extends AppBasePresenter<T> implements PropertyLocationContract.Presenter<T> {
     protected final AdapterFactory adapterFactory;
-    private final SurveyAreaTypeUseCase areaTypeUseCase;
-    private final SurveyMeasurementListUseCase measurementListUseCase;
+    private final SurveyGetPropertyTypeUseCase getPropertyTypeUseCase;
+    private final SurveyPropertyUsage surveyPropertyUsage;
     protected List<FloorDetailsItem> floorDetailsItems = new ArrayList<>();
 
     GetLocationAddressUseCase reverseGeoCodeAddress;
 
     @Inject
-    public PropertyLocationPresenter(AdapterFactory adapterFactory, SurveyAreaTypeUseCase areaTypeUseCase, SurveyMeasurementListUseCase measurementListUseCase, GetLocationAddressUseCase reverseGeoCodeAddress) {
+    public PropertyLocationPresenter(AdapterFactory adapterFactory, SurveyGetPropertyTypeUseCase getPropertyTypeUseCase,
+                                     SurveyPropertyUsage surveyPropertyUsage, GetLocationAddressUseCase reverseGeoCodeAddress) {
         this.adapterFactory = adapterFactory;
-        this.areaTypeUseCase = areaTypeUseCase;
-        this.measurementListUseCase = measurementListUseCase;
         this.reverseGeoCodeAddress = reverseGeoCodeAddress;
+        this.getPropertyTypeUseCase = getPropertyTypeUseCase;
+        this.surveyPropertyUsage = surveyPropertyUsage;
     }
 
     @Override
@@ -58,8 +64,39 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
         getView().setSewageConnectoion(adapterFactory.getYesNoAdapter());
         getView().setWaterConnection(adapterFactory.getYesNoAdapter());
         getView().setMsmo(adapterFactory.getYesNoAdapter());
-        getView().setPropertyUsage(adapterFactory.getTypeOfPropertyUsage());
-        getView().setTypeOfProperty(adapterFactory.getTypeOfPropertyAdapter());
+        surveyPropertyUsage.execute(new Subscriber<PropertyUsage>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(PropertyUsage propertyUsage) {
+                getView().setPropertyUsage(adapterFactory.getCustomAdapter((List<CustomAdapterModel>) (List<?>) propertyUsage.getPropertyUsage()));
+            }
+        });
+        getPropertyTypeUseCase.execute(new Subscriber<PropertyTypes>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(PropertyTypes propertyTypes) {
+                getView().setTypeOfProperty(adapterFactory.getCustomAdapter((List<CustomAdapterModel>) (List<?>) propertyTypes.getPropertyTypes()));
+            }
+        });
+
         getView().setTypeOfNonesProperty(adapterFactory.getTypeOfNonResPropertyAdapter());
         getView().setRainWaterHarvesting(adapterFactory.getYesNoAdapter());
         getView().setLiftFacility(adapterFactory.getYesNoAdapter());
@@ -154,7 +191,7 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
             if (resultCode == 2) {
                 location = (Location) data.getParcelableExtra("Location");
                 if (location != null) {
-                    reverseGeoCodeAddress.execute(reverseGeoCodeAddress.createRequestParams(location.getLatitude() + "", location.getLongitude() + "",
+                    /*reverseGeoCodeAddress.execute(reverseGeoCodeAddress.createRequestParams(location.getLatitude() + "", location.getLongitude() + "",
                             getView().getContext().getString(R.string.google_maps_key)), new Subscriber<ReverseGeoCodeAddress>() {
                         @Override
                         public void onCompleted() {
@@ -170,8 +207,8 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
                         public void onNext(ReverseGeoCodeAddress reverseGeoCodeAddress) {
                             getView().setLatLng(reverseGeoCodeAddress.getFormattedAddress());
                         }
-                    });
-                    // getView().setLatLng(location.getLatitude()+","+location.getLongitude());
+                    });*/
+                     getView().setLatLng(location.getLatitude()+","+location.getLongitude());
                 }
             }
         } else if (requestCode == ImageUploadActivity.REQUEST_GET_FILE_SERVER_URI) {

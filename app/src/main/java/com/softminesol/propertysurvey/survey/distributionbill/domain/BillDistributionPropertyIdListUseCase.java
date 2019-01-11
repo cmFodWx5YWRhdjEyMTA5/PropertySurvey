@@ -20,6 +20,6 @@ public class BillDistributionPropertyIdListUseCase extends UseCase<OLDPropertyUI
 
     @Override
     public Observable<OLDPropertyUIDS> createObservable(RequestParams requestParams) {
-        return repository.getPropertyBillingIdList(requestParams.getString("query", ""));
+        return Observable.just(new OLDPropertyUIDS());
     }
 }

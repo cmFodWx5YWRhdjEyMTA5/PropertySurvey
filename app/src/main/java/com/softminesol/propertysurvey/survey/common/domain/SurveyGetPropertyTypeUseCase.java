@@ -22,6 +22,6 @@ public class SurveyGetPropertyTypeUseCase extends UseCase<PropertyTypes> {
 
     @Override
     public Observable<PropertyTypes> createObservable(RequestParams requestParams) {
-        return Observable.just(new PropertyTypes());
+        return repository.getPropertyType();
     }
 }

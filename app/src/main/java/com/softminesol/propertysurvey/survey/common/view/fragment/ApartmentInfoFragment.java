@@ -49,6 +49,8 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
 
     @BindView(R.id.edt_covered_area)
     EditText edtCoveredArea;
+    @BindView(R.id.edt_TempId)
+    EditText edtTempId;
     @BindView(R.id.edt_connection_no)
     EditText edtElectionConnectionNo;
     @BindView(R.id.edt_shop_apartment_no)
@@ -116,7 +118,7 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
     LinearLayout ownerValues;
     Unbinder unbinder1;
     @BindView(R.id.edt_Floor_No)
-    EditText edtFloorNo;
+    MaterialBetterSpinner edtFloorNo;
     @BindView(R.id.spNonRegCategory)
     MaterialBetterSpinner spNonRegCategory;
     @BindView(R.id.edt_buisness_built_area)
@@ -246,11 +248,17 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
 
     @Override
     public String getGsid() {
-        return getArguments().getString(APARTMENT_DETAIL_KEY) ;
+        return edtGSID.getText().toString() ;
     }
 
     public Long getTempId() {
-        return getArguments().getLong(APARTMENT_TEMP_KEY);
+        long tempId = 0;
+        try{
+            tempId = Long.valueOf(edtTempId.getText().toString());
+        }catch (NumberFormatException e) {
+
+        }
+        return tempId;
     }
 
     @Override
@@ -387,7 +395,12 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
         owners.add(owner);
     }
 
-       @Override
+    @Override
+    public void setTempId(String tempId) {
+        edtTempId.setText(tempId);
+    }
+
+    @Override
     public void setEdtCoveredArea(String text) {
 
     }
@@ -445,6 +458,11 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
     @Override
     public void setSpSewerageConnStatus(ArrayAdapter customAdapter) {
         spsewerageConStatus.setAdapter(customAdapter);
+    }
+
+    @Override
+    public void setFloorList(ArrayAdapter customAdapter) {
+        edtFloorNo.setAdapter(customAdapter);
     }
 
 
@@ -505,7 +523,7 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
                 setGisCode(getArguments().getString(APARTMENT_DETAIL_KEY));
             }else {
                 if(getArguments().getLong(APARTMENT_TEMP_KEY,0) != 0) {
-                    setGisCode(getArguments().getLong(APARTMENT_TEMP_KEY,0)+"");
+                    setTempId(getArguments().getLong(APARTMENT_TEMP_KEY,0)+"");
                 }
             }
         }

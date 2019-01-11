@@ -43,6 +43,7 @@ public interface ApartmentInfoContract {
         public List<Owner> getOwners();
 
         public void setOwner(Owner owner);
+        public void setTempId(String tempId);
 
         public void setPropertyUsage(ArrayAdapter customAdapter);
 
@@ -79,6 +80,9 @@ public interface ApartmentInfoContract {
         void setSpElectricityConnStatus(ArrayAdapter customAdapter);
 
         void setSpSewerageConnStatus(ArrayAdapter customAdapter);
+
+        void setFloorList(ArrayAdapter customAdapter);
+
 
 
 

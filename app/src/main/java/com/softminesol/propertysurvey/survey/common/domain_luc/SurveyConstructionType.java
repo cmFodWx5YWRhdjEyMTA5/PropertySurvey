@@ -5,10 +5,13 @@ import com.softminesol.propertysurvey.survey.common.model.newmodel.ConstructionT
 import com.tokopedia.usecase.RequestParams;
 import com.tokopedia.usecase.UseCase;
 
+import javax.inject.Inject;
+
 import rx.Observable;
 
 public class SurveyConstructionType extends UseCase<ConstructionType> {
     ISurveyOptionRepository repository;
+    @Inject
     public SurveyConstructionType(ISurveyOptionRepository repository) {
         this.repository = repository;
     }

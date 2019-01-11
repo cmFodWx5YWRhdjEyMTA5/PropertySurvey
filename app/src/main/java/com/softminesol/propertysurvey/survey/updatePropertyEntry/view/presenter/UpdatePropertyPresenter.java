@@ -4,8 +4,10 @@ import com.softminesol.locations.locationmanager.domain.GetLocationAddressUseCas
 import com.softminesol.propertysurvey.survey.cloudsync.OldFormSync;
 import com.softminesol.propertysurvey.survey.common.domain.GetPropertyInfoUseCase;
 import com.softminesol.propertysurvey.survey.common.domain.SurveyAreaTypeUseCase;
+import com.softminesol.propertysurvey.survey.common.domain.SurveyGetPropertyTypeUseCase;
 import com.softminesol.propertysurvey.survey.common.domain.SurveyMeasurementListUseCase;
 import com.softminesol.propertysurvey.survey.common.domain.SurveyPropertyIdListUseCase;
+import com.softminesol.propertysurvey.survey.common.domain_luc.SurveyPropertyUsage;
 import com.softminesol.propertysurvey.survey.common.model.OLDPropertyUIDS;
 import com.softminesol.propertysurvey.survey.common.model.formData.FloorDetailsItem;
 import com.softminesol.propertysurvey.survey.common.model.formData.FormData;
@@ -35,8 +37,9 @@ public class UpdatePropertyPresenter extends PropertyLocationPresenter<UpdatePro
     OldFormSync syncManager;
     @Inject
     public UpdatePropertyPresenter(AdapterFactory adapterFactory, SurveyAreaTypeUseCase areaTypeUseCase, SurveyMeasurementListUseCase measurementListUseCase, SurveyPropertyIdListUseCase surveyPropertyIdListUseCase,
-                                   GetPropertyInfoUseCase getPropertyInfoUseCase, SurveyFormUpdateUseCase surveyFormUpdateUseCase,OldFormSync oldFormSync, GetLocationAddressUseCase reverseGeoCodeAddress) {
-        super(adapterFactory, areaTypeUseCase, measurementListUseCase,reverseGeoCodeAddress);
+                                   GetPropertyInfoUseCase getPropertyInfoUseCase, SurveyFormUpdateUseCase surveyFormUpdateUseCase, OldFormSync oldFormSync, GetLocationAddressUseCase reverseGeoCodeAddress, SurveyGetPropertyTypeUseCase getPropertyTypeUseCase,
+                                   SurveyPropertyUsage surveyPropertyUsage) {
+        super(adapterFactory, getPropertyTypeUseCase,surveyPropertyUsage,reverseGeoCodeAddress);
         this.surveyPropertyIdListUseCase = surveyPropertyIdListUseCase;
         this.getPropertyInfoUseCase = getPropertyInfoUseCase;
         this.surveyFormUpdateUseCase = surveyFormUpdateUseCase;
