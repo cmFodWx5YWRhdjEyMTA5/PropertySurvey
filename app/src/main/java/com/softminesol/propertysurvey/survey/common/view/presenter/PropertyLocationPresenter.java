@@ -1,29 +1,25 @@
 package com.softminesol.propertysurvey.survey.common.view.presenter;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.location.Location;
 import android.view.View;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.pchmn.materialchips.ChipView;
-import com.softmine.imageupload.domain.ImageUploadUseCase;
 import com.softmine.imageupload.presenter.ImageUploadPresenter;
 import com.softmine.imageupload.view.ImageUploadActivity;
+import com.softminesol.locations.locationmanager.data.AddressComponentsItem;
 import com.softminesol.locations.locationmanager.data.ReverseGeoCodeAddress;
 import com.softminesol.locations.locationmanager.domain.GetLocationAddressUseCase;
 import com.softminesol.maps.MapsActivityCurrentPlace;
 import com.softminesol.propertysurvey.CommonBaseUrl;
 import com.softminesol.propertysurvey.R;
-import com.softminesol.propertysurvey.survey.common.domain.SurveyAreaTypeUseCase;
 import com.softminesol.propertysurvey.survey.common.domain.SurveyGetPropertyTypeUseCase;
-import com.softminesol.propertysurvey.survey.common.domain.SurveyMeasurementListUseCase;
 import com.softminesol.propertysurvey.survey.common.domain_luc.SurveyPropertyUsage;
 import com.softminesol.propertysurvey.survey.common.model.PropertyTypes;
 import com.softminesol.propertysurvey.survey.common.model.formData.FloorDetailsItem;
 import com.softminesol.propertysurvey.survey.common.model.newmodel.PropertyUsage;
 import com.softminesol.propertysurvey.survey.common.model.property.SavePropertyRequest;
-import com.softminesol.propertysurvey.survey.common.view.activity.FloorInfoActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +28,6 @@ import javax.inject.Inject;
 
 import frameworks.basemvp.AppBasePresenter;
 import frameworks.customadapter.CustomAdapterModel;
-import frameworks.network.usecases.RequestParams;
 import frameworks.utils.AdapterFactory;
 import rx.Subscriber;
 
@@ -61,9 +56,6 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
     @Override
     public void attachView(T view) {
         super.attachView(view);
-        getView().setSewageConnectoion(adapterFactory.getYesNoAdapter());
-        getView().setWaterConnection(adapterFactory.getYesNoAdapter());
-        getView().setMsmo(adapterFactory.getYesNoAdapter());
         surveyPropertyUsage.execute(new Subscriber<PropertyUsage>() {
             @Override
             public void onCompleted() {
@@ -97,13 +89,10 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
             }
         });
 
-        getView().setTypeOfNonesProperty(adapterFactory.getTypeOfNonResPropertyAdapter());
         getView().setRainWaterHarvesting(adapterFactory.getYesNoAdapter());
         getView().setLiftFacility(adapterFactory.getYesNoAdapter());
-        getView().setPowerBackup(adapterFactory.getYesNoAdapter());
         getView().setParkingFacility(adapterFactory.getYesNoAdapter());
         getView().setFireFighting(adapterFactory.getYesNoAdapter());
-        getView().setSourceOfWater(adapterFactory.getSourceOfWaterProperty());
         getView().setBuidlingStatus(adapterFactory.getBuildingStatus());
         getView().setRoadWidth(adapterFactory.getRoadWidth());
 
@@ -158,10 +147,7 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
     Location location;
 
     //TODO change requestcode to static constant
-    @Override
-    public void onAddFloorCLicked() {
-        getView().startActivityForResult(new Intent(getView().getContext(), FloorInfoActivity.class), 1);
-    }
+
 
     @Override
     public void onUploadImageClick() {
@@ -182,16 +168,12 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
                 floorDetailsItems.add(formDetailsItem);
             }
             // IF user just cancel then null clickeditem clickedFloorDetailsItem added new floor it always be null
-            getView().clearChips();
-            for (FloorDetailsItem floorDetailsItem : floorDetailsItems) {
-                addChip(floorDetailsItem);
-            }
             clickedFloorDetailsItem = null;
         } else if (requestCode == 2) {
             if (resultCode == 2) {
                 location = (Location) data.getParcelableExtra("Location");
                 if (location != null) {
-                    /*reverseGeoCodeAddress.execute(reverseGeoCodeAddress.createRequestParams(location.getLatitude() + "", location.getLongitude() + "",
+                    reverseGeoCodeAddress.execute(reverseGeoCodeAddress.createRequestParams(location.getLatitude() + "", location.getLongitude() + "",
                             getView().getContext().getString(R.string.google_maps_key)), new Subscriber<ReverseGeoCodeAddress>() {
                         @Override
                         public void onCompleted() {
@@ -205,9 +187,22 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
 
                         @Override
                         public void onNext(ReverseGeoCodeAddress reverseGeoCodeAddress) {
-                            getView().setLatLng(reverseGeoCodeAddress.getFormattedAddress());
+                            List<AddressComponentsItem> addressComponentsItems = reverseGeoCodeAddress.getAddressComponents();
+                            for(AddressComponentsItem addressComponentsItem:addressComponentsItems) {
+                                List<String> types = addressComponentsItem.getTypes();
+                                if(types.contains("sublocality_level_1")) {
+                                    getView().setColonyName(addressComponentsItem.getLongName());
+                                }
+                                if(types.contains("street_number") || types.contains("route")) {
+                                    getView().setStreetName(addressComponentsItem.getLongName());
+                                }
+                                if(types.contains("postal_code")) {
+                                    getView().setPinCode(addressComponentsItem.getLongName());
+                                }
+
+                            }
                         }
-                    });*/
+                    });
                      getView().setLatLng(location.getLatitude()+","+location.getLongitude());
                 }
             }
@@ -231,22 +226,13 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
         final ChipView chipView = new ChipView(getView().getContext());
         chipView.setDeletable(true);
         chipView.setLabel(formDetailsItem.getFloorType());
-        getView().addChipView(chipView);
         getView().setFloorCount(floorDetailsItems.size() + "");
         chipView.setOnDeleteClicked(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 floorDetailsItems.remove(formDetailsItem);
-                getView().removeChip(chipView);
             }
         });
-        chipView.setOnChipClicked(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clickedFloorDetailsItem = formDetailsItem;
-                getView().startActivityForResult(FloorInfoActivity.getFloorInfoIntet(getView().getContext(), formDetailsItem), 1);
 
-            }
-        });
     }
 }

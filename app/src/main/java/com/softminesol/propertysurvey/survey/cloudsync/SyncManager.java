@@ -1,6 +1,12 @@
 package com.softminesol.propertysurvey.survey.cloudsync;
 
 
+import com.softminesol.propertysurvey.localcachesync.domain.NewApartmentUseCase;
+import com.softminesol.propertysurvey.localcachesync.domain.NewProperySyncUseCase;
+import com.softminesol.propertysurvey.survey.common.model.property.GetPropertySaveResponse;
+
+import java.util.List;
+
 import javax.inject.Inject;
 
 import frameworks.network.model.BaseResponse;
@@ -9,35 +15,24 @@ import frameworks.network.usecases.UseCase;
 import rx.Observable;
 import rx.functions.Func1;
 
-public class SyncManager  extends UseCase<BaseResponse>{
+public class SyncManager  extends UseCase<List<GetPropertySaveResponse>>{
 
-    NewFormSync newFormSync;
-    OldFormSync oldFormSync;
-    DistributionFormSync distributionFormSync;
 
+    NewApartmentUseCase newApartmentUseCase;
+    NewProperySyncUseCase newProperySyncUseCase;
     @Inject
-    public SyncManager(NewFormSync newFormSync, OldFormSync oldFormSync, DistributionFormSync distributionFormSync) {
-        this.newFormSync = newFormSync;
-        this.oldFormSync = oldFormSync;
-        this.distributionFormSync = distributionFormSync;
+    public SyncManager(NewApartmentUseCase newApartmentUseCase,
+                       NewProperySyncUseCase newProperySyncUseCase) {
+        this.newApartmentUseCase = newApartmentUseCase;
+        this.newProperySyncUseCase = newProperySyncUseCase;
     }
 
     @Override
-    public Observable<BaseResponse> createObservable(RequestParams requestParams) {
-        return newFormSync.createObservable(RequestParams.EMPTY).flatMap(new Func1<BaseResponse, Observable<BaseResponse>>() {
+    public Observable<List<GetPropertySaveResponse>> createObservable(RequestParams requestParams) {
+        return newProperySyncUseCase.createObservable(RequestParams.EMPTY).flatMap(new Func1<List<String>, Observable<List<GetPropertySaveResponse>>>() {
             @Override
-            public Observable<BaseResponse> call(BaseResponse baseResponse) {
-                return oldFormSync.createObservable(RequestParams.EMPTY).flatMap(new Func1<BaseResponse, Observable<BaseResponse>>() {
-                    @Override
-                    public Observable<BaseResponse> call(BaseResponse baseResponse) {
-                        return distributionFormSync.createObservable(RequestParams.EMPTY).map(new Func1<BaseResponse, BaseResponse>() {
-                            @Override
-                            public BaseResponse call(BaseResponse baseResponse) {
-                                return baseResponse;
-                            }
-                        });
-                    }
-                });
+            public Observable<List<GetPropertySaveResponse>> call(List<String> strings) {
+                return newApartmentUseCase.createObservable(RequestParams.EMPTY);
             }
         });
     }

@@ -46,14 +46,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".survey.common.view.activity.OldSurveyActivity"
-            android:screenOrientation="portrait"/>
         <activity android:name=".home.view.DashBoardActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".survey.distributionbill.view.DistributionBillActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".survey.common.view.activity.FloorInfoActivity"
-            android:screenOrientation="portrait" />
         <activity android:name=".survey.common.view.activity.OwnerInfoActivity"
             android:screenOrientation="portrait" />
         <!--

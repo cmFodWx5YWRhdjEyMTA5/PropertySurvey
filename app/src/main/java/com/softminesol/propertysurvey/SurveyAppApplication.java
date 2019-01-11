@@ -9,8 +9,6 @@ import com.softmine.imageupload.data.net.ImageUploadURL;
 import com.softminesol.propertysurvey.location.LocationUploadManager;
 import com.softminesol.propertysurvey.location.model.LatLongUpload;
 import com.softminesol.propertysurvey.login.view.LoginActivity;
-import com.softminesol.propertysurvey.survey.common.realm.RealmConstants;
-import com.softminesol.propertysurvey.survey.common.realm.RealmPropertyDataMapper;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -22,7 +20,6 @@ import frameworks.basemvp.AppBaseActivity;
 import frameworks.routers.ILocationRouter;
 import frameworks.routers.ILoginInterceptor;
 import io.fabric.sdk.android.Fabric;
-import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
 /**
@@ -37,7 +34,6 @@ public class SurveyAppApplication extends AppBaseApplication implements ILoginIn
         super.onCreate();
         MultiDex.install(this);
         Fabric.with(this, new Crashlytics());
-        initRealm();
         sessionValue = new AppSessionManager(this);
         initURLS();
     }
@@ -57,8 +53,7 @@ public class SurveyAppApplication extends AppBaseApplication implements ILoginIn
 
     @Override
     public void logout() {
-        RealmPropertyDataMapper realmPropertyDataMapper = new RealmPropertyDataMapper(this);
-        realmPropertyDataMapper.clearCache();
+        //TODO clear cache
         sessionValue.clearSession();
         startLogin();
     }
@@ -79,19 +74,8 @@ public class SurveyAppApplication extends AppBaseApplication implements ILoginIn
         LocationUploadManager.getInstance(this).uploadLocation(latLongUpload);
 
     }
-    public void initRealm() {
 
-        Realm.init(this);
-        propertyDataConfig = new RealmConfiguration.Builder()
-                .name(RealmConstants.SCHEMA_DATA)
-                .schemaVersion(RealmConstants.SCHEMA_DATA_VERSION).build();
 
-    }
-
-    public Realm getPropertyDataRealm() {
-        Realm.compactRealm(propertyDataConfig);
-        return Realm.getInstance(propertyDataConfig);
-    }
 
 
 }

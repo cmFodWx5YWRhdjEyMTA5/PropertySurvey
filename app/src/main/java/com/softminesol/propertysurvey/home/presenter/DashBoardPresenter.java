@@ -5,10 +5,11 @@ import android.content.Intent;
 import com.softminesol.propertysurvey.SurveyAppApplication;
 import com.softminesol.propertysurvey.home.domain.DashBoardUseCase;
 import com.softminesol.propertysurvey.survey.cloudsync.SyncManager;
+import com.softminesol.propertysurvey.survey.common.model.property.GetPropertySaveResponse;
 import com.softminesol.propertysurvey.survey.common.view.activity.ApartmentInfoActivity;
-import com.softminesol.propertysurvey.survey.common.view.activity.OldSurveyActivity;
-import com.softminesol.propertysurvey.survey.distributionbill.view.DistributionBillActivity;
 import com.softminesol.propertysurvey.survey.newPropertyEntry.view.activity.NewSurveyActivity;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -36,55 +37,15 @@ public class DashBoardPresenter extends AppBasePresenter<DashBoardContractor.Vie
     @Override
     public void attachView(DashBoardContractor.View view) {
         super.attachView(view);
-      /*  getView().showProgressBar("Syncing").setCancelable(false);
-        dashBoardUseCase.execute(new Subscriber<RoleData>() {
-            @Override
-            public void onCompleted() {
-                getView().hideProgressBar();
 
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                if(Utils.isInternetOn()) {
-                    getView().showToast(e.getMessage());
-                }else {
-                    getView().showToast("Internet Not Available Try Again");
-                }
-                onLogout();
-                getView().hideProgressBar();
-            }
-
-            @Override
-            public void onNext(RoleData roleData) {
-                if(!roleData.isDistribution()) {
-                    getView().setDistributorInvisible();
-                }
-                if(!roleData.isNewProperty()) {
-                    getView().setNewPropertyInvisible();
-                }
-                if(!roleData.isUpdateProperty()) {
-                    getView().setUpdatePropertyInvisible();
-                }
-
-            }
-        });*/
     }
 
-    @Override
-    public void onDistributionClick() {
-        getView().startActivity(new Intent(getView().getContext(), DistributionBillActivity.class));
-    }
 
     @Override
     public void onNewPropertInfoClick() {
         getView().startActivity(new Intent(getView().getContext(), NewSurveyActivity.class));
     }
 
-    @Override
-    public void onOldPropertyInfoClick() {
-        getView().startActivity(new Intent(getView().getContext(), OldSurveyActivity.class));
-    }
 
     @Override
     public void onAddApartmentClick() {
@@ -94,7 +55,7 @@ public class DashBoardPresenter extends AppBasePresenter<DashBoardContractor.Vie
 
     public void onLogout() {
         getView().showProgressBar("Syncing").setCancelable(false);
-        syncManager.execute(new Subscriber<BaseResponse>() {
+        syncManager.execute(new Subscriber<List<GetPropertySaveResponse>>() {
             @Override
             public void onCompleted() {
                 ((ILoginInterceptor) SurveyAppApplication.getApplication()).logout();
@@ -108,7 +69,7 @@ public class DashBoardPresenter extends AppBasePresenter<DashBoardContractor.Vie
             }
 
             @Override
-            public void onNext(BaseResponse baseResponse) {
+            public void onNext(List<GetPropertySaveResponse> getPropertySaveResponses) {
 
             }
         });

@@ -10,17 +10,14 @@ import frameworks.basemvp.IView;
 
 public interface DashBoardContractor {
     public interface View extends IView {
-        public void setDistributorInvisible();
         public void setNewPropertyInvisible();
         public void setUpdatePropertyInvisible();
     }
 
     public interface Presenter extends IPresenter<View> {
-        public void onDistributionClick();
 
         public void onNewPropertInfoClick();
 
-        public void onOldPropertyInfoClick();
 
         public void onAddApartmentClick();
 

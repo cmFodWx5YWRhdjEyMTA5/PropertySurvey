@@ -10,6 +10,7 @@ import com.softmine.imageupload.view.ImageUploadActivity;
 import com.softminesol.propertysurvey.CommonBaseUrl;
 import com.softminesol.propertysurvey.localcachesync.domain.NewApartmentUseCase;
 import com.softminesol.propertysurvey.survey.apartmentEntry.domain.SaveApartmentSurveyFormUseCase;
+import com.softminesol.propertysurvey.survey.cloudsync.SyncManager;
 import com.softminesol.propertysurvey.survey.common.domain.SurveyFloorListUseCase;
 import com.softminesol.propertysurvey.survey.common.domain_luc.SurveyConstructionType;
 import com.softminesol.propertysurvey.survey.common.domain_luc.SurveyFloor;
@@ -59,17 +60,17 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
     private final SurveyOccupancyStatus surveyOccupancyStatus;
     private final SurveySourceWaterUseCase surveySourceWaterUseCase;
     private final SurveyConstructionType surveyConstructionType;
-    private NewApartmentUseCase newApartmentUseCas;
+    private SyncManager syncManager;
 
     @Inject
     public ApartmentInfoPresenter(AdapterFactory adapterFactory, SaveApartmentSurveyFormUseCase saveApartmentSurveyFormUseCase,
-                                  NewApartmentUseCase newApartmentUseCase, SurveyFloor surveyFloorListUseCase,
+                                  SyncManager syncManager, SurveyFloor surveyFloorListUseCase,
                                   SurveyPropertyUsage surveyPropertyUsage, SurveyNonResidentCategory surveyNonResidentCategory,
                                   SurveyRespodentStatus surveyRespodentStatus, SurveyOccupancyStatus surveyOccupancyStatus, SurveySourceWaterUseCase surveySourceWaterUseCase,
                                   SurveyConstructionType surveyConstructionType) {
         this.adapterFactory = adapterFactory;
         this.saveApartmentSurveyFormUseCase = saveApartmentSurveyFormUseCase;
-        this.newApartmentUseCas = newApartmentUseCase;
+        this.syncManager = syncManager;
         this.surveyFloorListUseCase = surveyFloorListUseCase;
         this.surveyPropertyUsage = surveyPropertyUsage;
         this.surveyNonResidentCategory = surveyNonResidentCategory;
@@ -235,7 +236,7 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
     public SaveApartmentRequest getApartmentData() {
         SaveApartmentRequest saveApartmentRequest = new SaveApartmentRequest();
         if(getView().getGsid() == null || getView().getGsid().isEmpty()) {
-            saveApartmentRequest.setTempId(getView().getTempId());
+            saveApartmentRequest.setTempPropertyApartmentId(getView().getTempId());
         }else {
             saveApartmentRequest.setGisId(getView().getGsid());
         }
@@ -297,7 +298,7 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
             @Override
             public void onNext(GetPropertySaveResponse getPropertySaveResponse) {
                 getView().showToast("Save Successfully");
-                newApartmentUseCas.execute(new Subscriber<List<GetPropertySaveResponse>>() {
+                syncManager.execute(new Subscriber<List<GetPropertySaveResponse>>() {
                     @Override
                     public void onCompleted() {
 

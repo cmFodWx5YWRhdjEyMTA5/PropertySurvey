@@ -1,44 +1,67 @@
 package com.softminesol.locations.locationmanager.data;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ReverseGeoCodeAddress {
+import java.util.List;
 
-    @SerializedName("address_components")
-    @Expose
-    AddressComponents addressComponents[];
-    public class AddressComponents{
-        @SerializedName("short_name")
-        @Expose
-        String shortName;
+public class ReverseGeoCodeAddress{
+	private String formattedAddress;
 
-        public String getShortName() {
-            return shortName;
-        }
+	private List<String> types;
+	private Geometry geometry;
+	@SerializedName("address_components")
+	private List<AddressComponentsItem> addressComponents;
+	private String placeId;
 
-        public void setShortName(String shortName) {
-            this.shortName = shortName;
-        }
-    }
+	public void setFormattedAddress(String formattedAddress){
+		this.formattedAddress = formattedAddress;
+	}
 
-    @SerializedName("formatted_address")
-    @Expose
-    String formattedAddress;
+	public String getFormattedAddress(){
+		return formattedAddress;
+	}
 
-    public AddressComponents[] getAddressComponents() {
-        return addressComponents;
-    }
+	public void setTypes(List<String> types){
+		this.types = types;
+	}
 
-    public void setAddressComponents(AddressComponents addressComponents[]) {
-        this.addressComponents = addressComponents;
-    }
+	public List<String> getTypes(){
+		return types;
+	}
 
-    public String getFormattedAddress() {
-        return formattedAddress;
-    }
+	public void setGeometry(Geometry geometry){
+		this.geometry = geometry;
+	}
 
-    public void setFormattedAddress(String formattedAddress) {
-        this.formattedAddress = formattedAddress;
-    }
+	public Geometry getGeometry(){
+		return geometry;
+	}
+
+	public void setAddressComponents(List<AddressComponentsItem> addressComponents){
+		this.addressComponents = addressComponents;
+	}
+
+	public List<AddressComponentsItem> getAddressComponents(){
+		return addressComponents;
+	}
+
+	public void setPlaceId(String placeId){
+		this.placeId = placeId;
+	}
+
+	public String getPlaceId(){
+		return placeId;
+	}
+
+	@Override
+ 	public String toString(){
+		return 
+			"ReverseGeoCodeAddress{" + 
+			"formatted_address = '" + formattedAddress + '\'' + 
+			",types = '" + types + '\'' + 
+			",geometry = '" + geometry + '\'' + 
+			",address_components = '" + addressComponents + '\'' + 
+			",place_id = '" + placeId + '\'' + 
+			"}";
+		}
 }

@@ -36,8 +36,6 @@ import frameworks.basemvp.AppBaseFragment;
 public abstract class PropertyInfoFragment<T extends PropertyLocationContract.Presenter> extends AppBaseFragment<PropertyLocationContract.Presenter> implements PropertyLocationContract.View {
     @BindView(R.id.edt_dist_code)
     protected EditText edtDistCode;
-    @BindView(R.id.edt_mc_code)
-    protected EditText edtMcCode;
     @BindView(R.id.edt_colony_code)
     protected EditText edtColonyCode;
     @BindView(R.id.edt_ward_no)
@@ -46,48 +44,17 @@ public abstract class PropertyInfoFragment<T extends PropertyLocationContract.Pr
     protected EditText edtZone;
     @BindView(R.id.edt_street_code)
     protected EditText edtStreetCode;
-    @BindView(R.id.area_type)
-    protected MaterialBetterSpinner areaType;
     @BindView(R.id.edt_map_id)
     protected EditText edtMapId;
-    @BindView(R.id.edt_house_no)
-    protected EditText edtHouseNo;
     @BindView(R.id.edt_property_area)
     protected EditText edtPropertyArea;
-    @BindView(R.id.area_meas_unit)
-    protected MaterialBetterSpinner areaMeasUnit;
     @BindView(R.id.edt_year_of_occ_building)
     protected EditText edtYearOfOccBuilding;
-    @BindView(R.id.edt_length)
-    protected EditText edtLength;
-    @BindView(R.id.edt_width)
-    protected EditText edtWidth;
-    @BindView(R.id.length_width_unit)
-    protected MaterialBetterSpinner lengthWidthUnit;
-    @BindView(R.id.edt_w_con)
-    protected MaterialBetterSpinner edtWCon;
-    @BindView(R.id.edt_sew_con)
-    protected MaterialBetterSpinner edtSewCon;
-    @BindView(R.id.edt_sew_con_year)
-    protected EditText edtSewConYear;
-    protected EditText edtTradeLicYear;
-    @BindView(R.id.msmo)
-    protected MaterialBetterSpinner msmo;
-    @BindView(R.id.edt_remark)
-    protected EditText edtRemark;
-    @BindView(R.id.edt_address)
-    protected EditText edtCurrentAddress;
     @BindView(R.id.edt_noFloor)
     protected EditText edtnoFloors;
-    @BindView(R.id.edt_oldpropertyId)
-    protected AutoCompleteTextView edtOldpropertyId;
-    @BindView(R.id.edt_propertyId)
-    protected EditText edtPropertyId;
     @BindView(R.id.edt_state_code)
     protected EditText edtStateCode;
     SurveyComponent surveyComponent;
-    @BindView(R.id.floor_values)
-    LinearLayout floorValues;
     onMenuClick onMenuClick;
     Unbinder unbinder;
     @BindView(R.id.txtlatlng)
@@ -96,43 +63,27 @@ public abstract class PropertyInfoFragment<T extends PropertyLocationContract.Pr
     EditText edtFloorCount;
     @BindView(R.id.spTypeOfProperty)
     MaterialBetterSpinner spTypeOfProperty;
-    @BindView(R.id.spTypeOfNonResProperty)
-    MaterialBetterSpinner spTypeOfNonResProperty;
-    @BindView(R.id.edt_gisId)
-    EditText edtGisId;
     @BindView(R.id.edt_parcelId)
     EditText edtParcelId;
     @BindView(R.id.edt_apartment_building_name)
     EditText edtApartmentBuildingName;
     @BindView(R.id.spLiftFacility)
     MaterialBetterSpinner spLiftFacility;
-    @BindView(R.id.spPowerBackup)
-    MaterialBetterSpinner spPowerBackup;
     @BindView(R.id.spParkingFacility)
     MaterialBetterSpinner spParkingFacility;
     @BindView(R.id.spFireFighting)
     MaterialBetterSpinner spFireFighting;
     @BindView(R.id.spRainWaterHarvesting)
     MaterialBetterSpinner spRainWaterHarvesting;
-    @BindView(R.id.spSourceOfWater)
-    MaterialBetterSpinner spSourceOfWater;
     Unbinder unbinder1;
-    @BindView(R.id.edt_plot_id)
-    EditText edtPlotId;
     @BindView(R.id.spPropertyUsage)
     MaterialBetterSpinner spPropertyUsage;
-    @BindView(R.id.edt_total_floor)
-    EditText edtTotalFloor;
     @BindView(R.id.edt_pin_code)
     EditText edtPinCode;
     @BindView(R.id.edt_building_status)
     MaterialBetterSpinner spBuildingStatus;
     @BindView(R.id.edt_age_of_building)
     EditText edtAgeOfBuilding;
-    @BindView(R.id.btn_add_floor)
-    Button btnAddFloor;
-    @BindView(R.id.textILayout_remark)
-    TextInputLayout textILayoutRemark;
 
     @BindView(R.id.spRoadWidth)
     MaterialBetterSpinner spRoadWidth;
@@ -145,10 +96,7 @@ public abstract class PropertyInfoFragment<T extends PropertyLocationContract.Pr
     }
 
 
-    @Override
-    public void setSewageConnectoion(ArrayAdapter customAdapter) {
-        edtSewCon.setAdapter(customAdapter);
-    }
+
 
     @Override
     public void setTypeOfProperty(ArrayAdapter customAdapter) {
@@ -158,10 +106,7 @@ public abstract class PropertyInfoFragment<T extends PropertyLocationContract.Pr
     public void setPropertyUsage(ArrayAdapter customAdapter) {
         spPropertyUsage.setAdapter(customAdapter);
     }
-    @Override
-    public void setTypeOfNonesProperty(ArrayAdapter customAdapter) {
-        spTypeOfNonResProperty.setAdapter(customAdapter);
-    }
+
 
     @Override
     public void setRainWaterHarvesting(ArrayAdapter customAdapter) {
@@ -173,10 +118,7 @@ public abstract class PropertyInfoFragment<T extends PropertyLocationContract.Pr
         spLiftFacility.setAdapter(customAdapter);
     }
 
-    @Override
-    public void setPowerBackup(ArrayAdapter customAdapter) {
-        spPowerBackup.setAdapter(customAdapter);
-    }
+
 
     @Override
     public void setParkingFacility(ArrayAdapter customAdapter) {
@@ -188,15 +130,8 @@ public abstract class PropertyInfoFragment<T extends PropertyLocationContract.Pr
         spFireFighting.setAdapter(customAdapter);
     }
 
-    @Override
-    public void setWaterConnection(ArrayAdapter customAdapter) {
-        edtWCon.setAdapter(customAdapter);
-    }
 
-    @Override
-    public void setSourceOfWater(ArrayAdapter customAdapter) {
-        spSourceOfWater.setAdapter(customAdapter);
-    }
+
 
     @Override
     public String getMapId() {
@@ -294,29 +229,6 @@ public abstract class PropertyInfoFragment<T extends PropertyLocationContract.Pr
         return spRoadWidth.getText().toString();
     }
 
-    @Override
-    public void setMsmo(ArrayAdapter customAdapte) {
-        msmo.setAdapter(customAdapte);
-    }
-
-    public String getEdtRemark() {
-        return edtRemark.getText().toString();
-    }
-
-    @Override
-    public void addChipView(ChipView chipView) {
-        floorValues.addView(chipView);
-    }
-
-    @Override
-    public void setAreaMeasurementUnit(ArrayAdapter customAdapte) {
-        areaMeasUnit.setAdapter(customAdapte);
-    }
-
-    @Override
-    public void setLengthWidthMeasuremntUnit(ArrayAdapter customAdapte) {
-        lengthWidthUnit.setAdapter(customAdapte);
-    }
 
     @Override
     public void setFloorCount(String count) {
@@ -325,11 +237,6 @@ public abstract class PropertyInfoFragment<T extends PropertyLocationContract.Pr
 
     public void setLatLng(String latLong) {
         txtlatlng.setText("LatLng: " + latLong);
-    }
-
-    @Override
-    public void clearChips() {
-        floorValues.removeAllViews();
     }
 
     @Override
@@ -373,22 +280,23 @@ public abstract class PropertyInfoFragment<T extends PropertyLocationContract.Pr
         return true;
     }
 
-    @OnClick(R.id.btn_add_floor)
-    public void onViewClicked() {
-        getPresenter().onAddFloorCLicked();
-    }
-
-
-    @OnClick(R.id.edt_address)
-    public void onAddressClick() {
-
-    }
-
 
     @Override
-    public void removeChip(ChipView chiptView) {
-        floorValues.removeView(chiptView);
+    public void setColonyName(String colonyName) {
+        edtColonyCode.setText(colonyName);
     }
+
+    @Override
+    public void setPinCode(String pinCode) {
+        edtPinCode.setText(pinCode);
+    }
+
+    @Override
+    public void setStreetName(String streetName) {
+        edtStreetCode.setText(streetName);
+    }
+
+
 
     @OnClick(R.id.btnlatlong)
     public void onLatLongClick() {

@@ -13,7 +13,6 @@ import com.softminesol.propertysurvey.survey.apartmentEntry.domain.IApartmentSur
 import com.softminesol.propertysurvey.survey.common.domain.ISurveyOptionRepository;
 import com.softminesol.propertysurvey.survey.common.net.SurveyAPI;
 import com.softminesol.propertysurvey.survey.common.net.SurveyAPIURL;
-import com.softminesol.propertysurvey.survey.common.realm.RealmPropertyDataMapper;
 import com.softminesol.propertysurvey.survey.common.repository.SurveyOptionRepository;
 import com.softminesol.propertysurvey.survey.common.repository.datasource.SurveyOptionCloudDataSource;
 import com.softminesol.propertysurvey.survey.common.repository.datasource.SurveyOptionFactory;
@@ -79,10 +78,6 @@ public class SurveyModule {
     }
 
 
-    @Provides
-    RealmPropertyDataMapper realmPropertyDataMapper(@ApplicationContext Context context) {
-        return RealmPropertyDataMapper.getInstance(context);
-    }
 
     @Provides
     IImageUploadRepository getImageUploadRepository(ImageUploadFactory imageUploadFactory) {

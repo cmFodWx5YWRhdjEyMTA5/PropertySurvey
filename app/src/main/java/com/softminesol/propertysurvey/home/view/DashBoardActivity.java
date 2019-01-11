@@ -59,22 +59,13 @@ public class DashBoardActivity extends AppBaseActivity<DashBoardContractor.Prese
             case R.id.btn_new_property:
                 getPresenter().onNewPropertInfoClick();
                 break;
-            case R.id.btn_old_property:
-                getPresenter().onOldPropertyInfoClick();
-                break;
-            case R.id.btn_bill_distribution:
-                getPresenter().onDistributionClick();
-                break;
             case R.id.btn_add_apartment:
                 getPresenter().onAddApartmentClick();
                 break;
         }
     }
 
-    @Override
-    public void setDistributorInvisible() {
-        btnBillDistribution.setVisibility(View.GONE);
-    }
+
 
     @Override
     public void setNewPropertyInvisible() {

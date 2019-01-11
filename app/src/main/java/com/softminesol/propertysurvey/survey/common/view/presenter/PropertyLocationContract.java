@@ -33,45 +33,32 @@ public interface PropertyLocationContract {
         String getRoadWidth();
 
 
-        void setMsmo(ArrayAdapter customAdapte);
 
-        public void setSewageConnectoion(ArrayAdapter customAdapter);
 
         public void setTypeOfProperty(ArrayAdapter customAdapter);
 
         public void setPropertyUsage(ArrayAdapter customAdapter);
 
-        public void setTypeOfNonesProperty(ArrayAdapter customAdapter);
 
         public void setRainWaterHarvesting(ArrayAdapter customAdapter);
 
         public void setLiftFacility(ArrayAdapter customAdapter);
 
-        public void setPowerBackup(ArrayAdapter customAdapter);
 
         public void setParkingFacility(ArrayAdapter customAdapter);
 
         public void setFireFighting(ArrayAdapter customAdapter);
 
-        public void setWaterConnection(ArrayAdapter customAdapter);
-
-        public void setSourceOfWater(ArrayAdapter customAdapter);
-
-        void addChipView(ChipView chipView);
-
-        void setAreaMeasurementUnit(ArrayAdapter customAdapte);
-
-        void setLengthWidthMeasuremntUnit(ArrayAdapter customAdapte);
-
         void setFloorCount(String count);
 
-        void clearChips();
 
         void setLatLng(String s);
 
-        void removeChip(ChipView chiptView);
+        void setColonyName(String colonyName);
+        void setPinCode(String pinCode);
+        void setStreetName(String streetName);
 
-         void showMessage(String message);
+
 
         void setBuidlingStatus(ArrayAdapter buildingStatus);
         void setRoadWidth(ArrayAdapter customAdapter);
@@ -81,9 +68,6 @@ public interface PropertyLocationContract {
         public void onSubmitClick();
 
         public void onAddressClick();
-
-        void onAddFloorCLicked();
-
 
         void onUploadImageClick();
     }

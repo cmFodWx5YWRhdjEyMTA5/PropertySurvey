@@ -34,4 +34,6 @@ public class NewPropertyInfoFragment extends PropertyInfoFragment implements New
         surveyComponent = DaggerNewSurveyComponent.builder().baseAppComponent(((SurveyAppApplication) getActivity().getApplication()).getBaseAppComponent()).build();
         surveyComponent.inject(this);
     }
+
+
 }

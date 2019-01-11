@@ -2,12 +2,9 @@ package com.softminesol.propertysurvey.survey.newPropertyEntry.view.presenter;
 
 import com.softminesol.locations.locationmanager.domain.GetLocationAddressUseCase;
 import com.softminesol.propertysurvey.localcachesync.domain.NewProperySyncUseCase;
-import com.softminesol.propertysurvey.survey.cloudsync.NewFormSync;
-import com.softminesol.propertysurvey.survey.common.domain.SurveyAreaTypeUseCase;
+import com.softminesol.propertysurvey.survey.cloudsync.SyncManager;
 import com.softminesol.propertysurvey.survey.common.domain.SurveyGetPropertyTypeUseCase;
-import com.softminesol.propertysurvey.survey.common.domain.SurveyMeasurementListUseCase;
 import com.softminesol.propertysurvey.survey.common.domain_luc.SurveyPropertyUsage;
-import com.softminesol.propertysurvey.survey.common.model.newmodel.PropertyUsage;
 import com.softminesol.propertysurvey.survey.common.model.property.GetPropertySaveResponse;
 import com.softminesol.propertysurvey.survey.common.model.property.SavePropertyRequest;
 import com.softminesol.propertysurvey.survey.common.view.activity.ApartmentInfoActivity;
@@ -30,15 +27,12 @@ public class NewPropertyInfoPresenter extends PropertyLocationPresenter<NewPrope
 
 
     @Inject
-    NewFormSync syncManager;
-
-    @Inject
-    NewProperySyncUseCase newProperySyncUseCase;
+    SyncManager syncManager;
 
     @Inject
     NewPropertyInfoPresenter(AdapterFactory adapterFactory, SurveyGetPropertyTypeUseCase getPropertyTypeUseCase,
-                             SurveyPropertyUsage surveyPropertyUsage,SaveSurveyFormUseCase saveSurveyFormUseCase, GetLocationAddressUseCase reverseGeoCodeAddress) {
-        super(adapterFactory, getPropertyTypeUseCase,surveyPropertyUsage,reverseGeoCodeAddress);
+                             SurveyPropertyUsage surveyPropertyUsage, SaveSurveyFormUseCase saveSurveyFormUseCase, GetLocationAddressUseCase reverseGeoCodeAddress) {
+        super(adapterFactory, getPropertyTypeUseCase, surveyPropertyUsage, reverseGeoCodeAddress);
         this.saveSurveyFormUseCase = saveSurveyFormUseCase;
 
     }
@@ -68,9 +62,9 @@ public class NewPropertyInfoPresenter extends PropertyLocationPresenter<NewPrope
 
                 @Override
                 public void onNext(GetPropertySaveResponse getPropertySaveResponse) {
-                    if(getPropertySaveResponse.getGisId()!= null) {
+                    if (getPropertySaveResponse.getGisId() != null) {
                         getView().startActivity(ApartmentInfoActivity.createIntent(getView().getContext(), getPropertySaveResponse.getGisId()));
-                        newProperySyncUseCase.execute(RequestParams.EMPTY, new Subscriber<List<String>>() {
+                        syncManager.execute(new Subscriber<List<GetPropertySaveResponse>>() {
                             @Override
                             public void onCompleted() {
 
@@ -82,14 +76,14 @@ public class NewPropertyInfoPresenter extends PropertyLocationPresenter<NewPrope
                             }
 
                             @Override
-                            public void onNext(List<String> strings) {
+                            public void onNext(List<GetPropertySaveResponse> getPropertySaveResponses) {
 
                             }
                         });
                         getView().finish();
-                    }else {
-                        if(getPropertySaveResponse.getTempId() > 0) {
-                            getView().startActivity(ApartmentInfoActivity.createIntent(getView().getContext(),getPropertySaveResponse.getTempId()));
+                    } else {
+                        if (getPropertySaveResponse.getTempId() > 0) {
+                            getView().startActivity(ApartmentInfoActivity.createIntent(getView().getContext(), getPropertySaveResponse.getTempId()));
                             getView().finish();
                         }
                     }
