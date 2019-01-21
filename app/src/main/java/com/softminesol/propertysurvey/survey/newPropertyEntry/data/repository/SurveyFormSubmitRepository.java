@@ -7,6 +7,8 @@ import com.softminesol.propertysurvey.survey.newPropertyEntry.data.repository.da
 import com.softminesol.propertysurvey.survey.newPropertyEntry.domain.ISurveyFormSaveRepository;
 import com.softminesol.propertysurvey.survey.newPropertyEntry.domain.ISurveyFormSubmitRepository;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import frameworks.network.model.BaseResponse;
@@ -17,7 +19,7 @@ import rx.functions.Func1;
 /**
  * Created by sandeep on 13/5/18.
  */
-public class SurveyFormSubmitRepository implements ISurveyFormSubmitRepository,ISurveyFormSaveRepository {
+public class SurveyFormSubmitRepository implements ISurveyFormSubmitRepository, ISurveyFormSaveRepository {
     SubmitFormDataFactory submitFormDataFactory;
 
     @Inject
@@ -27,11 +29,11 @@ public class SurveyFormSubmitRepository implements ISurveyFormSubmitRepository,I
 
     @Override
     public Observable<BaseResponse> submitNewProperty(FormData formData) {
-       return null;//turn Observable.error(new Throwable("There is some problem please try again"));
+        return null;//turn Observable.error(new Throwable("There is some problem please try again"));
     }
 
     public Observable<BaseResponse> submitCloudNewProperty(final FormData formData) {
-        return  submitFormDataFactory.getCloudSubmitFomData().submitFormData(formData).doOnError(new Action1<Throwable>() {
+        return submitFormDataFactory.getCloudSubmitFomData().submitFormData(formData).doOnError(new Action1<Throwable>() {
             @Override
             public void call(Throwable throwable) {
                 submitNewProperty(formData);
@@ -42,15 +44,24 @@ public class SurveyFormSubmitRepository implements ISurveyFormSubmitRepository,I
                 formData.setState("");
 
             }
-        }); // Will be added in sycning
+        });
 
+    }
+
+    public Observable<GetPropertySaveResponse> submitCacheNewProperty(final SavePropertyRequest formData) {
+        return submitFormDataFactory.getCacheSubmitFormData().submitFormData(formData);
+    }
+
+    @Override
+    public Observable<List<SavePropertyRequest>> getDraftedSaveProperties() {
+        return submitFormDataFactory.getCacheSubmitFormData().getDraftedProperties();
     }
 
 
     public Observable<GetPropertySaveResponse> submitCloudNewProperty(final SavePropertyRequest formData) {
-        if(formData.getImagePathList()!= null && formData.getImagePathList().size()>0) {
-            return submitFormDataFactory.getCacheSubmitFormData().submitFormData(formData);
-        }else {
+        if (formData.getImagePathList() != null && formData.getImagePathList().size() > 0) {
+            return submitCacheNewProperty(formData);
+        } else {
             return submitFormDataFactory.getCloudSubmitFomData().submitCloudNewProperty(formData).onErrorResumeNext(new Func1<Throwable, Observable<GetPropertySaveResponse>>() {
                 @Override
                 public Observable<GetPropertySaveResponse> call(Throwable throwable) {

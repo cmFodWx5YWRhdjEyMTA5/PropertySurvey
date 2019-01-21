@@ -9,6 +9,7 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -94,6 +95,7 @@ public abstract class PropertyInfoFragment<T extends PropertyLocationContract.Pr
     @Override
     protected void initInjector() {
     }
+
 
 
 
@@ -263,6 +265,17 @@ public abstract class PropertyInfoFragment<T extends PropertyLocationContract.Pr
         setRightText("Done  ");
         setLeftMenuEnable(false);
         setRightMenuEnable(true);
+        inflater.inflate(R.menu.savedraftmenu,menu);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.save_to_draft) {
+            getPresenter().onSaveToDraft();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

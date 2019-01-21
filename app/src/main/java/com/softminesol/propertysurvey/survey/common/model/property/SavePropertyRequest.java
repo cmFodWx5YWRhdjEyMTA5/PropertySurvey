@@ -92,6 +92,16 @@ public class SavePropertyRequest implements Serializable{
     @Expose
     private String longitude;
 
+    private boolean idDrafted;
+
+    public boolean isIdDrafted() {
+        return idDrafted;
+    }
+
+    public void setIdDrafted(boolean idDrafted) {
+        this.idDrafted = idDrafted;
+    }
+
     public String getLattitude() {
         return lattitude;
     }

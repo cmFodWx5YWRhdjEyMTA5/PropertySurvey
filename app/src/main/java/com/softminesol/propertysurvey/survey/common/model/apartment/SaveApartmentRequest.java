@@ -105,6 +105,16 @@ public class SaveApartmentRequest implements Serializable {
     @SerializedName("image")
     private List<String> apartmentImage= new ArrayList<>();
 
+    private boolean idDrafted;
+
+    public boolean isIdDrafted() {
+        return idDrafted;
+    }
+
+    public void setIdDrafted(boolean idDrafted) {
+        this.idDrafted = idDrafted;
+    }
+
     public List<String> getApartmentImagepath() {
         return apartmentImagepath;
     }

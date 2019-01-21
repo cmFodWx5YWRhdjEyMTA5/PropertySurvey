@@ -21,6 +21,8 @@ public interface DashBoardContractor {
 
         public void onAddApartmentClick();
 
+        public void onShowDraftClick();
+
     }
 }
 

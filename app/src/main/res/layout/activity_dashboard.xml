@@ -29,6 +29,16 @@
             android:minHeight="@dimen/button_min_height"
             android:text="@string/add_apartment"
             android:textSize="@dimen/button_text_size" />
+
+        <Button
+            android:id="@+id/btn_showDrafts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:minHeight="@dimen/button_min_height"
+            android:text="@string/show_drafts"
+            android:textSize="@dimen/button_text_size" />
+
         <Button
             android:visibility="gone"
             android:id="@+id/btn_old_property"

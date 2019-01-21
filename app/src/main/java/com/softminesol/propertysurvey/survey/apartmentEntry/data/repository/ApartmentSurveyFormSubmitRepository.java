@@ -25,27 +25,36 @@ public class ApartmentSurveyFormSubmitRepository implements IApartmentSurveyForm
     }
 
 
+    public Observable<GetPropertySaveResponse> submitCacheNewApartment(final SaveApartmentRequest formData) {
+        return submitFormDataFactory.getCacheSubmitFormData().submitFormData(formData);
+    }
+
+    @Override
+    public Observable<List<SaveApartmentRequest>> getDraftedApartmentItems() {
+        return submitFormDataFactory.getCacheSubmitFormData().getDraftedApartments();
+    }
+
     @Override
     public Observable<GetPropertySaveResponse> submitCloudNewApartment(final SaveApartmentRequest formData) {
         List<Owner> ownerList = formData.getOwners();
         for(Owner owner: ownerList) {
             if(owner.getRegistryImagePath().size()>0) {
-                submitFormDataFactory.getCacheSubmitFormData().submitFormData(formData);
+                submitCacheNewApartment(formData);
                 return Observable.error(new Throwable("Unable to update to server"));
             }
         }
 
         if(formData.getApartmentImagepath().size()>0) {
-            submitFormDataFactory.getCacheSubmitFormData().submitFormData(formData);
+            submitCacheNewApartment(formData);
             return Observable.error(new Throwable("Unable to update to server"));
         }else if(formData.getGisId()== null) {
-            submitFormDataFactory.getCacheSubmitFormData().submitFormData(formData);
+            submitCacheNewApartment(formData);
             return Observable.error(new Throwable("Unable to update to server"));
         } else{
             return submitFormDataFactory.getCloudSubmitFomData().submitCloudNewApartment(formData).doOnError(new Action1<Throwable>() {
                 @Override
                 public void call(Throwable throwable) {
-                    submitFormDataFactory.getCacheSubmitFormData().submitFormData(formData);
+                    submitCacheNewApartment(formData);
                 }
             });
         }

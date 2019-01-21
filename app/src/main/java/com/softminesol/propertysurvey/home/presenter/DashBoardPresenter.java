@@ -7,6 +7,7 @@ import com.softminesol.propertysurvey.home.domain.DashBoardUseCase;
 import com.softminesol.propertysurvey.survey.cloudsync.SyncManager;
 import com.softminesol.propertysurvey.survey.common.model.property.GetPropertySaveResponse;
 import com.softminesol.propertysurvey.survey.common.view.activity.ApartmentInfoActivity;
+import com.softminesol.propertysurvey.survey.draftedEntity.view.DraftedListActivity;
 import com.softminesol.propertysurvey.survey.newPropertyEntry.view.activity.NewSurveyActivity;
 
 import java.util.List;
@@ -34,11 +35,6 @@ public class DashBoardPresenter extends AppBasePresenter<DashBoardContractor.Vie
 
     }
 
-    @Override
-    public void attachView(DashBoardContractor.View view) {
-        super.attachView(view);
-
-    }
 
 
     @Override
@@ -51,6 +47,11 @@ public class DashBoardPresenter extends AppBasePresenter<DashBoardContractor.Vie
     public void onAddApartmentClick() {
         getView().startActivity(new Intent(getView().getContext(), ApartmentInfoActivity.class));
 
+    }
+
+    @Override
+    public void onShowDraftClick() {
+        getView().startActivity(new Intent(getView().getContext(), DraftedListActivity.class));
     }
 
     public void onLogout() {

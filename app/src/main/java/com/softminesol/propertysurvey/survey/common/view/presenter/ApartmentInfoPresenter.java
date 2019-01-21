@@ -9,6 +9,7 @@ import com.softmine.imageupload.view.ActivityPicChooser;
 import com.softmine.imageupload.view.ImageUploadActivity;
 import com.softminesol.propertysurvey.CommonBaseUrl;
 import com.softminesol.propertysurvey.localcachesync.domain.NewApartmentUseCase;
+import com.softminesol.propertysurvey.survey.apartmentEntry.domain.SaveApartmentCacheUseCase;
 import com.softminesol.propertysurvey.survey.apartmentEntry.domain.SaveApartmentSurveyFormUseCase;
 import com.softminesol.propertysurvey.survey.cloudsync.SyncManager;
 import com.softminesol.propertysurvey.survey.common.domain.SurveyFloorListUseCase;
@@ -60,6 +61,7 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
     private final SurveyOccupancyStatus surveyOccupancyStatus;
     private final SurveySourceWaterUseCase surveySourceWaterUseCase;
     private final SurveyConstructionType surveyConstructionType;
+    private final SaveApartmentCacheUseCase saveApartmentCacheUseCase;
     private SyncManager syncManager;
 
     @Inject
@@ -67,7 +69,7 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
                                   SyncManager syncManager, SurveyFloor surveyFloorListUseCase,
                                   SurveyPropertyUsage surveyPropertyUsage, SurveyNonResidentCategory surveyNonResidentCategory,
                                   SurveyRespodentStatus surveyRespodentStatus, SurveyOccupancyStatus surveyOccupancyStatus, SurveySourceWaterUseCase surveySourceWaterUseCase,
-                                  SurveyConstructionType surveyConstructionType) {
+                                  SurveyConstructionType surveyConstructionType,SaveApartmentCacheUseCase saveApartmentCacheUseCase) {
         this.adapterFactory = adapterFactory;
         this.saveApartmentSurveyFormUseCase = saveApartmentSurveyFormUseCase;
         this.syncManager = syncManager;
@@ -78,6 +80,7 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
         this.surveyOccupancyStatus = surveyOccupancyStatus;
         this.surveySourceWaterUseCase = surveySourceWaterUseCase;
         this.surveyConstructionType = surveyConstructionType;
+        this.saveApartmentCacheUseCase = saveApartmentCacheUseCase;
 
     }
 
@@ -319,6 +322,35 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
     public void onAddOwnerClick() {
         getView().startActivityForResult(new Intent(getView().getContext(), OwnerInfoActivity.class), 1);
 
+    }
+
+    @Override
+    public void onSaveToDraft() {
+        SaveApartmentRequest formData = getApartmentData();
+        formData.setIdDrafted(true);
+        RequestParams requestParams = RequestParams.create();
+        requestParams.putObject("formdata", formData);
+        getView().showProgressBar();
+        saveApartmentCacheUseCase.execute(requestParams, new Subscriber<GetPropertySaveResponse>() {
+            @Override
+            public void onCompleted() {
+                getView().hideProgressBar();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                getView().hideProgressBar();
+                getView().showToast(e.getMessage());
+                getView().gotoHome();
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onNext(GetPropertySaveResponse getPropertySaveResponse) {
+                getView().showToast("Save Successfully");
+                getView().gotoHome();
+            }
+        });
     }
 
     @Override

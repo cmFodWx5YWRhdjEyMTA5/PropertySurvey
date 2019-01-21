@@ -53,7 +53,7 @@ public class DashBoardActivity extends AppBaseActivity<DashBoardContractor.Prese
     }
 
 
-    @OnClick({R.id.btn_new_property, R.id.btn_old_property, R.id.btn_bill_distribution,R.id.btn_add_apartment})
+    @OnClick({R.id.btn_new_property, R.id.btn_old_property, R.id.btn_bill_distribution,R.id.btn_add_apartment,R.id.btn_showDrafts})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_new_property:
@@ -61,6 +61,9 @@ public class DashBoardActivity extends AppBaseActivity<DashBoardContractor.Prese
                 break;
             case R.id.btn_add_apartment:
                 getPresenter().onAddApartmentClick();
+                break;
+            case R.id.btn_showDrafts:
+                getPresenter().onShowDraftClick();
                 break;
         }
     }

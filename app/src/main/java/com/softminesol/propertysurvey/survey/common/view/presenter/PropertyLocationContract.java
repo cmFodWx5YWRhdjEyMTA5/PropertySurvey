@@ -70,5 +70,8 @@ public interface PropertyLocationContract {
         public void onAddressClick();
 
         void onUploadImageClick();
+
+        void onSaveToDraft();
+
     }
 }

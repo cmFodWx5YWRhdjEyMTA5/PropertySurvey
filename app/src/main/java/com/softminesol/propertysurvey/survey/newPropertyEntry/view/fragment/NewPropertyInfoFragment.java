@@ -1,5 +1,7 @@
 package com.softminesol.propertysurvey.survey.newPropertyEntry.view.fragment;
 
+import android.os.Bundle;
+
 import com.softminesol.propertysurvey.SurveyAppApplication;
 import com.softminesol.propertysurvey.survey.common.view.fragment.PropertyInfoFragment;
 import com.softminesol.propertysurvey.survey.newPropertyEntry.di.DaggerNewSurveyComponent;
@@ -22,7 +24,11 @@ public class NewPropertyInfoFragment extends PropertyInfoFragment implements New
         NewPropertyInfoFragment fragment = new NewPropertyInfoFragment();
         return fragment;
     }
-
+    public static NewPropertyInfoFragment newInstance(Bundle bundle) {
+        NewPropertyInfoFragment fragment = new NewPropertyInfoFragment();
+        fragment.setArguments(bundle);
+        return fragment;
+    }
     @Override
     public NewPropertyInfoPresenter getPresenter() {
         return presenter;

@@ -104,6 +104,11 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
     }
 
     @Override
+    public void onSaveToDraft() {
+
+    }
+
+    @Override
     public void onAddressClick() {
         getView().startActivityForResult(MapsActivityCurrentPlace.getInstance(getView().getContext(), GoogleMap.MAP_TYPE_SATELLITE), 2);
     }

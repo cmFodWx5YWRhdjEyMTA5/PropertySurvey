@@ -6,6 +6,8 @@ import com.softminesol.propertysurvey.roomDb.PropertySurveyDB;
 import com.softminesol.propertysurvey.survey.common.model.property.GetPropertySaveResponse;
 import com.softminesol.propertysurvey.survey.common.model.property.SavePropertyRequest;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import frameworks.di.qualifier.ApplicationContext;
@@ -23,5 +25,9 @@ public class CacheSubmitFormData {
     public Observable<GetPropertySaveResponse> submitFormData(SavePropertyRequest formData) {
         long id = propertySurveyDB.getPropertyDao().insert(formData);
         return Observable.just(new GetPropertySaveResponse(id));
+    }
+
+    public Observable<List<SavePropertyRequest>> getDraftedProperties() {
+        return Observable.just(propertySurveyDB.getPropertyDao().getDraftedProperties());
     }
 }

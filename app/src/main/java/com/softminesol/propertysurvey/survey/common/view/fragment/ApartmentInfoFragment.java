@@ -493,6 +493,7 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
         setLeftText("  Cancel");
         setLeftMenuEnable(true);
         setRightMenuEnable(true);
+        inflater.inflate(R.menu.savedraftmenu,menu);
     }
 
 

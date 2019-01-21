@@ -157,6 +157,7 @@
     <string name="mix_category">Mix Category</string>
     <string name="mapid_parcelid">Map Id/ Parcel Id</string>
     <string name="old_property_no">Old Property Number</string>
+    <string name="show_drafts">Show Drafts</string>
 
 
 </resources>

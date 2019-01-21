@@ -32,4 +32,7 @@ public interface SurveyApartmentDao {
 
     @Query("select * from saveApartmentrequest WHERE gisId is Not Null")
     List<SaveApartmentRequest> getApartments();
+
+    @Query("select * from saveApartmentrequest WHERE idDrafted = 1")
+    List<SaveApartmentRequest> getDraftedApartments();
 }
