@@ -24,7 +24,11 @@ public class CacheSubmitFormData {
 
 
     public Observable<GetPropertySaveResponse> submitFormData(SaveApartmentRequest formData) {
-        propertySurveyDB.getApartmentDao().insert(formData);
+        if(formData.getTempId() != 0) {
+            propertySurveyDB.getApartmentDao().update(formData);
+        }else {
+            propertySurveyDB.getApartmentDao().insert(formData);
+        }
         return Observable.just(new GetPropertySaveResponse());
     }
 

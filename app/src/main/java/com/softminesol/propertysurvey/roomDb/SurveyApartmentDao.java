@@ -18,7 +18,7 @@ public interface SurveyApartmentDao {
 
 
     @Insert
-    void insert(SaveApartmentRequest saveApartmentRequest);
+    long insert(SaveApartmentRequest saveApartmentRequest);
 
     @Delete
     void delete(SaveApartmentRequest saveApartmentRequest);

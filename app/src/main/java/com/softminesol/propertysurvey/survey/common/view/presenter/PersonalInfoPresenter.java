@@ -91,6 +91,16 @@ public class PersonalInfoPresenter extends AppBasePresenter<PersonalInfoContract
             getView().setOwnerNameError("Please Enter");
             return false;
         }
+        if(getView().getMobileNo().trim().length() < 10) {
+            getView().setMobileNumberError("Mobile Number should be 10 digit");
+            return false;
+        }
+        if(getView().getAdharId().trim().length()> 0 && getView().getAdharId().trim().length() < 10) {
+            getView().setAdharNumberError("Aadhar" +
+                    " Number should be 10 digit");
+            return false;
+        }
+
         return true;
     }
 

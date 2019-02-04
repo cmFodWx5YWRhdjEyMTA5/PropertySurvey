@@ -1,7 +1,5 @@
 package com.softminesol.propertysurvey.survey.common.di;
 
-import android.content.Context;
-
 import com.softmine.imageupload.data.net.ImageUploadAPI;
 import com.softmine.imageupload.data.repository.ImageUploadRepository;
 import com.softmine.imageupload.data.repository.datasource.ImageUploadFactory;
@@ -19,7 +17,6 @@ import com.softminesol.propertysurvey.survey.common.repository.datasource.Survey
 
 import dagger.Module;
 import dagger.Provides;
-import frameworks.di.qualifier.ApplicationContext;
 import frameworks.network.interceptor.AppAuthInterceptor;
 import frameworks.network.interceptor.ErrorResponseInterceptor;
 import frameworks.network.model.BaseResponseError;
@@ -71,8 +68,8 @@ public class SurveyModule {
     @Provides
     OkHttpClient provideOkHttpClient(HttpLoggingInterceptor httpLoggingInterceptor, AppAuthInterceptor appAuthInterceptor) {
         return new OkHttpClient.Builder()
-                .addInterceptor(httpLoggingInterceptor)
                 .addInterceptor(appAuthInterceptor)
+                .addInterceptor(httpLoggingInterceptor)
                 .addInterceptor(new ErrorResponseInterceptor(BaseResponseError.class))
                 .build();
     }

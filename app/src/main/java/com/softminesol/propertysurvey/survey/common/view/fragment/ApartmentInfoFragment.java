@@ -12,6 +12,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -25,6 +26,7 @@ import com.softminesol.propertysurvey.home.view.DashBoardActivity;
 import com.softminesol.propertysurvey.survey.common.di.DaggerSurveyComponent;
 import com.softminesol.propertysurvey.survey.common.di.SurveyComponent;
 import com.softminesol.propertysurvey.survey.common.model.apartment.Owner;
+import com.softminesol.propertysurvey.survey.common.model.apartment.SaveApartmentRequest;
 import com.softminesol.propertysurvey.survey.common.view.activity.onMenuClick;
 import com.softminesol.propertysurvey.survey.common.view.presenter.ApartmentInfoContract;
 import com.softminesol.propertysurvey.survey.common.view.presenter.ApartmentInfoPresenter;
@@ -75,6 +77,7 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
     List<Owner> owners = new ArrayList<>();
     public static final String APARTMENT_DETAIL_KEY = "apartmentDetails";
     public static final String APARTMENT_TEMP_KEY = "apartmentTempDetails";
+    public static final String APARTMENT_DETAIL = "apartmentDetail";
 
     SurveyComponent surveyComponent;
     @Inject
@@ -180,7 +183,14 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
         // Required empty public constructor
     }
 
+    public static ApartmentInfoFragment newIntance(SaveApartmentRequest savePropertyRequest) {
+        ApartmentInfoFragment fragment = new ApartmentInfoFragment();
+        Bundle args = new Bundle();
+        args.putSerializable(APARTMENT_DETAIL, savePropertyRequest);
+        fragment.setArguments(args);
+        return fragment;
 
+    }
 
 
     @Override
@@ -476,6 +486,138 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
 
     }
 
+    @Override
+    public void setGisId(String s) {
+        edtGSID.setText(s);
+    }
+
+    @Override
+    public void setFloorNumber(String floor) {
+        edtFloorNo.setText(floor);
+    }
+
+    @Override
+    public void setPropertyUsageItem(String propertyUsage) {
+        spPropertyUsage.setText(propertyUsage);
+    }
+
+    @Override
+    public void setNonResidentialCode(String nonResidentialCode) {
+        edtNonResdentalCode.setText(nonResidentialCode);
+    }
+
+    @Override
+    public void setNonResidentalCategory(String nonResidentialCategory) {
+        spNonRegCategory.setText(nonResidentialCategory);
+    }
+
+    @Override
+    public void setShopName(String shopName) {
+        edtShopName.setText(shopName);
+    }
+
+    @Override
+    public void setBusinessType(String businessType) {
+
+    }
+
+    @Override
+    public void setBuisnessCode(String businessCode) {
+        edtBuisnessCode.setText(businessCode);
+    }
+
+    @Override
+    public void setLicenseValidity(String licenseValidity) {
+        edtLicenceValidity.setText(licenseValidity);
+    }
+
+    @Override
+    public void setLicenseStatus(String licenseStatus) {
+        spnLicenceStatus.setText(licenseStatus);
+    }
+
+    @Override
+    public void setBusinessBuiltArea(String businessBuiltArea) {
+        edtBuisnessBuiltArea.setText(businessBuiltArea);
+    }
+
+    @Override
+    public void setRespodentName(String respodentName) {
+        edtRespondentName.setText(respodentName);
+    }
+
+    @Override
+    public void setRespodentStatus(String respodentStatus) {
+        spnRespondentStatus.setText(respodentStatus);
+    }
+
+    @Override
+    public void setOccupencyStatusItem(String s) {
+        spnOccupencyStatus.setText(s);
+    }
+
+    @Override
+    public void setElectricityConnectionStatus(String s) {
+        spElectronicConnectionStatus.setText(s);
+    }
+
+    @Override
+    public void setElectricityConnection(String s) {
+        edtElectionConnectionNo.setText(s);
+    }
+
+    @Override
+    public void setSewerageStatus(String s) {
+        edtSewerageConStatus.setText(s);
+    }
+
+    @Override
+    public void setSewerageConnectionNumber(String s) {
+        edtSewerageConNo.setText(s);
+    }
+
+    @Override
+    public void setSourceWater(String s) {
+        spSourceOfWater.setText(s);
+    }
+
+    @Override
+    public void setConstructionTypeItem(String s) {
+        spConstructiontype.setText(s);
+    }
+
+    @Override
+    public void setSelfOccupiedArea(String s) {
+        edtSelfOccupiedArea.setText(s);
+    }
+
+    @Override
+    public void setTenantedCarpetArea(String s) {
+        edtTenantedArea.setText(s);
+    }
+
+    @Override
+    public void setPowerBackup(String s) {
+        spPowerBackup.setText(s);
+    }
+
+    @Override
+    public void setOwnerCount(String s) {
+    }
+
+    @Override
+    public void setOwners(List<Owner> owners) {
+        this.owners = owners;
+    }
+
+    @Override
+    public void setElectricityConnectionError(String s) {
+        edtElectionConnectionNo.setError(s);
+        edtElectionConnectionNo.requestFocus();
+    }
+
+
+
     @OnClick(R.id.btn_add_owner)
     public void onViewClicked() {
         getPresenter().onAddOwnerClick();
@@ -513,14 +655,22 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
         return true;
     }
 
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.save_to_draft) {
+            getPresenter().onSaveToDraft();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
         unbinder2 = ButterKnife.bind(this, rootView);
         if(getArguments() != null ) {
-            if(getArguments().getString(APARTMENT_DETAIL_KEY) != null) {
+            if(getArguments().getSerializable(APARTMENT_DETAIL) != null) {
+                getPresenter().setApartmentData((SaveApartmentRequest) getArguments().getSerializable(APARTMENT_DETAIL));
+            } if(getArguments().getString(APARTMENT_DETAIL_KEY) != null) {
                 setGisCode(getArguments().getString(APARTMENT_DETAIL_KEY));
             }else {
                 if(getArguments().getLong(APARTMENT_TEMP_KEY,0) != 0) {

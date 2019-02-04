@@ -3,6 +3,7 @@ package com.softminesol.propertysurvey.survey.common.view.presenter;
 import android.widget.ArrayAdapter;
 
 import com.softminesol.propertysurvey.survey.common.model.apartment.Owner;
+import com.softminesol.propertysurvey.survey.common.model.apartment.SaveApartmentRequest;
 
 import java.util.List;
 
@@ -88,6 +89,57 @@ public interface ApartmentInfoContract {
 
         void setNoofOwner(String owner);
 
+        void setGisId(String s);
+
+        void setFloorNumber(String floor);
+
+        void setPropertyUsageItem(String propertyUsage);
+
+        void setNonResidentialCode(String nonResidentialCode);
+
+        void setNonResidentalCategory(String nonResidentialCategory);
+
+        void setShopName(String shopName);
+
+        void setBusinessType(String businessType);
+
+        void setBuisnessCode(String businessCode);
+
+        void setLicenseValidity(String licenseValidity);
+
+        void setLicenseStatus(String licenseStatus);
+
+        void setBusinessBuiltArea(String businessBuiltArea);
+
+        void setRespodentName(String respodentName);
+
+        void setRespodentStatus(String respodentStatus);
+
+        void setOccupencyStatusItem(String s);
+
+        void setElectricityConnectionStatus(String s);
+
+        void setElectricityConnection(String s);
+
+        void setSewerageStatus(String s);
+
+        void setSewerageConnectionNumber(String s);
+
+        void setSourceWater(String s);
+
+        void setConstructionTypeItem(String s);
+
+        void setSelfOccupiedArea(String s);
+
+        void setTenantedCarpetArea(String s);
+
+        void setPowerBackup(String s);
+
+        void setOwnerCount(String s);
+
+        void setOwners(List<Owner> owners);
+
+        void setElectricityConnectionError(String s);
     }
 
     public interface Presenter extends IPresenter<View> {
@@ -96,6 +148,7 @@ public interface ApartmentInfoContract {
         public void onAddOwnerClick();
 
         void addApartmentPic();
+        public void setApartmentData(SaveApartmentRequest saveApartmentRequest);
 
         void onSaveToDraft();
     }

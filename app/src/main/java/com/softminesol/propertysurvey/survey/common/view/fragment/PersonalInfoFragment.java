@@ -218,6 +218,18 @@ public class PersonalInfoFragment extends AppBaseFragment<PersonalInfoContract.P
 
     }
 
+    @Override
+    public void setMobileNumberError(String s) {
+        edtRespondentMobileNo.setError(s);
+        edtRespondentMobileNo.requestFocus();
+    }
+
+    @Override
+    public void setAdharNumberError(String s) {
+        edtRespondentAadharId.setError(s);
+        edtRespondentAadharId.requestFocus();
+    }
+
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {

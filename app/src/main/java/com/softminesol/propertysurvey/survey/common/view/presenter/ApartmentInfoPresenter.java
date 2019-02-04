@@ -232,7 +232,40 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
 
     }
 
+
+    public void setApartmentData(SaveApartmentRequest saveApartmentRequest) {
+        getView().setTempId(saveApartmentRequest.getTempPropertyApartmentId()+"");
+        getView().setGisId(saveApartmentRequest.getGisId()+"");
+        getView().setFloorNumber( saveApartmentRequest.getFloor());
+        getView().setPropertyUsageItem(saveApartmentRequest.getPropertyUsage());
+        getView().setNonResidentialCode(saveApartmentRequest.getNonResidentialCode());
+        getView().setNonResidentalCategory(saveApartmentRequest.getNonResidentialCategory());
+        getView().setShopName(saveApartmentRequest.getShopName());
+        getView().setBusinessType(saveApartmentRequest.getBusinessType());
+        getView().setBuisnessCode(saveApartmentRequest.getBusinessCode());
+        getView().setEdtLicenceNo(saveApartmentRequest.getLicenseNumber());
+        getView().setLicenseValidity(saveApartmentRequest.getLicenseValidity());
+        getView().setLicenseStatus(saveApartmentRequest.getLicenseStatus());
+        getView().setBusinessBuiltArea(saveApartmentRequest.getBusinessBuiltArea());
+        getView().setRespodentName(saveApartmentRequest.getRespodentName());
+        getView().setRespodentStatus(saveApartmentRequest.getRespodentStatus());
+        getView().setOccupencyStatusItem(saveApartmentRequest.getOccupencyStatus()+"");
+        getView().setElectricityConnectionStatus(saveApartmentRequest.getElectricityConnectionStatus()+"");
+        getView().setElectricityConnection(saveApartmentRequest.getElectricityConnection()+"");
+        getView().setSewerageStatus(saveApartmentRequest.getSewerageStatus()+"");
+        getView().setSewerageConnectionNumber(saveApartmentRequest.getSewerageConnectionNumber()+"");
+        getView().setSourceWater(saveApartmentRequest.getSourceWater()+"");
+        getView().setConstructionTypeItem(saveApartmentRequest.getConstructionType()+"");
+        getView().setSelfOccupiedArea(saveApartmentRequest.getSelfOccupiedArea()+"");
+        getView().setTenantedCarpetArea(saveApartmentRequest.getTenantedCarpetArea()+"");
+        getView().setPowerBackup(saveApartmentRequest.getPowerBackup()+"");
+        getView().setOwnerCount(saveApartmentRequest.getOwnerCount()+"");
+        getView().setOwners(saveApartmentRequest.getOwners());
+        fileUrls = saveApartmentRequest.getApartmentImage();
+        filePaths = saveApartmentRequest.getApartmentImagepath();
+    }
     public SaveApartmentRequest getApartmentData() {
+
         SaveApartmentRequest saveApartmentRequest = new SaveApartmentRequest();
         if(getView().getGsid() == null || getView().getGsid().isEmpty()) {
             saveApartmentRequest.setTempPropertyApartmentId(getView().getTempId());
@@ -254,6 +287,7 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
         saveApartmentRequest.setRespodentStatus(getView().getRespondentStatus());
         saveApartmentRequest.setOccupencyStatus(getView().getOccupencyStatus());
         saveApartmentRequest.setElectricityConnectionStatus(getView().getElectricityStatus());
+
         saveApartmentRequest.setElectricityConnection(getView().getElectricConnectionNumber());
         saveApartmentRequest.setSewerageStatus(getView().getSewarageConnectionStatus());
         saveApartmentRequest.setSewerageConnectionNumber(getView().getSewarageConnectionNumber());
@@ -274,48 +308,57 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
     List<String> filePaths = new ArrayList<>();
     @Override
     public void onNextClick() {
-        SaveApartmentRequest formData = getApartmentData();
-        RequestParams requestParams = RequestParams.create();
-        requestParams.putObject("formdata", formData);
-        getView().showProgressBar();
-        saveApartmentSurveyFormUseCase.execute(requestParams, new Subscriber<GetPropertySaveResponse>() {
-            @Override
-            public void onCompleted() {
-                getView().hideProgressBar();
-                // getView().showSnackBar("Save Successfully");
+        if(validateForm()) {
+            SaveApartmentRequest formData = getApartmentData();
+            RequestParams requestParams = RequestParams.create();
+            requestParams.putObject("formdata", formData);
+            getView().showProgressBar();
+            saveApartmentSurveyFormUseCase.execute(requestParams, new Subscriber<GetPropertySaveResponse>() {
+                @Override
+                public void onCompleted() {
+                    getView().hideProgressBar();
+                    // getView().showSnackBar("Save Successfully");
 
-            }
+                }
 
-            @Override
-            public void onError(Throwable e) {
-                getView().hideProgressBar();
-                getView().showToast(e.getMessage());
-                getView().gotoHome();
-                e.printStackTrace();
-            }
+                @Override
+                public void onError(Throwable e) {
+                    getView().hideProgressBar();
+                    getView().showToast(e.getMessage());
+                    getView().gotoHome();
+                    e.printStackTrace();
+                }
 
-            @Override
-            public void onNext(GetPropertySaveResponse getPropertySaveResponse) {
-                getView().showToast("Save Successfully");
-                syncManager.execute(new Subscriber<List<GetPropertySaveResponse>>() {
-                    @Override
-                    public void onCompleted() {
+                @Override
+                public void onNext(GetPropertySaveResponse getPropertySaveResponse) {
+                    getView().showToast("Save Successfully");
+                    syncManager.execute(new Subscriber<List<GetPropertySaveResponse>>() {
+                        @Override
+                        public void onCompleted() {
 
-                    }
+                        }
 
-                    @Override
-                    public void onError(Throwable e) {
+                        @Override
+                        public void onError(Throwable e) {
 
-                    }
+                        }
 
-                    @Override
-                    public void onNext(List<GetPropertySaveResponse> getPropertySaveResponses) {
+                        @Override
+                        public void onNext(List<GetPropertySaveResponse> getPropertySaveResponses) {
 
-                    }
-                });
-                getView().gotoHome();
-            }
-        });
+                        }
+                    });
+                    getView().gotoHome();
+                }
+            });
+        }
+    }
+
+    private boolean validateForm() {
+        if(getView().getElectricConnectionNumber().length()==9) {
+            getView().setElectricityConnectionError("Electricity Number should be 9 digit");
+        }
+        return true;
     }
 
     @Override

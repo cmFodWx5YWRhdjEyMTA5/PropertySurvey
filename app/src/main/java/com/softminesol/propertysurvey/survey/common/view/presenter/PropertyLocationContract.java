@@ -3,6 +3,7 @@ package com.softminesol.propertysurvey.survey.common.view.presenter;
 import android.widget.ArrayAdapter;
 
 import com.pchmn.materialchips.ChipView;
+import com.softminesol.propertysurvey.survey.common.model.property.SavePropertyRequest;
 
 import frameworks.basemvp.IPresenter;
 import frameworks.basemvp.IView;
@@ -31,6 +32,7 @@ public interface PropertyLocationContract {
         String getfloorCount();
         String getFireFighting();
         String getRoadWidth();
+        String getOldPropertyId();
 
 
 
@@ -62,6 +64,43 @@ public interface PropertyLocationContract {
 
         void setBuidlingStatus(ArrayAdapter buildingStatus);
         void setRoadWidth(ArrayAdapter customAdapter);
+
+        void setMapId(String mapId);
+
+        void setParcelId(String parcelId);
+
+        void setPropertyType(String propertyType);
+
+        void setPropertyUsageItem(String propertyUsage);
+
+        void setBuildingName(String buildingName);
+
+        void setStreet(String street);
+
+        void setColony(String colony);
+
+        void setPincode(String pincode);
+
+        void setWardNo(String wardNo);
+
+        void setZoneId(String zoneId);
+
+        void setRainHarvestingSystem(String rainHarvestingSystem);
+
+        void setBuildingStatus(String buildingStatus);
+
+        void setPlotArea(String plotArea);
+
+        void setLiftFacilityItem(String liftFacility);
+
+        void setParkingFacilityItem(String parkingFacility);
+
+        void setAgeOfProperty(String ageOfProperty);
+
+        void setFireFightingItem(String fireFighting);
+
+        void setRoadWidthItem(String roadWidth);
+        void setOldPropertyId(String oldPropertyId);
     }
 
     public interface Presenter<T extends View> extends IPresenter<T> {
@@ -72,6 +111,7 @@ public interface PropertyLocationContract {
         void onUploadImageClick();
 
         void onSaveToDraft();
+        public void setPropertyRequest(SavePropertyRequest savePropertyRequest);
 
     }
 }

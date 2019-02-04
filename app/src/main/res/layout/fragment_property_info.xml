@@ -20,8 +20,6 @@
                 android:orientation="vertical">
 
 
-
-
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/textILayout_map_id"
                     android:layout_width="match_parent"
@@ -37,26 +35,43 @@
                         android:maxLines="1" />
 
                 </android.support.design.widget.TextInputLayout>
+
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/textILayout_parcelId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:layout_marginTop="@dimen/activity_vertical_margin">
 
                     <EditText
                         android:id="@+id/edt_parcelId"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:hint="@string/parcel_id"
+                        android:maxLines="1" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/textILayout_OldPropertyId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="@dimen/activity_vertical_margin">
+
+                    <EditText
+                        android:id="@+id/edt_OldPropertyId"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:hint="@string/old_property_no"
                         android:maxLines="1" />
 
                 </android.support.design.widget.TextInputLayout>
+
                 <RelativeLayout
-                    android:visibility="visible"
-                    android:layout_marginBottom="20dp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:visibility="visible">
 
                     <TextView
                         android:id="@+id/txtlatlng"
@@ -104,6 +119,7 @@
                         android:maxLines="1" />
 
                 </android.support.design.widget.TextInputLayout>
+
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/textILayout_street_code"
                     android:layout_width="match_parent"
@@ -151,6 +167,7 @@
                         android:maxLines="1" />
 
                 </android.support.design.widget.TextInputLayout>
+
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/textILayout_ward_no"
                     android:layout_width="match_parent"
@@ -190,6 +207,7 @@
                     android:layout_marginTop="@dimen/activity_vertical_margin">
 
                 </android.support.design.widget.TextInputLayout>
+
                 <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
                     android:id="@+id/spRainWaterHarvesting"
                     android:layout_width="match_parent"
@@ -208,10 +226,10 @@
                         android:id="@+id/edt_building_status"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/building_status"
-                        />
+                        android:hint="@string/building_status" />
 
                 </android.support.design.widget.TextInputLayout>
+
                 <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -220,27 +238,29 @@
                         android:id="@+id/txt_sq"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        app:layout_constraintTop_toTopOf="@id/textILayout_property_area"
-                        app:layout_constraintRight_toRightOf="parent"
+                        android:text="SQ.Ft."
                         app:layout_constraintBottom_toBottomOf="@id/textILayout_property_area"
-                        android:text="SQ.Ft." />
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/textILayout_property_area"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/activity_vertical_margin"
-                    android:layout_toLeftOf="@id/txt_sq">
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/textILayout_property_area" />
 
-                    <EditText
-                        android:id="@+id/edt_property_area"
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/textILayout_property_area"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/property_area"
-                        android:inputType="text"
-                        android:maxLines="1" />
+                        android:layout_marginTop="@dimen/activity_vertical_margin"
+                        android:layout_toLeftOf="@id/txt_sq">
 
-                </android.support.design.widget.TextInputLayout>
+                        <EditText
+                            android:id="@+id/edt_property_area"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/property_area"
+                            android:inputType="text"
+                            android:maxLines="1" />
+
+                    </android.support.design.widget.TextInputLayout>
                 </android.support.constraint.ConstraintLayout>
+
                 <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
                     android:id="@+id/spLiftFacility"
                     android:layout_width="match_parent"
@@ -256,6 +276,7 @@
                     android:layout_marginTop="@dimen/activity_vertical_margin"
                     android:hint="@string/parking_facility"
                     app:met_floatingLabel="normal" />
+
                 <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -264,37 +285,38 @@
                         android:id="@+id/years_txt"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        app:layout_constraintTop_toTopOf="@id/textIAgeOfBuilding"
-                        app:layout_constraintRight_toRightOf="parent"
+                        android:text="Years"
                         app:layout_constraintBottom_toBottomOf="@id/textIAgeOfBuilding"
-                        android:text="Years" />
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/textIAgeOfBuilding" />
 
                     <android.support.design.widget.TextInputLayout
                         android:id="@+id/textIAgeOfBuilding"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/activity_vertical_margin"
-                        android:orientation="horizontal"
-                        android:layout_toLeftOf="@id/years_txt">
+                        android:layout_toLeftOf="@id/years_txt"
+                        android:orientation="horizontal">
 
 
-                    <EditText
-                        android:id="@+id/edt_age_of_building"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/age_of_building"
-                        android:maxLines="1" />
+                        <EditText
+                            android:id="@+id/edt_age_of_building"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/age_of_building"
+                            android:inputType="number"
+                            android:maxLines="1" />
 
 
-
-                </android.support.design.widget.TextInputLayout>
+                    </android.support.design.widget.TextInputLayout>
 
                 </android.support.constraint.ConstraintLayout>
+
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    android:layout_marginTop="@dimen/activity_vertical_margin">
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:visibility="gone">
 
                     <EditText
                         android:id="@+id/edt_noFloor"
@@ -304,12 +326,13 @@
                         android:inputType="number"
                         android:lines="1" />
                 </android.support.design.widget.TextInputLayout>
+
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/textILayout_year_of_occ_building"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    android:layout_marginTop="@dimen/activity_vertical_margin">
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:visibility="gone">
 
                     <EditText
                         android:id="@+id/edt_year_of_occ_building"
@@ -320,13 +343,14 @@
                         android:maxLines="1" />
 
                 </android.support.design.widget.TextInputLayout>
+
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/textILayout_state_code"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
 
-                    android:layout_marginTop="@dimen/activity_vertical_margin">
+                    android:visibility="gone">
 
                     <EditText
                         android:id="@+id/edt_state_code"
@@ -341,10 +365,10 @@
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/textILayout_dist_code"
                     android:layout_width="match_parent"
-                    android:visibility="gone"
-
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/activity_vertical_margin">
+
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:visibility="gone">
 
                     <EditText
                         android:id="@+id/edt_dist_code"
@@ -357,17 +381,6 @@
                 </android.support.design.widget.TextInputLayout>
 
 
-
-
-
-
-
-
-
-
-
-
-
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/textILayout_photo_id"
                     android:layout_width="match_parent"
@@ -375,9 +388,6 @@
                     android:layout_marginTop="@dimen/activity_vertical_margin">
 
                 </android.support.design.widget.TextInputLayout>
-
-
-
 
 
                 <android.support.design.widget.TextInputLayout
@@ -398,11 +408,6 @@
                 </android.support.design.widget.TextInputLayout>
 
 
-
-
-
-
-
                 <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
                     android:id="@+id/spFireFighting"
                     android:layout_width="match_parent"
@@ -411,7 +416,6 @@
 
                     android:hint="@string/fire_fighting"
                     app:met_floatingLabel="normal" />
-
 
 
                 <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner

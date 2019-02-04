@@ -4,6 +4,7 @@ import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 import com.softminesol.propertysurvey.survey.common.model.apartment.Owner;
 import com.softminesol.propertysurvey.survey.common.model.apartment.SaveApartmentRequest;
@@ -18,6 +19,9 @@ public interface SurveyPropertyDao {
 
     @Insert
     long insert(SavePropertyRequest savePropertyRequest);
+
+    @Update
+    void update(SavePropertyRequest savePropertyRequest);
 
     @Delete
     void delete(SavePropertyRequest savePropertyRequest);

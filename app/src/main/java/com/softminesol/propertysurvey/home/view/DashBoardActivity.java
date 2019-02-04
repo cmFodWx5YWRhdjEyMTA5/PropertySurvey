@@ -29,13 +29,13 @@ public class DashBoardActivity extends AppBaseActivity<DashBoardContractor.Prese
     DashBoardPresenter presenter;
     DashBoardComponent dashBoardComponent;
     @BindView(R.id.btn_new_property)
-    Button btnNewProperty;
+    View btnNewProperty;
     @BindView(R.id.btn_old_property)
-    Button btnOldProperty;
+    View btnOldProperty;
     @BindView(R.id.btn_bill_distribution)
-    Button btnBillDistribution;
+    View btnBillDistribution;
     @BindView(R.id.btn_add_apartment)
-    Button btnAddApartment;
+    View btnAddApartment;
     @Override
     protected void initInjector() {
         dashBoardComponent = DaggerDashBoardComponent.builder().baseAppComponent(((SurveyAppApplication) getApplication()).getBaseAppComponent()).build();

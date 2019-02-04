@@ -47,6 +47,8 @@ public abstract class PropertyInfoFragment<T extends PropertyLocationContract.Pr
     protected EditText edtStreetCode;
     @BindView(R.id.edt_map_id)
     protected EditText edtMapId;
+    @BindView(R.id.edt_OldPropertyId)
+    protected EditText edt_OldPropertyId;
     @BindView(R.id.edt_property_area)
     protected EditText edtPropertyArea;
     @BindView(R.id.edt_year_of_occ_building)
@@ -59,35 +61,35 @@ public abstract class PropertyInfoFragment<T extends PropertyLocationContract.Pr
     onMenuClick onMenuClick;
     Unbinder unbinder;
     @BindView(R.id.txtlatlng)
-    TextView txtlatlng;
+    protected TextView txtlatlng;
     @BindView(R.id.edt_floor_count)
-    EditText edtFloorCount;
+    protected EditText edtFloorCount;
     @BindView(R.id.spTypeOfProperty)
-    MaterialBetterSpinner spTypeOfProperty;
+    protected MaterialBetterSpinner spTypeOfProperty;
     @BindView(R.id.edt_parcelId)
-    EditText edtParcelId;
+    protected EditText edtParcelId;
     @BindView(R.id.edt_apartment_building_name)
-    EditText edtApartmentBuildingName;
+    protected EditText edtApartmentBuildingName;
     @BindView(R.id.spLiftFacility)
-    MaterialBetterSpinner spLiftFacility;
+    protected MaterialBetterSpinner spLiftFacility;
     @BindView(R.id.spParkingFacility)
-    MaterialBetterSpinner spParkingFacility;
+    protected MaterialBetterSpinner spParkingFacility;
     @BindView(R.id.spFireFighting)
-    MaterialBetterSpinner spFireFighting;
+    protected MaterialBetterSpinner spFireFighting;
     @BindView(R.id.spRainWaterHarvesting)
-    MaterialBetterSpinner spRainWaterHarvesting;
+    protected MaterialBetterSpinner spRainWaterHarvesting;
     Unbinder unbinder1;
     @BindView(R.id.spPropertyUsage)
-    MaterialBetterSpinner spPropertyUsage;
+    protected MaterialBetterSpinner spPropertyUsage;
     @BindView(R.id.edt_pin_code)
-    EditText edtPinCode;
+    protected EditText edtPinCode;
     @BindView(R.id.edt_building_status)
-    MaterialBetterSpinner spBuildingStatus;
+    protected MaterialBetterSpinner spBuildingStatus;
     @BindView(R.id.edt_age_of_building)
-    EditText edtAgeOfBuilding;
+    protected EditText edtAgeOfBuilding;
 
     @BindView(R.id.spRoadWidth)
-    MaterialBetterSpinner spRoadWidth;
+    protected  MaterialBetterSpinner spRoadWidth;
 
 
 
@@ -96,9 +98,10 @@ public abstract class PropertyInfoFragment<T extends PropertyLocationContract.Pr
     protected void initInjector() {
     }
 
-
-
-
+    @Override
+    public String getOldPropertyId() {
+        return edt_OldPropertyId.getText().toString();
+    }
 
     @Override
     public void setTypeOfProperty(ArrayAdapter customAdapter) {

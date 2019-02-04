@@ -5,6 +5,7 @@ import com.softminesol.propertysurvey.localcachesync.domain.NewProperySyncUseCas
 import com.softminesol.propertysurvey.survey.cloudsync.SyncManager;
 import com.softminesol.propertysurvey.survey.common.domain.SurveyGetPropertyTypeUseCase;
 import com.softminesol.propertysurvey.survey.common.domain_luc.SurveyPropertyUsage;
+import com.softminesol.propertysurvey.survey.common.model.apartment.SaveApartmentRequest;
 import com.softminesol.propertysurvey.survey.common.model.property.GetPropertySaveResponse;
 import com.softminesol.propertysurvey.survey.common.model.property.SavePropertyRequest;
 import com.softminesol.propertysurvey.survey.common.view.activity.ApartmentInfoActivity;
@@ -41,9 +42,13 @@ public class NewPropertyInfoPresenter extends PropertyLocationPresenter<NewPrope
 
     }
 
+
     @Override
     public void onSaveToDraft() {
         SavePropertyRequest formData = getPropertyData();
+        if(draftedPropertyRequest !=  null) {
+            formData.setId(draftedPropertyRequest.getId());
+        }
         formData.setIdDrafted(true);
         RequestParams requestParams = RequestParams.create();
         requestParams.putObject("formdata", formData);

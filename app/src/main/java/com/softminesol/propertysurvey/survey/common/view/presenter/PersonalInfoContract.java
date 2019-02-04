@@ -58,6 +58,8 @@ public interface PersonalInfoContract {
         public void setRelationShipAdapter(ArrayAdapter<CharSequence> relationShipAdapter);
 
         public void setOwnerNameError(String error);
+        public void setMobileNumberError(String s) ;
+        public void setAdharNumberError(String s) ;
     }
 
     public interface Presenter extends IPresenter<View> {

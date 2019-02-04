@@ -78,7 +78,7 @@
 
     <string-array name="width_road">
         <item> less than 12 meter </item>
-        <item>12 to 14 meter</item>
+        <item>12 to 24 meter</item>
         <item>More than 24 meter</item>
     </string-array>
 </resources>

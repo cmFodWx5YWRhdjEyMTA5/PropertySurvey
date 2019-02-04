@@ -17,6 +17,7 @@ import com.softminesol.propertysurvey.R;
 import com.softminesol.propertysurvey.survey.common.domain.SurveyGetPropertyTypeUseCase;
 import com.softminesol.propertysurvey.survey.common.domain_luc.SurveyPropertyUsage;
 import com.softminesol.propertysurvey.survey.common.model.PropertyTypes;
+import com.softminesol.propertysurvey.survey.common.model.apartment.SaveApartmentRequest;
 import com.softminesol.propertysurvey.survey.common.model.formData.FloorDetailsItem;
 import com.softminesol.propertysurvey.survey.common.model.newmodel.PropertyUsage;
 import com.softminesol.propertysurvey.survey.common.model.property.SavePropertyRequest;
@@ -43,7 +44,7 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
     protected List<FloorDetailsItem> floorDetailsItems = new ArrayList<>();
 
     GetLocationAddressUseCase reverseGeoCodeAddress;
-
+    protected SavePropertyRequest draftedPropertyRequest;
     @Inject
     public PropertyLocationPresenter(AdapterFactory adapterFactory, SurveyGetPropertyTypeUseCase getPropertyTypeUseCase,
                                      SurveyPropertyUsage surveyPropertyUsage, GetLocationAddressUseCase reverseGeoCodeAddress) {
@@ -140,6 +141,7 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
         savePropertyRequest.setTotalFloor(getView().getfloorCount());
         savePropertyRequest.setFireFighting(getView().getFireFighting());
         savePropertyRequest.setRoadWidth(getView().getRoadWidth());
+        savePropertyRequest.setOldPropertyId(getView().getOldPropertyId());
         if (location != null) {
             savePropertyRequest.setLattitude(location.getLatitude() + "");
             savePropertyRequest.setLongitude(location.getLongitude() + "");
@@ -149,6 +151,35 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
         return savePropertyRequest;
     }
 
+    public void setPropertyRequest(SavePropertyRequest savePropertyRequest) {
+        draftedPropertyRequest = savePropertyRequest;
+        getView().setMapId(savePropertyRequest.getMapId());
+        getView().setParcelId(savePropertyRequest.getParcelId());
+        getView().setPropertyType(savePropertyRequest.getPropertyType());
+        getView().setPropertyUsageItem(savePropertyRequest.getPropertyUsage());
+        getView().setBuildingName(savePropertyRequest.getBuildingName());
+        getView().setStreet(savePropertyRequest.getStreet());
+        getView().setColony(savePropertyRequest.getColony());
+        getView().setPincode(savePropertyRequest.getPincode());
+        getView().setWardNo(savePropertyRequest.getWardNo());
+        getView().setZoneId(savePropertyRequest.getZoneId());
+        getView().setRainHarvestingSystem(savePropertyRequest.getRainHarvestingSystem());
+        getView().setBuildingStatus(savePropertyRequest.getBuildingStatus());
+        getView().setPlotArea(savePropertyRequest.getPlotArea());
+        getView().setLiftFacilityItem(savePropertyRequest.getLiftFacility());
+        getView().setParkingFacilityItem(savePropertyRequest.getParkingFacility());
+        getView().setAgeOfProperty(savePropertyRequest.getAgeOfProperty());
+        getView().setFireFightingItem(savePropertyRequest.getFireFighting());
+        getView().setRoadWidthItem(savePropertyRequest.getRoadWidth());
+        getView().setOldPropertyId(savePropertyRequest.getOldPropertyId());
+        location = new Location("");
+        if(savePropertyRequest.getLattitude() != null && savePropertyRequest.getLongitude() != null) {
+            location.setLatitude(Double.parseDouble(savePropertyRequest.getLattitude()));
+            location.setLongitude(Double.parseDouble(savePropertyRequest.getLattitude()));
+        }
+        fileUrls = (ArrayList<String>) savePropertyRequest.getImagesList();
+        filePaths = (ArrayList<String>) savePropertyRequest.getImagePathList();
+    }
     Location location;
 
     //TODO change requestcode to static constant

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GIS Survey App</string>
+    <string name="app_name">GIS Survey App_NEW</string>
     <string name="title_activity_login">Sign in</string>
 
     <!-- Strings related to login -->
@@ -73,7 +73,7 @@
     <string name="bill_distribution">Bill Distribution</string>
     <string name="old_property">Old Property</string>
     <string name="new_property">New Property</string>
-    <string name="add_property">Add Property</string>
+    <string name="add_property">Add Property \n (%s)</string>
 
     <string name="addfloor">Add Floor</string>
     <string name="addApartment">Add Apartment</string>
@@ -130,19 +130,19 @@
     <string name="floor_detail_id">Gis Id</string>
     <string name="temp_id">Temp Id</string>
     <string name="non_res_code">Non Residental Code</string>
-    <string name="shop_industry_name">Shop / Industry Name</string>
+    <string name="shop_industry_name">House/ Shop / Industry Name</string>
     <string name="buisness_code">Business Code</string>
     <string name="responent_name">Respodent Name</string>
     <string name="respondent_status">Respondent Status</string>
     <string name="occupency_status">Occupency Status</string>
     <string name="connection_number">Electronic Connection number</string>
     <string name="sew_con_status">Sewerage Connection Status</string>
-    <string name="sew_con_number">Sewerage Connection Number</string>
+    <string name="sew_con_number">Lekha Number / Sewerage Connection Number</string>
     <string name="constructionType">Construction Type</string>
     <string name="self_occupied">Self Occupied Carpet Area</string>
     <string name="tenanted">Tenanted Carpet Area</string>
     <string name="personal_detail_id">Personal Detail Id</string>
-    <string name="add_apartment">Add Apartment</string>
+    <string name="add_apartment">Add Apartment \n (%s)</string>
     <string name="non_reg_category">Non Regidential Category</string>
     <string name="business_built_area">Business Built Area</string>
     <string name="election_connection_status">Electricity Connection Status</string>
@@ -155,9 +155,9 @@
     <string name="floor_number">Floor Number</string>
     <string name="aadhar_id">Aadhar ID</string>
     <string name="mix_category">Mix Category</string>
-    <string name="mapid_parcelid">Map Id/ Parcel Id</string>
+    <string name="mapid_parcelid">Map Id</string>
     <string name="old_property_no">Old Property Number</string>
-    <string name="show_drafts">Show Drafts</string>
+    <string name="show_drafts">Show Drafts \n (%s) </string>
 
 
 </resources>

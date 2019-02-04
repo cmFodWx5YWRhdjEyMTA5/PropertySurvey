@@ -28,6 +28,11 @@ public class SavePropertyRequest implements Serializable{
     @SerializedName("parcel_id")
     @Expose
     private String parcelId;
+
+    @SerializedName("oldProperty_id")
+    @Expose
+    private String oldPropertyId;
+
     @SerializedName("property_type")
     @Expose
     private String propertyType;
@@ -273,6 +278,14 @@ public class SavePropertyRequest implements Serializable{
 
     public List<String> getImagesList() {
         return imagesList;
+    }
+
+    public String getOldPropertyId() {
+        return oldPropertyId;
+    }
+
+    public void setOldPropertyId(String oldPropertyId) {
+        this.oldPropertyId = oldPropertyId;
     }
 
     public void setImagesList(List<String> imagesList) {

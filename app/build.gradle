@@ -17,7 +17,7 @@ buildscript {
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "com.softminesol.propertysurvey"
+        applicationId "com.softminesol.propertysurvey_new"
         minSdkVersion 16
         targetSdkVersion 26
         versionCode 1

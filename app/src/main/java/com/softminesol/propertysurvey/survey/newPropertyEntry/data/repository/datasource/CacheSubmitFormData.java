@@ -23,7 +23,13 @@ public class CacheSubmitFormData {
 
 
     public Observable<GetPropertySaveResponse> submitFormData(SavePropertyRequest formData) {
-        long id = propertySurveyDB.getPropertyDao().insert(formData);
+        long id;
+        if(formData.getId() != 0) {
+            propertySurveyDB.getPropertyDao().update(formData);
+            id = (long)formData.getId();
+        }else {
+            id = propertySurveyDB.getPropertyDao().insert(formData);
+        }
         return Observable.just(new GetPropertySaveResponse(id));
     }
 

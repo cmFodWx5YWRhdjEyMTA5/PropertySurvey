@@ -50,14 +50,14 @@ public class DraftedListAdapter extends RecyclerView.Adapter<DraftedListAdapter.
 
         holder.setPosition(position);
 
-        if(position > saveApartmentRequests.size()){
+        if(position < saveApartmentRequests.size()){
             holder.mTxtId.setText(saveApartmentRequests.get(position).getTempId()+"");
             holder.mTxtName.setText(saveApartmentRequests.get(position).getRespodentName()+"");
             holder.mTxtPhone.setText("NA");
             holder.mTypeDraftedItem.setText("Apartment");
             holder.mTypeDraftedItem.setBackgroundColor(holder.mTypeDraftedItem.getContext().getResources().getColor(R.color.green_400));
 
-        }else {
+        }else  {
             holder.mTxtId.setText(savePropertyRequests.get(position-saveApartmentRequests.size()).getId()+"");
             holder.mTxtName.setText(savePropertyRequests.get(position-saveApartmentRequests.size()).getBuildingName()+"");
             holder.mTxtPhone.setText("NA");

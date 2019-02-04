@@ -2,7 +2,9 @@ package com.softminesol.propertysurvey.survey.common.view.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.view.MenuItem;
 
+import com.softminesol.propertysurvey.R;
 import com.softminesol.propertysurvey.survey.common.model.apartment.SaveApartmentRequest;
 import com.softminesol.propertysurvey.survey.common.model.property.SavePropertyRequest;
 import com.softminesol.propertysurvey.survey.common.view.fragment.ApartmentInfoFragment;
@@ -43,14 +45,21 @@ public class ApartmentInfoActivity  extends ActivitySingleFragment<ApartmentInfo
 
     @Override
     protected ApartmentInfoFragment getFragment() {
-        long id  = getIntent().getLongExtra(APARTMENT_DETAIL_TEMP_KEY,0);
-        if(id>0) {
-            fragment = ApartmentInfoFragment.newInstance(id);
+        SaveApartmentRequest savePropertyRequest  = (SaveApartmentRequest) getIntent().getSerializableExtra(APARTMENT_DETAILS);
+        if(savePropertyRequest != null ) {
+            fragment = ApartmentInfoFragment.newIntance(savePropertyRequest);
         }else {
-            fragment = ApartmentInfoFragment.newInstance(getIntent().getStringExtra(APARTMENT_DETAIL_KEY));
+            long id = getIntent().getLongExtra(APARTMENT_DETAIL_TEMP_KEY, 0);
+            if (id > 0) {
+                fragment = ApartmentInfoFragment.newInstance(id);
+            } else {
+                fragment = ApartmentInfoFragment.newInstance(getIntent().getStringExtra(APARTMENT_DETAIL_KEY));
+            }
         }
         return fragment;
     }
+
+
 
     @Override
     public void onNextClick() {
