@@ -47,6 +47,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".home.view.DashBoardActivity"
+            android:label="Survey"
             android:screenOrientation="portrait"/>
         <activity android:name=".survey.distributionbill.view.DistributionBillActivity"
             android:screenOrientation="portrait"/>

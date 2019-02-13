@@ -117,7 +117,7 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
 
             @Override
             public void onError(Throwable e) {
-
+                e.printStackTrace();
             }
 
             @Override
@@ -134,7 +134,7 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
 
             @Override
             public void onError(Throwable e) {
-
+                e.printStackTrace();
             }
 
             @Override
@@ -151,7 +151,7 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
 
             @Override
             public void onError(Throwable e) {
-
+                e.printStackTrace();
             }
 
             @Override
@@ -168,7 +168,7 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
 
             @Override
             public void onError(Throwable e) {
-
+                e.printStackTrace();
             }
 
             @Override
@@ -184,7 +184,7 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
 
             @Override
             public void onError(Throwable e) {
-
+                e.printStackTrace();
             }
 
             @Override
@@ -200,7 +200,7 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
 
             @Override
             public void onError(Throwable e) {
-
+                e.printStackTrace();
             }
 
             @Override
@@ -216,7 +216,7 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
 
             @Override
             public void onError(Throwable e) {
-
+                e.printStackTrace();
             }
 
             @Override
@@ -340,7 +340,7 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
 
                         @Override
                         public void onError(Throwable e) {
-
+                            e.printStackTrace();
                         }
 
                         @Override

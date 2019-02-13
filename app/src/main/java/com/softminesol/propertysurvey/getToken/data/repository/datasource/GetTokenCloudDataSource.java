@@ -38,6 +38,7 @@ public class GetTokenCloudDataSource {
             public SessionValue call(LoginResponse loginResponse) {
                 SessionValue sessionValue = new SessionValue();
                 sessionValue.setApi_key(loginResponse.getAuthToken());
+                sessionValue.setUserInfo(loginResponse.getEmployeeDetails());
                 return sessionValue;
             }
         }).doOnNext(saveSession());

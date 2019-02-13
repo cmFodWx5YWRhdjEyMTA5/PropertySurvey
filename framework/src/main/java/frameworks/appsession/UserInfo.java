@@ -1,5 +1,7 @@
 package frameworks.appsession;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 /**
@@ -18,6 +20,7 @@ public class UserInfo implements Serializable {
     String gender;
     String first_name;
     String date_of_birth;
+    @SerializedName("email")
     String customer_id;
 
 

@@ -58,8 +58,10 @@ public class NewApartmentUseCase extends UseCase<List<GetPropertySaveResponse>> 
                                     .map(new Func1<ImageUploadResponse, SaveApartmentRequest>() {
                                 @Override
                                 public SaveApartmentRequest call(ImageUploadResponse imageUploadResponse) {
-                                    saveApartmentRequest.getApartmentImagepath().remove(s);
-                                    saveApartmentRequest.getApartmentImage().add(imageUploadResponse.getUploadResponseData().getImageId() + "");
+                                    if(imageUploadResponse != null) {
+                                        saveApartmentRequest.getApartmentImagepath().remove(s);
+                                        saveApartmentRequest.getApartmentImage().add(imageUploadResponse.getUploadResponseData().getImageId() + "");
+                                    }
                                     return saveApartmentRequest;
                                 }
                             });

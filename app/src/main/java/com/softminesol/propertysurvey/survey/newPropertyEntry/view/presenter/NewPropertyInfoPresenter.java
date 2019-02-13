@@ -64,6 +64,7 @@ public class NewPropertyInfoPresenter extends PropertyLocationPresenter<NewPrope
 
             @Override
             public void onError(Throwable e) {
+                e.printStackTrace();
                 getView().hideProgressBar();
                 getView().showToast(e.getMessage());
             }
@@ -93,6 +94,7 @@ public class NewPropertyInfoPresenter extends PropertyLocationPresenter<NewPrope
 
                 @Override
                 public void onError(Throwable e) {
+                    e.printStackTrace();
                     getView().hideProgressBar();
                     getView().showToast(e.getMessage());
 
@@ -110,7 +112,7 @@ public class NewPropertyInfoPresenter extends PropertyLocationPresenter<NewPrope
 
                             @Override
                             public void onError(Throwable e) {
-
+                                e.printStackTrace();
                             }
 
                             @Override

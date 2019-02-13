@@ -62,10 +62,10 @@ public class SurveyFormSubmitRepository implements ISurveyFormSubmitRepository, 
         if (formData.getImagePathList() != null && formData.getImagePathList().size() > 0) {
             return submitCacheNewProperty(formData);
         } else {
-            return submitFormDataFactory.getCloudSubmitFomData().submitCloudNewProperty(formData).onErrorResumeNext(new Func1<Throwable, Observable<GetPropertySaveResponse>>() {
+            return submitFormDataFactory.getCloudSubmitFomData().submitCloudNewProperty(formData).doOnError(new Action1<Throwable>() {
                 @Override
-                public Observable<GetPropertySaveResponse> call(Throwable throwable) {
-                    return submitFormDataFactory.getCacheSubmitFormData().submitFormData(formData);
+                public void call(Throwable throwable) {
+                    submitFormDataFactory.getCacheSubmitFormData().submitFormData(formData);
                 }
             });
         }

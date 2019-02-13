@@ -28,4 +28,10 @@ public interface SurveyPropertyDao {
 
     @Query("select * from savepropertyrequest WHERE idDrafted = 1")
     List<SavePropertyRequest> getDraftedProperties();
+
+    @Query("select count(*) from savepropertyrequest WHERE idDrafted = 1")
+    public int getDraftedPropertiesCount();
+
+    @Query("select count(*) from savepropertyrequest WHERE idDrafted = 0")
+    public int getNonDraftedPropertiesCount();
 }

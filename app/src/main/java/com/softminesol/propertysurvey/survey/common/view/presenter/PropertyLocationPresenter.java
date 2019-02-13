@@ -81,7 +81,7 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
 
             @Override
             public void onError(Throwable e) {
-
+                e.printStackTrace();
             }
 
             @Override
@@ -141,7 +141,7 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
         savePropertyRequest.setTotalFloor(getView().getfloorCount());
         savePropertyRequest.setFireFighting(getView().getFireFighting());
         savePropertyRequest.setRoadWidth(getView().getRoadWidth());
-        savePropertyRequest.setOldPropertyId(getView().getOldPropertyId());
+        //savePropertyRequest.setOldPropertyId(getView().getOldPropertyId());
         if (location != null) {
             savePropertyRequest.setLattitude(location.getLatitude() + "");
             savePropertyRequest.setLongitude(location.getLongitude() + "");
@@ -171,7 +171,7 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
         getView().setAgeOfProperty(savePropertyRequest.getAgeOfProperty());
         getView().setFireFightingItem(savePropertyRequest.getFireFighting());
         getView().setRoadWidthItem(savePropertyRequest.getRoadWidth());
-        getView().setOldPropertyId(savePropertyRequest.getOldPropertyId());
+       // getView().setOldPropertyId(savePropertyRequest.getOldPropertyId());
         location = new Location("");
         if(savePropertyRequest.getLattitude() != null && savePropertyRequest.getLongitude() != null) {
             location.setLatitude(Double.parseDouble(savePropertyRequest.getLattitude()));
@@ -218,7 +218,7 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
 
                         @Override
                         public void onError(Throwable e) {
-
+                            e.printStackTrace();
                         }
 
                         @Override

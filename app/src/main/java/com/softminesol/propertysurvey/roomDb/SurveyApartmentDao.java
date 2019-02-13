@@ -30,9 +30,15 @@ public interface SurveyApartmentDao {
     @Query("UPDATE saveApartmentrequest SET gisId = :gsid WHERE tempPropertyApartmentId = :tid")
     int updateTour(long tid, String gsid);
 
-    @Query("select * from saveApartmentrequest WHERE gisId is Not Null")
+    @Query("select * from saveApartmentrequest")
     List<SaveApartmentRequest> getApartments();
 
     @Query("select * from saveApartmentrequest WHERE idDrafted = 1")
     List<SaveApartmentRequest> getDraftedApartments();
+
+    @Query("select count(*) from saveApartmentrequest WHERE idDrafted = 1")
+    int getdraftedApartementCount();
+
+    @Query("select count(*) from saveApartmentrequest WHERE idDrafted = 0")
+    int getNondraftedApartementCount();
 }

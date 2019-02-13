@@ -50,6 +50,9 @@ public class ImageUploadUseCase extends UseCase<ImageUploadResponse> {
             return compressImageUseCase.createObservable(compressImageUseCase.createRequestParams(requestParams.getString(IMAGE_PATH, ""))).flatMap(new Func1<String, Observable<ImageUploadResponse>>() {
                 @Override
                 public Observable<ImageUploadResponse> call(String s) {
+                    if(s == null) {
+                        return Observable.just(null);
+                    }
                     return repository.uploadImage(generateRequestImage(s, requestParams.getString(PARAM_NAME, "image")),url);
                 }
             });

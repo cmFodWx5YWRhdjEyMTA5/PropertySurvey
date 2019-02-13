@@ -20,8 +20,8 @@ android {
         applicationId "com.softminesol.propertysurvey_new"
         minSdkVersion 16
         targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        versionCode 11
+        versionName "1.2.4.3"
         flavorDimensions "default"
         multiDexEnabled true
     }

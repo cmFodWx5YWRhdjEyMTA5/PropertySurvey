@@ -11,10 +11,36 @@
         android:layout_height="match_parent"
         android:padding="30dp"
         android:gravity="center"
-        android:weightSum="3"
+        android:weightSum="4"
         android:background="@color/white"
         android:orientation="vertical">
 
+
+        <TextView
+            android:id="@+id/btn_total_cache_property"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="0.5"
+            android:background="@drawable/ic_btn_white"
+            android:minHeight="@dimen/button_min_height"
+            android:text="@string/property_cache_count"
+            android:textSize="@dimen/button_text_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/btn_total_cache_apartment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="0.5"
+            android:background="@drawable/ic_btn_white"
+            android:minHeight="@dimen/button_min_height"
+            android:text="@string/apartment_cache_count"
+            android:textSize="@dimen/button_text_size"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/btn_new_property"
@@ -25,6 +51,8 @@
             android:gravity="center"
             android:minHeight="@dimen/button_min_height"
             android:text="@string/add_property"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:textSize="@dimen/button_text_size"
             android:textStyle="bold" />
 
@@ -53,6 +81,7 @@
             android:text="@string/show_drafts"
             android:textSize="@dimen/button_text_size"
             android:textStyle="bold" />
+
 
         <Button
             android:visibility="gone"

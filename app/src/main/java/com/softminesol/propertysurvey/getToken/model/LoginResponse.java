@@ -1,5 +1,8 @@
 package com.softminesol.propertysurvey.getToken.model;
 
+import com.google.gson.annotations.SerializedName;
+
+import frameworks.appsession.UserInfo;
 import frameworks.network.model.BaseResponse;
 
 /**
@@ -11,6 +14,16 @@ public class LoginResponse extends BaseResponse {
 
     String authToken;
 
+    @SerializedName("EmployeeDetails")
+    UserInfo employeeDetails;
+
+    public UserInfo getEmployeeDetails() {
+        return employeeDetails;
+    }
+
+    public void setEmployeeDetails(UserInfo employeeDetails) {
+        this.employeeDetails = employeeDetails;
+    }
 
     public String getAuthToken() {
         return authToken;

@@ -1,10 +1,12 @@
 package com.softminesol.propertysurvey.roomDb;
 
 
+import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.TypeConverters;
+import android.arch.persistence.room.migration.Migration;
 import android.content.Context;
 
 import com.softminesol.propertysurvey.survey.common.model.apartment.Owner;
@@ -19,6 +21,13 @@ public abstract class PropertySurveyDB extends RoomDatabase {
     public abstract SurveyPropertyDao getPropertyDao();
     public abstract GETAPIDao getapiDao();
     private static PropertySurveyDB INSTANCE = null;
+    /*static final Migration MIGRATION_3_4 = new Migration(3, 4) {
+        @Override
+        public void migrate(SupportSQLiteDatabase database) {
+            // Since we didn't alter the table, there's nothing else to do here.
+            database.execSQL("ALTER TABLE savepropertyrequest add  ");
+        }
+    };*/
     public static PropertySurveyDB getInstance(Context context) {
         if (INSTANCE == null) {
             synchronized(PropertySurveyDB.class) {

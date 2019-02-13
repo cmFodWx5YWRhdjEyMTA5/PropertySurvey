@@ -74,6 +74,8 @@
     <string name="old_property">Old Property</string>
     <string name="new_property">New Property</string>
     <string name="add_property">Add Property \n (%s)</string>
+    <string name="property_cache_count">Property Cache Count - (%d)</string>
+    <string name="apartment_cache_count">Apartment Cache Count - (%d)</string>
 
     <string name="addfloor">Add Floor</string>
     <string name="addApartment">Add Apartment</string>
@@ -157,7 +159,7 @@
     <string name="mix_category">Mix Category</string>
     <string name="mapid_parcelid">Map Id</string>
     <string name="old_property_no">Old Property Number</string>
-    <string name="show_drafts">Show Drafts \n (%s) </string>
+    <string name="show_drafts">Show Drafts \n (%d) </string>
 
 
 </resources>

@@ -49,6 +49,7 @@ public class ImageUploadPresenter extends AppBasePresenter<IUploadImageContracto
 
             @Override
             public void onError(Throwable e) {
+                e.printStackTrace();
                 getView().hideProgressBar();
                 getView().showSnackBar(e.getMessage());
                 Intent intent = new Intent();

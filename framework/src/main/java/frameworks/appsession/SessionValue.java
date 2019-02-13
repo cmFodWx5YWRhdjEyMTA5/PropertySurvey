@@ -1,5 +1,7 @@
 package frameworks.appsession;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by sandeep on 23/8/17.
  */
@@ -8,6 +10,8 @@ public class SessionValue {
     String user_type;
     String api_secret;
     String api_key;
+
+    @SerializedName("EmployeeDetails")
     UserInfo userInfo;
 
     public String getUser_type() {

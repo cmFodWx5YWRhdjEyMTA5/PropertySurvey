@@ -35,7 +35,7 @@ public class DraftedListPresenter extends AppBasePresenter<IDraftedListActivityC
 
             @Override
             public void onError(Throwable e) {
-
+                e.printStackTrace();
             }
 
             @Override
@@ -51,7 +51,7 @@ public class DraftedListPresenter extends AppBasePresenter<IDraftedListActivityC
 
             @Override
             public void onError(Throwable e) {
-
+                e.printStackTrace();
             }
 
             @Override

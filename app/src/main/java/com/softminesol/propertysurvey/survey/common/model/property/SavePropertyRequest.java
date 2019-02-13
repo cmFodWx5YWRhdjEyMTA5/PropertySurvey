@@ -29,9 +29,9 @@ public class SavePropertyRequest implements Serializable{
     @Expose
     private String parcelId;
 
-    @SerializedName("oldProperty_id")
+/*    @SerializedName("oldProperty_id")
     @Expose
-    private String oldPropertyId;
+    private String oldPropertyId;*/
 
     @SerializedName("property_type")
     @Expose
@@ -277,16 +277,19 @@ public class SavePropertyRequest implements Serializable{
     }
 
     public List<String> getImagesList() {
+        if (imagesList == null) {
+            imagesList = new ArrayList<>();
+        }
         return imagesList;
     }
 
-    public String getOldPropertyId() {
+    /*public String getOldPropertyId() {
         return oldPropertyId;
     }
 
     public void setOldPropertyId(String oldPropertyId) {
         this.oldPropertyId = oldPropertyId;
-    }
+    }*/
 
     public void setImagesList(List<String> imagesList) {
         this.imagesList = imagesList;
@@ -296,6 +299,9 @@ public class SavePropertyRequest implements Serializable{
     }
 
     public List<String> getImagePathList() {
+        if(imagePathList == null) {
+            imagePathList = new ArrayList<>();
+        }
         return imagePathList;
     }
 

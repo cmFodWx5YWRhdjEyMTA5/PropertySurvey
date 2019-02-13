@@ -43,6 +43,7 @@ public class OTPPresenterImpl implements OTPPresenter, OTPIntractor.OnOTPVerific
 
             @Override
             public void onError(Throwable e) {
+                e.printStackTrace();
                 mOTPReciever.hideProgress();
             }
 

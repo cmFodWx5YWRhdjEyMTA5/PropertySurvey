@@ -10,6 +10,10 @@ import com.softminesol.propertysurvey.location.model.LatLongUpload;
 
 import javax.inject.Inject;
 
+import frameworks.network.model.BaseResponse;
+import frameworks.network.usecases.RequestParams;
+import rx.Subscriber;
+
 /**
  * Created by sandeepgoyal on 18/05/18.
  */
@@ -39,7 +43,7 @@ public class LocationUploadManager {
     }
 
     public void uploadLocation(LatLongUpload latLongUpload) {
-        /*RequestParams requestParams = RequestParams.create();
+        RequestParams requestParams = RequestParams.create();
         requestParams.putObject(LocationUploadUseCase.LOCATION_OBJECT, latLongUpload);
         locationUploadUseCase.execute(requestParams, new Subscriber<BaseResponse>() {
             @Override
@@ -49,13 +53,13 @@ public class LocationUploadManager {
 
             @Override
             public void onError(Throwable e) {
-
+                e.printStackTrace();
             }
 
             @Override
             public void onNext(BaseResponse baseResponse) {
 
             }
-        });*/
+        });
     }
 }

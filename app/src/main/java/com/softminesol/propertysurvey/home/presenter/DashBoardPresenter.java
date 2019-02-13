@@ -66,6 +66,8 @@ public class DashBoardPresenter extends AppBasePresenter<DashBoardContractor.Vie
             @Override
             public void onError(Throwable e) {
                 getView().hideProgressBar();
+                e.printStackTrace();
+                getView().showToast(e.getMessage());
                 getView().showToast("Unable to Sync Please Try Again");
             }
 

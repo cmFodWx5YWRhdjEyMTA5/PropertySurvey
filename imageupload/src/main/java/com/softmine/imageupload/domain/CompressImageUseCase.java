@@ -43,6 +43,9 @@ public class CompressImageUseCase extends UseCase<String> {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        if(compressedImage == null) {
+            return Observable.just(null);
+        }
         return Observable.just(compressedImage.getAbsolutePath());
     }
 }

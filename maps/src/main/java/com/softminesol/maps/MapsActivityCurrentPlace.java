@@ -40,6 +40,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+import frameworks.customlayout.TouchableWrapperLayout;
+
 /**
  * An activity that displays a map showing the place at the device's current location.
  */
@@ -90,6 +92,7 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
         return intent;
     }
 
+    TouchableWrapperLayout touchableWrapperLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,7 +105,21 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
 
         // Retrieve the content view that renders the map.
         setContentView(R.layout.activity_get_high_accuracy_location);
+        touchableWrapperLayout = findViewById(R.id.tw_map_wrapper);
+        touchableWrapperLayout.setListener(new TouchableWrapperLayout.OnDragListener() {
+            @Override
+            public void onLayoutDrag() {
+                double latitude = mMap.getCameraPosition().target.latitude;
+                double longitude = mMap.getCameraPosition().target.longitude;
+                mLastKnownLocation.setLatitude(latitude);
+                mLastKnownLocation.setLongitude(longitude);
+            }
 
+            @Override
+            public void onLayoutIdle() {
+
+            }
+        });
         // Construct a GeoDataClient.
         mGeoDataClient = Places.getGeoDataClient(this, null);
 
@@ -169,30 +186,7 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
 
         // Use a custom info window adapter to handle multiple lines of text in the
         // info window contents.
-        mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
 
-            @Override
-            // Return null here, so that getInfoContents() is called next.
-            public View getInfoWindow(Marker arg0) {
-                return null;
-            }
-
-            @Override
-            public View getInfoContents(Marker marker) {
-                // Inflate the layouts for the info window, title and snippet.
-                View infoWindow = getLayoutInflater().inflate(R.layout.custom_info_contents,
-                        (FrameLayout) findViewById(R.id.map), false);
-
-                TextView title = ((TextView) infoWindow.findViewById(R.id.title));
-                title.setText(marker.getTitle());
-
-                TextView snippet = ((TextView) infoWindow.findViewById(R.id.snippet));
-                snippet.setText(marker.getSnippet());
-
-                return infoWindow;
-            }
-        });
-        mMap.setOnMarkerDragListener(this);
 
         // Prompt the user for permission.
         getLocationPermission();
@@ -231,7 +225,6 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
                                     new LatLng(mLastKnownLocation.getLatitude(),
                                             mLastKnownLocation.getLongitude()), DEFAULT_ZOOM));
                             LatLng sydney = new LatLng(mLastKnownLocation.getLatitude(), mLastKnownLocation.getLongitude());
-                            mMap.addMarker(new MarkerOptions().position(sydney)).setDraggable(true);
 
                         } else {
                             Log.d(TAG, "Current location is null. Using defaults.");
@@ -357,10 +350,6 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
             Log.i(TAG, "The user did not grant location permission.");
 
             // Add a default marker, because the user hasn't selected a place.
-            mMap.addMarker(new MarkerOptions()
-                    .title(getString(R.string.default_info_title))
-                    .position(mDefaultLocation)
-                    .snippet(getString(R.string.default_info_snippet)));
 
             // Prompt the user for permission.
             getLocationPermission();
@@ -384,10 +373,6 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
 
                 // Add a marker for the selected place, with an info window
                 // showing information about that place.
-                mMap.addMarker(new MarkerOptions()
-                        .title(mLikelyPlaceNames[which])
-                        .position(markerLatLng)
-                        .snippet(markerSnippet));
 
                 // Position the map's camera at the location of the marker.
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(markerLatLng,

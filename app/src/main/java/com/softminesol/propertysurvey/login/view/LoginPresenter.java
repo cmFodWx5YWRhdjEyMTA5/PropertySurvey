@@ -52,6 +52,7 @@ public class LoginPresenter extends AppBasePresenter<ILoginViewContractor.View> 
 
             @Override
             public void onError(Throwable e) {
+                e.printStackTrace();
                 getView().hideProgressBar();
                 if (e instanceof ResponseException) {
                     getView().showToast(e.getMessage());

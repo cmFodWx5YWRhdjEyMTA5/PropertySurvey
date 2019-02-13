@@ -47,8 +47,10 @@ public class NewProperySyncUseCase extends UseCase<List<String>> {
                             return imageListUploadSubmitUseCase.createObservable(imageListUploadSubmitUseCase.createRequestParams(s, url, param_name)).map(new Func1<ImageUploadResponse, SavePropertyRequest>() {
                                 @Override
                                 public SavePropertyRequest call(ImageUploadResponse imageUploadResponse) {
-                                    savePropertyRequest.getImagePathList().remove(s);
-                                    savePropertyRequest.getImagesList().add(imageUploadResponse.getUploadResponseData().getImageId() + "");
+                                    if(imageUploadResponse != null) {
+                                        savePropertyRequest.getImagePathList().remove(s);
+                                        savePropertyRequest.getImagesList().add(imageUploadResponse.getUploadResponseData().getImageId() + "");
+                                    }
                                     return savePropertyRequest;
                                 }
                             }).flatMap(new Func1<SavePropertyRequest, Observable<GetPropertySaveResponse>>() {
