@@ -112,7 +112,8 @@ ext {
             permissions       : ":permissions",
             maps       : ":maps",
             imageupload : ":imageupload",
-            usecase : ":usecase"
+            usecase : ":usecase",
+            survey_framework : ":survey_framework"
     ]
 
     dbDependencies = [
