@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.softminesol.propertysurvey">
-
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.INTERNET" />
-
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -20,6 +18,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -27,18 +26,20 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"/>
+                android:resource="@xml/file_paths" />
         </provider>
 
         <activity
             android:name=".login.view.LoginActivity"
             android:label="@string/title_activity_login"
             android:launchMode="singleTask"
-            android:windowSoftInputMode="adjustResize"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".survey.newPropertyEntry.view.activity.NewSurveyActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".splash.view.SplashActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".survey.newPropertyEntry.view.activity.NewSurveyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".splash.view.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,15 +47,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".home.view.DashBoardActivity"
+        <activity
+            android:name=".home.view.DashBoardActivity"
             android:label="Survey"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".survey.distributionbill.view.DistributionBillActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".survey.common.view.activity.OwnerInfoActivity"
             android:screenOrientation="portrait" />
-
-        <activity android:name=".survey.draftedEntity.view.DraftedListActivity"
+        <activity
+            android:name=".survey.distributionbill.view.DistributionBillActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".survey.common.view.activity.OwnerInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".survey.draftedEntity.view.DraftedListActivity"
             android:screenOrientation="portrait" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -64,7 +68,6 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/. 
         -->
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
@@ -72,8 +75,9 @@
             android:name="io.fabric.ApiKey"
             android:value="8cc901a5e7a4a0b09e3a21db971c4c2e96c035cb" />
 
-        <activity android:name=".survey.common.view.activity.ApartmentInfoActivity"
-            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".survey.common.view.activity.ApartmentInfoActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

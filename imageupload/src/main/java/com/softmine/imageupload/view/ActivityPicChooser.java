@@ -153,7 +153,7 @@ public class ActivityPicChooser extends PermissionActivity {
     private  Uri getOutputMediaFileUri(){
         File file = getOutputMediaFile();
         imagePath = file.getPath();
-        return FileProvider.getUriForFile(this,"com.softminesol.propertysurvey_new.provider", file);
+        return FileProvider.getUriForFile(this,getApplicationContext().getPackageName()+".provider", file);
     }
 
     String imagePath;

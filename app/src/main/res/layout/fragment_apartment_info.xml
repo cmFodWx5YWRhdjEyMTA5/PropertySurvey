@@ -85,6 +85,15 @@
                     android:hint="@string/property_usage"
                     app:met_floatingLabel="normal" />
 
+                <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                    android:id="@+id/spConstructiontype"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:hint="@string/constructionType"
+                    app:met_floatingLabel="normal" />
+
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:id="@+id/text_input_non_resdental_code"
@@ -95,6 +104,8 @@
                         android:id="@+id/edt_non_resdental_code"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:editable="false"
+                        android:enabled="false"
                         android:hint="@string/non_res_code"
                         android:inputType="text|textEmailAddress"
                         android:maxLines="1" />
@@ -335,15 +346,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
                     android:hint="@string/source_of_water"
-                    app:met_floatingLabel="normal" />
-
-                <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
-                    android:id="@+id/spConstructiontype"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:layout_marginTop="@dimen/activity_vertical_margin"
-                    android:hint="@string/constructionType"
                     app:met_floatingLabel="normal" />
 
                 <android.support.design.widget.TextInputLayout

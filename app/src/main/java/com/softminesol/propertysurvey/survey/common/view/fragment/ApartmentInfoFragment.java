@@ -15,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,6 +26,7 @@ import com.softminesol.propertysurvey.SurveyAppApplication;
 import com.softminesol.propertysurvey.home.view.DashBoardActivity;
 import com.softminesol.propertysurvey.survey.common.di.DaggerSurveyComponent;
 import com.softminesol.propertysurvey.survey.common.di.SurveyComponent;
+import com.softminesol.propertysurvey.survey.common.model.OldPropertyUIDItem;
 import com.softminesol.propertysurvey.survey.common.model.apartment.Owner;
 import com.softminesol.propertysurvey.survey.common.model.apartment.SaveApartmentRequest;
 import com.softminesol.propertysurvey.survey.common.view.activity.onMenuClick;
@@ -453,6 +455,12 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
     @Override
     public void setNonRegCategory(ArrayAdapter customAdapter) {
         spNonRegCategory.setAdapter(customAdapter);
+        spNonRegCategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+               getPresenter().onNonRegCategorySelected(position);
+            }
+        });
     }
 
     @Override

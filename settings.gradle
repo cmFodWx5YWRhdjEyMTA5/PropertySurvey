@@ -1,1 +1,1 @@
-include ':app',':framework', ':locations',  ':permissions', ':maps', ':imageupload', ':usecase'
+include ':app',':framework', ':locations',  ':permissions', ':maps', ':imageupload', ':usecase', ':qcapp_survey', ':survey_framework'

@@ -26,6 +26,7 @@ import com.softminesol.propertysurvey.survey.common.model.apartment.SaveApartmen
 import com.softminesol.propertysurvey.survey.common.model.newmodel.ConstructionType;
 import com.softminesol.propertysurvey.survey.common.model.newmodel.Floors;
 import com.softminesol.propertysurvey.survey.common.model.newmodel.NonResidentalCategory;
+import com.softminesol.propertysurvey.survey.common.model.newmodel.NonResidentalCategoryItem;
 import com.softminesol.propertysurvey.survey.common.model.newmodel.OccupancyStatus;
 import com.softminesol.propertysurvey.survey.common.model.newmodel.PropertyUsage;
 import com.softminesol.propertysurvey.survey.common.model.newmodel.RespondentStatus;
@@ -221,6 +222,7 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
 
             @Override
             public void onNext(NonResidentalCategory nonResidentalCategory) {
+                nonResidentalCategoryItems = nonResidentalCategory.getNonResidentalCategory();
                 getView().setNonRegCategory(adapterFactory.getCustomAdapter((List<CustomAdapterModel>) (List<?>) nonResidentalCategory.getNonResidentalCategory()));
             }
         });
@@ -232,6 +234,7 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
 
     }
 
+    List<NonResidentalCategoryItem> nonResidentalCategoryItems = new ArrayList<>();
 
     public void setApartmentData(SaveApartmentRequest saveApartmentRequest) {
         getView().setTempId(saveApartmentRequest.getTempPropertyApartmentId()+"");
@@ -355,8 +358,9 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
     }
 
     private boolean validateForm() {
-        if(getView().getElectricConnectionNumber().length()==9) {
+        if(getView().getElectricConnectionNumber().length() > 0 &&getView().getElectricConnectionNumber().length()< 9) {
             getView().setElectricityConnectionError("Electricity Number should be 9 digit");
+            return false;
         }
         return true;
     }
@@ -394,6 +398,11 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
                 getView().gotoHome();
             }
         });
+    }
+
+    @Override
+    public void onNonRegCategorySelected(int position) {
+            getView().setNonResidentialCode(nonResidentalCategoryItems.get(position).getCode());
     }
 
     @Override

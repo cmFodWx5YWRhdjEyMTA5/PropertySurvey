@@ -9,6 +9,7 @@ import com.softminesol.propertysurvey.survey.common.model.apartment.Owner;
 import com.softminesol.propertysurvey.survey.common.model.apartment.SaveApartmentRequest;
 import com.softminesol.propertysurvey.survey.common.model.property.GetPropertySaveResponse;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -47,7 +48,7 @@ public class NewApartmentUseCase extends UseCase<List<GetPropertySaveResponse>> 
                         saveApartmentRequest.setOwners(owners);
                     }
                 });
-                final List<String> imagePathList = saveApartmentRequest.getApartmentImagepath();
+                final List<String> imagePathList = new ArrayList<>(saveApartmentRequest.getApartmentImagepath());
                 if (imagePathList.size() > 0) {
                     return Observable.from(imagePathList).concatMap(new Func1<String, Observable<SaveApartmentRequest>>() {
                         @Override
@@ -58,8 +59,8 @@ public class NewApartmentUseCase extends UseCase<List<GetPropertySaveResponse>> 
                                     .map(new Func1<ImageUploadResponse, SaveApartmentRequest>() {
                                 @Override
                                 public SaveApartmentRequest call(ImageUploadResponse imageUploadResponse) {
-                                    if(imageUploadResponse != null) {
                                         saveApartmentRequest.getApartmentImagepath().remove(s);
+                                    if(imageUploadResponse != null) {
                                         saveApartmentRequest.getApartmentImage().add(imageUploadResponse.getUploadResponseData().getImageId() + "");
                                     }
                                     return saveApartmentRequest;

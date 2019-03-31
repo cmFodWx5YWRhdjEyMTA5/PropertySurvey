@@ -8,6 +8,7 @@ import com.softminesol.propertysurvey.survey.common.model.property.GetPropertySa
 import com.softminesol.propertysurvey.survey.common.model.property.SavePropertyRequest;
 import com.softminesol.propertysurvey.survey.newPropertyEntry.domain.SaveSurveyFormUseCase;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -36,7 +37,7 @@ public class NewProperySyncUseCase extends UseCase<List<String>> {
         return Observable.from(iSurveyOfflineRepository.getSaveProperty()).concatMap(new Func1<SavePropertyRequest, Observable<GetPropertySaveResponse>>() {
             @Override
             public Observable<GetPropertySaveResponse> call(final SavePropertyRequest savePropertyRequest) {
-                final List<String> imagePathList = savePropertyRequest.getImagePathList();
+                final List<String> imagePathList = new ArrayList<>(savePropertyRequest.getImagePathList());
 
                 if (imagePathList != null && imagePathList.size() > 0) {
                     return Observable.from(imagePathList).concatMap(new Func1<String, Observable<GetPropertySaveResponse>>() {
@@ -47,8 +48,8 @@ public class NewProperySyncUseCase extends UseCase<List<String>> {
                             return imageListUploadSubmitUseCase.createObservable(imageListUploadSubmitUseCase.createRequestParams(s, url, param_name)).map(new Func1<ImageUploadResponse, SavePropertyRequest>() {
                                 @Override
                                 public SavePropertyRequest call(ImageUploadResponse imageUploadResponse) {
-                                    if(imageUploadResponse != null) {
                                         savePropertyRequest.getImagePathList().remove(s);
+                                    if(imageUploadResponse != null) {
                                         savePropertyRequest.getImagesList().add(imageUploadResponse.getUploadResponseData().getImageId() + "");
                                     }
                                     return savePropertyRequest;

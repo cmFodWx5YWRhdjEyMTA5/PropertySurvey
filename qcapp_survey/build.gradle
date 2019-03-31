@@ -1,0 +1,74 @@
+apply plugin: 'com.android.application'
+apply plugin: 'realm-android'
+apply plugin: 'io.fabric'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.softminesol.propertysurvey_qc"
+        minSdkVersion 16
+        targetSdkVersion 26
+        versionCode 11
+        versionName "1.2.4.3"
+        flavorDimensions "default"
+        multiDexEnabled true
+    }
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    productFlavors {
+        staging {
+        }
+        prod {
+        }
+    }
+}
+
+dependencies {
+    implementation rootProject.ext.supportLibDependencies.appCompactV7
+    implementation rootProject.ext.supportLibDependencies.design
+    implementation rootProject.ext.playServicesDependencies.maps
+    implementation 'com.android.support:support-v4:26.0.2'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    compile rootProject.ext.miscDependencies.dagger
+    annotationProcessor rootProject.ext.miscDependencies.daggerCompiler
+    annotationProcessor rootProject.ext.butterKnifeDependencies.butterKnifeCompiler
+    implementation project(rootProject.ext.libraries.framework)
+    implementation project(rootProject.ext.libraries.locations)
+    implementation project(rootProject.ext.libraries.permissions)
+    implementation project(rootProject.ext.libraries.maps)
+    implementation project(rootProject.ext.libraries.imageupload)
+    implementation project(rootProject.ext.libraries.usecase)
+    implementation rootProject.ext.miscDependencies.rxbinding
+    compile rootProject.ext.butterKnifeDependencies.butterKnife
+    compile rootProject.ext.miscDependencies.spinnermaterial
+    compile rootProject.ext.miscDependencies.chipview
+    compile rootProject.ext.miscDependencies.multiDex
+    compile rootProject.ext.miscDependencies.imagecompression
+    implementation 'com.google.code.findbugs:jsr305:3.0.2'
+    implementation rootProject.ext.playServicesDependencies.location
+    implementation rootProject.ext.miscDependencies.joda
+    implementation rootProject.ext.dbDependencies.dbRoomRuntime
+    annotationProcessor rootProject.ext.dbDependencies.dbRoomCompiler
+    implementation(rootProject.ext.miscDependencies.crashlytics) {
+        transitive = true;
+    }
+}

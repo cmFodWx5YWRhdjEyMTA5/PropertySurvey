@@ -140,6 +140,7 @@ public interface ApartmentInfoContract {
         void setOwners(List<Owner> owners);
 
         void setElectricityConnectionError(String s);
+
     }
 
     public interface Presenter extends IPresenter<View> {
@@ -151,5 +152,7 @@ public interface ApartmentInfoContract {
         public void setApartmentData(SaveApartmentRequest saveApartmentRequest);
 
         void onSaveToDraft();
+
+        void onNonRegCategorySelected(int position);
     }
 }
