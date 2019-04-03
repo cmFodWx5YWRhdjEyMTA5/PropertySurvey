@@ -1,10 +1,6 @@
 package com.softminesol.propertysurvey.survey.newPropertyEntry.view.presenter;
 
-import com.softminesol.propertysurvey.survey.common.view.presenter.PropertyLocationContract;
-
-import java.util.List;
-
-import frameworks.customadapter.CustomAdapterModel;
+import com.softminesol.survey_framework.survey.common.view.presenter.PropertyLocationContract;
 
 /**
  * Created by sandeep on 13/5/18.

@@ -7,9 +7,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.softminesol.propertysurvey.R;
-import com.softminesol.propertysurvey.survey.common.model.apartment.SaveApartmentRequest;
-import com.softminesol.propertysurvey.survey.common.model.property.SavePropertyRequest;
-import com.softminesol.propertysurvey.survey.common.view.activity.ApartmentInfoActivity;
+import com.softminesol.survey_framework.survey.common.model.apartment.SaveApartmentRequest;
+import com.softminesol.survey_framework.survey.common.model.property.SavePropertyRequest;
+import com.softminesol.survey_framework.survey.common.view.activity.ApartmentInfoActivity;
 import com.softminesol.propertysurvey.survey.newPropertyEntry.view.activity.NewSurveyActivity;
 
 import java.util.ArrayList;

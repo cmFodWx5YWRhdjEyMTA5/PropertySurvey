@@ -6,9 +6,9 @@ import android.support.multidex.MultiDex;
 
 import com.crashlytics.android.Crashlytics;
 import com.softmine.imageupload.data.net.ImageUploadURL;
-import com.softminesol.propertysurvey.location.LocationUploadManager;
-import com.softminesol.propertysurvey.location.model.LatLongUpload;
-import com.softminesol.propertysurvey.login.view.LoginActivity;
+import com.softminesol.survey_framework.location.LocationUploadManager;
+import com.softminesol.survey_framework.location.model.LatLongUpload;
+import com.softminesol.survey_framework.login.view.LoginActivity;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -20,14 +20,12 @@ import frameworks.basemvp.AppBaseActivity;
 import frameworks.routers.ILocationRouter;
 import frameworks.routers.ILoginInterceptor;
 import io.fabric.sdk.android.Fabric;
-import io.realm.RealmConfiguration;
 
 /**
  * Created by sandeepgoyal on 12/05/18.
  */
 
 public class SurveyAppApplication extends AppBaseApplication implements ILoginInterceptor, ILocationRouter {
-    private RealmConfiguration propertyDataConfig;
     AppSessionManager sessionValue;
     @Override
     public void onCreate() {

@@ -2,9 +2,9 @@ package com.softminesol.propertysurvey.survey.apartmentEntry.data.repository;
 
 import com.softminesol.propertysurvey.survey.apartmentEntry.data.repository.datasource.SubmitFormDataFactory;
 import com.softminesol.propertysurvey.survey.apartmentEntry.domain.IApartmentSurveyFormSaveRepository;
-import com.softminesol.propertysurvey.survey.common.model.apartment.Owner;
-import com.softminesol.propertysurvey.survey.common.model.apartment.SaveApartmentRequest;
-import com.softminesol.propertysurvey.survey.common.model.property.GetPropertySaveResponse;
+import com.softminesol.survey_framework.survey.common.model.apartment.Owner;
+import com.softminesol.survey_framework.survey.common.model.apartment.SaveApartmentRequest;
+import com.softminesol.survey_framework.survey.common.model.property.GetPropertySaveResponse;
 
 import java.util.List;
 

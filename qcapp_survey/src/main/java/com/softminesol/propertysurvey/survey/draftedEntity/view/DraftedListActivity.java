@@ -11,11 +11,11 @@ import android.widget.AutoCompleteTextView;
 
 import com.softminesol.propertysurvey.R;
 import com.softminesol.propertysurvey.SurveyAppApplication;
-import com.softminesol.propertysurvey.survey.common.di.DaggerSurveyComponent;
-import com.softminesol.propertysurvey.survey.common.di.SurveyComponent;
-import com.softminesol.propertysurvey.survey.common.model.OldPropertyUIDItem;
-import com.softminesol.propertysurvey.survey.common.model.apartment.SaveApartmentRequest;
-import com.softminesol.propertysurvey.survey.common.model.property.SavePropertyRequest;
+import com.softminesol.survey_framework.survey.common.di.DaggerSurveyComponent;
+import com.softminesol.survey_framework.survey.common.di.SurveyComponent;
+import com.softminesol.survey_framework.survey.common.model.OldPropertyUIDItem;
+import com.softminesol.survey_framework.survey.common.model.apartment.SaveApartmentRequest;
+import com.softminesol.survey_framework.survey.common.model.property.SavePropertyRequest;
 
 import java.util.List;
 

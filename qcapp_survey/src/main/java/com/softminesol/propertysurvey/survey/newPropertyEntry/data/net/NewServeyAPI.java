@@ -1,8 +1,8 @@
 package com.softminesol.propertysurvey.survey.newPropertyEntry.data.net;
 
-import com.softminesol.propertysurvey.survey.common.model.formData.FormData;
-import com.softminesol.propertysurvey.survey.common.model.property.GetPropertySaveResponse;
-import com.softminesol.propertysurvey.survey.common.model.property.SavePropertyRequest;
+import com.softminesol.survey_framework.survey.common.model.formData.FormData;
+import com.softminesol.survey_framework.survey.common.model.property.GetPropertySaveResponse;
+import com.softminesol.survey_framework.survey.common.model.property.SavePropertyRequest;
 
 import frameworks.network.model.BaseResponse;
 import frameworks.network.model.DataResponse;

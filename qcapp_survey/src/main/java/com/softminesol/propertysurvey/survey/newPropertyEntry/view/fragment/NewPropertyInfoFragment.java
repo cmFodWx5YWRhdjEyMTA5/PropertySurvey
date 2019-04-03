@@ -3,24 +3,16 @@ package com.softminesol.propertysurvey.survey.newPropertyEntry.view.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 
-import com.softminesol.propertysurvey.R;
 import com.softminesol.propertysurvey.SurveyAppApplication;
-import com.softminesol.propertysurvey.survey.common.model.OldPropertyUIDItem;
-import com.softminesol.propertysurvey.survey.common.model.property.SavePropertyRequest;
-import com.softminesol.propertysurvey.survey.common.view.fragment.PropertyInfoFragment;
+import com.softminesol.survey_framework.survey.common.model.property.SavePropertyRequest;
+import com.softminesol.survey_framework.survey.common.view.fragment.PropertyInfoFragment;
 import com.softminesol.propertysurvey.survey.newPropertyEntry.di.DaggerNewSurveyComponent;
 import com.softminesol.propertysurvey.survey.newPropertyEntry.di.NewSurveyComponent;
 import com.softminesol.propertysurvey.survey.newPropertyEntry.view.presenter.NewPropertyInfoPresenter;
 import com.softminesol.propertysurvey.survey.newPropertyEntry.view.presenter.NewPropertyInforFragmentContract;
 
-import java.util.List;
-
 import javax.inject.Inject;
-
-import frameworks.customadapter.CustomAdapterModel;
 
 import static com.softminesol.propertysurvey.survey.newPropertyEntry.view.activity.NewSurveyActivity.PROPERTY_DETAILS;
 

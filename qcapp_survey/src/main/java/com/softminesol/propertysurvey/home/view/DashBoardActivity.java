@@ -3,7 +3,6 @@ package com.softminesol.propertysurvey.home.view;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 import com.softminesol.propertysurvey.R;
 import com.softminesol.propertysurvey.SurveyAppApplication;
@@ -11,7 +10,6 @@ import com.softminesol.propertysurvey.home.di.DaggerDashBoardComponent;
 import com.softminesol.propertysurvey.home.di.DashBoardComponent;
 import com.softminesol.propertysurvey.home.presenter.DashBoardContractor;
 import com.softminesol.propertysurvey.home.presenter.DashBoardPresenter;
-import com.softminesol.propertysurvey.roomDb.PropertySurveyDB;
 
 import javax.inject.Inject;
 

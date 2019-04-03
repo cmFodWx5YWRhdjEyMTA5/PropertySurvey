@@ -3,20 +3,12 @@ package com.softminesol.propertysurvey.survey.newPropertyEntry.view.presenter;
 import android.location.Location;
 
 import com.softminesol.locations.locationmanager.domain.GetLocationAddressUseCase;
-import com.softminesol.propertysurvey.localcachesync.domain.NewProperySyncUseCase;
 import com.softminesol.propertysurvey.survey.cloudsync.SyncManager;
-import com.softminesol.propertysurvey.survey.common.domain.GetPropertyInfoUseCase;
-import com.softminesol.propertysurvey.survey.common.domain.SurveyGetPropertyTypeUseCase;
-import com.softminesol.propertysurvey.survey.common.domain.SurveyPropertyIdListUseCase;
-import com.softminesol.propertysurvey.survey.common.domain_luc.SurveyPropertyUsage;
-import com.softminesol.propertysurvey.survey.common.model.OLDPropertyUIDS;
-import com.softminesol.propertysurvey.survey.common.model.apartment.SaveApartmentRequest;
-import com.softminesol.propertysurvey.survey.common.model.formData.FloorDetailsItem;
-import com.softminesol.propertysurvey.survey.common.model.formData.FormData;
-import com.softminesol.propertysurvey.survey.common.model.property.GetPropertySaveResponse;
-import com.softminesol.propertysurvey.survey.common.model.property.SavePropertyRequest;
-import com.softminesol.propertysurvey.survey.common.view.activity.ApartmentInfoActivity;
-import com.softminesol.propertysurvey.survey.common.view.presenter.PropertyLocationPresenter;
+import com.softminesol.survey_framework.survey.common.domain.SurveyGetPropertyTypeUseCase;
+import com.softminesol.survey_framework.survey.common.domain_luc.SurveyPropertyUsage;
+import com.softminesol.survey_framework.survey.common.model.property.GetPropertySaveResponse;
+import com.softminesol.survey_framework.survey.common.model.property.SavePropertyRequest;
+import com.softminesol.survey_framework.survey.common.view.presenter.PropertyLocationPresenter;
 import com.softminesol.propertysurvey.survey.newPropertyEntry.domain.SaveSurveyCacheUseCase;
 import com.softminesol.propertysurvey.survey.newPropertyEntry.domain.SaveSurveyFormUseCase;
 
@@ -25,7 +17,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import frameworks.customadapter.CustomAdapterModel;
 import frameworks.network.usecases.RequestParams;
 import frameworks.utils.AdapterFactory;
 import rx.Subscriber;

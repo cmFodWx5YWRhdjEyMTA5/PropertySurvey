@@ -3,8 +3,8 @@ package com.softminesol.propertysurvey.survey.newPropertyEntry.domain;
 import com.softmine.imageupload.domain.ImageUploadUseCase;
 import com.softmine.imageupload.model.ImageUploadResponse;
 import com.softminesol.propertysurvey.GlobalConfig;
-import com.softminesol.propertysurvey.survey.common.model.formData.FloorDetailsItem;
-import com.softminesol.propertysurvey.survey.common.model.formData.FormData;
+import com.softminesol.survey_framework.survey.common.model.formData.FloorDetailsItem;
+import com.softminesol.survey_framework.survey.common.model.formData.FormData;
 
 import javax.inject.Inject;
 

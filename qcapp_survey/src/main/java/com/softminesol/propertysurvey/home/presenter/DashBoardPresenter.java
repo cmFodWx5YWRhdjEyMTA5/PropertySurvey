@@ -5,17 +5,15 @@ import android.content.Intent;
 import com.softminesol.propertysurvey.SurveyAppApplication;
 import com.softminesol.propertysurvey.home.domain.DashBoardUseCase;
 import com.softminesol.propertysurvey.survey.cloudsync.SyncManager;
-import com.softminesol.propertysurvey.survey.common.model.property.GetPropertySaveResponse;
-import com.softminesol.propertysurvey.survey.common.view.activity.ApartmentInfoActivity;
+import com.softminesol.survey_framework.survey.common.model.property.GetPropertySaveResponse;
+import com.softminesol.survey_framework.survey.common.view.activity.ApartmentInfoActivity;
 import com.softminesol.propertysurvey.survey.draftedEntity.view.DraftedListActivity;
-import com.softminesol.propertysurvey.survey.newPropertyEntry.view.activity.NewSurveyActivity;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
 import frameworks.basemvp.AppBasePresenter;
-import frameworks.network.model.BaseResponse;
 import frameworks.routers.ILoginInterceptor;
 import rx.Subscriber;
 

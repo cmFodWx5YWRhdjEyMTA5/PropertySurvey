@@ -1,11 +1,8 @@
 package com.softminesol.propertysurvey.survey.newPropertyEntry.domain;
 
 
-import com.softmine.imageupload.domain.ImageUploadUseCase;
-import com.softminesol.propertysurvey.survey.common.model.property.GetPropertySaveResponse;
-import com.softminesol.propertysurvey.survey.common.model.property.SavePropertyRequest;
-
-import java.util.List;
+import com.softminesol.survey_framework.survey.common.model.property.GetPropertySaveResponse;
+import com.softminesol.survey_framework.survey.common.model.property.SavePropertyRequest;
 
 import javax.inject.Inject;
 

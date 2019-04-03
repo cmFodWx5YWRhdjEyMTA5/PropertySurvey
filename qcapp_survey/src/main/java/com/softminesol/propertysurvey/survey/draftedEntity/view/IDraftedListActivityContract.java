@@ -1,7 +1,7 @@
 package com.softminesol.propertysurvey.survey.draftedEntity.view;
 
-import com.softminesol.propertysurvey.survey.common.model.apartment.SaveApartmentRequest;
-import com.softminesol.propertysurvey.survey.common.model.property.SavePropertyRequest;
+import com.softminesol.survey_framework.survey.common.model.apartment.SaveApartmentRequest;
+import com.softminesol.survey_framework.survey.common.model.property.SavePropertyRequest;
 
 import java.util.List;
 

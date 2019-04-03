@@ -1,8 +1,8 @@
 package com.softminesol.propertysurvey.survey.newPropertyEntry.data.repository.datasource;
 
-import com.softminesol.propertysurvey.survey.common.model.formData.FormData;
-import com.softminesol.propertysurvey.survey.common.model.property.GetPropertySaveResponse;
-import com.softminesol.propertysurvey.survey.common.model.property.SavePropertyRequest;
+import com.softminesol.survey_framework.survey.common.model.formData.FormData;
+import com.softminesol.survey_framework.survey.common.model.property.GetPropertySaveResponse;
+import com.softminesol.survey_framework.survey.common.model.property.SavePropertyRequest;
 import com.softminesol.propertysurvey.survey.newPropertyEntry.data.net.NewServeyAPI;
 
 import javax.inject.Inject;

@@ -1,10 +1,9 @@
 package com.softminesol.propertysurvey.survey.draftedEntity.view;
 
-import com.softminesol.propertysurvey.survey.common.domain.GetPropertyInfoUseCase;
-import com.softminesol.propertysurvey.survey.common.domain.SurveyPropertyIdListUseCase;
-import com.softminesol.propertysurvey.survey.common.model.OLDPropertyUIDS;
-import com.softminesol.propertysurvey.survey.common.model.apartment.SaveApartmentRequest;
-import com.softminesol.propertysurvey.survey.common.model.property.SavePropertyRequest;
+import com.softminesol.survey_framework.survey.common.domain.GetPropertyInfoUseCase;
+import com.softminesol.survey_framework.survey.common.domain.SurveyPropertyIdListUseCase;
+import com.softminesol.survey_framework.survey.common.model.OLDPropertyUIDS;
+import com.softminesol.survey_framework.survey.common.model.property.SavePropertyRequest;
 import com.softminesol.propertysurvey.survey.draftedEntity.domain.ApartmentListUseCase;
 import com.softminesol.propertysurvey.survey.draftedEntity.domain.PropertyListUseCase;
 
