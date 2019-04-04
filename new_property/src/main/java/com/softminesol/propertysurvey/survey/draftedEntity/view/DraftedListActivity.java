@@ -5,9 +5,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.softminesol.propertysurvey.survey.newPropertyEntry.di.NewSurveyComponent;
 import com.softminesol.survey_framework.R;
 import com.softminesol.survey_framework.SurveyAppApplication;
-import com.softminesol.survey_framework.survey.common.di.DaggerSurveyComponent;
 import com.softminesol.survey_framework.survey.common.di.SurveyComponent;
 import com.softminesol.survey_framework.survey.common.model.apartment.SaveApartmentRequest;
 import com.softminesol.survey_framework.survey.common.model.property.SavePropertyRequest;
@@ -19,7 +19,7 @@ import javax.inject.Inject;
 import frameworks.basemvp.AppBaseActivity;
 
 public class DraftedListActivity extends AppBaseActivity<IDraftedListActivityContract.IDraftedListActivityPresenter> implements IDraftedListActivityContract.IDraftedListActivityView {
-    SurveyComponent surveyComponent;
+    NewSurveyComponent surveyComponent;
     @Inject
     DraftedListPresenter draftedListPresenter;
 
@@ -38,7 +38,7 @@ public class DraftedListActivity extends AppBaseActivity<IDraftedListActivityCon
 
     @Override
     protected void initInjector() {
-        surveyComponent = DaggerSurveyComponent.builder().baseAppComponent(((SurveyAppApplication) getApplication()).getBaseAppComponent()).build();
+        surveyComponent = DaggerNewSurveyComponent.builder().baseAppComponent(((SurveyAppApplication) getApplication()).getBaseAppComponent()).build();
         surveyComponent.inject(this);
     }
 

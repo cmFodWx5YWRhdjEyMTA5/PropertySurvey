@@ -4,10 +4,6 @@ import com.softmine.imageupload.data.net.ImageUploadAPI;
 import com.softmine.imageupload.data.repository.ImageUploadRepository;
 import com.softmine.imageupload.data.repository.datasource.ImageUploadFactory;
 import com.softmine.imageupload.domain.IImageUploadRepository;
-import com.softminesol.propertysurvey.survey.apartmentEntry.data.net.NewServeyAPI;
-import com.softminesol.propertysurvey.survey.apartmentEntry.data.repository.ApartmentSurveyFormSubmitRepository;
-import com.softminesol.propertysurvey.survey.apartmentEntry.data.repository.datasource.SubmitFormDataFactory;
-import com.softminesol.propertysurvey.survey.apartmentEntry.domain.IApartmentSurveyFormSaveRepository;
 import com.softminesol.survey_framework.survey.common.domain.ISurveyOptionRepository;
 import com.softminesol.survey_framework.survey.common.net.SurveyAPI;
 import com.softminesol.survey_framework.survey.common.net.SurveyAPIURL;
@@ -32,7 +28,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class SurveyModule {
 
-    @Provides
+    /*@Provides
     NewServeyAPI provideNewLoginApi(Retrofit retrofit) {
         return retrofit.create(NewServeyAPI.class);
     }
@@ -40,7 +36,7 @@ public class SurveyModule {
     @Provides
     IApartmentSurveyFormSaveRepository getSaveSurveyOptionRepository(SubmitFormDataFactory submitFormDataFactory) {
         return new ApartmentSurveyFormSubmitRepository(submitFormDataFactory);
-    }
+    }*/
     @Provides
     SurveyAPI provideLoginApi(Retrofit retrofit) {
         return retrofit.create(SurveyAPI.class);

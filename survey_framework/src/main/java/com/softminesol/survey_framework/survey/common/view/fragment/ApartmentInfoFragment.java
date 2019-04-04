@@ -2,7 +2,6 @@ package com.softminesol.survey_framework.survey.common.view.fragment;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
@@ -21,10 +20,6 @@ import android.widget.LinearLayout;
 
 import com.softminesol.survey_framework.R;
 import com.softminesol.survey_framework.R2;
-import com.softminesol.survey_framework.SurveyAppApplication;
-import com.softminesol.propertysurvey.home.view.DashBoardActivity;
-import com.softminesol.survey_framework.survey.common.di.DaggerSurveyComponent;
-import com.softminesol.survey_framework.survey.common.di.SurveyComponent;
 import com.softminesol.survey_framework.survey.common.model.apartment.Owner;
 import com.softminesol.survey_framework.survey.common.model.apartment.SaveApartmentRequest;
 import com.softminesol.survey_framework.survey.common.view.activity.onMenuClick;
@@ -46,7 +41,7 @@ import frameworks.basemvp.AppBaseFragment;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract.Presenter> implements ApartmentInfoContract.View {
+public abstract class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract.Presenter> implements ApartmentInfoContract.View {
 
 
     @BindView(R2.id.edt_covered_area)
@@ -79,7 +74,7 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
     public static final String APARTMENT_TEMP_KEY = "apartmentTempDetails";
     public static final String APARTMENT_DETAIL = "apartmentDetail";
 
-    SurveyComponent surveyComponent;
+
     @Inject
     ApartmentInfoPresenter apartmentInfoPresenter;
     @BindView(R2.id.edt_GSId)
@@ -163,41 +158,15 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
     @BindView(R2.id.edt_sewarage_connection_no)
     EditText edtSewerageConNo;
 
-    public static ApartmentInfoFragment newInstance(String  string) {
-        ApartmentInfoFragment fragment = new ApartmentInfoFragment();
-        Bundle args = new Bundle();
-        args.putString(APARTMENT_DETAIL_KEY, string);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
-    public static ApartmentInfoFragment newInstance(long  string) {
-        ApartmentInfoFragment fragment = new ApartmentInfoFragment();
-        Bundle args = new Bundle();
-        args.putLong(APARTMENT_TEMP_KEY, string);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     public ApartmentInfoFragment() {
         // Required empty public constructor
     }
 
-    public static ApartmentInfoFragment newIntance(SaveApartmentRequest savePropertyRequest) {
-        ApartmentInfoFragment fragment = new ApartmentInfoFragment();
-        Bundle args = new Bundle();
-        args.putSerializable(APARTMENT_DETAIL, savePropertyRequest);
-        fragment.setArguments(args);
-        return fragment;
-
-    }
 
 
-    @Override
-    protected void initInjector() {
-        surveyComponent = DaggerSurveyComponent.builder().baseAppComponent(((SurveyAppApplication) getActivity().getApplication()).getBaseAppComponent()).build();
-        surveyComponent.inject(this);
-    }
+
 
     @Override
     public View getView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -249,10 +218,7 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
 
 
     public void gotoHome() {
-        Intent intent = new Intent(getActivity(), DashBoardActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
-        finish();
+
     }
 
 

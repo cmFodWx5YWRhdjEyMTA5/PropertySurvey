@@ -2,7 +2,6 @@ package com.softminesol.survey_framework.login.view;
 
 import android.content.Intent;
 
-import com.softminesol.propertysurvey.home.view.DashBoardActivity;
 import com.softminesol.survey_framework.login.domain.LoginEmailUseCase;
 
 import javax.inject.Inject;
@@ -12,7 +11,11 @@ import frameworks.basemvp.AppBasePresenter;
 import frameworks.network.Utils;
 import frameworks.network.model.ResponseException;
 import frameworks.network.usecases.RequestParams;
+import routers.IHomeRouter;
+import routers.IRouterProducer;
 import rx.Subscriber;
+
+import static frameworks.AppBaseApplication.getApplication;
 
 /**
  * Created by sandeepgoyal on 03/05/18.
@@ -41,7 +44,8 @@ public class LoginPresenter extends AppBasePresenter<ILoginViewContractor.View> 
         loginEmailUseCase.execute(requestParams, new Subscriber<SessionValue>() {
             @Override
             public void onCompleted() {
-                Intent i = new Intent(getView().getContext(), DashBoardActivity.class);
+                IHomeRouter homeRouter = ((IRouterProducer)(getApplication())).getHomeRouter();
+                Intent i = homeRouter.getHomeIntent(getView().getContext());
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                         Intent.FLAG_ACTIVITY_CLEAR_TASK |
                         Intent.FLAG_ACTIVITY_NEW_TASK);

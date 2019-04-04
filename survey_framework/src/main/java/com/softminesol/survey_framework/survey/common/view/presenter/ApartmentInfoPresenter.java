@@ -5,9 +5,6 @@ import android.content.Intent;
 import com.softmine.imageupload.presenter.ImageUploadPresenter;
 import com.softmine.imageupload.view.ImageUploadActivity;
 import com.softminesol.survey_framework.CommonBaseUrl;
-import com.softminesol.propertysurvey.survey.apartmentEntry.domain.SaveApartmentCacheUseCase;
-import com.softminesol.propertysurvey.survey.apartmentEntry.domain.SaveApartmentSurveyFormUseCase;
-import com.softminesol.propertysurvey.survey.cloudsync.SyncManager;
 import com.softminesol.survey_framework.survey.common.domain_luc.SurveyConstructionType;
 import com.softminesol.survey_framework.survey.common.domain_luc.SurveyFloor;
 import com.softminesol.survey_framework.survey.common.domain_luc.SurveyNonResidentCategory;
@@ -25,7 +22,6 @@ import com.softminesol.survey_framework.survey.common.model.newmodel.OccupancySt
 import com.softminesol.survey_framework.survey.common.model.newmodel.PropertyUsage;
 import com.softminesol.survey_framework.survey.common.model.newmodel.RespondentStatus;
 import com.softminesol.survey_framework.survey.common.model.newmodel.SourceWater;
-import com.softminesol.survey_framework.survey.common.model.property.GetPropertySaveResponse;
 import com.softminesol.survey_framework.survey.common.view.activity.OwnerInfoActivity;
 
 import java.util.ArrayList;
@@ -35,7 +31,6 @@ import javax.inject.Inject;
 
 import frameworks.basemvp.AppBasePresenter;
 import frameworks.customadapter.CustomAdapterModel;
-import frameworks.network.usecases.RequestParams;
 import frameworks.utils.AdapterFactory;
 import rx.Subscriber;
 
@@ -45,10 +40,9 @@ import static com.softmine.imageupload.view.ImageUploadActivity.REQUEST_GET_FILE
 /**
  * Created by sandeep on 6/5/18.
  */
-public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContract.View> implements ApartmentInfoContract.Presenter {
+public class ApartmentInfoPresenter< T extends ApartmentInfoContract.View> extends AppBasePresenter<T> implements ApartmentInfoContract.Presenter<T> {
 
     private final AdapterFactory adapterFactory;
-    private final SaveApartmentSurveyFormUseCase saveApartmentSurveyFormUseCase;
     private final SurveyFloor surveyFloorListUseCase;
     private final SurveyPropertyUsage surveyPropertyUsage;
     private final SurveyNonResidentCategory surveyNonResidentCategory;
@@ -56,18 +50,16 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
     private final SurveyOccupancyStatus surveyOccupancyStatus;
     private final SurveySourceWaterUseCase surveySourceWaterUseCase;
     private final SurveyConstructionType surveyConstructionType;
-    private final SaveApartmentCacheUseCase saveApartmentCacheUseCase;
-    private SyncManager syncManager;
+
 
     @Inject
-    public ApartmentInfoPresenter(AdapterFactory adapterFactory, SaveApartmentSurveyFormUseCase saveApartmentSurveyFormUseCase,
-                                  SyncManager syncManager, SurveyFloor surveyFloorListUseCase,
+    public ApartmentInfoPresenter(AdapterFactory adapterFactory,
+                                  SurveyFloor surveyFloorListUseCase,
                                   SurveyPropertyUsage surveyPropertyUsage, SurveyNonResidentCategory surveyNonResidentCategory,
                                   SurveyRespodentStatus surveyRespodentStatus, SurveyOccupancyStatus surveyOccupancyStatus, SurveySourceWaterUseCase surveySourceWaterUseCase,
-                                  SurveyConstructionType surveyConstructionType,SaveApartmentCacheUseCase saveApartmentCacheUseCase) {
+                                  SurveyConstructionType surveyConstructionType) {
         this.adapterFactory = adapterFactory;
-        this.saveApartmentSurveyFormUseCase = saveApartmentSurveyFormUseCase;
-        this.syncManager = syncManager;
+
         this.surveyFloorListUseCase = surveyFloorListUseCase;
         this.surveyPropertyUsage = surveyPropertyUsage;
         this.surveyNonResidentCategory = surveyNonResidentCategory;
@@ -75,8 +67,6 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
         this.surveyOccupancyStatus = surveyOccupancyStatus;
         this.surveySourceWaterUseCase = surveySourceWaterUseCase;
         this.surveyConstructionType = surveyConstructionType;
-        this.saveApartmentCacheUseCase = saveApartmentCacheUseCase;
-
     }
 
     @Override
@@ -305,53 +295,10 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
     List<String> filePaths = new ArrayList<>();
     @Override
     public void onNextClick() {
-        if(validateForm()) {
-            SaveApartmentRequest formData = getApartmentData();
-            RequestParams requestParams = RequestParams.create();
-            requestParams.putObject("formdata", formData);
-            getView().showProgressBar();
-            saveApartmentSurveyFormUseCase.execute(requestParams, new Subscriber<GetPropertySaveResponse>() {
-                @Override
-                public void onCompleted() {
-                    getView().hideProgressBar();
-                    // getView().showSnackBar("Save Successfully");
 
-                }
-
-                @Override
-                public void onError(Throwable e) {
-                    getView().hideProgressBar();
-                    getView().showToast(e.getMessage());
-                    getView().gotoHome();
-                    e.printStackTrace();
-                }
-
-                @Override
-                public void onNext(GetPropertySaveResponse getPropertySaveResponse) {
-                    getView().showToast("Save Successfully");
-                    syncManager.execute(new Subscriber<List<GetPropertySaveResponse>>() {
-                        @Override
-                        public void onCompleted() {
-
-                        }
-
-                        @Override
-                        public void onError(Throwable e) {
-                            e.printStackTrace();
-                        }
-
-                        @Override
-                        public void onNext(List<GetPropertySaveResponse> getPropertySaveResponses) {
-
-                        }
-                    });
-                    getView().gotoHome();
-                }
-            });
-        }
     }
 
-    private boolean validateForm() {
+    protected boolean validateForm() {
         if(getView().getElectricConnectionNumber().length() > 0 &&getView().getElectricConnectionNumber().length()< 9) {
             getView().setElectricityConnectionError("Electricity Number should be 9 digit");
             return false;
@@ -367,31 +314,7 @@ public class ApartmentInfoPresenter extends AppBasePresenter<ApartmentInfoContra
 
     @Override
     public void onSaveToDraft() {
-        SaveApartmentRequest formData = getApartmentData();
-        formData.setIdDrafted(true);
-        RequestParams requestParams = RequestParams.create();
-        requestParams.putObject("formdata", formData);
-        getView().showProgressBar();
-        saveApartmentCacheUseCase.execute(requestParams, new Subscriber<GetPropertySaveResponse>() {
-            @Override
-            public void onCompleted() {
-                getView().hideProgressBar();
-            }
 
-            @Override
-            public void onError(Throwable e) {
-                getView().hideProgressBar();
-                getView().showToast(e.getMessage());
-                getView().gotoHome();
-                e.printStackTrace();
-            }
-
-            @Override
-            public void onNext(GetPropertySaveResponse getPropertySaveResponse) {
-                getView().showToast("Save Successfully");
-                getView().gotoHome();
-            }
-        });
     }
 
     @Override

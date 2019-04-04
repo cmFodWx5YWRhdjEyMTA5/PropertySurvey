@@ -34,6 +34,7 @@ dependencies {
     implementation project(rootProject.ext.libraries.maps)
     implementation project(rootProject.ext.libraries.imageupload)
     implementation project(rootProject.ext.libraries.usecase)
+    implementation project(rootProject.ext.libraries.routers)
     implementation rootProject.ext.miscDependencies.rxbinding
     compile rootProject.ext.butterKnifeDependencies.butterKnife
     compile rootProject.ext.miscDependencies.spinnermaterial

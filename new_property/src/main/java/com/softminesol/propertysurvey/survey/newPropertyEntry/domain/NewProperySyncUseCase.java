@@ -1,4 +1,4 @@
-package com.softminesol.survey_framework.localcachesync.domain;
+package com.softminesol.propertysurvey.survey.newPropertyEntry.domain;
 
 import com.softmine.imageupload.domain.ImageUploadUseCase;
 import com.softmine.imageupload.model.ImageUploadResponse;

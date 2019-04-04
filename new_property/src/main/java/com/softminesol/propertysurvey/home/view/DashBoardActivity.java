@@ -1,5 +1,7 @@
 package com.softminesol.propertysurvey.home.view;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -45,6 +47,14 @@ public class DashBoardActivity extends AppBaseActivity<DashBoardContractor.Prese
     TextView apartmentCount;
     @BindView(R2.id.btn_showDrafts)
     TextView showDrafts;
+
+    public static Intent getIntent(Context context) {
+        Intent i = new Intent(context, DashBoardActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                Intent.FLAG_ACTIVITY_NEW_TASK);
+        return i;
+    }
 
     @Override
     protected void initInjector() {

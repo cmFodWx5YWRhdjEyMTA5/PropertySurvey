@@ -1,8 +1,8 @@
 package com.softminesol.propertysurvey.survey.cloudsync;
 
 
-import com.softminesol.survey_framework.localcachesync.domain.NewApartmentUseCase;
-import com.softminesol.survey_framework.localcachesync.domain.NewProperySyncUseCase;
+import com.softminesol.propertysurvey.survey.newPropertyEntry.domain.NewApartmentUseCase;
+import com.softminesol.propertysurvey.survey.newPropertyEntry.domain.NewProperySyncUseCase;
 import com.softminesol.survey_framework.survey.common.model.property.GetPropertySaveResponse;
 
 import java.util.List;

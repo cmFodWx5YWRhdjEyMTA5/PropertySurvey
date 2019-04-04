@@ -46,6 +46,7 @@ dependencies {
     implementation project(rootProject.ext.libraries.maps)
     implementation project(rootProject.ext.libraries.imageupload)
     implementation project(rootProject.ext.libraries.usecase)
+    implementation project(rootProject.ext.libraries.routers)
     implementation project(rootProject.ext.libraries.survey_framework)
     implementation rootProject.ext.miscDependencies.rxbinding
     compile rootProject.ext.butterKnifeDependencies.butterKnife
@@ -58,6 +59,7 @@ dependencies {
     implementation rootProject.ext.miscDependencies.joda
     implementation rootProject.ext.dbDependencies.dbRoomRuntime
     annotationProcessor rootProject.ext.dbDependencies.dbRoomCompiler
+    implementation project(rootProject.ext.libraries.routers)
     implementation(rootProject.ext.miscDependencies.crashlytics) {
         transitive = true;
     }

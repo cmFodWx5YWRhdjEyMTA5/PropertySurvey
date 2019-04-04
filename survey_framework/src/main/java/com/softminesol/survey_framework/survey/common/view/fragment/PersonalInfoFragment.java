@@ -14,7 +14,6 @@ import android.widget.EditText;
 import com.softminesol.survey_framework.R;
 import com.softminesol.survey_framework.R2;
 import com.softminesol.survey_framework.SurveyAppApplication;
-import com.softminesol.survey_framework.survey.common.di.DaggerSurveyComponent;
 import com.softminesol.survey_framework.survey.common.di.SurveyComponent;
 import com.softminesol.survey_framework.survey.common.model.apartment.Owner;
 import com.softminesol.survey_framework.survey.common.model.formData.OwnerDetailsItem;
@@ -32,7 +31,7 @@ import frameworks.basemvp.AppBaseFragment;
 /**
  * Created by sandeep on 5/5/18.
  */
-public class PersonalInfoFragment extends AppBaseFragment<PersonalInfoContract.Presenter> implements PersonalInfoContract.View {
+public abstract class PersonalInfoFragment extends AppBaseFragment<PersonalInfoContract.Presenter> implements PersonalInfoContract.View {
 
     SurveyComponent surveyComponent;
 
@@ -52,6 +51,7 @@ public class PersonalInfoFragment extends AppBaseFragment<PersonalInfoContract.P
     EditText edtApartmentBuildingName;
     @BindView(R2.id.edt_street_name)
     EditText edtStreetName;
+
     @BindView(R2.id.edt_colony_code)
     EditText edtColonyCode;
     @BindView(R2.id.edt_pin_code)
@@ -62,20 +62,14 @@ public class PersonalInfoFragment extends AppBaseFragment<PersonalInfoContract.P
     EditText edtZoneId;
     Unbinder unbinder;
 
-
-    public static PersonalInfoFragment newInstance(Owner ownerDetailsItem) {
-        PersonalInfoFragment fragment = new PersonalInfoFragment();
+    public static PersonalInfoFragment newInstance(Owner serializableExtra) {
+        PersonalInfoFragment fragment = new NewPersonalInfoFragment();
         Bundle arguments = new Bundle();
         arguments.putSerializable(OWNER_DETAIL_KEY, ownerDetailsItem);
         fragment.setArguments(arguments);
         return fragment;
     }
 
-    @Override
-    protected void initInjector() {
-        surveyComponent = DaggerSurveyComponent.builder().baseAppComponent(((SurveyAppApplication) getActivity().getApplication()).getBaseAppComponent()).build();
-        surveyComponent.inject(this);
-    }
 
     @Override
     public View getView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
