@@ -32,6 +32,9 @@ public class DraftedListAdapter extends RecyclerView.Adapter<DraftedListAdapter.
     }
 
     public void setSaveApartmentRequests(List<SaveApartmentRequest> saveApartmentRequests) {
+        if(saveApartmentRequests == null) {
+            return;
+        }
         this.saveApartmentRequests = saveApartmentRequests;
         notifyDataSetChanged();
     }

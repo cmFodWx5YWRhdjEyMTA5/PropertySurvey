@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,14 +19,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import com.pchmn.materialchips.ChipView;
 import com.softminesol.propertysurvey.R;
 import com.softminesol.propertysurvey.SurveyAppApplication;
 import com.softminesol.propertysurvey.home.view.DashBoardActivity;
 import com.softminesol.propertysurvey.survey.common.di.DaggerSurveyComponent;
 import com.softminesol.propertysurvey.survey.common.di.SurveyComponent;
-import com.softminesol.propertysurvey.survey.common.model.OldPropertyUIDItem;
 import com.softminesol.propertysurvey.survey.common.model.apartment.Owner;
 import com.softminesol.propertysurvey.survey.common.model.apartment.SaveApartmentRequest;
+import com.softminesol.propertysurvey.survey.common.view.activity.OwnerInfoActivity;
 import com.softminesol.propertysurvey.survey.common.view.activity.onMenuClick;
 import com.softminesol.propertysurvey.survey.common.view.presenter.ApartmentInfoContract;
 import com.softminesol.propertysurvey.survey.common.view.presenter.ApartmentInfoPresenter;
@@ -688,6 +687,56 @@ public class ApartmentInfoFragment extends AppBaseFragment<ApartmentInfoContract
         }
         return rootView;
     }
+    @Override
+    public void clearChips() {
+        ownerValues.removeAllViews();
+    }
+
+    @Override
+    public void inflateChips() {
+        clearChips();
+        if(owners != null) {
+            for (Owner owner : owners) {
+                addOwner(owner);
+            }
+        }
+    }
+
+    @Override
+    public void removeChip(ChipView chipView) {
+        ownerValues.removeView(chipView);
+    }
+
+    @Override
+    public void addOwner(final Owner owner) {
+        final ChipView chipView = new ChipView(getContext());
+        chipView.setLabel(owner.getName());
+        chipView.setDeletable(true);
+        ownerValues.addView(chipView);
+        chipView.setOnDeleteClicked(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                owners.remove(owner);
+                removeChip(chipView);
+            }
+        });
+        chipView.setOnChipClicked(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clickedOwner = owner;
+                startActivityForResult(OwnerInfoActivity.getIntent(getContext(), owner), 1);
+            }
+        });
+    }
+
+    @Override
+    public void removeClickOwner() {
+        owners.remove(clickedOwner);
+        clickedOwner = null;
+    }
+    public Owner clickedOwner = null;
+
+
 
     private void setGisCode(String string) {
         edtGSID.setText(string);
