@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Owner implements Serializable{
+
+
     @SerializedName("name")
     @Expose
     private String name;

@@ -73,10 +73,14 @@ public class ApartmentInfoPresenter< T extends ApartmentInfoContract.View> exten
         if (requestCode == 1) {
             if (resultCode == 1) {
                 Owner ownerDetailsItemDetailsItem = (Owner) data.getSerializableExtra("ownerDetail");
+                getView().removeClickOwner();
                 getView().setOwner(ownerDetailsItemDetailsItem);
-            }
 
-        } if (requestCode == ImageUploadActivity.REQUEST_GET_FILE_SERVER_URI) {
+            }
+            getView().clearChips();
+            getView().inflateChips();
+
+        } else  if (requestCode == ImageUploadActivity.REQUEST_GET_FILE_SERVER_URI) {
             if(resultCode == ImageUploadPresenter.RESULT_FILE_URI) {
                 fileUrls = data.getStringArrayListExtra(FILE_PATHS);
 
@@ -318,7 +322,7 @@ public class ApartmentInfoPresenter< T extends ApartmentInfoContract.View> exten
 
     @Override
     public void onNonRegCategorySelected(int position) {
-            getView().setNonResidentialCode(nonResidentalCategoryItems.get(position).getCode());
+        getView().setNonResidentialCode(nonResidentalCategoryItems.get(position).getCode());
     }
 
     @Override

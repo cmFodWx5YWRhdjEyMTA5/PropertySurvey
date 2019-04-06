@@ -1,6 +1,7 @@
 package com.softminesol.survey_framework.survey.common.view.presenter;
 
 import android.widget.ArrayAdapter;
+import com.pchmn.materialchips.ChipView;
 
 import com.softminesol.survey_framework.survey.common.model.apartment.Owner;
 import com.softminesol.survey_framework.survey.common.model.apartment.SaveApartmentRequest;
@@ -141,9 +142,15 @@ public interface ApartmentInfoContract {
 
         void setElectricityConnectionError(String s);
 
+        void clearChips();
+        void inflateChips();
+        void removeChip(ChipView chipView);
+        void addOwner(Owner chipView);
+        public void removeClickOwner();
+
     }
 
-    public interface Presenter<T extends View> extends IPresenter<T> {
+    public interface Presenter extends IPresenter<View> {
         public void onNextClick();
 
         public void onAddOwnerClick();

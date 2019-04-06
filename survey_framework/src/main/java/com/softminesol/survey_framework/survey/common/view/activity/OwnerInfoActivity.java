@@ -1,10 +1,10 @@
-package com.softminesol.survey_framework.survey.common.view.activity;
+package com.softminesol.propertysurvey.survey.common.view.activity;
 
 import android.content.Context;
 import android.content.Intent;
 
 import com.softminesol.survey_framework.survey.common.model.apartment.Owner;
-import com.softminesol.survey_framework.survey.common.model.formData.OwnerDetailsItem;
+import com.softminesol.survey_framework.survey.common.view.activity.onMenuClick;
 import com.softminesol.survey_framework.survey.common.view.fragment.PersonalInfoFragment;
 
 import frameworks.customlayout.ActivitySingleFragment;
@@ -42,7 +42,7 @@ public class OwnerInfoActivity extends ActivitySingleFragment<PersonalInfoFragme
     public void onFinishCLick() {
     }
 
-    public static Intent getIntent(Context context, OwnerDetailsItem ownerDetailsItem) {
+    public static Intent getIntent(Context context, Owner ownerDetailsItem) {
         Intent i = new Intent(context,OwnerInfoActivity.class);
         i.putExtra(OWNER_DETAIL_KEY,ownerDetailsItem);
         return i;
