@@ -28,15 +28,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class SurveyModule {
 
-    /*@Provides
-    NewServeyAPI provideNewLoginApi(Retrofit retrofit) {
-        return retrofit.create(NewServeyAPI.class);
-    }
 
-    @Provides
-    IApartmentSurveyFormSaveRepository getSaveSurveyOptionRepository(SubmitFormDataFactory submitFormDataFactory) {
-        return new ApartmentSurveyFormSubmitRepository(submitFormDataFactory);
-    }*/
     @Provides
     SurveyAPI provideLoginApi(Retrofit retrofit) {
         return retrofit.create(SurveyAPI.class);

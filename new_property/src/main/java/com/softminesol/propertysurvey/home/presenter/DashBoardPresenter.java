@@ -2,13 +2,13 @@ package com.softminesol.propertysurvey.home.presenter;
 
 import android.content.Intent;
 
-import com.softminesol.survey_framework.SurveyAppApplication;
 import com.softminesol.propertysurvey.home.domain.DashBoardUseCase;
+import com.softminesol.propertysurvey.survey.apartmentEntry.view.activity.NewApartmentInfoActivity;
 import com.softminesol.propertysurvey.survey.cloudsync.SyncManager;
-import com.softminesol.survey_framework.survey.common.model.property.GetPropertySaveResponse;
-import com.softminesol.survey_framework.survey.common.view.activity.ApartmentInfoActivity;
 import com.softminesol.propertysurvey.survey.draftedEntity.view.DraftedListActivity;
 import com.softminesol.propertysurvey.survey.newPropertyEntry.view.activity.NewSurveyActivity;
+import com.softminesol.survey_framework.SurveyAppApplication;
+import com.softminesol.survey_framework.survey.common.model.property.GetPropertySaveResponse;
 
 import java.util.List;
 
@@ -44,7 +44,7 @@ public class DashBoardPresenter extends AppBasePresenter<DashBoardContractor.Vie
 
     @Override
     public void onAddApartmentClick() {
-        getView().startActivity(new Intent(getView().getContext(), ApartmentInfoActivity.class));
+        getView().startActivity(new Intent(getView().getContext(), NewApartmentInfoActivity.class));
 
     }
 

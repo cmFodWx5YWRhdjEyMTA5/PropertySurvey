@@ -6,9 +6,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.softminesol.propertysurvey.survey.newPropertyEntry.di.NewSurveyComponent;
+import com.softminesol.propertysurvey.survey.newPropertyEntry.di.DaggerNewSurveyComponent;
 import com.softminesol.survey_framework.R;
 import com.softminesol.survey_framework.SurveyAppApplication;
-import com.softminesol.survey_framework.survey.common.di.SurveyComponent;
 import com.softminesol.survey_framework.survey.common.model.apartment.SaveApartmentRequest;
 import com.softminesol.survey_framework.survey.common.model.property.SavePropertyRequest;
 

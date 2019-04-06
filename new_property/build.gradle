@@ -59,7 +59,6 @@ dependencies {
     implementation rootProject.ext.miscDependencies.joda
     implementation rootProject.ext.dbDependencies.dbRoomRuntime
     annotationProcessor rootProject.ext.dbDependencies.dbRoomCompiler
-    implementation project(rootProject.ext.libraries.routers)
     implementation(rootProject.ext.miscDependencies.crashlytics) {
         transitive = true;
     }

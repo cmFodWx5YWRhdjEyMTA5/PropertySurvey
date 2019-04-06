@@ -1,4 +1,4 @@
-package com.softminesol.propertysurvey.survey.newPropertyEntry.view.fragment;
+package com.softminesol.propertysurvey.survey.ownerEntry.view.fragment;
 
 import android.os.Bundle;
 

@@ -9,7 +9,6 @@ import android.widget.TextView;
 import com.softminesol.survey_framework.R;
 import com.softminesol.survey_framework.survey.common.model.apartment.SaveApartmentRequest;
 import com.softminesol.survey_framework.survey.common.model.property.SavePropertyRequest;
-import com.softminesol.survey_framework.survey.common.view.activity.ApartmentInfoActivity;
 import com.softminesol.propertysurvey.survey.newPropertyEntry.view.activity.NewSurveyActivity;
 
 import java.util.ArrayList;
@@ -90,7 +89,7 @@ public class DraftedListAdapter extends RecyclerView.Adapter<DraftedListAdapter.
                 @Override
                 public void onClick(View v) {
                     if(saveApartmentRequests.size() > position) {
-                        itemView.getContext().startActivity(ApartmentInfoActivity.createIntent(itemView.getContext(),saveApartmentRequests.get(position)));
+                        //itemView.getContext().startActivity(ApartmentInfoActivity.createIntent(itemView.getContext(),saveApartmentRequests.get(position)));
                     }else  {
                         itemView.getContext().startActivity(NewSurveyActivity.createIntent(itemView.getContext(),savePropertyRequests.get(position - saveApartmentRequests.size())));
                     }

@@ -13,9 +13,7 @@ import android.widget.EditText;
 
 import com.softminesol.survey_framework.R;
 import com.softminesol.survey_framework.R2;
-import com.softminesol.survey_framework.SurveyAppApplication;
 import com.softminesol.survey_framework.survey.common.di.SurveyComponent;
-import com.softminesol.survey_framework.survey.common.model.apartment.Owner;
 import com.softminesol.survey_framework.survey.common.model.formData.OwnerDetailsItem;
 import com.softminesol.survey_framework.survey.common.view.activity.onMenuClick;
 import com.softminesol.survey_framework.survey.common.view.presenter.PersonalInfoContract;
@@ -62,13 +60,6 @@ public abstract class PersonalInfoFragment extends AppBaseFragment<PersonalInfoC
     EditText edtZoneId;
     Unbinder unbinder;
 
-    public static PersonalInfoFragment newInstance(Owner serializableExtra) {
-        PersonalInfoFragment fragment = new NewPersonalInfoFragment();
-        Bundle arguments = new Bundle();
-        arguments.putSerializable(OWNER_DETAIL_KEY, ownerDetailsItem);
-        fragment.setArguments(arguments);
-        return fragment;
-    }
 
 
     @Override

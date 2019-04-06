@@ -22,7 +22,6 @@ import com.softminesol.survey_framework.survey.common.model.newmodel.OccupancySt
 import com.softminesol.survey_framework.survey.common.model.newmodel.PropertyUsage;
 import com.softminesol.survey_framework.survey.common.model.newmodel.RespondentStatus;
 import com.softminesol.survey_framework.survey.common.model.newmodel.SourceWater;
-import com.softminesol.survey_framework.survey.common.view.activity.OwnerInfoActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +58,6 @@ public class ApartmentInfoPresenter< T extends ApartmentInfoContract.View> exten
                                   SurveyRespodentStatus surveyRespodentStatus, SurveyOccupancyStatus surveyOccupancyStatus, SurveySourceWaterUseCase surveySourceWaterUseCase,
                                   SurveyConstructionType surveyConstructionType) {
         this.adapterFactory = adapterFactory;
-
         this.surveyFloorListUseCase = surveyFloorListUseCase;
         this.surveyPropertyUsage = surveyPropertyUsage;
         this.surveyNonResidentCategory = surveyNonResidentCategory;
@@ -91,7 +89,7 @@ public class ApartmentInfoPresenter< T extends ApartmentInfoContract.View> exten
 
 
     @Override
-    public void attachView(ApartmentInfoContract.View view) {
+    public void attachView(T view) {
         super.attachView(view);
         getView().setLicenceStatus(adapterFactory.getYesNoAdapter());
         surveyFloorListUseCase.execute(new Subscriber<Floors>() {
@@ -308,7 +306,7 @@ public class ApartmentInfoPresenter< T extends ApartmentInfoContract.View> exten
 
     @Override
     public void onAddOwnerClick() {
-        getView().startActivityForResult(new Intent(getView().getContext(), OwnerInfoActivity.class), 1);
+      //  getView().startActivityForResult(new Intent(getView().getContext(), OwnerInfoActivity.class), 1);
 
     }
 

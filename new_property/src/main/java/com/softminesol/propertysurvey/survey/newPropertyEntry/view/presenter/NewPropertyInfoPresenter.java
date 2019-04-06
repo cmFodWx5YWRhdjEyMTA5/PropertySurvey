@@ -1,12 +1,12 @@
 package com.softminesol.propertysurvey.survey.newPropertyEntry.view.presenter;
 
 import com.softminesol.locations.locationmanager.domain.GetLocationAddressUseCase;
+import com.softminesol.propertysurvey.survey.apartmentEntry.view.activity.NewApartmentInfoActivity;
 import com.softminesol.propertysurvey.survey.cloudsync.SyncManager;
 import com.softminesol.survey_framework.survey.common.domain.SurveyGetPropertyTypeUseCase;
 import com.softminesol.survey_framework.survey.common.domain_luc.SurveyPropertyUsage;
 import com.softminesol.survey_framework.survey.common.model.property.GetPropertySaveResponse;
 import com.softminesol.survey_framework.survey.common.model.property.SavePropertyRequest;
-import com.softminesol.survey_framework.survey.common.view.activity.ApartmentInfoActivity;
 import com.softminesol.survey_framework.survey.common.view.presenter.PropertyLocationPresenter;
 import com.softminesol.propertysurvey.survey.newPropertyEntry.domain.SaveSurveyCacheUseCase;
 import com.softminesol.propertysurvey.survey.newPropertyEntry.domain.SaveSurveyFormUseCase;
@@ -101,7 +101,7 @@ public class NewPropertyInfoPresenter extends PropertyLocationPresenter<NewPrope
                 @Override
                 public void onNext(GetPropertySaveResponse getPropertySaveResponse) {
                     if (getPropertySaveResponse.getGisId() != null) {
-                        getView().startActivity(ApartmentInfoActivity.createIntent(getView().getContext(), getPropertySaveResponse.getGisId()));
+                        getView().startActivity(NewApartmentInfoActivity.createIntent(getView().getContext(), getPropertySaveResponse.getGisId()));
                         syncManager.execute(new Subscriber<List<GetPropertySaveResponse>>() {
                             @Override
                             public void onCompleted() {
@@ -121,7 +121,7 @@ public class NewPropertyInfoPresenter extends PropertyLocationPresenter<NewPrope
                         getView().finish();
                     } else {
                         if (getPropertySaveResponse.getTempId() > 0) {
-                            getView().startActivity(ApartmentInfoActivity.createIntent(getView().getContext(), getPropertySaveResponse.getTempId()));
+                            getView().startActivity(NewApartmentInfoActivity.createIntent(getView().getContext(), getPropertySaveResponse.getTempId()));
                             getView().finish();
                         }
                     }

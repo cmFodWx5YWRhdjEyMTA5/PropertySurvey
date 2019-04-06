@@ -5,16 +5,17 @@ import android.os.Bundle;
 
 import com.softminesol.propertysurvey.home.view.DashBoardActivity;
 import com.softminesol.propertysurvey.survey.apartmentEntry.view.presenter.NewApartmentContract;
-import com.softminesol.propertysurvey.survey.newPropertyEntry.view.fragment.NewApartmentInfoFragment;
+import com.softminesol.propertysurvey.survey.newPropertyEntry.di.DaggerNewSurveyComponent;
+import com.softminesol.propertysurvey.survey.newPropertyEntry.di.NewSurveyComponent;
 import com.softminesol.survey_framework.SurveyAppApplication;
-import com.softminesol.survey_framework.survey.common.di.SurveyComponent;
 import com.softminesol.survey_framework.survey.common.model.apartment.SaveApartmentRequest;
 import com.softminesol.survey_framework.survey.common.view.fragment.ApartmentInfoFragment;
 
 public class NewApartmentFragment extends ApartmentInfoFragment implements NewApartmentContract.View {
 
 
-    SurveyComponent surveyComponent;
+    NewSurveyComponent surveyComponent;
+
     public static ApartmentInfoFragment newInstance(String  string) {
         ApartmentInfoFragment fragment = new NewApartmentFragment();
         Bundle args = new Bundle();

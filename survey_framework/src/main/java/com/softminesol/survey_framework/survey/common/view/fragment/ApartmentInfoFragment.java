@@ -77,6 +77,7 @@ public abstract class ApartmentInfoFragment extends AppBaseFragment<ApartmentInf
 
     @Inject
     ApartmentInfoPresenter apartmentInfoPresenter;
+
     @BindView(R2.id.edt_GSId)
     EditText edtGSID;
     @BindView(R2.id.edt_propertyFloorId)
