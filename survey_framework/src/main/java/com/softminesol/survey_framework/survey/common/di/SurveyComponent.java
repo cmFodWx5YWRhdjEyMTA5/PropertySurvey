@@ -1,5 +1,7 @@
 package com.softminesol.survey_framework.survey.common.di;
 
+import com.softminesol.survey_framework.survey.common.view.fragment.PersonalInfoFragment;
+
 import dagger.Component;
 import frameworks.di.component.BaseAppComponent;
 
@@ -9,4 +11,5 @@ import frameworks.di.component.BaseAppComponent;
 @SurveyFormScope
 @Component(modules = {SurveyModule.class}, dependencies = BaseAppComponent.class)
 public interface SurveyComponent {
+    void inject(PersonalInfoFragment personalInfoFragment);
 }

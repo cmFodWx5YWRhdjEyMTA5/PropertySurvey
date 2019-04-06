@@ -35,7 +35,6 @@ public class NewSurveyActivity extends ActivitySingleFragment<NewPropertyInfoFra
 
     @Override
     public void onNextClick() {
-
     }
 
     @Override

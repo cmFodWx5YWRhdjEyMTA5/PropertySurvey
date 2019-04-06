@@ -13,7 +13,10 @@ import android.widget.EditText;
 
 import com.softminesol.survey_framework.R;
 import com.softminesol.survey_framework.R2;
+import com.softminesol.survey_framework.SurveyAppApplication;
+import com.softminesol.survey_framework.survey.common.di.DaggerSurveyComponent;
 import com.softminesol.survey_framework.survey.common.di.SurveyComponent;
+import com.softminesol.survey_framework.survey.common.model.apartment.Owner;
 import com.softminesol.survey_framework.survey.common.model.formData.OwnerDetailsItem;
 import com.softminesol.survey_framework.survey.common.view.activity.onMenuClick;
 import com.softminesol.survey_framework.survey.common.view.presenter.PersonalInfoContract;
@@ -29,7 +32,7 @@ import frameworks.basemvp.AppBaseFragment;
 /**
  * Created by sandeep on 5/5/18.
  */
-public abstract class PersonalInfoFragment extends AppBaseFragment<PersonalInfoContract.Presenter> implements PersonalInfoContract.View {
+public  class PersonalInfoFragment extends AppBaseFragment<PersonalInfoContract.Presenter> implements PersonalInfoContract.View {
 
     SurveyComponent surveyComponent;
 
@@ -61,6 +64,20 @@ public abstract class PersonalInfoFragment extends AppBaseFragment<PersonalInfoC
     Unbinder unbinder;
 
 
+
+    @Override
+    protected void initInjector() {
+        surveyComponent = DaggerSurveyComponent.builder().baseAppComponent(((SurveyAppApplication) getActivity().getApplication()).getBaseAppComponent()).build();
+        surveyComponent.inject(this);
+    }
+
+    public static PersonalInfoFragment newInstance(Owner ownerDetailsItem) {
+        PersonalInfoFragment fragment = new PersonalInfoFragment();
+        Bundle arguments = new Bundle();
+        arguments.putSerializable(OWNER_DETAIL_KEY, ownerDetailsItem);
+        fragment.setArguments(arguments);
+        return fragment;
+    }
 
     @Override
     public View getView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

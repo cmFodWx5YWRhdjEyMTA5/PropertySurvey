@@ -35,10 +35,7 @@
                 android:launchMode="singleTask"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="adjustResize" />
-            <activity
-                android:name="com.softminesol.propertysurvey.survey.newPropertyEntry.view.activity.NewSurveyActivity"
-                android:screenOrientation="portrait" />
-            <activity
+             <activity
                 android:name="com.softminesol.survey_framework.splash.view.SplashActivity"
                 android:screenOrientation="portrait">
                 <intent-filter>

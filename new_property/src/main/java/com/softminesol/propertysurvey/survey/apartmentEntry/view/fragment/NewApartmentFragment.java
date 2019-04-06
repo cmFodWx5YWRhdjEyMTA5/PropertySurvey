@@ -5,16 +5,23 @@ import android.os.Bundle;
 
 import com.softminesol.propertysurvey.home.view.DashBoardActivity;
 import com.softminesol.propertysurvey.survey.apartmentEntry.view.presenter.NewApartmentContract;
+import com.softminesol.propertysurvey.survey.apartmentEntry.view.presenter.NewApartmentPresenter;
 import com.softminesol.propertysurvey.survey.newPropertyEntry.di.DaggerNewSurveyComponent;
 import com.softminesol.propertysurvey.survey.newPropertyEntry.di.NewSurveyComponent;
 import com.softminesol.survey_framework.SurveyAppApplication;
 import com.softminesol.survey_framework.survey.common.model.apartment.SaveApartmentRequest;
 import com.softminesol.survey_framework.survey.common.view.fragment.ApartmentInfoFragment;
+import com.softminesol.survey_framework.survey.common.view.presenter.ApartmentInfoContract;
+
+import javax.inject.Inject;
 
 public class NewApartmentFragment extends ApartmentInfoFragment implements NewApartmentContract.View {
 
 
     NewSurveyComponent surveyComponent;
+
+    @Inject
+    NewApartmentPresenter newApartmentPresenter;
 
     public static ApartmentInfoFragment newInstance(String  string) {
         ApartmentInfoFragment fragment = new NewApartmentFragment();
@@ -51,5 +58,10 @@ public class NewApartmentFragment extends ApartmentInfoFragment implements NewAp
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public ApartmentInfoContract.Presenter getPresenter() {
+        return newApartmentPresenter;
     }
 }
