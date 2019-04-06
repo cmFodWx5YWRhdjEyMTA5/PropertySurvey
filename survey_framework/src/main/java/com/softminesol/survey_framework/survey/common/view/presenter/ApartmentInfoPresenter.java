@@ -22,7 +22,6 @@ import com.softminesol.survey_framework.survey.common.model.newmodel.OccupancySt
 import com.softminesol.survey_framework.survey.common.model.newmodel.PropertyUsage;
 import com.softminesol.survey_framework.survey.common.model.newmodel.RespondentStatus;
 import com.softminesol.survey_framework.survey.common.model.newmodel.SourceWater;
-import com.softminesol.survey_framework.survey.common.view.activity.OwnerInfoActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -311,7 +310,7 @@ public class ApartmentInfoPresenter< T extends ApartmentInfoContract.View> exten
 
     @Override
     public void onAddOwnerClick() {
-        getView().startActivityForResult(new Intent(getView().getContext(), OwnerInfoActivity.class), 1);
+        getView().startActivityForResult(new Intent(getView().getContext(), com.softminesol.propertysurvey.survey.common.view.activity.OwnerInfoActivity.class), 1);
 
     }
 

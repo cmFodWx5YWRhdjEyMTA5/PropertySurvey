@@ -150,7 +150,7 @@ public interface ApartmentInfoContract {
 
     }
 
-    public interface Presenter extends IPresenter<View> {
+    public interface Presenter<T extends View> extends IPresenter<T> {
         public void onNextClick();
 
         public void onAddOwnerClick();
