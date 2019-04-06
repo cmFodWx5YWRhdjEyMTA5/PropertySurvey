@@ -1,4 +1,5 @@
-package com.softminesol.propertysurvey;
+package com.softminesol.survey_framework;
+
 /**
  * Created by sandeep on 3/5/18.
  */

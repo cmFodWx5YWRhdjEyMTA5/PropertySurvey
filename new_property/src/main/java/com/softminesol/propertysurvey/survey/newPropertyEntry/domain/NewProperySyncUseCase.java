@@ -2,11 +2,10 @@ package com.softminesol.propertysurvey.survey.newPropertyEntry.domain;
 
 import com.softmine.imageupload.domain.ImageUploadUseCase;
 import com.softmine.imageupload.model.ImageUploadResponse;
-import com.softminesol.survey_framework.CommonBaseUrl;
+import com.softminesol.propertysurvey.CommonBaseUrl;
 import com.softminesol.survey_framework.localcachesync.data.SurveyPropertyOfflineRepository;
 import com.softminesol.survey_framework.survey.common.model.property.GetPropertySaveResponse;
 import com.softminesol.survey_framework.survey.common.model.property.SavePropertyRequest;
-import com.softminesol.propertysurvey.survey.newPropertyEntry.domain.SaveSurveyFormUseCase;
 
 import java.util.ArrayList;
 import java.util.List;

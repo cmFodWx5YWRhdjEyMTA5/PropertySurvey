@@ -45,16 +45,9 @@
                 </intent-filter>
             </activity>
             <activity
-                android:name="com.softminesol.propertysurvey.home.view.DashBoardActivity"
-                android:label="Survey"
-                android:screenOrientation="portrait" />
-                <activity
                 android:name="com.softminesol.survey_framework.survey.common.view.activity.OwnerInfoActivity"
                 android:screenOrientation="portrait" />
-            <activity
-                android:name="com.softminesol.propertysurvey.survey.draftedEntity.view.DraftedListActivity"
-                android:screenOrientation="portrait" />
-            <!--
+                   <!--
                  The API key for Google Maps-based APIs is defined as a string resource.
                  (See the file "res/values/google_maps_api.xml").
                  Note that the API key is linked to the encryption key used to sign the APK.
@@ -69,9 +62,6 @@
                 android:name="io.fabric.ApiKey"
                 android:value="8cc901a5e7a4a0b09e3a21db971c4c2e96c035cb" />
 
-            <activity
-                android:name="com.softminesol.survey_framework.survey.common.view.activity.ApartmentInfoActivity"
-                android:screenOrientation="portrait" />
-        </application>
+           </application>
 
     </manifest>

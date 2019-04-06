@@ -14,12 +14,12 @@
     <application
         android:name=".NewSurveyApp"
         android:allowBackup="true"
-        tools:replace="android:name"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="android:name">
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -31,12 +31,21 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-              <meta-data
+        <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="8cc901a5e7a4a0b09e3a21db971c4c2e96c035cb" />
+
+        <activity
+            android:name="com.softminesol.propertysurvey.home.view.DashBoardActivity"
+            android:label="Survey"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.softminesol.propertysurvey.survey.draftedEntity.view.DraftedListActivity"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name="com.softminesol.propertysurvey.survey.newPropertyEntry.view.activity.NewSurveyActivity"
             android:screenOrientation="portrait" />
