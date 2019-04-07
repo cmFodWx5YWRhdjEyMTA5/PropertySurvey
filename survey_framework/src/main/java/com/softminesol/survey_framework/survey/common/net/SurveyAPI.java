@@ -17,6 +17,7 @@ import com.softminesol.survey_framework.survey.common.model.newmodel.BuildingAge
 import com.softminesol.survey_framework.survey.common.model.newmodel.Floors;
 import com.softminesol.survey_framework.survey.common.model.newmodel.NonResidentalCategory;
 import com.softminesol.survey_framework.survey.common.model.newmodel.OccupancyStatus;
+import com.softminesol.survey_framework.survey.common.model.newmodel.PropertyDataFromGSID;
 import com.softminesol.survey_framework.survey.common.model.newmodel.PropertyUsage;
 import com.softminesol.survey_framework.survey.common.model.newmodel.RespondentStatus;
 import com.softminesol.survey_framework.survey.common.model.newmodel.SourceWater;
@@ -25,7 +26,6 @@ import frameworks.network.model.DataResponse;
 import retrofit2.Response;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -67,7 +67,7 @@ public interface SurveyAPI {
     public Observable<Response<DataResponse<ConstructionType>>> getConstructionType();
 
     @GET(SurveyAPIURL.PROPERTY_IDS)
-    public Observable<Response<DataResponse<OLDPropertyUIDS>>> getPropertyIds(@Query("propertyOldUid") String query);
+    public Observable<Response<DataResponse<OLDPropertyUIDS>>> getPropertyIds();
 
     @GET(SurveyAPIURL.PROPERTY_DETAIL)
     public Observable<Response<DataResponse<PropertyDetails>>> getPropertyDetail(@Path("id") String query);
@@ -97,6 +97,8 @@ public interface SurveyAPI {
     @GET(SurveyAPIURL.SOURCE_WATER)
     Observable<Response<DataResponse<SourceWater>>> getSourceWater();
 
+    @GET(SurveyAPIURL.GET_PROPERTY)
+    Observable<Response<DataResponse<PropertyDataFromGSID>>> getSavePropertyRequestData(@Path("id") String query);
 
 
 

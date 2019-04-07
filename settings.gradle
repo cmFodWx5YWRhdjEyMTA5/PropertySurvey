@@ -1,1 +1,1 @@
-include ':new_property',':framework', ':locations',  ':permissions', ':maps', ':imageupload', ':usecase',  ':survey_framework', ':router'
+include ':new_property',':framework', ':locations',  ':permissions', ':maps', ':imageupload', ':usecase', ':qcapp_survey', ':survey_framework', ':router'

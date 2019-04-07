@@ -1,6 +1,6 @@
 package com.softminesol.survey_framework.survey.common.domain;
 
-import com.softminesol.survey_framework.survey.common.model.formData.FormData;
+import com.softminesol.survey_framework.survey.common.model.property.SavePropertyRequest;
 
 import javax.inject.Inject;
 
@@ -12,7 +12,7 @@ import rx.Observable;
  * Created by sandeepgoyal on 14/05/18.
  */
 
-public class GetPropertyInfoUseCase extends UseCase<FormData> {
+public class GetPropertyInfoUseCase extends UseCase<SavePropertyRequest> {
     ISurveyOptionRepository repository;
 
     @Inject
@@ -21,7 +21,7 @@ public class GetPropertyInfoUseCase extends UseCase<FormData> {
     }
 
     @Override
-    public Observable<FormData> createObservable(RequestParams requestParams) {
-        return Observable.just(new FormData());
+    public Observable<SavePropertyRequest> createObservable(RequestParams requestParams) {
+        return repository.getSavePropertyRequestData(requestParams.getString("query", ""));
     }
 }

@@ -1,10 +1,12 @@
 package com.softminesol.survey_framework.survey.common.model.property;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.softminesol.survey_framework.survey.common.model.apartment.SaveApartmentRequest;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -97,7 +99,23 @@ public class SavePropertyRequest implements Serializable{
     @Expose
     private String longitude;
 
+
     private boolean idDrafted;
+
+
+    @Ignore
+    @SerializedName("Apartment")
+    ArrayList<SaveApartmentRequest> saveApartmentRequest;
+
+    public ArrayList<SaveApartmentRequest> getSaveApartmentRequest() {
+        return saveApartmentRequest;
+    }
+
+    public void setSaveApartmentRequest(ArrayList<SaveApartmentRequest> saveApartmentRequest) {
+        this.saveApartmentRequest = saveApartmentRequest;
+    }
+
+
 
     public boolean isIdDrafted() {
         return idDrafted;

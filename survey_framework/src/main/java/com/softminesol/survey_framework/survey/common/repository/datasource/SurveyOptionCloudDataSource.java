@@ -12,15 +12,15 @@ import com.softminesol.survey_framework.survey.common.model.PropertySubCategoryL
 import com.softminesol.survey_framework.survey.common.model.PropertyTypes;
 import com.softminesol.survey_framework.survey.common.model.RebateList;
 import com.softminesol.survey_framework.survey.common.model.UsageList;
-import com.softminesol.survey_framework.survey.common.model.formData.FormData;
-import com.softminesol.survey_framework.survey.common.model.formData.PropertyDetails;
 import com.softminesol.survey_framework.survey.common.model.newmodel.BuildingAge;
 import com.softminesol.survey_framework.survey.common.model.newmodel.Floors;
 import com.softminesol.survey_framework.survey.common.model.newmodel.NonResidentalCategory;
 import com.softminesol.survey_framework.survey.common.model.newmodel.OccupancyStatus;
+import com.softminesol.survey_framework.survey.common.model.newmodel.PropertyDataFromGSID;
 import com.softminesol.survey_framework.survey.common.model.newmodel.PropertyUsage;
 import com.softminesol.survey_framework.survey.common.model.newmodel.RespondentStatus;
 import com.softminesol.survey_framework.survey.common.model.newmodel.SourceWater;
+import com.softminesol.survey_framework.survey.common.model.property.SavePropertyRequest;
 import com.softminesol.survey_framework.survey.common.net.SurveyAPI;
 
 import javax.inject.Inject;
@@ -132,20 +132,11 @@ public class SurveyOptionCloudDataSource {
         });
     }
 
-    public Observable<OLDPropertyUIDS> getPropertyIdList(String query) {
-        return surveyAPI.getPropertyIds(query).map(new Func1<Response<DataResponse<OLDPropertyUIDS>>, OLDPropertyUIDS>() {
+    public Observable<OLDPropertyUIDS> getPropertyIdList() {
+        return surveyAPI.getPropertyIds().map(new Func1<Response<DataResponse<OLDPropertyUIDS>>, OLDPropertyUIDS>() {
             @Override
             public OLDPropertyUIDS call(Response<DataResponse<OLDPropertyUIDS>> dataResponseResponse) {
                 return dataResponseResponse.body().getData();
-            }
-        });
-    }
-
-    public Observable<FormData> getFormData(String query) {
-        return surveyAPI.getPropertyDetail(query).map(new Func1<Response<DataResponse<PropertyDetails>>, FormData>() {
-            @Override
-            public FormData call(Response<DataResponse<PropertyDetails>> dataResponseResponse) {
-                return dataResponseResponse.body().getData().getFormData();
             }
         });
     }
@@ -239,5 +230,13 @@ public class SurveyOptionCloudDataSource {
             }
         });
 
+    }
+    public Observable<SavePropertyRequest> getSavePropertyRequestData(String query) {
+        return surveyAPI.getSavePropertyRequestData(query).map(new Func1<Response<DataResponse<PropertyDataFromGSID>>, SavePropertyRequest>() {
+            @Override
+            public SavePropertyRequest call(Response<DataResponse<PropertyDataFromGSID>> dataResponseResponse) {
+                return dataResponseResponse.body().getData().getSavePropertyRequest();
+            }
+        });
     }
 }

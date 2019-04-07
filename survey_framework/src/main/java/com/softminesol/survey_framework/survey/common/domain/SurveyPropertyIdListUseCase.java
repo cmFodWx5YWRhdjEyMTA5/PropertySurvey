@@ -23,6 +23,6 @@ public class SurveyPropertyIdListUseCase extends UseCase<OLDPropertyUIDS> {
 
     @Override
     public Observable<OLDPropertyUIDS> createObservable(RequestParams requestParams) {
-        return Observable.just(new OLDPropertyUIDS());
+        return repository.getPropertyIdList();
     }
 }

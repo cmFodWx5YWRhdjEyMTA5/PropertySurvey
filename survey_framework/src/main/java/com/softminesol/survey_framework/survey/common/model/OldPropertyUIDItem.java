@@ -1,8 +1,11 @@
 package com.softminesol.survey_framework.survey.common.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import frameworks.customadapter.CustomAdapterModel;
 
 public class OldPropertyUIDItem extends CustomAdapterModel {
+    @SerializedName("gis_id")
     private String oldpropertyuid;
 
     public String getOldpropertyuid() {

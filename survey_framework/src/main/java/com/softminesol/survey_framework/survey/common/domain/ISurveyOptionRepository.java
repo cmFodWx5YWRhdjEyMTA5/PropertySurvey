@@ -1,5 +1,6 @@
 package com.softminesol.survey_framework.survey.common.domain;
 
+import com.softminesol.survey_framework.survey.common.model.OLDPropertyUIDS;
 import com.softminesol.survey_framework.survey.common.model.PropertyTypes;
 import com.softminesol.survey_framework.survey.common.model.newmodel.BuildingAge;
 import com.softminesol.survey_framework.survey.common.model.newmodel.ConstructionType;
@@ -9,6 +10,7 @@ import com.softminesol.survey_framework.survey.common.model.newmodel.OccupancySt
 import com.softminesol.survey_framework.survey.common.model.newmodel.PropertyUsage;
 import com.softminesol.survey_framework.survey.common.model.newmodel.RespondentStatus;
 import com.softminesol.survey_framework.survey.common.model.newmodel.SourceWater;
+import com.softminesol.survey_framework.survey.common.model.property.SavePropertyRequest;
 
 import rx.Observable;
 
@@ -25,5 +27,7 @@ public interface ISurveyOptionRepository {
    public Observable<Floors> getFloors();
    public Observable<NonResidentalCategory> getNonResidentalCategory();
    public Observable<SourceWater> getSourceWater();
+   public Observable<OLDPropertyUIDS> getPropertyIdList( );
+   public Observable<SavePropertyRequest> getSavePropertyRequestData(String query);
 
 }

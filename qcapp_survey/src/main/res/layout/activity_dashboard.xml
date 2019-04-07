@@ -17,53 +17,18 @@
 
 
         <TextView
-            android:id="@+id/btn_new_property"
+            android:id="@+id/btn_qc_property"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_weight="1"
             android:background="@drawable/ic_btn_red"
             android:gravity="center"
             android:minHeight="@dimen/button_min_height"
             android:text="@string/add_property"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
             android:textSize="@dimen/button_text_size"
             android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/btn_add_apartment"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:background="@drawable/ic_btn_blue"
-            android:gravity="center"
-            android:minHeight="@dimen/button_min_height"
-            android:text="@string/add_apartment"
-            android:visibility="gone"
-            android:textSize="@dimen/button_text_size"
-            android:textStyle="bold" />
-
-
-        <Button
-            android:visibility="gone"
-            android:id="@+id/btn_old_property"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:minHeight="@dimen/button_min_height"
-            android:text="@string/old_property"
-            android:textSize="@dimen/button_text_size" />
-
-        <Button
-            android:visibility="gone"
-            android:id="@+id/btn_bill_distribution"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:minHeight="@dimen/button_min_height"
-            android:text="@string/bill_distribution"
-            android:textSize="@dimen/button_text_size" />
 
 
     </LinearLayout>

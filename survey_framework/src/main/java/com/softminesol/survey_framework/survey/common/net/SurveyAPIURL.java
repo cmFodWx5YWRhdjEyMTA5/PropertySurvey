@@ -18,7 +18,7 @@ public interface SurveyAPIURL {
     String PROPERTY_OWNERSHIP = "ownership";
     String PROPERTY_AREATYPE = "areatype";
     String PROPERTY_CONSTRUCTIONTYPE = "constructionType";
-    String PROPERTY_IDS = "property/getAllPropertyOldUID";
+    String PROPERTY_IDS = "property";
     String PROPERTY_DETAIL = "/property/view/{id}";
     String PROPERTY_USAGE1 = "propertyUsage";
     String RESPODENT = "respodent";
@@ -28,6 +28,7 @@ public interface SurveyAPIURL {
     String FLOOR = "floor";
     String NON_RESIDENTAL_CATEGORY = "nonResidentalCategory";
     String SOURCE_WATER = "sourceWater";
+    String GET_PROPERTY = "/property/viewProperty/{id}";
     String BASE_URL = CommonBaseUrl.BASE_URL;
     ;
 

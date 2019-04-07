@@ -1,8 +1,11 @@
 package com.softminesol.survey_framework.survey.common.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class OLDPropertyUIDS {
+    @SerializedName("Properties")
     private List<OldPropertyUIDItem> oldPropertyUID;
 
     public List<OldPropertyUIDItem> getOldPropertyUID() {

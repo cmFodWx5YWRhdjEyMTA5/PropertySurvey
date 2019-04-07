@@ -1,6 +1,7 @@
 package com.softminesol.survey_framework.survey.common.repository;
 
 import com.softminesol.survey_framework.survey.common.domain.ISurveyOptionRepository;
+import com.softminesol.survey_framework.survey.common.model.OLDPropertyUIDS;
 import com.softminesol.survey_framework.survey.common.model.PropertyTypes;
 import com.softminesol.survey_framework.survey.common.model.newmodel.BuildingAge;
 import com.softminesol.survey_framework.survey.common.model.newmodel.Floors;
@@ -9,6 +10,7 @@ import com.softminesol.survey_framework.survey.common.model.newmodel.OccupancySt
 import com.softminesol.survey_framework.survey.common.model.newmodel.PropertyUsage;
 import com.softminesol.survey_framework.survey.common.model.newmodel.RespondentStatus;
 import com.softminesol.survey_framework.survey.common.model.newmodel.SourceWater;
+import com.softminesol.survey_framework.survey.common.model.property.SavePropertyRequest;
 import com.softminesol.survey_framework.survey.common.repository.datasource.SurveyOptionFactory;
 
 import javax.inject.Inject;
@@ -202,5 +204,15 @@ public class SurveyOptionRepository implements ISurveyOptionRepository {
                 }
             }
         });
+    }
+
+    @Override
+    public Observable<OLDPropertyUIDS> getPropertyIdList() {
+        return surveyOptionFactory.getSurveyOptionCloudDataSource().getPropertyIdList();
+    }
+
+    @Override
+    public Observable<SavePropertyRequest> getSavePropertyRequestData(String query) {
+        return surveyOptionFactory.getSurveyOptionCloudDataSource().getSavePropertyRequestData(query);
     }
 }
