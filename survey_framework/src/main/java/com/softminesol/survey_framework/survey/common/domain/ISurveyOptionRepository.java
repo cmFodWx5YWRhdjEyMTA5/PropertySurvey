@@ -28,6 +28,7 @@ public interface ISurveyOptionRepository {
    public Observable<NonResidentalCategory> getNonResidentalCategory();
    public Observable<SourceWater> getSourceWater();
    public Observable<OLDPropertyUIDS> getPropertyIdList( );
+   public Observable<OLDPropertyUIDS> get( );
    public Observable<SavePropertyRequest> getSavePropertyRequestData(String query);
 
 }

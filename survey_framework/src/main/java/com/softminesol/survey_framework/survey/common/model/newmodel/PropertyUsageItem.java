@@ -2,9 +2,7 @@ package com.softminesol.survey_framework.survey.common.model.newmodel;
 
 import com.google.gson.annotations.SerializedName;
 
-import frameworks.customadapter.CustomAdapterModel;
-
-public class PropertyUsageItem extends CustomAdapterModel {
+public class PropertyUsageItem{
 
 	@SerializedName("property_usage_id")
 	private int propertyUsageId;
@@ -31,11 +29,9 @@ public class PropertyUsageItem extends CustomAdapterModel {
 	@Override
  	public String toString(){
 		return 
-			getText();
+			"PropertyUsageItem{" + 
+			"property_usage_id = '" + propertyUsageId + '\'' + 
+			",property_usage = '" + propertyUsage + '\'' + 
+			"}";
 		}
-
-	@Override
-	public String getText() {
-		return propertyUsage;
-	}
 }

@@ -19,5 +19,7 @@ public interface ISearchPropertyListContract {
 
     public interface IDraftedListActivityPresenter extends IPresenter<IDraftedListActivityView> {
         void onPropertyIDSelected(String oldpropertyuid);
+
+        void checkandUpdateProperty();
     }
 }

@@ -1,7 +1,6 @@
 package com.softminesol.propertysurvey_qc.qasearch.newPropertyEntry.view.presenter;
 
 import com.softminesol.locations.locationmanager.domain.GetLocationAddressUseCase;
-import com.softminesol.propertysurvey_qc.qasearch.apartmentEntry.view.activity.NewApartmentInfoActivity;
 import com.softminesol.propertysurvey_qc.qasearch.newPropertyEntry.domain.SaveSurveyCacheUseCase;
 import com.softminesol.propertysurvey_qc.qasearch.newPropertyEntry.domain.SaveSurveyFormUseCase;
 import com.softminesol.survey_framework.survey.common.domain.SurveyGetPropertyTypeUseCase;
@@ -22,7 +21,7 @@ import rx.Subscriber;
 public class NewPropertyInfoPresenter extends PropertyLocationPresenter<NewPropertyInforFragmentContract.View> implements NewPropertyInforFragmentContract.Presenter {
     private final SaveSurveyFormUseCase saveSurveyFormUseCase;
     private final SaveSurveyCacheUseCase saveSurveyCacheUseCase;
-
+    public String selectedfdGSID;
 
 
     @Inject
@@ -74,8 +73,8 @@ public class NewPropertyInfoPresenter extends PropertyLocationPresenter<NewPrope
         super.onSubmitClick();
         if (validateForm()) {
             SavePropertyRequest formData = getPropertyData();
-            RequestParams requestParams = RequestParams.create();
-            requestParams.putObject("formdata", formData);
+            selectedfdGSID = draftedPropertyRequest.getGsid();
+            RequestParams requestParams = saveSurveyFormUseCase.createRequestParams(selectedfdGSID,formData);
             getView().showProgressBar();
             saveSurveyFormUseCase.execute(requestParams, new Subscriber<GetPropertySaveResponse>() {
                 @Override
@@ -95,7 +94,8 @@ public class NewPropertyInfoPresenter extends PropertyLocationPresenter<NewPrope
 
                 @Override
                 public void onNext(GetPropertySaveResponse getPropertySaveResponse) {
-                    if (getPropertySaveResponse.getGisId() != null) {
+                    getView().finish();
+                    /*if (getPropertySaveResponse.getGisId() != null) {
                         getView().startActivity(NewApartmentInfoActivity.createIntent(getView().getContext(), getPropertySaveResponse.getGisId()));
                         getView().finish();
                     } else {
@@ -103,7 +103,7 @@ public class NewPropertyInfoPresenter extends PropertyLocationPresenter<NewPrope
                             getView().startActivity(NewApartmentInfoActivity.createIntent(getView().getContext(), getPropertySaveResponse.getTempId()));
                             getView().finish();
                         }
-                    }
+                    }*/
                 }
             });
 

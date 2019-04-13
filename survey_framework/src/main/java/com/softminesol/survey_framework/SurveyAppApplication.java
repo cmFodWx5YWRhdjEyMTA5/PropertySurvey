@@ -9,6 +9,7 @@ import com.softmine.imageupload.data.net.ImageUploadURL;
 import com.softminesol.survey_framework.location.LocationUploadManager;
 import com.softminesol.survey_framework.location.model.LatLongUpload;
 import com.softminesol.survey_framework.login.view.LoginActivity;
+import com.softminesol.survey_framework.roomDb.PropertySurveyDB;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -52,6 +53,7 @@ public class SurveyAppApplication extends AppBaseApplication implements ILoginIn
     @Override
     public void logout() {
         //TODO clear cache
+        PropertySurveyDB.getInstance(this).clearAllTables();
         sessionValue.clearSession();
         startLogin();
     }

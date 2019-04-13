@@ -107,14 +107,15 @@ ext {
 
 
     libraries = [
-            framework       : ":framework",
-            locations       : ":locations",
-            permissions       : ":permissions",
-            maps       : ":maps",
-            imageupload : ":imageupload",
-            usecase : ":usecase",
-            survey_framework : ":survey_framework",
-            routers    : ":router"
+            framework           : ":framework",
+            locations           : ":locations",
+            permissions         : ":permissions",
+            maps                : ":maps",
+            imageupload         : ":imageupload",
+            usecase             : ":usecase",
+            survey_framework    : ":survey_framework",
+            routers             : ":router",
+            network             : ":common_network"
     ]
 
     dbDependencies = [

@@ -15,8 +15,10 @@
 
     <string-array name="property_usage">
         <item>Residential</item>
-        <item>Non Residential</item>
+        <item>Non-Residental</item>
         <item>Mix</item>
+        <item>Vacant Plot/Land</item>
+        <item>Parking</item>
 
     </string-array>
     <string-array name="property_type">

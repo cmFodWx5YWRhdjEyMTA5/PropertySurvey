@@ -1,6 +1,7 @@
 package com.softminesol.survey_framework.survey.common.model.apartment;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 import com.google.gson.annotations.Expose;
@@ -18,6 +19,17 @@ public class SaveApartmentRequest implements Serializable {
 
     private long tempPropertyApartmentId;
 
+    public String getFloorDetailId() {
+        return floorDetailId;
+    }
+
+    public void setFloorDetailId(String floorDetailId) {
+        this.floorDetailId = floorDetailId;
+    }
+
+    @Ignore
+    @SerializedName("floor_details_id")
+    private String floorDetailId;
 
     @SerializedName("gis_id")
     @Expose
@@ -83,10 +95,10 @@ public class SaveApartmentRequest implements Serializable {
     @SerializedName("construction_type")
     @Expose
     private String constructionType;
-    @SerializedName("self_occupied_area")
+    @SerializedName("self_occupied")
     @Expose
     private String selfOccupiedArea;
-    @SerializedName("tenanted_carpet_area")
+    @SerializedName("tenanted")
     @Expose
     private String tenantedCarpetArea;
     @SerializedName("power_backup")

@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.softminesol.propertysurvey_qc.R;
+import com.softminesol.propertysurvey.R;
 import com.softminesol.propertysurvey_qc.home.di.DaggerDashBoardComponent;
 import com.softminesol.propertysurvey_qc.home.di.DashBoardComponent;
 import com.softminesol.propertysurvey_qc.home.presenter.DashBoardContractor;

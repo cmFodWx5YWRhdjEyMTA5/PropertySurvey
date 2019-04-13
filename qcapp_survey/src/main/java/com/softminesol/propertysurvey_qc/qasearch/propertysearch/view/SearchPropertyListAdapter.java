@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.softminesol.propertysurvey_qc.R;
+import com.softminesol.propertysurvey.R;
 import com.softminesol.propertysurvey_qc.qasearch.apartmentEntry.view.activity.NewApartmentInfoActivity;
 import com.softminesol.propertysurvey_qc.qasearch.newPropertyEntry.view.activity.NewSurveyActivity;
 import com.softminesol.survey_framework.survey.common.model.apartment.SaveApartmentRequest;

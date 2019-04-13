@@ -1,4 +1,4 @@
-package com.softminesol.propertysurvey_qc;
+package com.softminesol.propertysurvey;
 /**
  * Created by sandeep on 3/5/18.
  */

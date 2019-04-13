@@ -5,8 +5,6 @@ import com.softminesol.propertysurvey_qc.qasearch.newPropertyEntry.domain.ISurve
 import com.softminesol.survey_framework.survey.common.model.property.GetPropertySaveResponse;
 import com.softminesol.survey_framework.survey.common.model.property.SavePropertyRequest;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import rx.Observable;
@@ -27,17 +25,11 @@ public class SurveyFormSubmitRepository implements  ISurveyFormSaveRepository {
         return submitFormDataFactory.getCacheSubmitFormData().submitFormData(formData);
     }
 
-    @Override
-    public Observable<List<SavePropertyRequest>> getDraftedSaveProperties() {
-        return submitFormDataFactory.getCacheSubmitFormData().getDraftedProperties();
-    }
-
-
-    public Observable<GetPropertySaveResponse> submitCloudNewProperty(final SavePropertyRequest formData) {
+    public Observable<GetPropertySaveResponse> submitCLoudOldProperty(String id,final SavePropertyRequest formData) {
         if (formData.getImagePathList() != null && formData.getImagePathList().size() > 0) {
             return submitCacheNewProperty(formData);
         } else {
-            return submitFormDataFactory.getCloudSubmitFomData().submitCloudNewProperty(formData).doOnError(new Action1<Throwable>() {
+            return submitFormDataFactory.getCloudSubmitFomData().submitOldProperty(id,formData).doOnError(new Action1<Throwable>() {
                 @Override
                 public void call(Throwable throwable) {
                     submitFormDataFactory.getCacheSubmitFormData().submitFormData(formData);

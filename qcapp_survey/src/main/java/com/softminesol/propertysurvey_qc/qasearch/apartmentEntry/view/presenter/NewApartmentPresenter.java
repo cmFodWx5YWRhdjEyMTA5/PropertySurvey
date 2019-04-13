@@ -39,8 +39,7 @@ public class NewApartmentPresenter extends ApartmentInfoPresenter<NewApartmentCo
     public void onNextClick() {
         if(validateForm()) {
             SaveApartmentRequest formData = getApartmentData();
-            RequestParams requestParams = RequestParams.create();
-            requestParams.putObject("formdata", formData);
+            RequestParams requestParams = saveApartmentSurveyFormUseCase.createRequestParams(saveApartmentRequest.getFloorDetailId(),formData);
             getView().showProgressBar();
             saveApartmentSurveyFormUseCase.execute(requestParams, new Subscriber<GetPropertySaveResponse>() {
                 @Override

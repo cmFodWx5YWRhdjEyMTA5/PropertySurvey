@@ -2,8 +2,8 @@ package com.softminesol.propertysurvey_qc.qasearch.newPropertyEntry.domain;
 
 import com.softmine.imageupload.domain.ImageUploadUseCase;
 import com.softmine.imageupload.model.ImageUploadResponse;
-import com.softminesol.propertysurvey_qc.CommonBaseUrl;
 import com.softminesol.propertysurvey_qc.qasearch.apartmentEntry.domain.SaveApartmentSurveyFormUseCase;
+import com.softminesol.survey_framework.CommonBaseUrl;
 import com.softminesol.survey_framework.localcachesync.data.SurveyApartmentOfflineRepository;
 import com.softminesol.survey_framework.survey.common.model.apartment.Owner;
 import com.softminesol.survey_framework.survey.common.model.apartment.SaveApartmentRequest;

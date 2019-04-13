@@ -96,7 +96,7 @@
     <string name="type_of_property">Type of Property</string>
     <string name="gis_id">GIS Id</string>
     <string name="parcel_id">Parcel Id</string>
-    <string name="type_of_non_res_property">Type of Non Residential Property</string>
+    <string name="type_of_non_res_property">Type of Non com.softminesol.survey_framework.R Property</string>
     <string name="source_of_water">Source Of Water</string>
     <string name="rain_water_harvesting">Rain Water Harvesting</string>
     <string name="apartment_building_name">Apartment Building Name</string>

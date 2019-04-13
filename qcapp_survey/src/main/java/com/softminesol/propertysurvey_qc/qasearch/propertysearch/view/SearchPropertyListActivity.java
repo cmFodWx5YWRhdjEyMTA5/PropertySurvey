@@ -9,7 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 
-import com.softminesol.propertysurvey_qc.R;
+import com.softminesol.propertysurvey.R;
 import com.softminesol.propertysurvey_qc.qasearch.propertysearch.di.DaggerQAComponent;
 import com.softminesol.propertysurvey_qc.qasearch.propertysearch.di.QAComponent;
 import com.softminesol.survey_framework.SurveyAppApplication;
@@ -52,6 +52,12 @@ public class SearchPropertyListActivity extends AppBaseActivity<ISearchPropertyL
         mActivityDraftedList.setLayoutManager(new LinearLayoutManager(this));
         mActivityDraftedList.setAdapter(draftedListAdapter);
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getPresenter().checkandUpdateProperty();
     }
 
     @Override

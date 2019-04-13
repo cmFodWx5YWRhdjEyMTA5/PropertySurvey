@@ -24,16 +24,19 @@ public class SaveSurveyFormUseCase extends UseCase<GetPropertySaveResponse> {
     }
 
 
-    public RequestParams createRequestParams(SavePropertyRequest savePropertyRequest) {
+    public RequestParams createRequestParams(String id,SavePropertyRequest savePropertyRequest) {
         RequestParams requestParams = RequestParams.create();
         requestParams.putObject("formdata",savePropertyRequest);
+        requestParams.putObject("id",id);
         return requestParams;
     }
+
     @Override
     public Observable<GetPropertySaveResponse> createObservable(final RequestParams requestParams) {
 
         final SavePropertyRequest formData = (SavePropertyRequest) requestParams.getObject("formdata");
-        return surveyFormSubmitRepository.submitCloudNewProperty(formData);
-      }
+        return surveyFormSubmitRepository.submitCLoudOldProperty(requestParams.getString("id",""),formData);
+    }
+
 
 }

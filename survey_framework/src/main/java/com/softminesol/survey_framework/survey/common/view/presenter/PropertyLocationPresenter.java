@@ -2,10 +2,8 @@ package com.softminesol.survey_framework.survey.common.view.presenter;
 
 import android.content.Intent;
 import android.location.Location;
-import android.view.View;
 
 import com.google.android.gms.maps.GoogleMap;
-import com.pchmn.materialchips.ChipView;
 import com.softmine.imageupload.presenter.ImageUploadPresenter;
 import com.softmine.imageupload.view.ImageUploadActivity;
 import com.softminesol.locations.locationmanager.data.AddressComponentsItem;
@@ -140,7 +138,7 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
         savePropertyRequest.setTotalFloor(getView().getfloorCount());
         savePropertyRequest.setFireFighting(getView().getFireFighting());
         savePropertyRequest.setRoadWidth(getView().getRoadWidth());
-        //savePropertyRequest.setOldPropertyId(getView().getOldPropertyId());
+        savePropertyRequest.setOldPropertyId(getView().getOldPropertyId());
         if (location != null) {
             savePropertyRequest.setLattitude(location.getLatitude() + "");
             savePropertyRequest.setLongitude(location.getLongitude() + "");
@@ -170,7 +168,8 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
         getView().setAgeOfProperty(savePropertyRequest.getAgeOfProperty());
         getView().setFireFightingItem(savePropertyRequest.getFireFighting());
         getView().setRoadWidthItem(savePropertyRequest.getRoadWidth());
-       // getView().setOldPropertyId(savePropertyRequest.getOldPropertyId());
+        getView().setOldPropertyId(savePropertyRequest.getOldPropertyId());
+        getView().setFloorCount(savePropertyRequest.getTotalFloor());
         location = new Location("");
         if(savePropertyRequest.getLattitude() != null && savePropertyRequest.getLongitude() != null) {
             location.setLatitude(Double.parseDouble(savePropertyRequest.getLattitude()));
@@ -257,17 +256,5 @@ public class PropertyLocationPresenter<T extends PropertyLocationContract.View> 
 
     FloorDetailsItem clickedFloorDetailsItem;
 
-    protected void addChip(final FloorDetailsItem formDetailsItem) {
-        final ChipView chipView = new ChipView(getView().getContext());
-        chipView.setDeletable(true);
-        chipView.setLabel(formDetailsItem.getFloorType());
-        getView().setFloorCount(floorDetailsItems.size() + "");
-        chipView.setOnDeleteClicked(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                floorDetailsItems.remove(formDetailsItem);
-            }
-        });
 
-    }
 }

@@ -38,7 +38,7 @@ public class GetTokenInterceptor extends AppBaseInterceptor {
                 } catch (JsonSyntaxException e) { // the json might not be TkpdResponseError instance, so just return it
                     return response;
                 }
-                if (dataResponse == null) { // no error object
+                if (dataResponse == null || dataResponse.getData() == null) { // no error object
                     return response;
                 } else {
                     dataResponse.getData().setAuthToken(token);

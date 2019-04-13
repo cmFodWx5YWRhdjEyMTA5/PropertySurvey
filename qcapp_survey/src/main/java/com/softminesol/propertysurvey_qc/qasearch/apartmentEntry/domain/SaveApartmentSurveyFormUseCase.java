@@ -35,4 +35,11 @@ public class SaveApartmentSurveyFormUseCase extends UseCase<GetPropertySaveRespo
         requestParams.putObject("formdata",saveApartmentRequest);
         return requestParams;
     }
+
+    public RequestParams createRequestParams(String id, SaveApartmentRequest data) {
+        RequestParams requestParams = RequestParams.create();
+        requestParams.putString("id",id);
+        requestParams.putObject("formdata",data);
+        return requestParams;
+    }
 }

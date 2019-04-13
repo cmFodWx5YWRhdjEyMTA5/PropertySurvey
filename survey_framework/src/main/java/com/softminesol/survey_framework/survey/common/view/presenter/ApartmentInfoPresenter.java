@@ -222,8 +222,9 @@ public class ApartmentInfoPresenter< T extends ApartmentInfoContract.View> exten
     }
 
     List<NonResidentalCategoryItem> nonResidentalCategoryItems = new ArrayList<>();
-
+    protected SaveApartmentRequest saveApartmentRequest = new SaveApartmentRequest();
     public void setApartmentData(SaveApartmentRequest saveApartmentRequest) {
+        this.saveApartmentRequest.setFloorDetailId(saveApartmentRequest.getFloorDetailId());
         getView().setTempId(saveApartmentRequest.getTempPropertyApartmentId()+"");
         getView().setGisId(saveApartmentRequest.getGisId()+"");
         getView().setFloorNumber( saveApartmentRequest.getFloor());

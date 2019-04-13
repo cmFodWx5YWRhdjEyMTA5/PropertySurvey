@@ -11,7 +11,7 @@ public class Owner implements Serializable{
     @SerializedName("name")
     @Expose
     private String name;
-    @SerializedName("aadhar_id")
+    @SerializedName("unique_id")
     @Expose
     private String aadharId;
     @SerializedName("mobile_no")

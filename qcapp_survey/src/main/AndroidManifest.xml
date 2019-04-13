@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.softminesol.propertysurvey_qc">
+    package="com.softminesol.propertysurvey">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -14,7 +14,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
-        android:name=".QCSurveyApp"
+        android:name="com.softminesol.propertysurvey_qc.QCSurveyApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         tools:replace="android:name"
@@ -33,18 +33,18 @@
         </provider>
 
 
-        <activity android:name=".home.view.DashBoardActivity"
+        <activity android:name="com.softminesol.propertysurvey_qc.home.view.DashBoardActivity"
             android:label="Survey"
             android:screenOrientation="portrait"/>
 
-        <activity android:name=".qasearch.propertysearch.view.SearchPropertyListActivity"
+        <activity android:name="com.softminesol.propertysurvey_qc.qasearch.propertysearch.view.SearchPropertyListActivity"
             android:label="Survey"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".qasearch.newPropertyEntry.view.activity.NewSurveyActivity"
+            android:name="com.softminesol.propertysurvey_qc.qasearch.newPropertyEntry.view.activity.NewSurveyActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".qasearch.apartmentEntry.view.activity.NewApartmentInfoActivity"
+            android:name="com.softminesol.propertysurvey_qc.qasearch.apartmentEntry.view.activity.NewApartmentInfoActivity"
             android:screenOrientation="portrait" />
 
         <!--

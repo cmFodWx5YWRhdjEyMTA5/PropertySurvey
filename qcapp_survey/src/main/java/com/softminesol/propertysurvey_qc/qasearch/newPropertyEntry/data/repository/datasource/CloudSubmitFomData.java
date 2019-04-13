@@ -23,8 +23,8 @@ public class CloudSubmitFomData {
     }
 
 
-    public Observable<GetPropertySaveResponse> submitCloudNewProperty(SavePropertyRequest formData) {
-        return newServeyAPI.submitNewProperty(formData).map(new Func1<Response<DataResponse<GetPropertySaveResponse>>, GetPropertySaveResponse>() {
+    public Observable<GetPropertySaveResponse> submitOldProperty(String id,SavePropertyRequest formData) {
+        return newServeyAPI.submitOldProperty(id,formData).map(new Func1<Response<DataResponse<GetPropertySaveResponse>>, GetPropertySaveResponse>() {
             @Override
             public GetPropertySaveResponse call(Response<DataResponse<GetPropertySaveResponse>> dataResponseResponse) {
                 return dataResponseResponse.body().getData();

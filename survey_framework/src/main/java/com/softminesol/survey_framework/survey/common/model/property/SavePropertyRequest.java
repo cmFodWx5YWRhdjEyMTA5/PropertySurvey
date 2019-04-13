@@ -21,6 +21,11 @@ public class SavePropertyRequest implements Serializable{
         this.id = id;
     }
 
+    @Ignore
+    @SerializedName("gis_id")
+    public String gsid;
+
+
     @PrimaryKey(autoGenerate = true)
     private int id;
 
@@ -31,9 +36,9 @@ public class SavePropertyRequest implements Serializable{
     @Expose
     private String parcelId;
 
-/*    @SerializedName("oldProperty_id")
+    @SerializedName("old_property_id")
     @Expose
-    private String oldPropertyId;*/
+    private String oldPropertyId;
 
     @SerializedName("property_type")
     @Expose
@@ -62,7 +67,8 @@ public class SavePropertyRequest implements Serializable{
     @SerializedName("rain_harvesting_system")
     @Expose
     private String rainHarvestingSystem;
-    @SerializedName("building_status")
+
+    @SerializedName("plot_status")
     @Expose
     private String buildingStatus;
     @SerializedName("plot_area")
@@ -301,13 +307,13 @@ public class SavePropertyRequest implements Serializable{
         return imagesList;
     }
 
-    /*public String getOldPropertyId() {
+    public String getOldPropertyId() {
         return oldPropertyId;
     }
 
     public void setOldPropertyId(String oldPropertyId) {
         this.oldPropertyId = oldPropertyId;
-    }*/
+    }
 
     public void setImagesList(List<String> imagesList) {
         this.imagesList = imagesList;
@@ -329,4 +335,12 @@ public class SavePropertyRequest implements Serializable{
             imagePathList = new ArrayList<>();
         }
     }
+    public String getGsid() {
+        return gsid;
+    }
+
+    public void setGsid(String gsid) {
+        this.gsid = gsid;
+    }
+
 }

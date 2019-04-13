@@ -79,4 +79,11 @@ public class SearchPropertyListPresenter extends AppBasePresenter<ISearchPropert
         });
 
     }
+
+    @Override
+    public void checkandUpdateProperty() {
+        if(selectedfdGSID != null && !selectedfdGSID.isEmpty()) {
+            onPropertyIDSelected(selectedfdGSID);
+        }
+    }
 }
